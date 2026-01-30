@@ -2,6 +2,13 @@
 
 [ext_resource type="PackedScene" uid="uid://bv0iov35dam2s" path="res://assets/models/objects/periodic_table.glb" id="1_y3ped"]
 
-[node name="s_periodic_table" type="Node3D" unique_id=495366280]
+[sub_resource type="BoxShape3D" id="BoxShape3D_y3ped"]
+size = Vector3(4.307597, 0.419057, 2.673038)
 
-[node name="periodic_table" parent="." unique_id=1620247596 instance=ExtResource("1_y3ped")]
+[node name="s_periodic_table" type="StaticBody3D" unique_id=1566976545]
+
+[node name="periodic_table" parent="." unique_id=1818564569 instance=ExtResource("1_y3ped")]
+
+[node name="c_periodic_table" type="CollisionShape3D" parent="." unique_id=1978351314]
+transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, -0.025313377, -0.27519405, 0.009528503)
+shape = SubResource("BoxShape3D_y3ped")
