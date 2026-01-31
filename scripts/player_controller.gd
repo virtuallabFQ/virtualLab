@@ -2,7 +2,7 @@ class_name PlayerController
 extends CharacterBody3D
 
 @onready var collider: CollisionShape3D = $CollisionShape3D
-@onready var camera_controller_anchor: Marker3D = $RotationAnchor/CameraControllerAnchor
+@onready var camera_controller_anchor: Marker3D = %CameraControllerAnchor
 @onready var rotation_anchor: Node3D = $RotationAnchor
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var crouch_shapecast: ShapeCast3D = %ShapeCast3D

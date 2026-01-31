@@ -194,6 +194,7 @@ physics_interpolation_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
 
 [node name="CameraControllerAnchor" type="Marker3D" parent="RotationAnchor" unique_id=1412982681]
+unique_name_in_owner = true
 
 [node name="Camera3D" type="Camera3D" parent="RotationAnchor/CameraControllerAnchor" unique_id=1596875569]
 
@@ -226,7 +227,7 @@ libraries/ = SubResource("AnimationLibrary_7rbyl")
 
 [node name="StateMachine" type="Node" parent="." unique_id=1763309503 node_paths=PackedStringArray("current_state")]
 script = ExtResource("3_w7npb")
-current_state = NodePath("WalkingState")
+current_state = NodePath("IdleState")
 
 [node name="IdleState" type="Node" parent="StateMachine" unique_id=675777237]
 script = ExtResource("3_riij3")
