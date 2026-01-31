@@ -4,6 +4,7 @@ extends CharacterBody3D
 @onready var collider: CollisionShape3D = $CollisionShape3D
 @onready var camera_controller_anchor: Marker3D = $RotationAnchor/CameraControllerAnchor
 @onready var rotation_anchor: Node3D = $RotationAnchor
+@export var animation_player: AnimationPlayer
 
 @export_group("Camera")
 @export var mouse_sensitivity : float = 0.003
@@ -17,24 +18,28 @@ extends CharacterBody3D
 @export var input_back : String = "ui_down"
 @export var input_jump : String = "ui_accept"
 @export var input_sprint : String = "sprint"
+@export var input_crouch : String = "crouch"
 @export var input_freefly : String = "freefly"
 
-@export var can_move : bool = true
 @export var has_gravity : bool = true
-@export var can_jump : bool = true
+@export var can_move : bool = true
 @export var can_sprint : bool = true
+@export var can_crouch : bool = true
+@export var can_jump : bool = true
 @export var can_freefly : bool = true
 
 @export_group("Speeds")
 @export var base_speed : float = 7.0
-@export var jump_velocity : float = 4.5
 @export var sprint_speed : float = 10.0
+@export var crouch_speed : float = 4.5
+@export var jump_velocity : float = 4.5
 @export var freefly_speed : float = 25.0
 
 var mouse_captured : bool = false
 var mouse_input : Vector2 = Vector2.ZERO
 var move_speed : float = 0.0
 var freeflying : bool = false
+var crouching : bool = false
 
 func _ready() -> void:
 	capture_mouse()
@@ -55,19 +60,16 @@ func _unhandled_input(event: InputEvent) -> void:
 		else:
 			disable_freefly()
 			
-			
 func _process(_delta: float) -> void:
 	if mouse_input == Vector2.ZERO: return
 	
 	# 1. Rodar o RotationAnchor (Esquerda/Direita)
-	# Nota: Rodamos o ANCHOR, não o "self" (o corpo físico fica quieto)
 	rotation_anchor.rotate_y(mouse_input.x)
 	
 	# 2. Rodar a CameraAnchor (Cima/Baixo)
 	camera_controller_anchor.rotate_x(mouse_input.y)
 	camera_controller_anchor.rotation.x = clamp(camera_controller_anchor.rotation.x, deg_to_rad(min_pitch), deg_to_rad(max_pitch))
 	
-	# Reset do input
 	mouse_input = Vector2.ZERO
 
 func _physics_process(delta: float) -> void:
@@ -86,10 +88,21 @@ func _physics_process(delta: float) -> void:
 		if Input.is_action_just_pressed(input_jump) and is_on_floor():
 			velocity.y = jump_velocity
 
-	if can_sprint and Input.is_action_pressed(input_sprint):
-			move_speed = sprint_speed
+	var is_crouching_input = Input.is_action_pressed(input_crouch) and is_on_floor()
+	
+	if can_crouch and is_crouching_input:
+		move_speed = crouch_speed
+		
+		# CRUCIAL: Só dá play se não estiver já a tocar!
+		if animation_player and animation_player.current_animation != "crouch":
+			animation_player.play("crouch")
+			
+	elif can_sprint and Input.is_action_pressed(input_sprint):
+		move_speed = sprint_speed
+		# (Opcional) if animation_player: animation_player.play("run")
 	else:
 		move_speed = base_speed
+
 	
 	if can_move:
 		var input_dir := Input.get_vector(input_left, input_right, input_forward, input_back)
@@ -123,3 +136,4 @@ func capture_mouse():
 func release_mouse():
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	mouse_captured = false
+	
