@@ -1,8 +1,7 @@
 [gd_scene format=4 uid="uid://d12ehcem0ornj"]
 
 [ext_resource type="PackedScene" uid="uid://ko87te0o10ve" path="res://scenes/objects/s_chair.tscn" id="1_2yitm"]
-[ext_resource type="PackedScene" uid="uid://bs72ogkvdd7d6" path="res://scenes/entities/proto_controller/proto_controller.tscn" id="1_mmplc"]
-[ext_resource type="Script" uid="uid://b18i75xo7q8g5" path="res://scenes/entities/proto_controller/proto_controller.gd" id="2_j302q"]
+[ext_resource type="PackedScene" uid="uid://yrv80x2vkau4" path="res://scenes/entities/player_controller.tscn" id="1_bj4kn"]
 [ext_resource type="PackedScene" uid="uid://hp3liy7jxlwn" path="res://scenes/objects/s_periodic_table.tscn" id="3_vuu1o"]
 [ext_resource type="PackedScene" uid="uid://dumhaqs3p53lh" path="res://scenes/objects/s_table.tscn" id="4_w4gd0"]
 [ext_resource type="PackedScene" uid="uid://dnkg01s24uf44" path="res://scenes/objects/s_door.tscn" id="6_bj4kn"]
@@ -63,6 +62,9 @@ albedo_color = Color(0.33660764, 0.3366076, 0.3366076, 0)
 
 [node name="lab" type="Node3D" unique_id=2011976822]
 
+[node name="player_controller" parent="." unique_id=65100141 instance=ExtResource("1_bj4kn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.656, -0.739, 0)
+
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="." unique_id=178127234]
 transform = Transform3D(-7.86805e-07, 0.01, 2.6226832e-07, 0, -4.3711387e-10, 6, 18, 4.3711387e-10, 1.1464113e-14, -11.5, 2.252, 0)
 visible = false
@@ -121,13 +123,6 @@ light_energy = 6.5
 shadow_enabled = true
 spot_range = 20.0
 spot_angle = 50.0
-
-[node name="ProtoController" parent="." unique_id=138780597 instance=ExtResource("1_mmplc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.9690566, -0.57076705, 0)
-script = ExtResource("2_j302q")
-can_jump = false
-can_freefly = true
-input_jump = ""
 
 [node name="room" type="StaticBody3D" parent="." unique_id=458236972]
 

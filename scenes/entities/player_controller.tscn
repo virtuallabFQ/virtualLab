@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://yrv80x2vkau4"]
+
+[ext_resource type="Script" uid="uid://cen86uicwrkxc" path="res://scripts/player_controller.gd" id="1_d4y06"]
+[ext_resource type="Script" uid="uid://18rtuip1mfy5" path="res://scripts/reticle.gd" id="3_7rbyl"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_e6s5b"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_d4y06"]
+
+[node name="PlayerController" type="CharacterBody3D" unique_id=65100141]
+script = ExtResource("1_d4y06")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=152371413]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_e6s5b")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=2107875920]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_d4y06")
+
+[node name="RotationAnchor" type="Node3D" parent="." unique_id=2116472046]
+physics_interpolation_mode = 2
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
+
+[node name="CameraControllerAnchor" type="Marker3D" parent="RotationAnchor" unique_id=1412982681]
+
+[node name="Camera3D" type="Camera3D" parent="RotationAnchor/CameraControllerAnchor" unique_id=1596875569]
+
+[node name="interface" type="Control" parent="." unique_id=874468021]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="reticle" type="CenterContainer" parent="interface" unique_id=1871768846]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_7rbyl")
