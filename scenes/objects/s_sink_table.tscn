@@ -1,0 +1,99 @@
+[gd_scene format=3 uid="uid://byqoedaoxljd"]
+
+[ext_resource type="PackedScene" uid="uid://1s38ofi381tl" path="res://assets/models/objects/sink_table.glb" id="1_aglhp"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_aglhp"]
+size = Vector3(2.9965172, 0.106487274, 0.8100586)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_x13th"]
+size = Vector3(0.11756414, 0.81408954, 0.8100586)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fvyfd"]
+size = Vector3(0.8360301, 0.81408954, 0.8100586)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8e08r"]
+size = Vector3(0.96173674, 0.1814887, 0.8100586)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_d7x67"]
+size = Vector3(2.9373088, 0.021279037, 0.7677002)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_721wr"]
+size = Vector3(2.9965172, 1.2265629, 0.17199707)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1sgyk"]
+size = Vector3(0.23739937, 0.1814887, 0.8100586)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_r5fi7"]
+size = Vector3(0.51608586, 0.1814887, 0.079704285)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_51jgj"]
+size = Vector3(0.51608586, 0.1814887, 0.2673912)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_okvd5"]
+size = Vector3(3.03915, 0.061836254, 0.21255493)
+
+[node name="s_sink_table" type="StaticBody3D" unique_id=1278165140]
+
+[node name="sink_table" parent="." unique_id=1276453312 instance=ExtResource("1_aglhp")]
+
+[node name="door_4" parent="sink_table" index="1" unique_id=1574154420]
+visible = false
+
+[node name="door_3" parent="sink_table" index="4" unique_id=1228809003]
+visible = false
+
+[node name="door_2" parent="sink_table" index="6" unique_id=496328792]
+visible = false
+
+[node name="door_1" parent="sink_table" index="8" unique_id=946679709]
+visible = false
+
+[node name="c1_sink_table" type="CollisionShape3D" parent="." unique_id=812388482]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.020711899, -0.035348892, -0.33813477)
+shape = SubResource("BoxShape3D_aglhp")
+
+[node name="c2_sink_table" type="CollisionShape3D" parent="." unique_id=1998617072]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.424059, 0.43261945, -0.33813477)
+shape = SubResource("BoxShape3D_x13th")
+
+[node name="c3_sink_table" type="CollisionShape3D" parent="." unique_id=1512517380]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4607244, 0.43261945, -0.33813477)
+shape = SubResource("BoxShape3D_x13th")
+
+[node name="c4_sink_table" type="CollisionShape3D" parent="." unique_id=928870441]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.015904695, 0.43261945, -0.33813477)
+shape = SubResource("BoxShape3D_fvyfd")
+
+[node name="c5_sink_table" type="CollisionShape3D" parent="." unique_id=662621755]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8836454, 0.74891984, -0.33813477)
+shape = SubResource("BoxShape3D_8e08r")
+
+[node name="c6_sink_table" type="CollisionShape3D" parent="." unique_id=1203796586]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.016062975, 0.32709727, -0.35931396)
+shape = SubResource("BoxShape3D_d7x67")
+
+[node name="c7_sink_table" type="CollisionShape3D" parent="." unique_id=855439537]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.020711899, 0.6304175, -0.6571655)
+shape = SubResource("BoxShape3D_721wr")
+
+[node name="c8_sink_table" type="CollisionShape3D" parent="." unique_id=1188499381]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.53268355, 0.74891984, -0.33813477)
+shape = SubResource("BoxShape3D_1sgyk")
+
+[node name="c9_sink_table" type="CollisionShape3D" parent="." unique_id=248925710]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2852417, 0.74891984, -0.33813477)
+shape = SubResource("BoxShape3D_1sgyk")
+
+[node name="c10_sink_table" type="CollisionShape3D" parent="." unique_id=56926558]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9085665, 0.74891984, 0.027042389)
+shape = SubResource("BoxShape3D_r5fi7")
+
+[node name="c11_sink_table" type="CollisionShape3D" parent="." unique_id=223112398]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9085665, 0.74891984, -0.43773842)
+shape = SubResource("BoxShape3D_51jgj")
+
+[node name="c12_sink_table" type="CollisionShape3D" parent="." unique_id=856168371]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.020387292, 1.2095764, -0.6573334)
+shape = SubResource("BoxShape3D_okvd5")
+
+[editable path="sink_table"]

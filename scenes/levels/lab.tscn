@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dnkg01s24uf44" path="res://scenes/objects/s_door.tscn" id="6_bj4kn"]
 [ext_resource type="PackedScene" uid="uid://c6qrgou1up25p" path="res://scenes/objects/s_whiteboard.tscn" id="6_n3ogy"]
 [ext_resource type="PackedScene" uid="uid://bcxkmmjec22rv" path="res://scenes/objects/s_tv.tscn" id="6_rufap"]
+[ext_resource type="PackedScene" uid="uid://byqoedaoxljd" path="res://scenes/objects/s_sink_table.tscn" id="9_6uvyo"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_w4gd0"]
 sky_top_color = Color(0.40082532, 0.43858358, 0.6033743, 1)
@@ -79,17 +80,47 @@ size = Vector3(0.10704732, 1, 0.51022565)
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=93710922]
 environment = SubResource("Environment_n3ogy")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=348724436]
-transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
-light_energy = 0.5
+[node name="light_1" type="SpotLight3D" parent="." unique_id=1685729603]
+transform = Transform3D(1, -1.6703743e-22, -3.821371e-15, 3.821371e-15, 4.371139e-08, 1, 0, -1, 4.371139e-08, 6.844, 4.508, 2)
+light_energy = 6.5
 shadow_enabled = true
-directional_shadow_max_distance = 400.0
+spot_range = 20.0
+spot_angle = 50.0
 
-[node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=1685729603]
-transform = Transform3D(0.5417791, -0.6911978, 0.47824785, -0.66178304, -1.3047556e-08, 0.7496954, -0.5181878, -0.7226656, -0.457423, -1.1562543, 3.5013542, 6.7991185)
-light_energy = 8.905
+[node name="light_2" type="SpotLight3D" parent="." unique_id=1882084328]
+transform = Transform3D(1, -1.6703743e-22, -3.821371e-15, 3.821371e-15, 4.371139e-08, 1, 0, -1, 4.371139e-08, -0.8399153, 4.5082064, -4.432071)
+light_energy = 6.5
 shadow_enabled = true
-spot_range = 7.445
+spot_range = 20.0
+spot_angle = 50.0
+
+[node name="light_3" type="SpotLight3D" parent="." unique_id=1312831137]
+transform = Transform3D(1, -1.6703743e-22, -3.821371e-15, 3.821371e-15, 4.371139e-08, 1, 0, -1, 4.371139e-08, -0.84, 4.508, 2)
+light_energy = 6.5
+shadow_enabled = true
+spot_range = 20.0
+spot_angle = 50.0
+
+[node name="light_4" type="SpotLight3D" parent="." unique_id=226686078]
+transform = Transform3D(1, -1.6703743e-22, -3.821371e-15, 3.821371e-15, 4.371139e-08, 1, 0, -1, 4.371139e-08, 6.8435755, 4.5082064, -4.432071)
+light_energy = 6.5
+shadow_enabled = true
+spot_range = 20.0
+spot_angle = 50.0
+
+[node name="light_5" type="SpotLight3D" parent="." unique_id=1568752265]
+transform = Transform3D(1, -1.6703743e-22, -3.821371e-15, 3.821371e-15, 4.371139e-08, 1, 0, -1, 4.371139e-08, -8.155, 4.508, -4.432)
+light_energy = 6.5
+shadow_enabled = true
+spot_range = 20.0
+spot_angle = 50.0
+
+[node name="light_6" type="SpotLight3D" parent="." unique_id=1715002219]
+transform = Transform3D(1, -1.6703743e-22, -3.821371e-15, 3.821371e-15, 4.371139e-08, 1, 0, -1, 4.371139e-08, -8.154604, 4.508, 2)
+light_energy = 6.5
+shadow_enabled = true
+spot_range = 20.0
+spot_angle = 50.0
 
 [node name="ProtoController" parent="." unique_id=138780597 instance=ExtResource("1_mmplc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.9690566, -0.57076705, 0)
@@ -102,6 +133,13 @@ input_jump = ""
 
 [node name="floor" type="MeshInstance3D" parent="room" unique_id=1064197166]
 transform = Transform3D(26, 0, 0, 0, 1, 0, 0, 0, 18, 0, -0.738, 0)
+gi_lightmap_texel_scale = 5.0
+mesh = SubResource("BoxMesh_2yitm")
+surface_material_override/0 = SubResource("StandardMaterial3D_bj4kn")
+
+[node name="celling" type="MeshInstance3D" parent="room" unique_id=794760393]
+transform = Transform3D(26, 0, 0, 0, 1, 0, 0, 0, 18, 0, 5.258548, 0)
+visible = false
 gi_lightmap_texel_scale = 5.0
 mesh = SubResource("BoxMesh_2yitm")
 surface_material_override/0 = SubResource("StandardMaterial3D_bj4kn")
@@ -127,6 +165,10 @@ mesh = SubResource("BoxMesh_2yitm")
 
 [node name="c_floor" type="CollisionShape3D" parent="room" unique_id=1992652959]
 transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, -0.738, 0)
+shape = SubResource("BoxShape3D_2yitm")
+
+[node name="c_celling" type="CollisionShape3D" parent="room" unique_id=1917820357]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 5.259, 0)
 visible = false
 shape = SubResource("BoxShape3D_2yitm")
 
@@ -176,6 +218,20 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.695, 0, 5.81)
 
 [node name="s_table_8" parent="tables" unique_id=617748449 instance=ExtResource("4_w4gd0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.695, 0, -0.121)
+
+[node name="sink_tables" type="Node3D" parent="." unique_id=1425840393]
+
+[node name="s_sink_table_1" parent="sink_tables" unique_id=1278165140 instance=ExtResource("9_6uvyo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5129025, -0.6419678, -8.257225)
+
+[node name="s_sink_table_2" parent="sink_tables" unique_id=733140662 instance=ExtResource("9_6uvyo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.493, -0.642, -8.257)
+
+[node name="s_sink_table_3" parent="sink_tables" unique_id=987941438 instance=ExtResource("9_6uvyo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.499, -0.642, -8.257)
+
+[node name="s_sink_table_4" parent="sink_tables" unique_id=889111671 instance=ExtResource("9_6uvyo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.505, -0.642, -8.257)
 
 [node name="chairs" type="Node3D" parent="." unique_id=1731454957]
 
