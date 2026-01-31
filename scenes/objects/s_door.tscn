@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://dnkg01s24uf44"]
+
+[ext_resource type="PackedScene" uid="uid://b1qui6p3ednma" path="res://assets/models/objects/door.glb" id="1_tvnfh"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tvnfh"]
+size = Vector3(7.0868287, 0.3, 12.300001)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_0aff5"]
+points = PackedVector3Array(-7.0524125, -0.1463, 4.6806126, -5.1499, 0.9210959, 6.0668883, -5.150942, -0.9263, 6.066286, -7.0931063, 0.1463, 6.3497605, -6.7152, -0.9183578, 6.061219, -6.7301383, 0.9357668, 5.794139, -6.386062, 0.24724704, 4.730511, -5.1342525, -0.9419476, 5.7943134, -5.1342525, 0.9357668, 5.7943134, -7.0931063, 0.1463, 4.6443734, -6.542318, -0.28467402, 4.699259, -6.7301383, -0.9419476, 5.794139, -6.88659, -0.15950531, 6.3888063, -6.7152, 0.912177, 6.061219, -6.542318, 0.27830946, 4.699259, -7.0524125, -0.1463, 6.3135214, -6.88659, 0.15314075, 6.3888063, -6.386062, -0.2534278, 4.730511, -6.88659, -0.15950531, 4.6053276, -6.88659, 0.15314075, 4.6053276, -5.950711, 0.9225746, 6.0678, -5.9203553, -0.9263, 6.066286)
+
+[node name="s_door" type="StaticBody3D" unique_id=45182123]
+
+[node name="door" parent="." unique_id=525268017 instance=ExtResource("1_tvnfh")]
+transform = Transform3D(0.09, 0, 0, 0, 0.09, 0, 0, 0, 0.09, 0, 0, 0)
+
+[node name="c_door" type="CollisionShape3D" parent="." unique_id=1590001754]
+transform = Transform3D(0.23417081, 0, 0, 0, -8.3746016e-08, 0.23417082, 0, -0.23417082, -8.3746016e-08, -0.8298815, 1.4397455, -5.1489315e-07)
+shape = SubResource("BoxShape3D_tvnfh")
+
+[node name="c_handle" type="CollisionShape3D" parent="." unique_id=698293375]
+transform = Transform3D(0.23417081, 0, 0, 0, -8.374602e-08, 0.23417082, 0, -0.23417082, -8.374602e-08, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_0aff5")
