@@ -63,7 +63,7 @@ albedo_color = Color(0.33660764, 0.3366076, 0.3366076, 0)
 [node name="lab" type="Node3D" unique_id=2011976822]
 
 [node name="player_controller" parent="." unique_id=65100141 instance=ExtResource("1_bj4kn")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -8.656, -0.739, 0)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -9.413095, -0.03160256, -5.000931)
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="." unique_id=178127234]
 transform = Transform3D(-7.86805e-07, 0.01, 2.6226832e-07, 0, -4.3711387e-10, 6, 18, 4.3711387e-10, 1.1464113e-14, -11.5, 2.252, 0)
@@ -134,7 +134,6 @@ surface_material_override/0 = SubResource("StandardMaterial3D_bj4kn")
 
 [node name="celling" type="MeshInstance3D" parent="room" unique_id=794760393]
 transform = Transform3D(26, 0, 0, 0, 1, 0, 0, 0, 18, 0, 5.258548, 0)
-visible = false
 gi_lightmap_texel_scale = 5.0
 mesh = SubResource("BoxMesh_2yitm")
 surface_material_override/0 = SubResource("StandardMaterial3D_bj4kn")
@@ -188,7 +187,7 @@ visible = false
 shape = SubResource("BoxShape3D_2yitm")
 
 [node name="tables" type="Node3D" parent="." unique_id=1846473306]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.273, 0.18, -2.376)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.273, 0.3128125, -2.376)
 
 [node name="s_table_1" parent="tables" unique_id=701246930 instance=ExtResource("4_w4gd0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.323, 0, -0.121)
@@ -215,20 +214,22 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.695, 0, 5.81)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.695, 0, -0.121)
 
 [node name="sink_tables" type="Node3D" parent="." unique_id=1425840393]
+transform = Transform3D(1.14, 0, 0, 0, 1.14, 0, 0, 0, 1.14, 0.36488962, 0.003540039, 1.2821541)
 
 [node name="s_sink_table_1" parent="sink_tables" unique_id=1278165140 instance=ExtResource("9_6uvyo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5129025, -0.6419678, -8.257225)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5129025, -0.5542698, -8.257225)
 
 [node name="s_sink_table_2" parent="sink_tables" unique_id=733140662 instance=ExtResource("9_6uvyo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.493, -0.642, -8.257)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.554, -8.257)
 
 [node name="s_sink_table_3" parent="sink_tables" unique_id=987941438 instance=ExtResource("9_6uvyo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.499, -0.642, -8.257)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.513, -0.554, -8.257)
 
 [node name="s_sink_table_4" parent="sink_tables" unique_id=889111671 instance=ExtResource("9_6uvyo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.505, -0.642, -8.257)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.026, -0.554, -8.257)
 
 [node name="chairs" type="Node3D" parent="." unique_id=1731454957]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.004, 0)
 
 [node name="s_chair_1" parent="chairs" unique_id=1279655880 instance=ExtResource("1_2yitm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.774, -0.714, -3.28)
@@ -327,6 +328,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.246, -0.714, 2.721)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.246195, -0.714, 4.247799)
 
 [node name="whiteboards" type="Node3D" parent="." unique_id=653892022]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.10266113, 0)
 
 [node name="s_whiteboard_1" parent="whiteboards" unique_id=1364619320 instance=ExtResource("6_n3ogy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.003, 1, 7.987)
@@ -343,7 +345,7 @@ mesh = SubResource("ArrayMesh_6uvyo")
 surface_material_override/0 = SubResource("StandardMaterial3D_rsbtw")
 
 [node name="s_tv" parent="." unique_id=2146555040 instance=ExtResource("6_rufap")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -11.491, 1, 3.5)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -11.491, 0.97088623, 3.5)
 
 [node name="s_periodic_table" parent="." unique_id=495366280 instance=ExtResource("3_vuu1o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 1.458, 7.803)

@@ -4,7 +4,7 @@ extends Node
 
 signal transition(new_state_name: StringName)
 
-func enter() -> void:
+func enter(_previous_state = null) -> void:
 	pass
 
 func exit() -> void:

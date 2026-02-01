@@ -2,15 +2,15 @@
 
 [ext_resource type="PackedScene" uid="uid://bv6bj773idw77" path="res://assets/models/objects/chair.glb" id="1_pdpq8"]
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_pdpq8"]
-height = 21102.855
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pdpq8"]
 radius = 9086.508
+height = 21102.855
 
 [node name="s_chair" type="StaticBody3D" unique_id=1279655880]
 
 [node name="chair" parent="." unique_id=1672022222 instance=ExtResource("1_pdpq8")]
-transform = Transform3D(0.015, 0, 0, 0, 0.015, 0, 0, 0, 0.015, 0, 0, 0)
+transform = Transform3D(0.018, 0, 0, 0, 0.018, 0, 0, 0, 0.018, 0, 0, 0)
 
-[node name="c_chair" type="CollisionShape3D" parent="." unique_id=1722989656]
-transform = Transform3D(3.0000001e-05, 0, 0, 0, 3.0000001e-05, 0, 0, 0, 3.0000001e-05, -0.22598322, 0.2949448, 0.015795382)
-shape = SubResource("CylinderShape3D_pdpq8")
+[node name="c_chair" type="CollisionShape3D" parent="." unique_id=787526063]
+transform = Transform3D(3.6e-05, 0, 0, 0, 3.6e-05, 0, 0, 0, 3.6e-05, -0.27117985, 0.35393375, 0.018954458)
+shape = SubResource("CapsuleShape3D_pdpq8")

@@ -98,39 +98,6 @@ tracks/6/keys = {
 "points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
-tracks/7/type = "bezier"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("RotationAnchor/CameraControllerAnchor/Camera3D:position:x")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/8/type = "bezier"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("RotationAnchor/CameraControllerAnchor/Camera3D:position:y")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/9/type = "bezier"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath("RotationAnchor/CameraControllerAnchor/Camera3D:position:z")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
 
 [sub_resource type="Animation" id="Animation_l4ht0"]
 resource_name = "crouch"
@@ -182,21 +149,21 @@ tracks/0/path = NodePath("RotationAnchor:rotation:x")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0, -0.008, -0.024, -0.024996853, -0.00039677546, 0.063, 0.001, 0, -0.256, -0.001, 0, 0),
-"times": PackedFloat32Array(0, 0.1, 0.4)
+"handle_modes": PackedInt32Array(),
+"points": PackedFloat32Array(),
+"times": PackedFloat32Array()
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/path = NodePath("RotationAnchor:position")
-tracks/1/interp = 2
+tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, 1.7, 0), Vector3(0, 1.65, 0), Vector3(0, 1.7, 0)]
+"values": [Vector3(0, 1.7, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_jthoo"]
@@ -232,39 +199,6 @@ resource_name = "sprinting"
 length = 1.2
 loop_mode = 1
 step = 0.1
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("RotationAnchor/CameraControllerAnchor/Camera3D:position:x")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(3, 0, 2, 0, 2, 2),
-"points": PackedFloat32Array(0, -0.2, 0, 0.2, 0, 0.065, -0.10000001, -0.012789443, 0.115, 0.03, 0.075, 0, 0, 0, 0, -0.065, -0.09, 0, 0.085, -0.025, -0.075, 0, 0, 0, 0, 0, -0.033333343, 0, 0, 0),
-"times": PackedFloat32Array(0, 0.3, 0.5, 0.8, 1, 1.2)
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("RotationAnchor/CameraControllerAnchor/Camera3D:position:y")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(3, 0, 3, 0, 0, 2),
-"points": PackedFloat32Array(0, -0.075, 0, 0.075, 0, 0.066, -0.075, 0, 0.075, 0, -0.036, -0.07, 0, 0.07, 0, 0.066, -0.09, 0, 0.09, 0, -0.036, -0.125, 0, 0.075, 0, 0, -0.033333343, 0, 0, 0),
-"times": PackedFloat32Array(0, 0.3, 0.5, 0.8, 1, 1.2)
-}
-tracks/2/type = "bezier"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("RotationAnchor/CameraControllerAnchor/Camera3D:position:z")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"handle_modes": PackedInt32Array(2, 2, 2, 2, 2, 2),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.050000004, 0, 0, 0, 0, -0.03333333, 0, 0, 0, 0, -0.050000004, 0, 0, 0, 0, -0.03333333, 0, 0, 0, 0, -0.033333343, 0, 0, 0),
-"times": PackedFloat32Array(0, 0.3, 0.5, 0.8, 1, 1.2)
-}
 
 [sub_resource type="Animation" id="Animation_w7npb"]
 resource_name = "walking"
@@ -375,12 +309,23 @@ current_state = NodePath("IdleState")
 
 [node name="IdleState" type="Node" parent="StateMachine" unique_id=675777237]
 script = ExtResource("3_riij3")
+speed = null
+acceleration = null
+deceleration = null
 
 [node name="WalkingState" type="Node" parent="StateMachine" unique_id=1964693658]
 script = ExtResource("4_riij3")
+speed = null
+acceleration = null
+deceleration = null
+top_anim_speed = null
 
 [node name="SprintingState" type="Node" parent="StateMachine" unique_id=441251901]
 script = ExtResource("5_gsftu")
+speed = null
+acceleration = null
+deceleration = null
+top_anim_speed = null
 
 [node name="CrouchingState" type="Node" parent="StateMachine" unique_id=2130211049]
 script = ExtResource("3_hwjx1")

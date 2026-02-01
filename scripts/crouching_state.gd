@@ -7,7 +7,7 @@ class_name CrouchingState extends MovementState
 
 @onready var crouch_shapecast: ShapeCast3D = %ShapeCast3D
 
-func enter() -> void:
+func enter(_previous_state = null) -> void:
 	animation.play("crouch", -1.0, crouch_speed)
 
 func update(delta):
