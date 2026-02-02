@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://c6qrgou1up25p" path="res://scenes/objects/s_whiteboard.tscn" id="6_n3ogy"]
 [ext_resource type="PackedScene" uid="uid://bcxkmmjec22rv" path="res://scenes/objects/s_tv.tscn" id="6_rufap"]
 [ext_resource type="PackedScene" uid="uid://byqoedaoxljd" path="res://scenes/objects/s_sink_table.tscn" id="9_6uvyo"]
+[ext_resource type="PackedScene" uid="uid://bdspjwyvm42ji" path="res://scenes/objects/s_beaker_100_ml.tscn" id="9_rsbtw"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_w4gd0"]
 sky_top_color = Color(0.40082532, 0.43858358, 0.6033743, 1)
@@ -219,13 +220,13 @@ transform = Transform3D(1.14, 0, 0, 0, 1.14, 0, 0, 0, 1.14, 0.36488962, 0.003540
 [node name="s_sink_table_1" parent="sink_tables" unique_id=1278165140 instance=ExtResource("9_6uvyo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5129025, -0.5542698, -8.257225)
 
-[node name="s_sink_table_2" parent="sink_tables" unique_id=733140662 instance=ExtResource("9_6uvyo")]
+[node name="s_sink_table_2" parent="sink_tables" unique_id=2133879636 instance=ExtResource("9_6uvyo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.554, -8.257)
 
-[node name="s_sink_table_3" parent="sink_tables" unique_id=987941438 instance=ExtResource("9_6uvyo")]
+[node name="s_sink_table_3" parent="sink_tables" unique_id=1459040888 instance=ExtResource("9_6uvyo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.513, -0.554, -8.257)
 
-[node name="s_sink_table_4" parent="sink_tables" unique_id=889111671 instance=ExtResource("9_6uvyo")]
+[node name="s_sink_table_4" parent="sink_tables" unique_id=426109644 instance=ExtResource("9_6uvyo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.026, -0.554, -8.257)
 
 [node name="chairs" type="Node3D" parent="." unique_id=1731454957]
@@ -349,3 +350,7 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -11.
 
 [node name="s_periodic_table" parent="." unique_id=495366280 instance=ExtResource("3_vuu1o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 1.458, 7.803)
+
+[node name="s_beaker_100ml" parent="." unique_id=613809570 instance=ExtResource("9_rsbtw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.961012, 0.36810303, -8.368225)
+mass = 0.1

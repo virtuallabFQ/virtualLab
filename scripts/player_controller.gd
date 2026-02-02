@@ -1,15 +1,16 @@
-class_name PlayerController
-extends CharacterBody3D
+class_name PlayerController extends CharacterBody3D
 
 @onready var collider: CollisionShape3D = $CollisionShape3D
-@onready var camera_controller_anchor: Marker3D = %CameraControllerAnchor
 @onready var rotation_anchor: Node3D = $RotationAnchor
+@onready var camera_controller_anchor: Node3D = %CameraControllerAnchor
+@onready var camera: Camera3D = %Camera3D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var crouch_shapecast: ShapeCast3D = %ShapeCast3D
 
 @export var mouse_sensitivity : float = 0.003
 @export var tilt_lower_limit := deg_to_rad(-90.0)
 @export var tilt_upper_limit := deg_to_rad(90.0)
+@export var interact_distance : float = 2
 
 @export_group("Input Actions")
 @export var input_left : String = "ui_left"
@@ -36,8 +37,7 @@ var mouse_input : bool = false
 var rotation_input : float
 var tilt_input : float
 var mouse_rotation : Vector3
-
-# Get the gravity from the project settings to be synced with RigidBody nodes.
+var interact_cast_result
 
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
@@ -46,7 +46,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if mouse_input:
 		rotation_input = -event.relative.x * mouse_sensitivity
 		tilt_input = -event.relative.y * mouse_sensitivity
-		
+
 func _input(event):
 	if event.is_action_pressed("exit"):
 		get_tree().quit()
@@ -66,11 +66,11 @@ func _update_camera(_delta):
 	tilt_input = 0.0
 	
 func _ready():
+	Global.player = self
 
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	speed = speed_default ##
 
-	# add crouch check shapecast collision exception for CharacterBody3D node
 	crouch_shapecast.add_exception($".")
 
 func update_gravity(delta) -> void:

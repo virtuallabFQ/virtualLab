@@ -1,4 +1,5 @@
 class_name JumpingState extends MovementState
+
 @export var speed : float = 6.0
 @export var acceleration : float = 0.1
 @export var deceleration : float = 0.25

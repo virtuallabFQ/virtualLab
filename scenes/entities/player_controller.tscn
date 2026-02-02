@@ -1,11 +1,14 @@
 [gd_scene format=3 uid="uid://yrv80x2vkau4"]
 
 [ext_resource type="Script" uid="uid://cen86uicwrkxc" path="res://scripts/player_controller.gd" id="1_d4y06"]
+[ext_resource type="Script" uid="uid://c358yy800wk77" path="res://scripts/interaction_raycast.gd" id="2_fsd73"]
 [ext_resource type="Script" uid="uid://18rtuip1mfy5" path="res://scripts/reticle.gd" id="3_7rbyl"]
+[ext_resource type="Script" uid="uid://bcokdl8t0d5i0" path="res://scripts/context_component.gd" id="3_gy805"]
 [ext_resource type="Script" uid="uid://dbpun03yu80um" path="res://scripts/crouching_state.gd" id="3_hwjx1"]
 [ext_resource type="Script" uid="uid://di3vt0nsuyn60" path="res://scripts/idle_state.gd" id="3_riij3"]
 [ext_resource type="Script" uid="uid://bn6rna7hxx4ci" path="res://scripts/state_machine.gd" id="3_w7npb"]
 [ext_resource type="Script" uid="uid://cdhsvsnviaa6t" path="res://scripts/walking_state.gd" id="4_riij3"]
+[ext_resource type="Texture2D" uid="uid://banhfbjatki6y" path="res://assets/interface/icons/mouse_left_outline.png" id="4_wrtqu"]
 [ext_resource type="Script" uid="uid://bcb7yhp03tja4" path="res://scripts/sprinting_state.gd" id="5_gsftu"]
 [ext_resource type="Script" uid="uid://vuq63ih5vdvs" path="res://scripts/jumping_state.gd" id="8_jthoo"]
 [ext_resource type="Script" uid="uid://cxsi55c62vgu0" path="res://scripts/falling_state.gd" id="9_gy805"]
@@ -337,10 +340,17 @@ debug_shape_custom_color = Color(0, 1, 0, 1)
 physics_interpolation_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
 
-[node name="CameraControllerAnchor" type="Marker3D" parent="RotationAnchor" unique_id=1412982681]
+[node name="CameraControllerAnchor" type="Node3D" parent="RotationAnchor" unique_id=1759626737]
 unique_name_in_owner = true
 
 [node name="Camera3D" type="Camera3D" parent="RotationAnchor/CameraControllerAnchor" unique_id=1596875569]
+unique_name_in_owner = true
+
+[node name="InteractionRaycast" type="RayCast3D" parent="RotationAnchor/CameraControllerAnchor/Camera3D" unique_id=1201912919]
+target_position = Vector3(0, 0, -2)
+hit_back_faces = false
+debug_shape_custom_color = Color(0, 1, 0, 1)
+script = ExtResource("2_fsd73")
 
 [node name="Interface" type="Control" parent="." unique_id=874468021]
 layout_mode = 3
@@ -365,6 +375,31 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("3_7rbyl")
+
+[node name="ContextComponent" type="CenterContainer" parent="Interface" unique_id=659611014 node_paths=PackedStringArray("icon", "context")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 150.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_gy805")
+icon = NodePath("HBoxContainer/TextureRect")
+context = NodePath("HBoxContainer/Label")
+default_icon = ExtResource("4_wrtqu")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Interface/ContextComponent" unique_id=1246666275]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Interface/ContextComponent/HBoxContainer" unique_id=914183077]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Interface/ContextComponent/HBoxContainer" unique_id=1488027001]
+layout_mode = 2
+horizontal_alignment = 2
+vertical_alignment = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1902594144]
 libraries/ = SubResource("AnimationLibrary_7rbyl")
