@@ -1,4 +1,4 @@
-extends Node
+class_name PhysicsComponent extends Node
 
 @export var controller : CharacterBody3D
 @export_range(0.0, 500.0, 0.1) var force : float = 100.0
