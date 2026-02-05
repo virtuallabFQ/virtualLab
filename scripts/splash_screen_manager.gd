@@ -26,9 +26,13 @@ func fade() -> void:
 	get_tree().change_scene_to_packed(load_scene)
 	
 func _ready() -> void:
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	get_screens()
 	fade()
 	
-func _unhandled_input(event: InputEvent) -> void:
-	if event.is_pressed():
+func _input(event: InputEvent) -> void:
+	if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
+		if event is InputEventMouseButton and event.pressed:
+			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	if event.is_action_pressed("ui_skip") or (event is InputEventMouseButton and event.pressed):
 		get_tree().change_scene_to_packed(load_scene)
