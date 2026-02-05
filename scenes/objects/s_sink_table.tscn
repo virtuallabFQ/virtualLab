@@ -8,7 +8,7 @@
 size = Vector3(2.9965172, 0.106487274, 0.8100586)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_x13th"]
-size = Vector3(0.11756414, 0.81408954, 0.8100586)
+size = Vector3(0.11756414, 0.8221747, 0.8100586)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_fvyfd"]
 size = Vector3(0.8360301, 0.81408954, 0.8100586)
@@ -33,6 +33,12 @@ size = Vector3(0.51608586, 0.1814887, 0.2673912)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_okvd5"]
 size = Vector3(3.03915, 0.061836254, 0.21255493)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_puh84"]
+size = Vector3(2.9965172, 0.04664135, 0.8100586)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3wal1"]
+size = Vector3(0.03891252, 0.6395647, 0.76641846)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vmyep"]
 resource_name = "frame.006"
@@ -310,11 +316,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.020711899, -0.035348892, -
 shape = SubResource("BoxShape3D_aglhp")
 
 [node name="c2_sink_table" type="CollisionShape3D" parent="." unique_id=1998617072]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.424059, 0.43261945, -0.33813477)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.424059, 0.42857686, -0.33813477)
 shape = SubResource("BoxShape3D_x13th")
 
 [node name="c3_sink_table" type="CollisionShape3D" parent="." unique_id=1512517380]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4607244, 0.43261945, -0.33813477)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.461, 0.429, -0.338)
 shape = SubResource("BoxShape3D_x13th")
 
 [node name="c4_sink_table" type="CollisionShape3D" parent="." unique_id=928870441]
@@ -353,6 +359,18 @@ shape = SubResource("BoxShape3D_51jgj")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.020387292, 1.2095764, -0.6573334)
 shape = SubResource("BoxShape3D_okvd5")
 
+[node name="c13_sink_table" type="CollisionShape3D" parent="." unique_id=1224353641]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.020711899, 0.6809745, -0.33813477)
+shape = SubResource("BoxShape3D_puh84")
+
+[node name="c14_sink_table" type="CollisionShape3D" parent="." unique_id=1145698586]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.886, 0.338, -0.36)
+shape = SubResource("BoxShape3D_3wal1")
+
+[node name="c15_sink_table" type="CollisionShape3D" parent="." unique_id=729112254]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.909, 0.33806118, -0.35982007)
+shape = SubResource("BoxShape3D_3wal1")
+
 [node name="an_door_1" type="AnimatableBody3D" parent="." unique_id=270468620]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4103875, 0, 0.024)
 
@@ -364,7 +382,7 @@ mesh = SubResource("ArrayMesh_fvyfd")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2445693, 0.33111516, 0.009052552)
 shape = SubResource("BoxShape3D_vnfd5")
 
-[node name="DoorComponent" type="Node" parent="an_door_1" unique_id=1789578556]
+[node name="DoorComponent_1" type="Node" parent="an_door_1" unique_id=1789578556]
 script = ExtResource("2_fvyfd")
 door_type = 1
 rotation_amount = -90.0
@@ -386,7 +404,7 @@ mesh = SubResource("ArrayMesh_8e08r")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.24913624, 0.33111516, 0.009052552)
 shape = SubResource("BoxShape3D_vnfd5")
 
-[node name="DoorComponent" type="Node" parent="an_door_2" unique_id=1794428435]
+[node name="DoorComponent_2" type="Node" parent="an_door_2" unique_id=1794428435]
 script = ExtResource("2_fvyfd")
 door_type = 1
 
@@ -407,7 +425,7 @@ mesh = SubResource("ArrayMesh_1sgyk")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.24387342, 0.33111516, 0.009052552)
 shape = SubResource("BoxShape3D_vnfd5")
 
-[node name="DoorComponent" type="Node" parent="an_door_3" unique_id=639908191]
+[node name="DoorComponent_3" type="Node" parent="an_door_3" unique_id=639908191]
 script = ExtResource("2_fvyfd")
 door_type = 1
 rotation_amount = -90.0
@@ -429,7 +447,7 @@ mesh = SubResource("ArrayMesh_721wr")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.24908125, 0.33111516, 0.009052552)
 shape = SubResource("BoxShape3D_vnfd5")
 
-[node name="DoorComponent" type="Node" parent="an_door_4" unique_id=1988060631]
+[node name="DoorComponent_4" type="Node" parent="an_door_4" unique_id=1988060631]
 script = ExtResource("2_fvyfd")
 door_type = 1
 

@@ -135,6 +135,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_bj4kn")
 
 [node name="celling" type="MeshInstance3D" parent="room" unique_id=794760393]
 transform = Transform3D(26, 0, 0, 0, 1, 0, 0, 0, 18, 0, 5.258548, 0)
+visible = false
 gi_lightmap_texel_scale = 5.0
 mesh = SubResource("BoxMesh_2yitm")
 surface_material_override/0 = SubResource("StandardMaterial3D_bj4kn")
