@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://d12ehcem0ornj" path="res://scenes/levels/lab.tscn" id="2_epn6k"]
 [ext_resource type="Texture2D" uid="uid://duivd8ssgpjxr" path="res://assets/interface/logos/godot_logo.svg" id="2_fcwca"]
 [ext_resource type="Texture2D" uid="uid://b0runnou5hn27" path="res://assets/interface/logos/fcebi_logo.svg" id="4_3v6ed"]
+[ext_resource type="Texture2D" uid="uid://s5rofdojrnpt" path="res://assets/interface/logos/fab_logo.svg" id="5_uy63b"]
 
 [node name="Control" type="Control" unique_id=1569995097 node_paths=PackedStringArray("splash_screen_container")]
 layout_mode = 3
@@ -37,6 +38,10 @@ grow_vertical = 2
 layout_mode = 2
 texture = ExtResource("2_fcwca")
 
-[node name="Screen2" type="TextureRect" parent="SplashScreenContainer" unique_id=603006047]
+[node name="Screen2" type="TextureRect" parent="SplashScreenContainer" unique_id=1027437885]
+layout_mode = 2
+texture = ExtResource("5_uy63b")
+
+[node name="Screen3" type="TextureRect" parent="SplashScreenContainer" unique_id=603006047]
 layout_mode = 2
 texture = ExtResource("4_3v6ed")
