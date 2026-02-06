@@ -61,7 +61,7 @@ _surfaces = [{
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rsbtw"]
 albedo_color = Color(0.33660764, 0.3366076, 0.3366076, 0)
 
-[node name="lab" type="Node3D" unique_id=2011976822]
+[node name="Lab" type="Node3D" unique_id=2011976822]
 
 [node name="player_controller" parent="." unique_id=65100141 instance=ExtResource("1_bj4kn")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -9.413095, -0.03160256, -5.000931)
