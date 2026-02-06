@@ -1,4 +1,4 @@
-class_name SplashScreenManager extends Node
+class_name SplashScreenManager extends Control
 @export var load_scene : PackedScene
 @export var in_time : float = 0.5
 @export var fade_in_time : float = 1.5
@@ -23,7 +23,7 @@ func fade() -> void:
 		tween.tween_property(screen, "modulate:a", 0.0, fade_out_time)
 		tween.tween_interval(out_time)
 		await tween.finished
-	get_tree().change_scene_to_packed(load_scene)
+	Global.game_controller.change_gui_scene("res://scenes/levels/lobby.tscn")
 	
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -35,4 +35,4 @@ func _input(event: InputEvent) -> void:
 		if event is InputEventMouseButton and event.pressed:
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	if event.is_action_pressed("ui_skip") or (event is InputEventMouseButton and event.pressed):
-		get_tree().change_scene_to_packed(load_scene)
+		Global.game_controller.change_gui_scene("res://scenes/levels/lobby.tscn")

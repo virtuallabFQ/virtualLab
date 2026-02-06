@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://cps70qt6vm5ve"]
 
+[ext_resource type="Script" uid="uid://b1x6lcsrsrm7c" path="res://scripts/transition_controller.gd" id="1_x8ppo"]
+
 [sub_resource type="Animation" id="Animation_l75pt"]
 length = 0.001
 tracks/0/type = "value"
@@ -52,13 +54,16 @@ _data = {
 &"fade_out": SubResource("Animation_dr0nj")
 }
 
-[node name="TransitionController" type="Control" unique_id=1995128783]
+[node name="TransitionController" type="Control" unique_id=1995128783 node_paths=PackedStringArray("background", "animation_player")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_x8ppo")
+background = NodePath("ColorRect")
+animation_player = NodePath("AnimationPlayer")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=7593019]
 layout_mode = 1

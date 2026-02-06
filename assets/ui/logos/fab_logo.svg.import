@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://banhfbjatki6y"
-path="res://.godot/imported/mouse_left_outline.png-c938c076a153416f607cda26e2848bef.ctex"
+uid="uid://s5rofdojrnpt"
+path="res://.godot/imported/fab_logo.svg-e173b44c637f64761a233b1bd4f5fd96.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/interface/icons/mouse_left_outline.png"
-dest_files=["res://.godot/imported/mouse_left_outline.png-c938c076a153416f607cda26e2848bef.ctex"]
+source_file="res://assets/ui/logos/fab_logo.svg"
+dest_files=["res://.godot/imported/fab_logo.svg-e173b44c637f64761a233b1bd4f5fd96.ctex"]
 
 [params]
 
@@ -38,3 +38,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
+svg/scale=1.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false

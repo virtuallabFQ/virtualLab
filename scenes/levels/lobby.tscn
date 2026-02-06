@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dejy6xmx0jom4"]
 
 [ext_resource type="PackedScene" uid="uid://d12ehcem0ornj" path="res://scenes/levels/lab.tscn" id="1_c13em"]
+[ext_resource type="Theme" uid="uid://cpa6dswqf8gcv" path="res://assets/ui/themes/theme.tres" id="2_dka2y"]
 
 [sub_resource type="Animation" id="Animation_yo3ta"]
 length = 0.001
@@ -90,3 +91,42 @@ transform = Transform3D(-0.65334123, 0, 0.7570634, 0, 1, 0, -0.75706345, 0, -0.6
 libraries/ = SubResource("AnimationLibrary_h8nri")
 autoplay = &"camera"
 speed_scale = 0.3
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1894612198]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -497.0
+offset_right = 750.0
+offset_bottom = 3.0
+grow_vertical = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer" unique_id=1355377263]
+custom_minimum_size = Vector2(500, 200)
+layout_mode = 2
+theme = ExtResource("2_dka2y")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer" unique_id=1464296243]
+layout_mode = 2
+theme = ExtResource("2_dka2y")
+
+[node name="Label" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer" unique_id=1140950941]
+layout_mode = 2
+theme = ExtResource("2_dka2y")
+text = "LABORATÓRIO VIRTUAL"
+
+[node name="Button1" type="Button" parent="CenterContainer/PanelContainer/VBoxContainer" unique_id=1856101240]
+layout_mode = 2
+theme = ExtResource("2_dka2y")
+text = "Entrar"
+alignment = 0
+
+[node name="Button2" type="Button" parent="CenterContainer/PanelContainer/VBoxContainer" unique_id=1045769401]
+layout_mode = 2
+text = "Opções"
+alignment = 0
+
+[node name="Button3" type="Button" parent="CenterContainer/PanelContainer/VBoxContainer" unique_id=843682211]
+layout_mode = 2
+text = "Sair"
+alignment = 0
