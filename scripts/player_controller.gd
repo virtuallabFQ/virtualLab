@@ -46,10 +46,6 @@ func _unhandled_input(event: InputEvent) -> void:
 	if mouse_input:
 		rotation_input = -event.relative.x * mouse_sensitivity
 		tilt_input = -event.relative.y * mouse_sensitivity
-
-func _input(event):
-	if event.is_action_pressed("exit"):
-		get_tree().quit()
 		
 func _process(delta):
 	_update_camera(delta)

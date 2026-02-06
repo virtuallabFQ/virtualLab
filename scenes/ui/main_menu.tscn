@@ -5,10 +5,108 @@
 [ext_resource type="FontFile" uid="uid://p38vpi7tgrq2" path="res://assets/ui/themes/static/Orbitron-Bold.ttf" id="2_m1kxf"]
 [ext_resource type="Script" uid="uid://nxrh3ej2p4y7" path="res://scripts/animation_component.gd" id="3_x2yvf"]
 [ext_resource type="StyleBox" uid="uid://bn4ch6u0l0knm" path="res://assets/ui/themes/option_menu/om_style_box_flat.tres" id="4_m1kxf"]
-[ext_resource type="StyleBox" uid="uid://bl87pm0bsuxd2" path="res://assets/ui/themes/option_menu/om_buttons_style_box_flat.tres" id="5_uhagc"]
-[ext_resource type="StyleBox" uid="uid://b21ui40ekwdwv" path="res://assets/ui/themes/option_menu/om_hover_style_box_flat.tres" id="5_x2yvf"]
 
-[node name="LobbyMenu" type="Control" unique_id=1796675924 node_paths=PackedStringArray("main_menu", "options_menu", "start_button", "options_button")]
+[sub_resource type="Animation" id="Animation_btxxm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MainMenu:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MainMenu:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_8g5eo"]
+resource_name = "hide_menu"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MainMenu:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MainMenu:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_wb0q5"]
+resource_name = "hide_options"
+length = 0.5
+
+[sub_resource type="Animation" id="Animation_q85j6"]
+resource_name = "show_menu"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MainMenu:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MainMenu:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
+}
+
+[sub_resource type="Animation" id="Animation_7suek"]
+resource_name = "show_options"
+length = 0.5
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_q85j6"]
+_data = {
+&"RESET": SubResource("Animation_btxxm"),
+&"hide_menu": SubResource("Animation_8g5eo"),
+&"hide_options": SubResource("Animation_wb0q5"),
+&"show_menu": SubResource("Animation_q85j6"),
+&"show_options": SubResource("Animation_7suek")
+}
+
+[node name="LobbyMenu" type="Control" unique_id=1796675924 node_paths=PackedStringArray("menu", "options", "animation_player")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -16,10 +114,27 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_btxxm")
-main_menu = NodePath("MainMenu")
-options_menu = NodePath("OptionsMenu")
-start_button = NodePath("MainMenu/PanelContainer/VBoxContainer/Button1")
-options_button = NodePath("MainMenu/PanelContainer/VBoxContainer/Button2")
+menu = NodePath("MainMenu")
+options = NodePath("")
+animation_player = NodePath("AnimationPlayer")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=524894731]
+visible = false
+custom_minimum_size = Vector2(1720, 930)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -860.0
+offset_top = -465.0
+offset_right = 860.0
+offset_bottom = 465.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_1g8jr")
+theme_override_styles/panel = ExtResource("4_m1kxf")
 
 [node name="MainMenu" type="CenterContainer" parent="." unique_id=502021501]
 layout_mode = 1
@@ -80,63 +195,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="OptionsMenu" unique_id=524894731]
-custom_minimum_size = Vector2(1720, 930)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -860.0
-offset_top = -465.0
-offset_right = 860.0
-offset_bottom = 465.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("1_1g8jr")
-theme_override_styles/panel = ExtResource("4_m1kxf")
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1168421522]
+libraries/ = SubResource("AnimationLibrary_q85j6")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="OptionsMenu" unique_id=1036770842]
-layout_mode = 0
-offset_left = 200.0
-offset_top = 150.0
-offset_right = 646.0
-offset_bottom = 320.0
-theme = ExtResource("1_1g8jr")
-
-[node name="Button1" type="Button" parent="OptionsMenu/VBoxContainer" unique_id=326074959]
-layout_mode = 2
-theme = ExtResource("1_1g8jr")
-theme_override_styles/normal = ExtResource("5_uhagc")
-theme_override_styles/pressed = ExtResource("5_uhagc")
-theme_override_styles/hover = ExtResource("5_x2yvf")
-text = "Câmara e Controlos"
-alignment = 0
-
-[node name="AnimationComponent" type="Node" parent="OptionsMenu/VBoxContainer/Button1" unique_id=1347128243]
-script = ExtResource("3_x2yvf")
-
-[node name="Button2" type="Button" parent="OptionsMenu/VBoxContainer" unique_id=507768733]
-layout_mode = 2
-theme = ExtResource("1_1g8jr")
-theme_override_styles/normal = ExtResource("5_uhagc")
-theme_override_styles/pressed = ExtResource("5_uhagc")
-theme_override_styles/hover = ExtResource("5_x2yvf")
-text = "Configurações Gráficas"
-alignment = 0
-
-[node name="AnimationComponent" type="Node" parent="OptionsMenu/VBoxContainer/Button2" unique_id=2011106890]
-script = ExtResource("3_x2yvf")
-
-[node name="Button3" type="Button" parent="OptionsMenu/VBoxContainer" unique_id=1533887094]
-layout_mode = 2
-theme = ExtResource("1_1g8jr")
-theme_override_styles/normal = ExtResource("5_uhagc")
-theme_override_styles/pressed = ExtResource("5_uhagc")
-theme_override_styles/hover = ExtResource("5_x2yvf")
-text = "Áudio"
-alignment = 0
-
-[node name="AnimationComponent" type="Node" parent="OptionsMenu/VBoxContainer/Button3" unique_id=437208692]
-script = ExtResource("3_x2yvf")
+[connection signal="pressed" from="MainMenu/PanelContainer/VBoxContainer/Button1" to="." method="_on_button_1_pressed"]
+[connection signal="pressed" from="MainMenu/PanelContainer/VBoxContainer/Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="MainMenu/PanelContainer/VBoxContainer/Button3" to="." method="_on_button_3_pressed"]

@@ -1,35 +1,35 @@
 extends Control
 
-@export var main_menu: Control
-@export var options_menu: Control
-@export var start_button: Control
-@export var options_button: Button 
+@export var menu : Control
+@export var options : Control
+@export var animation_player : AnimationPlayer
 
-func _ready():
-	main_menu.visible = true
-	options_menu.visible = false
-	main_menu.modulate.a = 1.0
-	options_menu.modulate.a = 1.0
+enum state { menu, options}
+var ui_state = state.menu
 
-	start_button.pressed.connect(start_button_pressed)
-	options_button.pressed.connect(options_button_pressed)
+func _input(event):
+	if event.is_action_pressed("ui_cancel") and not animation_player.is_playing():
+		match ui_state:
+			state.options:
+				ui_state = state.menu
+				hide_and_show("options", "menu")
 
-func start_button_pressed():
+func hide_and_show(first: String, second: String):
+	animation_player.play("hide_" + first)
+	await animation_player.animation_finished
+	animation_player.play("show_" + second)
+
+func _on_button_1_pressed() -> void:
+	ui_state = state.menu
+	if animation_player.is_playing():
+		return
+	animation_player.play("hide_menu")
+	await animation_player.animation_finished
 	Global.game_controller.change_gui_scene("res://scenes/levels/lab.tscn")
 
-func options_button_pressed():
-	menu_transition(main_menu, options_menu)
+func _on_button_2_pressed() -> void:
+	ui_state = state.options
+	hide_and_show("menu", "options")
 
-func menu_transition(hide_menu: Control, show_menu: Control):
-	var tween = create_tween()
-	tween.set_parallel(false)
-	tween.set_trans(Tween.TRANS_SINE)
-
-	tween.tween_property(hide_menu, "modulate:a", 0.0, 0.3)
-	tween.tween_callback(func(): hide_menu.visible = false)
-
-	tween.tween_callback(func(): 
-		show_menu.visible = true
-		show_menu.modulate.a = 0.0
-	)
-	tween.tween_property(show_menu, "modulate:a", 1.0, 0.3)
+func _on_button_3_pressed() -> void:
+	get_tree().quit()
