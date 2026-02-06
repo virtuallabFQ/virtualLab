@@ -1,12 +1,7 @@
 [gd_resource type="Theme" format=3 uid="uid://cpa6dswqf8gcv"]
 
+[ext_resource type="StyleBox" uid="uid://bl87pm0bsuxd2" path="res://assets/ui/themes/buttons/buttons_style_box_flat.tres" id="1_mx04g"]
 [ext_resource type="StyleBox" uid="uid://d4dfmfo71x22i" path="res://assets/ui/themes/style_box_flat.tres" id="1_sn6ix"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sn6ix"]
-content_margin_left = 29.0
-content_margin_top = 5.0
-content_margin_bottom = 8.0
-bg_color = Color(0.36862746, 0.45490196, 0.5372549, 0.80784315)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mx04g"]
 content_margin_top = 5.0
@@ -14,7 +9,7 @@ content_margin_bottom = 15.0
 
 [resource]
 Button/font_sizes/font_size = 35
-Button/styles/normal = SubResource("StyleBoxFlat_sn6ix")
+Button/styles/normal = ExtResource("1_mx04g")
 Label/font_sizes/font_size = 35
 Label/styles/normal = SubResource("StyleBoxEmpty_mx04g")
 PanelContainer/styles/panel = ExtResource("1_sn6ix")
