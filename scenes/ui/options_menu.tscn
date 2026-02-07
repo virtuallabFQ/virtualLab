@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://dmkdd5agrf8b4"]
+
+[ext_resource type="Theme" uid="uid://cpa6dswqf8gcv" path="res://assets/ui/themes/theme.tres" id="1_wj2x4"]
+[ext_resource type="StyleBox" uid="uid://bn4ch6u0l0knm" path="res://assets/ui/themes/option_menu/om_style_box_flat.tres" id="2_imaij"]
+[ext_resource type="PackedScene" uid="uid://vd128e4ky8io" path="res://scenes/ui/camera_controls_menu.tscn" id="3_imaij"]
+
+[node name="OptionsMenu" type="Control" unique_id=1820454181]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=699518807]
+custom_minimum_size = Vector2(1720, 930)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -860.0
+offset_top = -465.0
+offset_right = 860.0
+offset_bottom = 465.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_wj2x4")
+theme_override_styles/panel = ExtResource("2_imaij")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=632555786]
+layout_mode = 0
+offset_left = 183.0
+offset_top = 154.0
+offset_right = 658.0
+offset_bottom = 324.0
+theme = ExtResource("1_wj2x4")
+
+[node name="Button1" type="Button" parent="VBoxContainer" unique_id=1523015473]
+layout_mode = 2
+theme = ExtResource("1_wj2x4")
+text = "Câmaras e Controlos"
+alignment = 0
+
+[node name="Button2" type="Button" parent="VBoxContainer" unique_id=1923056743]
+layout_mode = 2
+text = "Configurações Gráficas"
+alignment = 0
+
+[node name="Button3" type="Button" parent="VBoxContainer" unique_id=1736610389]
+layout_mode = 2
+text = "Áudio"
+alignment = 0
+
+[node name="CameraControlsMenu" parent="." unique_id=1836589356 instance=ExtResource("3_imaij")]
+layout_mode = 1

@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://cbck617vxv5du" path="res://scripts/main_menu.gd" id="1_btxxm"]
 [ext_resource type="FontFile" uid="uid://p38vpi7tgrq2" path="res://assets/ui/themes/static/Orbitron-Bold.ttf" id="2_m1kxf"]
 [ext_resource type="Script" uid="uid://nxrh3ej2p4y7" path="res://scripts/animation_component.gd" id="3_x2yvf"]
-[ext_resource type="StyleBox" uid="uid://bn4ch6u0l0knm" path="res://assets/ui/themes/option_menu/om_style_box_flat.tres" id="4_m1kxf"]
+[ext_resource type="PackedScene" uid="uid://dmkdd5agrf8b4" path="res://scenes/ui/options_menu.tscn" id="5_x2yvf"]
 
 [sub_resource type="Animation" id="Animation_btxxm"]
 length = 0.001
@@ -31,6 +31,30 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("OptionsMenu:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("OptionsMenu:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_8g5eo"]
@@ -64,6 +88,30 @@ tracks/1/keys = {
 [sub_resource type="Animation" id="Animation_wb0q5"]
 resource_name = "hide_options"
 length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("OptionsMenu:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("OptionsMenu:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
 
 [sub_resource type="Animation" id="Animation_q85j6"]
 resource_name = "show_menu"
@@ -96,6 +144,30 @@ tracks/1/keys = {
 [sub_resource type="Animation" id="Animation_7suek"]
 resource_name = "show_options"
 length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("OptionsMenu:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("OptionsMenu:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_q85j6"]
 _data = {
@@ -115,26 +187,8 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_btxxm")
 menu = NodePath("MainMenu")
-options = NodePath("")
+options = NodePath("OptionsMenu")
 animation_player = NodePath("AnimationPlayer")
-
-[node name="PanelContainer" type="PanelContainer" parent="." unique_id=524894731]
-visible = false
-custom_minimum_size = Vector2(1720, 930)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -860.0
-offset_top = -465.0
-offset_right = 860.0
-offset_bottom = 465.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("1_1g8jr")
-theme_override_styles/panel = ExtResource("4_m1kxf")
 
 [node name="MainMenu" type="CenterContainer" parent="." unique_id=502021501]
 layout_mode = 1
@@ -143,7 +197,7 @@ anchor_top = 1.0
 anchor_bottom = 1.0
 offset_top = -610.0
 offset_right = 701.0
-offset_bottom = 3.0
+offset_bottom = 3.630005
 grow_vertical = 0
 
 [node name="PanelContainer" type="PanelContainer" parent="MainMenu" unique_id=977186324]
@@ -170,6 +224,8 @@ alignment = 0
 
 [node name="AnimationComponent" type="Node" parent="MainMenu/PanelContainer/VBoxContainer/Button1" unique_id=311709877]
 script = ExtResource("3_x2yvf")
+hover_transition = 10
+hover_easing = 2
 
 [node name="Button2" type="Button" parent="MainMenu/PanelContainer/VBoxContainer" unique_id=538432200]
 layout_mode = 2
@@ -178,6 +234,8 @@ alignment = 0
 
 [node name="AnimationComponent" type="Node" parent="MainMenu/PanelContainer/VBoxContainer/Button2" unique_id=1401830255]
 script = ExtResource("3_x2yvf")
+hover_transition = 10
+hover_easing = 2
 
 [node name="Button3" type="Button" parent="MainMenu/PanelContainer/VBoxContainer" unique_id=1809720251]
 layout_mode = 2
@@ -186,14 +244,13 @@ alignment = 0
 
 [node name="AnimationComponent" type="Node" parent="MainMenu/PanelContainer/VBoxContainer/Button3" unique_id=386206714]
 script = ExtResource("3_x2yvf")
+hover_transition = 10
+hover_easing = 2
 
-[node name="OptionsMenu" type="Control" parent="." unique_id=737745802]
+[node name="OptionsMenu" parent="." unique_id=1820454181 instance=ExtResource("5_x2yvf")]
+visible = false
+modulate = Color(1, 1, 1, 0)
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1168421522]
 libraries/ = SubResource("AnimationLibrary_q85j6")
