@@ -4,6 +4,8 @@
 [ext_resource type="FontFile" uid="uid://p38vpi7tgrq2" path="res://assets/ui/themes/static/Orbitron-Bold.ttf" id="3_276bf"]
 [ext_resource type="StyleBox" uid="uid://dvb1eutm7tbrk" path="res://assets/ui/themes/graphics_menu/gm_buttons_style_box_flat.tres" id="4_jw3yj"]
 [ext_resource type="StyleBox" uid="uid://bu6y4o8niniup" path="res://assets/ui/themes/graphics_menu/gm_hover_style_box_flat.tres" id="5_hnyu6"]
+[ext_resource type="StyleBox" uid="uid://bl87pm0bsuxd2" path="res://assets/ui/themes/options_menu/om_buttons_style_box_flat.tres" id="5_jw3yj"]
+[ext_resource type="StyleBox" uid="uid://b21ui40ekwdwv" path="res://assets/ui/themes/options_menu/om_hover_style_box_flat.tres" id="6_hnyu6"]
 
 [node name="GraphicsMenu" type="Control" unique_id=1836589356]
 layout_mode = 3
@@ -13,7 +15,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="." unique_id=1015348828]
+[node name="graphics_title" type="Label" parent="." unique_id=1015348828]
 layout_mode = 0
 offset_left = 687.0
 offset_top = 100.0
@@ -24,7 +26,7 @@ theme_override_fonts/font = ExtResource("3_276bf")
 text = "Configurações Gráficas"
 horizontal_alignment = 1
 
-[node name="VBoxContainer1" type="VBoxContainer" parent="." unique_id=1659223989]
+[node name="graphics_container" type="VBoxContainer" parent="." unique_id=1659223989]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -35,80 +37,97 @@ offset_bottom = 694.0
 grow_horizontal = 2
 theme = ExtResource("1_2tic6")
 
-[node name="Button1" type="Button" parent="VBoxContainer1" unique_id=261628193]
+[node name="window_mode" type="Button" parent="graphics_container" unique_id=154610140]
 layout_mode = 2
-theme = ExtResource("1_2tic6")
+mouse_filter = 2
 theme_override_styles/normal = ExtResource("4_jw3yj")
 theme_override_styles/pressed = ExtResource("4_jw3yj")
 theme_override_styles/hover = ExtResource("5_hnyu6")
 text = "Modo de exibição"
 alignment = 2
 
-[node name="Button2" type="Button" parent="VBoxContainer1" unique_id=992557746]
+[node name="screen_resolution" type="Button" parent="graphics_container" unique_id=992557746]
 layout_mode = 2
+mouse_filter = 2
 theme_override_styles/normal = ExtResource("4_jw3yj")
 theme_override_styles/pressed = ExtResource("4_jw3yj")
 theme_override_styles/hover = ExtResource("5_hnyu6")
 text = " Resolução do ecrã"
 alignment = 2
 
-[node name="Button3" type="Button" parent="VBoxContainer1" unique_id=406021389]
+[node name="anti_aliasing" type="Button" parent="graphics_container" unique_id=406021389]
 layout_mode = 2
+mouse_filter = 2
 theme_override_styles/normal = ExtResource("4_jw3yj")
 theme_override_styles/pressed = ExtResource("4_jw3yj")
 theme_override_styles/hover = ExtResource("5_hnyu6")
 text = "Anti-serrilhado"
 alignment = 2
 
-[node name="Button4" type="Button" parent="VBoxContainer1" unique_id=959656044]
+[node name="dynamic_shadows" type="Button" parent="graphics_container" unique_id=959656044]
 layout_mode = 2
+mouse_filter = 2
 theme_override_styles/normal = ExtResource("4_jw3yj")
 theme_override_styles/pressed = ExtResource("4_jw3yj")
 theme_override_styles/hover = ExtResource("5_hnyu6")
 text = "Sombras dinâmicas"
 alignment = 2
 
-[node name="Button5" type="Button" parent="VBoxContainer1" unique_id=1062609360]
+[node name="reflections" type="Button" parent="graphics_container" unique_id=1062609360]
 layout_mode = 2
+mouse_filter = 2
 theme_override_styles/normal = ExtResource("4_jw3yj")
 theme_override_styles/pressed = ExtResource("4_jw3yj")
 theme_override_styles/hover = ExtResource("5_hnyu6")
 text = "Reflexões"
 alignment = 2
 
-[node name="Button6" type="Button" parent="VBoxContainer1" unique_id=1565159680]
+[node name="ambient_occlusion" type="Button" parent="graphics_container" unique_id=432840974]
 layout_mode = 2
+mouse_filter = 2
+theme_override_styles/normal = ExtResource("4_jw3yj")
+theme_override_styles/pressed = ExtResource("4_jw3yj")
+theme_override_styles/hover = ExtResource("5_hnyu6")
+text = "Oclusão de Ambiente"
+alignment = 2
+
+[node name="motion_blur" type="Button" parent="graphics_container" unique_id=1565159680]
+layout_mode = 2
+mouse_filter = 2
 theme_override_styles/normal = ExtResource("4_jw3yj")
 theme_override_styles/pressed = ExtResource("4_jw3yj")
 theme_override_styles/hover = ExtResource("5_hnyu6")
 text = "Desfoque de movimento"
 alignment = 2
 
-[node name="Button7" type="Button" parent="VBoxContainer1" unique_id=845595054]
+[node name="fps_limit" type="Button" parent="graphics_container" unique_id=845595054]
 layout_mode = 2
+mouse_filter = 2
 theme_override_styles/normal = ExtResource("4_jw3yj")
 theme_override_styles/pressed = ExtResource("4_jw3yj")
 theme_override_styles/hover = ExtResource("5_hnyu6")
-text = "FPS"
+text = "Limite de FPS"
 alignment = 2
 
-[node name="Button8" type="Button" parent="VBoxContainer1" unique_id=1296762002]
+[node name="vsync" type="Button" parent="graphics_container" unique_id=1296762002]
 layout_mode = 2
+mouse_filter = 2
 theme_override_styles/normal = ExtResource("4_jw3yj")
 theme_override_styles/pressed = ExtResource("4_jw3yj")
 theme_override_styles/hover = ExtResource("5_hnyu6")
 text = "V-Sync"
 alignment = 2
 
-[node name="Button9" type="Button" parent="VBoxContainer1" unique_id=1670216591]
+[node name="show_fps" type="Button" parent="graphics_container" unique_id=1670216591]
 layout_mode = 2
+mouse_filter = 2
 theme_override_styles/normal = ExtResource("4_jw3yj")
 theme_override_styles/pressed = ExtResource("4_jw3yj")
 theme_override_styles/hover = ExtResource("5_hnyu6")
 text = "Mostrar FPS"
 alignment = 2
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="." unique_id=1608639548]
+[node name="graphics_buttons" type="VBoxContainer" parent="." unique_id=1608639548]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -119,48 +138,94 @@ offset_bottom = 425.0
 grow_horizontal = 2
 theme = ExtResource("1_2tic6")
 
-[node name="Button1" type="Button" parent="VBoxContainer2" unique_id=105626966]
+[node name="window_button" type="OptionButton" parent="graphics_buttons" unique_id=1948598222]
 layout_mode = 2
 theme = ExtResource("1_2tic6")
-text = " "
-alignment = 0
+theme_override_styles/normal = ExtResource("5_jw3yj")
+theme_override_styles/pressed = ExtResource("5_jw3yj")
+theme_override_styles/hover = ExtResource("6_hnyu6")
+selected = 0
+item_count = 1
+popup/item_0/text = "Ecrã Cheio"
+popup/item_0/id = 0
 
-[node name="Button2" type="Button" parent="VBoxContainer2" unique_id=1588053775]
+[node name="resolution_button" type="OptionButton" parent="graphics_buttons" unique_id=2133059647]
+layout_mode = 2
+theme = ExtResource("1_2tic6")
+theme_override_styles/normal = ExtResource("5_jw3yj")
+theme_override_styles/pressed = ExtResource("5_jw3yj")
+theme_override_styles/hover = ExtResource("6_hnyu6")
+selected = 0
+item_count = 1
+popup/item_0/text = "1920x1080"
+popup/item_0/id = 0
+
+[node name="aa_button" type="OptionButton" parent="graphics_buttons" unique_id=2003074318]
+layout_mode = 2
+theme = ExtResource("1_2tic6")
+theme_override_styles/normal = ExtResource("5_jw3yj")
+theme_override_styles/pressed = ExtResource("5_jw3yj")
+theme_override_styles/hover = ExtResource("6_hnyu6")
+selected = 0
+item_count = 1
+popup/item_0/text = "8x"
+popup/item_0/id = 0
+
+[node name="shadows_button" type="OptionButton" parent="graphics_buttons" unique_id=1545417083]
+layout_mode = 2
+theme = ExtResource("1_2tic6")
+theme_override_styles/normal = ExtResource("5_jw3yj")
+theme_override_styles/pressed = ExtResource("5_jw3yj")
+theme_override_styles/hover = ExtResource("6_hnyu6")
+selected = 0
+item_count = 1
+popup/item_0/text = "Alto"
+popup/item_0/id = 0
+
+[node name="reflections_button" type="OptionButton" parent="graphics_buttons" unique_id=1192974014]
+layout_mode = 2
+theme = ExtResource("1_2tic6")
+theme_override_styles/normal = ExtResource("5_jw3yj")
+theme_override_styles/pressed = ExtResource("5_jw3yj")
+theme_override_styles/hover = ExtResource("6_hnyu6")
+selected = 0
+item_count = 1
+popup/item_0/text = "Alto"
+popup/item_0/id = 0
+
+[node name="ao_button" type="OptionButton" parent="graphics_buttons" unique_id=1131185321]
+layout_mode = 2
+theme = ExtResource("1_2tic6")
+theme_override_styles/normal = ExtResource("5_jw3yj")
+theme_override_styles/pressed = ExtResource("5_jw3yj")
+theme_override_styles/hover = ExtResource("6_hnyu6")
+selected = 0
+item_count = 1
+popup/item_0/text = "Alto"
+popup/item_0/id = 0
+
+[node name="mb_button" type="Button" parent="graphics_buttons" unique_id=33786706]
 layout_mode = 2
 text = " "
 alignment = 0
 
-[node name="Button3" type="Button" parent="VBoxContainer2" unique_id=1110984345]
+[node name="limit_button" type="OptionButton" parent="graphics_buttons" unique_id=1700808803]
+layout_mode = 2
+theme = ExtResource("1_2tic6")
+theme_override_styles/normal = ExtResource("5_jw3yj")
+theme_override_styles/pressed = ExtResource("5_jw3yj")
+theme_override_styles/hover = ExtResource("6_hnyu6")
+selected = 0
+item_count = 1
+popup/item_0/text = "240"
+popup/item_0/id = 0
+
+[node name="vsync_button" type="Button" parent="graphics_buttons" unique_id=2007282713]
 layout_mode = 2
 text = " "
 alignment = 0
 
-[node name="Button4" type="Button" parent="VBoxContainer2" unique_id=33786706]
-layout_mode = 2
-text = " "
-alignment = 0
-
-[node name="Button5" type="Button" parent="VBoxContainer2" unique_id=2007282713]
-layout_mode = 2
-text = " "
-alignment = 0
-
-[node name="Button6" type="Button" parent="VBoxContainer2" unique_id=174282648]
-layout_mode = 2
-text = " "
-alignment = 0
-
-[node name="Button7" type="Button" parent="VBoxContainer2" unique_id=18636720]
-layout_mode = 2
-text = " "
-alignment = 0
-
-[node name="Button8" type="Button" parent="VBoxContainer2" unique_id=555071967]
-layout_mode = 2
-text = " "
-alignment = 0
-
-[node name="Button9" type="Button" parent="VBoxContainer2" unique_id=266300781]
+[node name="show_button" type="Button" parent="graphics_buttons" unique_id=174282648]
 layout_mode = 2
 text = " "
 alignment = 0
