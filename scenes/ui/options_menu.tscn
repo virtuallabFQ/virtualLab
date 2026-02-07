@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://dmkdd5agrf8b4"]
 
 [ext_resource type="Theme" uid="uid://cpa6dswqf8gcv" path="res://assets/ui/themes/theme.tres" id="1_wj2x4"]
-[ext_resource type="StyleBox" uid="uid://bn4ch6u0l0knm" path="res://assets/ui/themes/option_menu/om_style_box_flat.tres" id="2_imaij"]
-[ext_resource type="PackedScene" uid="uid://vd128e4ky8io" path="res://scenes/ui/camera_controls_menu.tscn" id="3_imaij"]
+[ext_resource type="StyleBox" uid="uid://bn4ch6u0l0knm" path="res://assets/ui/themes/options_menu/om_style_box_flat.tres" id="2_imaij"]
+[ext_resource type="PackedScene" uid="uid://vd128e4ky8io" path="res://scenes/ui/graphics_menu.tscn" id="3_imaij"]
 
 [node name="OptionsMenu" type="Control" unique_id=1820454181]
 layout_mode = 3

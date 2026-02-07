@@ -1,0 +1,166 @@
+[gd_scene format=3 uid="uid://vd128e4ky8io"]
+
+[ext_resource type="Theme" uid="uid://cpa6dswqf8gcv" path="res://assets/ui/themes/theme.tres" id="1_2tic6"]
+[ext_resource type="FontFile" uid="uid://p38vpi7tgrq2" path="res://assets/ui/themes/static/Orbitron-Bold.ttf" id="3_276bf"]
+[ext_resource type="StyleBox" uid="uid://dvb1eutm7tbrk" path="res://assets/ui/themes/graphics_menu/gm_buttons_style_box_flat.tres" id="4_jw3yj"]
+[ext_resource type="StyleBox" uid="uid://bu6y4o8niniup" path="res://assets/ui/themes/graphics_menu/gm_hover_style_box_flat.tres" id="5_hnyu6"]
+
+[node name="GraphicsMenu" type="Control" unique_id=1836589356]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="." unique_id=1015348828]
+layout_mode = 0
+offset_left = 687.0
+offset_top = 100.0
+offset_right = 1261.0
+offset_bottom = 165.00005
+theme = ExtResource("1_2tic6")
+theme_override_fonts/font = ExtResource("3_276bf")
+text = "Configurações Gráficas"
+horizontal_alignment = 1
+
+[node name="VBoxContainer1" type="VBoxContainer" parent="." unique_id=1659223989]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -475.0
+offset_top = 170.0
+offset_bottom = 694.0
+grow_horizontal = 2
+theme = ExtResource("1_2tic6")
+
+[node name="Button1" type="Button" parent="VBoxContainer1" unique_id=261628193]
+layout_mode = 2
+theme = ExtResource("1_2tic6")
+theme_override_styles/normal = ExtResource("4_jw3yj")
+theme_override_styles/pressed = ExtResource("4_jw3yj")
+theme_override_styles/hover = ExtResource("5_hnyu6")
+text = "Modo de exibição"
+alignment = 2
+
+[node name="Button2" type="Button" parent="VBoxContainer1" unique_id=992557746]
+layout_mode = 2
+theme_override_styles/normal = ExtResource("4_jw3yj")
+theme_override_styles/pressed = ExtResource("4_jw3yj")
+theme_override_styles/hover = ExtResource("5_hnyu6")
+text = " Resolução do ecrã"
+alignment = 2
+
+[node name="Button3" type="Button" parent="VBoxContainer1" unique_id=406021389]
+layout_mode = 2
+theme_override_styles/normal = ExtResource("4_jw3yj")
+theme_override_styles/pressed = ExtResource("4_jw3yj")
+theme_override_styles/hover = ExtResource("5_hnyu6")
+text = "Anti-serrilhado"
+alignment = 2
+
+[node name="Button4" type="Button" parent="VBoxContainer1" unique_id=959656044]
+layout_mode = 2
+theme_override_styles/normal = ExtResource("4_jw3yj")
+theme_override_styles/pressed = ExtResource("4_jw3yj")
+theme_override_styles/hover = ExtResource("5_hnyu6")
+text = "Sombras dinâmicas"
+alignment = 2
+
+[node name="Button5" type="Button" parent="VBoxContainer1" unique_id=1062609360]
+layout_mode = 2
+theme_override_styles/normal = ExtResource("4_jw3yj")
+theme_override_styles/pressed = ExtResource("4_jw3yj")
+theme_override_styles/hover = ExtResource("5_hnyu6")
+text = "Reflexões"
+alignment = 2
+
+[node name="Button6" type="Button" parent="VBoxContainer1" unique_id=1565159680]
+layout_mode = 2
+theme_override_styles/normal = ExtResource("4_jw3yj")
+theme_override_styles/pressed = ExtResource("4_jw3yj")
+theme_override_styles/hover = ExtResource("5_hnyu6")
+text = "Desfoque de movimento"
+alignment = 2
+
+[node name="Button7" type="Button" parent="VBoxContainer1" unique_id=845595054]
+layout_mode = 2
+theme_override_styles/normal = ExtResource("4_jw3yj")
+theme_override_styles/pressed = ExtResource("4_jw3yj")
+theme_override_styles/hover = ExtResource("5_hnyu6")
+text = "FPS"
+alignment = 2
+
+[node name="Button8" type="Button" parent="VBoxContainer1" unique_id=1296762002]
+layout_mode = 2
+theme_override_styles/normal = ExtResource("4_jw3yj")
+theme_override_styles/pressed = ExtResource("4_jw3yj")
+theme_override_styles/hover = ExtResource("5_hnyu6")
+text = "V-Sync"
+alignment = 2
+
+[node name="Button9" type="Button" parent="VBoxContainer1" unique_id=1670216591]
+layout_mode = 2
+theme_override_styles/normal = ExtResource("4_jw3yj")
+theme_override_styles/pressed = ExtResource("4_jw3yj")
+theme_override_styles/hover = ExtResource("5_hnyu6")
+text = "Mostrar FPS"
+alignment = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="." unique_id=1608639548]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_top = 170.0
+offset_right = 475.0
+offset_bottom = 425.0
+grow_horizontal = 2
+theme = ExtResource("1_2tic6")
+
+[node name="Button1" type="Button" parent="VBoxContainer2" unique_id=105626966]
+layout_mode = 2
+theme = ExtResource("1_2tic6")
+text = " "
+alignment = 0
+
+[node name="Button2" type="Button" parent="VBoxContainer2" unique_id=1588053775]
+layout_mode = 2
+text = " "
+alignment = 0
+
+[node name="Button3" type="Button" parent="VBoxContainer2" unique_id=1110984345]
+layout_mode = 2
+text = " "
+alignment = 0
+
+[node name="Button4" type="Button" parent="VBoxContainer2" unique_id=33786706]
+layout_mode = 2
+text = " "
+alignment = 0
+
+[node name="Button5" type="Button" parent="VBoxContainer2" unique_id=2007282713]
+layout_mode = 2
+text = " "
+alignment = 0
+
+[node name="Button6" type="Button" parent="VBoxContainer2" unique_id=174282648]
+layout_mode = 2
+text = " "
+alignment = 0
+
+[node name="Button7" type="Button" parent="VBoxContainer2" unique_id=18636720]
+layout_mode = 2
+text = " "
+alignment = 0
+
+[node name="Button8" type="Button" parent="VBoxContainer2" unique_id=555071967]
+layout_mode = 2
+text = " "
+alignment = 0
+
+[node name="Button9" type="Button" parent="VBoxContainer2" unique_id=266300781]
+layout_mode = 2
+text = " "
+alignment = 0
