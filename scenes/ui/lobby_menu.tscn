@@ -3,6 +3,7 @@
 [ext_resource type="Theme" uid="uid://cpa6dswqf8gcv" path="res://assets/ui/themes/theme.tres" id="1_1g8jr"]
 [ext_resource type="Script" uid="uid://cbck617vxv5du" path="res://scripts/main_menu.gd" id="1_btxxm"]
 [ext_resource type="FontFile" uid="uid://p38vpi7tgrq2" path="res://assets/ui/themes/static/Orbitron-Bold.ttf" id="2_m1kxf"]
+[ext_resource type="StyleBox" uid="uid://d4dfmfo71x22i" path="res://assets/ui/themes/main_menu/mm_style_box_flat.tres" id="3_4hixx"]
 [ext_resource type="Script" uid="uid://nxrh3ej2p4y7" path="res://scripts/animation_component.gd" id="3_x2yvf"]
 [ext_resource type="PackedScene" uid="uid://dmkdd5agrf8b4" path="res://scenes/ui/options_menu.tscn" id="5_x2yvf"]
 
@@ -11,46 +12,22 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MainMenu:modulate")
+tracks/0/path = NodePath("OptionsMenu:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 1)]
+"values": [Color(1, 1, 1, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("MainMenu:visible")
+tracks/1/path = NodePath("OptionsMenu:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("OptionsMenu:modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("OptionsMenu:visible")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -60,30 +37,6 @@ tracks/3/keys = {
 [sub_resource type="Animation" id="Animation_8g5eo"]
 resource_name = "hide_menu"
 length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("MainMenu:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("MainMenu:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
 
 [sub_resource type="Animation" id="Animation_wb0q5"]
 resource_name = "hide_options"
@@ -116,30 +69,6 @@ tracks/1/keys = {
 [sub_resource type="Animation" id="Animation_q85j6"]
 resource_name = "show_menu"
 length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("MainMenu:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("MainMenu:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, true]
-}
 
 [sub_resource type="Animation" id="Animation_7suek"]
 resource_name = "show_options"
@@ -190,59 +119,65 @@ menu = NodePath("MainMenu")
 options = NodePath("OptionsMenu")
 animation_player = NodePath("AnimationPlayer")
 
-[node name="MainMenu" type="CenterContainer" parent="." unique_id=502021501]
+[node name="MainMenu" type="Panel" parent="." unique_id=381263929]
 layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -610.0
-offset_right = 701.0
-offset_bottom = 3.630005
-grow_vertical = 0
+anchors_preset = -1
+anchor_top = 0.56700003
+anchor_right = 0.32700002
+anchor_bottom = 0.87000006
+offset_top = 0.20697021
+offset_right = -0.84002686
+offset_bottom = 0.2699585
+theme = ExtResource("1_1g8jr")
+theme_override_styles/panel = ExtResource("3_4hixx")
 
-[node name="PanelContainer" type="PanelContainer" parent="MainMenu" unique_id=977186324]
-custom_minimum_size = Vector2(500, 200)
-layout_mode = 2
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu" unique_id=98296064]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.15
+anchor_top = 0.10700001
+anchor_right = 0.92800003
+anchor_bottom = 0.846
+offset_left = -0.05000305
+offset_top = 0.010997772
+offset_right = 0.14398193
+offset_bottom = 0.1340332
 theme = ExtResource("1_1g8jr")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu/PanelContainer" unique_id=593127623]
-layout_mode = 2
-theme = ExtResource("1_1g8jr")
-
-[node name="Label" type="Label" parent="MainMenu/PanelContainer/VBoxContainer" unique_id=650288054]
+[node name="Label" type="Label" parent="MainMenu/VBoxContainer" unique_id=315898016]
 layout_mode = 2
 theme = ExtResource("1_1g8jr")
 theme_override_fonts/font = ExtResource("2_m1kxf")
 text = "LABORATÓRIO VIRTUAL"
 horizontal_alignment = 1
 
-[node name="Button1" type="Button" parent="MainMenu/PanelContainer/VBoxContainer" unique_id=768259954]
+[node name="Button1" type="Button" parent="MainMenu/VBoxContainer" unique_id=650207581]
 layout_mode = 2
 theme = ExtResource("1_1g8jr")
 text = "Entrar"
 alignment = 0
 
-[node name="AnimationComponent" type="Node" parent="MainMenu/PanelContainer/VBoxContainer/Button1" unique_id=311709877]
+[node name="AnimationComponent" type="Node" parent="MainMenu/VBoxContainer/Button1" unique_id=1278043957]
 script = ExtResource("3_x2yvf")
 hover_transition = 10
 hover_easing = 2
 
-[node name="Button2" type="Button" parent="MainMenu/PanelContainer/VBoxContainer" unique_id=538432200]
+[node name="Button2" type="Button" parent="MainMenu/VBoxContainer" unique_id=805038100]
 layout_mode = 2
 text = "Opções"
 alignment = 0
 
-[node name="AnimationComponent" type="Node" parent="MainMenu/PanelContainer/VBoxContainer/Button2" unique_id=1401830255]
+[node name="AnimationComponent" type="Node" parent="MainMenu/VBoxContainer/Button2" unique_id=1225580010]
 script = ExtResource("3_x2yvf")
 hover_transition = 10
 hover_easing = 2
 
-[node name="Button3" type="Button" parent="MainMenu/PanelContainer/VBoxContainer" unique_id=1809720251]
+[node name="Button3" type="Button" parent="MainMenu/VBoxContainer" unique_id=1424777115]
 layout_mode = 2
 text = "Sair"
 alignment = 0
 
-[node name="AnimationComponent" type="Node" parent="MainMenu/PanelContainer/VBoxContainer/Button3" unique_id=386206714]
+[node name="AnimationComponent" type="Node" parent="MainMenu/VBoxContainer/Button3" unique_id=991382945]
 script = ExtResource("3_x2yvf")
 hover_transition = 10
 hover_easing = 2
@@ -255,6 +190,6 @@ layout_mode = 1
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1168421522]
 libraries/ = SubResource("AnimationLibrary_q85j6")
 
-[connection signal="pressed" from="MainMenu/PanelContainer/VBoxContainer/Button1" to="." method="_on_button_1_pressed"]
-[connection signal="pressed" from="MainMenu/PanelContainer/VBoxContainer/Button2" to="." method="_on_button_2_pressed"]
-[connection signal="pressed" from="MainMenu/PanelContainer/VBoxContainer/Button3" to="." method="_on_button_3_pressed"]
+[connection signal="pressed" from="MainMenu/VBoxContainer/Button1" to="." method="_on_button_1_pressed"]
+[connection signal="pressed" from="MainMenu/VBoxContainer/Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="MainMenu/VBoxContainer/Button3" to="." method="_on_button_3_pressed"]
