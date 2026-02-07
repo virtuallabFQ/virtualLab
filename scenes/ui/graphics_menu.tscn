@@ -55,7 +55,7 @@ theme_override_styles/hover = ExtResource("5_hnyu6")
 text = "Modo de exibição"
 alignment = 2
 
-[node name="screen_resolution" type="Button" parent="graphics_container" unique_id=992557746]
+[node name="resolution" type="Button" parent="graphics_container" unique_id=992557746]
 layout_mode = 2
 mouse_filter = 2
 theme_override_styles/normal = ExtResource("4_jw3yj")

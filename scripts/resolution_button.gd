@@ -2,7 +2,7 @@ class_name ResolutionButton extends OptionButton
 
 @export var window_button : WindowButton
 
-const screen_resolution_dictionary : Dictionary = {
+var resolutions : Dictionary = {
 	"1024x576" : Vector2i(1024, 576),
 	"1280x720" : Vector2i(1280, 720),
 	"1336x768" : Vector2i(1336, 768),
@@ -13,28 +13,17 @@ const screen_resolution_dictionary : Dictionary = {
 }
 
 func _ready():
-	add_screen_resolution_items()
-	self.item_selected.connect(on_screen_resolution_selected)
+	add_resolutions()
+	item_selected.connect(on_resolution_selected)
 	var screen_size = DisplayServer.screen_get_size()
-	DisplayServer.window_set_size(screen_size)
-	get_window().content_scale_size = screen_size
-	window_button.update_resolution_dropdown_visuals(screen_size)
-
-func add_screen_resolution_items() -> void:
-	for screen_resolution in screen_resolution_dictionary:
-		self.add_item(screen_resolution)
-
-func on_screen_resolution_selected(_index: int) -> void:
-	var selected_text = get_item_text(_index)
-	var size = screen_resolution_dictionary[selected_text]
-	apply_resolution(size)
+	get_window().set_size(screen_size)
+	window_button.update_resolution(screen_size)
 	
-func apply_resolution(size: Vector2i) -> void:
-	var current_mode = DisplayServer.window_get_mode()
-	get_window().content_scale_size = size
-	
-	if current_mode == DisplayServer.WINDOW_MODE_WINDOWED:
-		DisplayServer.window_set_size(size)
-		var screen_center = DisplayServer.screen_get_position() + DisplayServer.screen_get_size() / 2
-		var window_pos = screen_center - size / 2
-		DisplayServer.window_set_position(window_pos)
+func add_resolutions():
+	for r in resolutions:
+		add_item(r)
+
+func on_resolution_selected(index: int) -> void:
+	var ID = get_item_text(index)
+	get_window().set_size(resolutions[ID])
+	get_window().move_to_center()
