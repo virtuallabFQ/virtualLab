@@ -15,14 +15,14 @@ func _ready():
 	var screen_size = DisplayServer.screen_get_size()
 	var res_string = str(screen_size.x) + "x" + str(screen_size.y)
 	resolutions[res_string] = screen_size
-	add_resolutions()
+	add_resolutions_items()
 	
 	item_selected.connect(on_resolution_selected)
 	get_window().set_size(screen_size)
 	get_window().move_to_center()
 	window_button.update_resolution(screen_size)
 	
-func add_resolutions():
+func add_resolutions_items():
 	clear()
 	var sorted_resolutions = resolutions.values()
 	sorted_resolutions.sort()

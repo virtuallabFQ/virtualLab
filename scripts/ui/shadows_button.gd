@@ -11,8 +11,8 @@ func add_shadows_items() -> void:
 	add_item("Alto")
 
 func check_current_shadows() -> void:
-	var current_size = get_viewport().positional_shadow_atlas_size
-	match current_size:
+	var current_shadows = get_viewport().positional_shadow_atlas_size
+	match current_shadows:
 		2048:
 			selected = 0
 		4096:

@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://ko87te0o10ve" path="res://scenes/objects/s_chair.tscn" id="1_2yitm"]
 [ext_resource type="PackedScene" uid="uid://yrv80x2vkau4" path="res://scenes/entities/player_controller.tscn" id="1_bj4kn"]
+[ext_resource type="Script" uid="uid://02s36yo66g2g" path="res://scripts/ui/show_label.gd" id="1_rsbtw"]
 [ext_resource type="PackedScene" uid="uid://hp3liy7jxlwn" path="res://scenes/objects/s_periodic_table.tscn" id="3_vuu1o"]
 [ext_resource type="PackedScene" uid="uid://dumhaqs3p53lh" path="res://scenes/objects/s_table.tscn" id="4_w4gd0"]
 [ext_resource type="PackedScene" uid="uid://dnkg01s24uf44" path="res://scenes/objects/s_door.tscn" id="6_bj4kn"]
@@ -21,7 +22,11 @@ sky_material = SubResource("ProceduralSkyMaterial_w4gd0")
 [sub_resource type="Environment" id="Environment_n3ogy"]
 background_mode = 2
 sky = SubResource("Sky_2yitm")
-tonemap_mode = 2
+ssr_enabled = true
+ssr_max_steps = 128
+ssao_enabled = true
+ssao_power = 0.25
+ssao_sharpness = 0.5
 
 [sub_resource type="BoxMesh" id="BoxMesh_2yitm"]
 lightmap_size_hint = Vector2i(14, 11)
@@ -62,6 +67,27 @@ _surfaces = [{
 albedo_color = Color(0.33660764, 0.3366076, 0.3366076, 0)
 
 [node name="Lab" type="Node3D" unique_id=2011976822]
+
+[node name="GUI" type="Control" parent="." unique_id=2090792884]
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+
+[node name="show_label" type="Label" parent="GUI" unique_id=499988838]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -2.125
+anchor_top = 0.5
+anchor_right = 0.2
+anchor_bottom = 1.35
+horizontal_alignment = 2
+script = ExtResource("1_rsbtw")
+
+[node name="3D" type="Node3D" parent="." unique_id=2051668746]
 
 [node name="player_controller" parent="." unique_id=65100141 instance=ExtResource("1_bj4kn")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -9.413095, -0.03160256, -5.000931)

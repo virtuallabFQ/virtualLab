@@ -10,6 +10,9 @@
 [ext_resource type="Script" uid="uid://qgslrn3l43t8" path="res://scripts/ui/resolution_button.gd" id="8_xaxon"]
 [ext_resource type="Script" uid="uid://dpl5hcry3t2qc" path="res://scripts/ui/shadows_button.gd" id="9_wcgb5"]
 [ext_resource type="Script" uid="uid://wa6adi2gnfhm" path="res://scripts/ui/limit_button.gd" id="10_ptuu3"]
+[ext_resource type="Script" uid="uid://nchvljxq3oj" path="res://scripts/ui/ao_button.gd" id="10_wywa5"]
+[ext_resource type="Script" uid="uid://bj2sgo5hfn6n" path="res://scripts/ui/reflections_button.gd" id="11_flxvo"]
+[ext_resource type="Script" uid="uid://bj00nmesfseik" path="res://scripts/ui/show_button.gd" id="11_mw1m7"]
 
 [node name="GraphicsMenu" type="Control" unique_id=1836589356]
 layout_mode = 3
@@ -97,18 +100,18 @@ theme_override_styles/normal = ExtResource("3_jw3yj")
 text = "Sombras dinâmicas"
 alignment = 2
 
-[node name="reflections" type="Button" parent="graphics_container" unique_id=1062609360]
-layout_mode = 2
-mouse_filter = 2
-theme_override_styles/normal = ExtResource("3_jw3yj")
-text = "Reflexões"
-alignment = 2
-
 [node name="ambient_occlusion" type="Button" parent="graphics_container" unique_id=432840974]
 layout_mode = 2
 mouse_filter = 2
 theme_override_styles/normal = ExtResource("3_jw3yj")
 text = "Oclusão de Ambiente"
+alignment = 2
+
+[node name="reflections" type="Button" parent="graphics_container" unique_id=1062609360]
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/normal = ExtResource("3_jw3yj")
+text = "Reflexões"
 alignment = 2
 
 [node name="vsync" type="Button" parent="graphics_container" unique_id=1296762002]
@@ -138,10 +141,10 @@ anchors_preset = -1
 anchor_left = 0.5
 anchor_top = 0.157
 anchor_right = 0.74700004
-anchor_bottom = 0.647
+anchor_bottom = 0.72900003
 offset_top = 0.43998718
 offset_right = 0.7598877
-offset_bottom = -272.76
+offset_bottom = -361.23804
 grow_horizontal = 2
 theme = ExtResource("1_2tic6")
 
@@ -227,21 +230,15 @@ layout_mode = 2
 theme = ExtResource("1_2tic6")
 script = ExtResource("9_wcgb5")
 
-[node name="reflections_button" type="OptionButton" parent="graphics_buttons" unique_id=1192974014]
-layout_mode = 2
-theme = ExtResource("1_2tic6")
-selected = 0
-item_count = 1
-popup/item_0/text = "Alto"
-popup/item_0/id = 0
-
 [node name="ao_button" type="OptionButton" parent="graphics_buttons" unique_id=1131185321]
 layout_mode = 2
 theme = ExtResource("1_2tic6")
-selected = 0
-item_count = 1
-popup/item_0/text = "Alto"
-popup/item_0/id = 0
+script = ExtResource("10_wywa5")
+
+[node name="reflections_button" type="OptionButton" parent="graphics_buttons" unique_id=1192974014]
+layout_mode = 2
+theme = ExtResource("1_2tic6")
+script = ExtResource("11_flxvo")
 
 [node name="vsync_button" type="Button" parent="graphics_buttons" unique_id=2007282713]
 layout_mode = 2
@@ -286,8 +283,8 @@ theme_override_font_sizes/font_size = 20
 
 [node name="show_button" type="Button" parent="graphics_buttons" unique_id=174282648]
 layout_mode = 2
-text = " "
 alignment = 0
+script = ExtResource("11_mw1m7")
 
 [connection signal="value_changed" from="graphics_buttons/scaling_button/slider" to="graphics_buttons/scaling_button" method="_on_slider_value_changed"]
 [connection signal="item_selected" from="graphics_buttons/scaling_mode_button" to="graphics_buttons/scaling_button" method="_on_scaling_mode_button_item_selected"]
