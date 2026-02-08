@@ -1,10 +1,8 @@
 [gd_scene format=3 uid="uid://dmkdd5agrf8b4"]
 
 [ext_resource type="Theme" uid="uid://cpa6dswqf8gcv" path="res://assets/ui/themes/theme.tres" id="1_wj2x4"]
-[ext_resource type="StyleBox" uid="uid://d4dfmfo71x22i" path="res://assets/ui/themes/main_menu/mm_style_box_flat.tres" id="2_imaij"]
-[ext_resource type="StyleBox" uid="uid://bl87pm0bsuxd2" path="res://assets/ui/themes/options_menu/om_buttons_style_box_flat.tres" id="3_0ejsc"]
+[ext_resource type="StyleBox" uid="uid://bn4ch6u0l0knm" path="res://assets/ui/themes/options_menu/om_style_box_flat.tres" id="2_imaij"]
 [ext_resource type="PackedScene" uid="uid://vd128e4ky8io" path="res://scenes/ui/graphics_menu.tscn" id="3_imaij"]
-[ext_resource type="StyleBox" uid="uid://b21ui40ekwdwv" path="res://assets/ui/themes/options_menu/om_hover_style_box_flat.tres" id="4_snsgv"]
 
 [node name="OptionsMenu" type="Control" unique_id=1820454181]
 layout_mode = 3
@@ -29,6 +27,7 @@ theme = ExtResource("1_wj2x4")
 theme_override_styles/panel = ExtResource("2_imaij")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel" unique_id=632555786]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.048
@@ -44,9 +43,6 @@ theme = ExtResource("1_wj2x4")
 [node name="Button1" type="Button" parent="Panel/VBoxContainer" unique_id=1523015473]
 layout_mode = 2
 theme = ExtResource("1_wj2x4")
-theme_override_styles/normal = ExtResource("3_0ejsc")
-theme_override_styles/pressed = ExtResource("3_0ejsc")
-theme_override_styles/hover = ExtResource("4_snsgv")
 text = "Câmaras e Controlos"
 alignment = 0
 
