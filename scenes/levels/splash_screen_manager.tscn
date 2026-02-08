@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://dxak58crtk3wj"]
 
-[ext_resource type="Script" uid="uid://di6kf4ky3ksdg" path="res://scripts/splash_screen_manager.gd" id="1_fcwca"]
-[ext_resource type="Texture2D" uid="uid://duivd8ssgpjxr" path="res://assets/interface/logos/godot_logo.svg" id="2_fcwca"]
+[ext_resource type="Script" uid="uid://bup7wo6tomigy" path="res://scripts/levels/splash_screen_manager.gd" id="1_fcwca"]
+[ext_resource type="Texture2D" uid="uid://duivd8ssgpjxr" path="res://assets/ui/logos/godot_logo.svg" id="2_fcwca"]
 [ext_resource type="PackedScene" uid="uid://dejy6xmx0jom4" path="res://scenes/levels/lobby.tscn" id="2_uy63b"]
-[ext_resource type="Texture2D" uid="uid://b0runnou5hn27" path="res://assets/interface/logos/fcebi_logo.svg" id="4_3v6ed"]
-[ext_resource type="Texture2D" uid="uid://s5rofdojrnpt" path="res://assets/interface/logos/fab_logo.svg" id="5_uy63b"]
+[ext_resource type="Texture2D" uid="uid://b0runnou5hn27" path="res://assets/ui/logos/fcebi_logo.svg" id="4_3v6ed"]
+[ext_resource type="Texture2D" uid="uid://s5rofdojrnpt" path="res://assets/ui/logos/fab_logo.svg" id="5_uy63b"]
 
 [node name="SplashScreenManager" type="Control" unique_id=1569995097 node_paths=PackedStringArray("splash_screen_container")]
 layout_mode = 3

@@ -1,8 +1,8 @@
 [gd_scene format=4 uid="uid://byqoedaoxljd"]
 
 [ext_resource type="PackedScene" uid="uid://1s38ofi381tl" path="res://assets/models/objects/sink_table.glb" id="1_aglhp"]
-[ext_resource type="Script" uid="uid://cgyjqe6ghmcdj" path="res://scripts/door_component.gd" id="2_fvyfd"]
-[ext_resource type="Script" uid="uid://dricxewmuu5su" path="res://scripts/interaction_component.gd" id="2_x13th"]
+[ext_resource type="Script" uid="uid://5kgtpnn2lylw" path="res://scripts/objects/door_component.gd" id="2_fvyfd"]
+[ext_resource type="Script" uid="uid://cld64tanfoemk" path="res://scripts/objects/interaction_component.gd" id="2_x13th"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_aglhp"]
 size = Vector3(2.9965172, 0.106487274, 0.8100586)
@@ -391,7 +391,6 @@ rotation_amount = -90.0
 script = ExtResource("2_x13th")
 mesh = NodePath("../door_1")
 context = "Abrir"
-metadata/_custom_type_script = "uid://dricxewmuu5su"
 
 [node name="an_door_2" type="AnimatableBody3D" parent="." unique_id=366602753]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.418, 0, 0.024)
@@ -412,7 +411,6 @@ door_type = 1
 script = ExtResource("2_x13th")
 mesh = NodePath("../door_2")
 context = "Abrir"
-metadata/_custom_type_script = "uid://dricxewmuu5su"
 
 [node name="an_door_3" type="AnimatableBody3D" parent="." unique_id=362208146]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.39534038, 0, 0.024)
@@ -434,7 +432,6 @@ rotation_amount = -90.0
 script = ExtResource("2_x13th")
 mesh = NodePath("../door_3")
 context = "Abrir"
-metadata/_custom_type_script = "uid://dricxewmuu5su"
 
 [node name="an_door_4" type="AnimatableBody3D" parent="." unique_id=1356577590]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.387, 0, 0.024)
@@ -455,6 +452,5 @@ door_type = 1
 script = ExtResource("2_x13th")
 mesh = NodePath("../door_4")
 context = "Abrir"
-metadata/_custom_type_script = "uid://dricxewmuu5su"
 
 [editable path="sink_table"]

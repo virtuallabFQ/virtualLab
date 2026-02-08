@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://cwa4lcrku1b36"]
 
 [ext_resource type="Theme" uid="uid://cpa6dswqf8gcv" path="res://assets/ui/themes/theme.tres" id="1_1g8jr"]
-[ext_resource type="Script" uid="uid://cbck617vxv5du" path="res://scripts/main_menu.gd" id="1_btxxm"]
+[ext_resource type="Script" uid="uid://rnvs5gdg037o" path="res://scripts/ui/main_menu.gd" id="1_btxxm"]
 [ext_resource type="FontFile" uid="uid://p38vpi7tgrq2" path="res://assets/ui/themes/static/Orbitron-Bold.ttf" id="2_m1kxf"]
 [ext_resource type="StyleBox" uid="uid://d4dfmfo71x22i" path="res://assets/ui/themes/main_menu/mm_style_box_flat.tres" id="3_4hixx"]
-[ext_resource type="Script" uid="uid://nxrh3ej2p4y7" path="res://scripts/animation_component.gd" id="3_x2yvf"]
+[ext_resource type="Script" uid="uid://dhrb0vyc3ddbb" path="res://scripts/animations/animation_component.gd" id="3_x2yvf"]
 [ext_resource type="PackedScene" uid="uid://dmkdd5agrf8b4" path="res://scenes/ui/options_menu.tscn" id="5_x2yvf"]
 
 [sub_resource type="Animation" id="Animation_btxxm"]

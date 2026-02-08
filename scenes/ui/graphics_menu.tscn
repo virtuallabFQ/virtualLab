@@ -3,11 +3,11 @@
 [ext_resource type="Theme" uid="uid://cpa6dswqf8gcv" path="res://assets/ui/themes/theme.tres" id="1_2tic6"]
 [ext_resource type="FontFile" uid="uid://p38vpi7tgrq2" path="res://assets/ui/themes/static/Orbitron-Bold.ttf" id="3_276bf"]
 [ext_resource type="StyleBox" uid="uid://y1mp8cwq48aj" path="res://assets/ui/themes/graphics_menu/gm_style_box_flat.tres" id="3_jw3yj"]
-[ext_resource type="Script" uid="uid://1bgkqwjylrn0" path="res://scripts/scaling_button.gd" id="6_hnyu6"]
+[ext_resource type="Script" uid="uid://doeqtepplpmxu" path="res://scripts/ui/scaling_button.gd" id="6_hnyu6"]
 [ext_resource type="StyleBox" uid="uid://b088b6n2srg0i" path="res://assets/ui/themes/sliders/sliders_style_box_flat.tres" id="6_jw3yj"]
-[ext_resource type="Script" uid="uid://b0pah8hyl3px3" path="res://scripts/window_button.gd" id="7_hnyu6"]
-[ext_resource type="Script" uid="uid://dxyukdamwju3u" path="res://scripts/aa_button.gd" id="8_wcgb5"]
-[ext_resource type="Script" uid="uid://dewif8woelaro" path="res://scripts/resolution_button.gd" id="8_xaxon"]
+[ext_resource type="Script" uid="uid://c0hs8u8r6yowc" path="res://scripts/ui/window_button.gd" id="7_hnyu6"]
+[ext_resource type="Script" uid="uid://dsrxkvx6342gw" path="res://scripts/ui/aa_button.gd" id="8_wcgb5"]
+[ext_resource type="Script" uid="uid://qgslrn3l43t8" path="res://scripts/ui/resolution_button.gd" id="8_xaxon"]
 
 [node name="GraphicsMenu" type="Control" unique_id=1836589356]
 layout_mode = 3
