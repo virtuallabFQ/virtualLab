@@ -8,6 +8,8 @@
 [ext_resource type="Script" uid="uid://c0hs8u8r6yowc" path="res://scripts/ui/window_button.gd" id="7_hnyu6"]
 [ext_resource type="Script" uid="uid://dsrxkvx6342gw" path="res://scripts/ui/aa_button.gd" id="8_wcgb5"]
 [ext_resource type="Script" uid="uid://qgslrn3l43t8" path="res://scripts/ui/resolution_button.gd" id="8_xaxon"]
+[ext_resource type="Script" uid="uid://dpl5hcry3t2qc" path="res://scripts/ui/shadows_button.gd" id="9_wcgb5"]
+[ext_resource type="Script" uid="uid://wa6adi2gnfhm" path="res://scripts/ui/limit_button.gd" id="10_ptuu3"]
 
 [node name="GraphicsMenu" type="Control" unique_id=1836589356]
 layout_mode = 3
@@ -85,7 +87,7 @@ alignment = 2
 layout_mode = 2
 mouse_filter = 2
 theme_override_styles/normal = ExtResource("3_jw3yj")
-text = "Anti-serrilhado"
+text = "Anti-serrilhado (MSAA)"
 alignment = 2
 
 [node name="dynamic_shadows" type="Button" parent="graphics_container" unique_id=959656044]
@@ -107,13 +109,6 @@ layout_mode = 2
 mouse_filter = 2
 theme_override_styles/normal = ExtResource("3_jw3yj")
 text = "Oclusão de Ambiente"
-alignment = 2
-
-[node name="motion_blur" type="Button" parent="graphics_container" unique_id=1565159680]
-layout_mode = 2
-mouse_filter = 2
-theme_override_styles/normal = ExtResource("3_jw3yj")
-text = "Desfoque de movimento"
 alignment = 2
 
 [node name="vsync" type="Button" parent="graphics_container" unique_id=1296762002]
@@ -225,19 +220,12 @@ popup/item_3/id = 3
 [node name="aa_button" type="OptionButton" parent="graphics_buttons" unique_id=2003074318]
 layout_mode = 2
 theme = ExtResource("1_2tic6")
-selected = 0
-item_count = 1
-popup/item_0/text = "8x"
-popup/item_0/id = 0
 script = ExtResource("8_wcgb5")
 
 [node name="shadows_button" type="OptionButton" parent="graphics_buttons" unique_id=1545417083]
 layout_mode = 2
 theme = ExtResource("1_2tic6")
-selected = 0
-item_count = 1
-popup/item_0/text = "Alto"
-popup/item_0/id = 0
+script = ExtResource("9_wcgb5")
 
 [node name="reflections_button" type="OptionButton" parent="graphics_buttons" unique_id=1192974014]
 layout_mode = 2
@@ -255,23 +243,46 @@ item_count = 1
 popup/item_0/text = "Alto"
 popup/item_0/id = 0
 
-[node name="mb_button" type="Button" parent="graphics_buttons" unique_id=33786706]
-layout_mode = 2
-text = " "
-alignment = 0
-
 [node name="vsync_button" type="Button" parent="graphics_buttons" unique_id=2007282713]
 layout_mode = 2
 text = " "
 alignment = 0
 
-[node name="limit_button" type="OptionButton" parent="graphics_buttons" unique_id=1700808803]
+[node name="limit_button" type="Button" parent="graphics_buttons" unique_id=1008158298]
 layout_mode = 2
+theme_override_styles/normal = ExtResource("3_jw3yj")
+text = " "
+alignment = 0
+script = ExtResource("10_ptuu3")
+
+[node name="slider" type="HSlider" parent="graphics_buttons/limit_button" unique_id=110525051]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 theme = ExtResource("1_2tic6")
-selected = 0
-item_count = 1
-popup/item_0/text = "240"
-popup/item_0/id = 0
+theme_override_styles/slider = ExtResource("6_jw3yj")
+min_value = 30.0
+max_value = 245.0
+step = 5.0
+value = 60.0
+ticks_on_borders = true
+
+[node name="label" type="Label" parent="graphics_buttons/limit_button" unique_id=1530324747]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0250001
+anchor_top = 0.13800001
+anchor_right = 1.463
+anchor_bottom = 1.0220001
+offset_left = 0.12496948
+offset_top = -0.018987656
+offset_right = 0.07495117
+offset_bottom = 0.013008118
+theme_override_font_sizes/font_size = 20
 
 [node name="show_button" type="Button" parent="graphics_buttons" unique_id=174282648]
 layout_mode = 2

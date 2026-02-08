@@ -8,7 +8,12 @@ var window_mode_array : Array[String] = [
 	"Janela",
 ]
 
-func check_variables():
+func _ready():
+	add_window_mode_items()
+	check_current_window_mode()
+	item_selected.connect(on_window_mode_selected)
+
+func check_current_window_mode():
 	var window = get_window()
 	var mode = window.get_mode()
 
@@ -18,11 +23,6 @@ func check_variables():
 	elif mode == Window.MODE_WINDOWED:
 		selected = 1
 		resolution_button.disabled = false
-
-func _ready():
-	add_window_mode_items()
-	check_variables()
-	item_selected.connect(on_window_mode_selected)
 
 func add_window_mode_items() -> void:
 	for w in window_mode_array:
