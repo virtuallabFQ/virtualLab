@@ -29,7 +29,7 @@ window/size/viewport_width=1920
 window/size/viewport_height=1079
 window/size/mode=3
 window/stretch/mode="canvas_items"
-window/vsync/vsync_mode=0
+window/vsync/vsync_mode=3
 
 [gui]
 

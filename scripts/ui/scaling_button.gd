@@ -57,6 +57,8 @@ func _on_scaling_mode_button_item_selected(index: int) -> void:
 			_on_fsr_options_button_item_selected(1)
 			aa_button.disabled = true
 			viewport.msaa_3d = Viewport.MSAA_DISABLED
+			get_viewport().screen_space_aa = Viewport.SCREEN_SPACE_AA_DISABLED
+			get_viewport().use_taa = false
 
 func _on_fsr_options_button_item_selected(index: int) -> void:
 	match index:

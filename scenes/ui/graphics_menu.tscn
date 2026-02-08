@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://nchvljxq3oj" path="res://scripts/ui/ao_button.gd" id="10_wywa5"]
 [ext_resource type="Script" uid="uid://bj2sgo5hfn6n" path="res://scripts/ui/reflections_button.gd" id="11_flxvo"]
 [ext_resource type="Script" uid="uid://bj00nmesfseik" path="res://scripts/ui/show_button.gd" id="11_mw1m7"]
+[ext_resource type="Script" uid="uid://b54o8ulorwerr" path="res://scripts/ui/vsync_button.gd" id="12_hbob0"]
 
 [node name="GraphicsMenu" type="Control" unique_id=1836589356]
 layout_mode = 3
@@ -244,6 +245,7 @@ script = ExtResource("11_flxvo")
 layout_mode = 2
 text = " "
 alignment = 0
+script = ExtResource("12_hbob0")
 
 [node name="limit_button" type="Button" parent="graphics_buttons" unique_id=1008158298]
 layout_mode = 2
