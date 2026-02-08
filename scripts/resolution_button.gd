@@ -7,9 +7,7 @@ var resolutions : Dictionary = {
 	"1280x720" : Vector2i(1280, 720),
 	"1336x768" : Vector2i(1336, 768),
 	"1600x900" : Vector2i(1600, 900),
-	"1920x1080" : Vector2i(1920, 1080),
-	"2560x1440" : Vector2i(2560, 1440),
-	"3840x2160" : Vector2i(3840, 2160)
+	"1920x1080" : Vector2i(1920, 1080)
 }
 
 func _ready():

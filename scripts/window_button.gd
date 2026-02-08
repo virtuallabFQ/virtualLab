@@ -50,4 +50,3 @@ func update_resolution(size: Vector2i):
 		if item_text.replace(" ", "") == expected_text:
 			resolution_button.selected = i
 			return
-		
