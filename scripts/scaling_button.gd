@@ -1,10 +1,30 @@
-extends Button
+class_name ScalingButton extends Button
 
 @onready var scale_slider = $slider
 @onready var scale_label = $label
+@onready var fsr_options_button = get_node("../fsr_options_button")
+
+func reset_scaling_to_max() -> void:
+	scale_slider.value = 100.0
+	_on_slider_value_changed(100.0)
+
+func check_variables():
+	var viewport = get_viewport()
+	var scaling_mode = viewport.scaling_3d_mode
+
+	if scaling_mode == Viewport.SCALING_3D_MODE_BILINEAR:
+		scale_slider.editable = true
+		fsr_options_button.disabled = true
+	elif scaling_mode == Viewport.SCALING_3D_MODE_FSR2:
+		scale_slider.editable = false
+		fsr_options_button.disabled = false
+		
+	var current_scale = viewport.scaling_3d_scale
+	scale_slider.value = current_scale * 100
+	_on_slider_value_changed(scale_slider.value)
 
 func _ready():
-	_on_slider_value_changed(100.0)
+	check_variables()
 
 func _on_slider_value_changed(value: float) -> void:
 	var resolution_scale = value/100.00
@@ -14,3 +34,30 @@ func _on_slider_value_changed(value: float) -> void:
 	
 	scale_label.set_text(resolution_text + " (" + str(int(value)) + "%)")
 	get_viewport().set_scaling_3d_scale(resolution_scale)
+
+func _on_scaling_mode_button_item_selected(index: int) -> void:
+	var viewport = get_viewport()
+	match index:
+		0:
+			viewport.set_scaling_3d_mode(Viewport.SCALING_3D_MODE_BILINEAR)
+			scale_slider.set_editable(true)
+			reset_scaling_to_max()
+			fsr_options_button.disabled = true
+		1:
+			viewport.set_scaling_3d_mode(Viewport.SCALING_3D_MODE_FSR2)
+			scale_slider.set_editable(false)
+			fsr_options_button.disabled = false
+			fsr_options_button.selected = 1
+			_on_fsr_options_button_item_selected(1)
+
+
+func _on_fsr_options_button_item_selected(index: int) -> void:
+	match index:
+		0:
+			_on_slider_value_changed(50.0)
+		1:
+			_on_slider_value_changed(59.0)
+		2:
+			_on_slider_value_changed(67.0)
+		3:
+			_on_slider_value_changed(77.0)

@@ -1,6 +1,7 @@
 class_name WindowButton extends OptionButton
 
 @export var resolution_button : ResolutionButton
+@onready var scaling_button = get_node("../scaling_button")
 
 var window_mode_array : Array[String] = [
 	"Ecrã Cheio",
@@ -35,12 +36,14 @@ func on_window_mode_selected(index: int) -> void:
 			var screen_size = DisplayServer.screen_get_size()
 			get_window().set_size(screen_size)
 			update_resolution(screen_size)
+			scaling_button.reset_scaling_to_max()
 		1:
 			get_window().set_mode(Window.MODE_WINDOWED)
 			resolution_button.disabled = false
 			var target_size = Vector2i(1024, 576)
 			get_window().set_size(target_size)
 			update_resolution(target_size)
+			scaling_button.reset_scaling_to_max()
 			get_window().move_to_center()
 			
 func update_resolution(size: Vector2i):

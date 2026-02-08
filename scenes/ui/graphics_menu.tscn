@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://1bgkqwjylrn0" path="res://scripts/scaling_button.gd" id="6_hnyu6"]
 [ext_resource type="StyleBox" uid="uid://b088b6n2srg0i" path="res://assets/ui/themes/sliders/sliders_style_box_flat.tres" id="6_jw3yj"]
 [ext_resource type="Script" uid="uid://b0pah8hyl3px3" path="res://scripts/window_button.gd" id="7_hnyu6"]
+[ext_resource type="Script" uid="uid://dxyukdamwju3u" path="res://scripts/aa_button.gd" id="8_wcgb5"]
 [ext_resource type="Script" uid="uid://dewif8woelaro" path="res://scripts/resolution_button.gd" id="8_xaxon"]
 
 [node name="GraphicsMenu" type="Control" unique_id=1836589356]
@@ -64,6 +65,20 @@ layout_mode = 2
 mouse_filter = 2
 theme_override_styles/normal = ExtResource("3_jw3yj")
 text = "Qualidade de renderização"
+alignment = 2
+
+[node name="scaling_mode" type="Button" parent="graphics_container" unique_id=132345641]
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/normal = ExtResource("3_jw3yj")
+text = "Modo de renderização"
+alignment = 2
+
+[node name="fsr_options" type="Button" parent="graphics_container" unique_id=600460815]
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/normal = ExtResource("3_jw3yj")
+text = "AMD FSR 2"
 alignment = 2
 
 [node name="anti_aliasing" type="Button" parent="graphics_container" unique_id=406021389]
@@ -183,6 +198,30 @@ offset_right = 0.07495117
 offset_bottom = 0.013008118
 theme_override_font_sizes/font_size = 20
 
+[node name="scaling_mode_button" type="OptionButton" parent="graphics_buttons" unique_id=2089794266]
+layout_mode = 2
+theme = ExtResource("1_2tic6")
+selected = 0
+item_count = 2
+popup/item_0/text = "Nativo"
+popup/item_0/id = 0
+popup/item_1/text = "AMD FSR 2"
+popup/item_1/id = 1
+
+[node name="fsr_options_button" type="OptionButton" parent="graphics_buttons" unique_id=2051872223]
+layout_mode = 2
+theme = ExtResource("1_2tic6")
+selected = 1
+item_count = 4
+popup/item_0/text = "Performance"
+popup/item_0/id = 0
+popup/item_1/text = "Equilibrado"
+popup/item_1/id = 1
+popup/item_2/text = "Qualidade"
+popup/item_2/id = 2
+popup/item_3/text = "Alta Qualidade"
+popup/item_3/id = 3
+
 [node name="aa_button" type="OptionButton" parent="graphics_buttons" unique_id=2003074318]
 layout_mode = 2
 theme = ExtResource("1_2tic6")
@@ -190,6 +229,7 @@ selected = 0
 item_count = 1
 popup/item_0/text = "8x"
 popup/item_0/id = 0
+script = ExtResource("8_wcgb5")
 
 [node name="shadows_button" type="OptionButton" parent="graphics_buttons" unique_id=1545417083]
 layout_mode = 2
@@ -239,3 +279,5 @@ text = " "
 alignment = 0
 
 [connection signal="value_changed" from="graphics_buttons/scaling_button/slider" to="graphics_buttons/scaling_button" method="_on_slider_value_changed"]
+[connection signal="item_selected" from="graphics_buttons/scaling_mode_button" to="graphics_buttons/scaling_button" method="_on_scaling_mode_button_item_selected"]
+[connection signal="item_selected" from="graphics_buttons/fsr_options_button" to="graphics_buttons/scaling_button" method="_on_fsr_options_button_item_selected"]
