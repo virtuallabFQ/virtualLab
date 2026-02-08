@@ -31,7 +31,7 @@ func _on_aa_selected(index: int) -> void:
 			get_viewport().use_taa = false
 		1:
 			get_viewport().msaa_3d = Viewport.MSAA_2X
-			get_viewport().screen_space_aa = Viewport.SCREEN_SPACE_AA_FXAA
+			get_viewport().screen_space_aa = Viewport.SCREEN_SPACE_AA_SMAA
 			get_viewport().use_taa = false
 		2:
 			get_viewport().msaa_3d = Viewport.MSAA_4X
