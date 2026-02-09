@@ -14,6 +14,7 @@ var ui_state = substate.options
 func _ready() -> void:
 	if buttons: buttons.visible = true
 	if graphics_menu: graphics_menu.visible = false
+	if audio_menu: audio_menu.visible = false
 
 func _input(event):
 	if event.is_action_pressed("ui_cancel") and not animation_player.is_playing():
@@ -23,6 +24,8 @@ func _input(event):
 				emit_signal("back_to_main_menu")
 			substate.graphics:
 				change_sub_menu(substate.options, "graphics", "options")
+			substate.audio:
+				change_sub_menu(substate.options, "audio", "options")
 
 func change_sub_menu(new_state: substate, hide_name: String, show_name: String):
 	ui_state = new_state
@@ -41,11 +44,4 @@ func on_graphic_button_pressed() -> void:
 
 func on_audio_button_pressed() -> void:
 	if animation_player.is_playing(): return
-	pass
-
-func on_back_button_pressed() -> void:
-	match ui_state:
-		substate.graphics:
-			change_sub_menu(substate.options, "graphics", "options")
-		substate.options:
-			emit_signal("back_to_main_menu") 
+	change_sub_menu(substate.audio, "options", "audio")
