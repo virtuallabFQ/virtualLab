@@ -4,7 +4,7 @@ extends Control
 @export var options : Control
 @export var animation_player : AnimationPlayer
 
-enum state { menu, options}
+enum state {menu, options}
 var ui_state = state.menu
 
 func _input(event):
@@ -19,7 +19,7 @@ func hide_and_show(first: String, second: String):
 	await animation_player.animation_finished
 	animation_player.play("show_" + second)
 
-func _on_button_1_pressed() -> void:
+func on_button_1_pressed() -> void:
 	ui_state = state.menu
 	if animation_player.is_playing():
 		return
@@ -27,9 +27,9 @@ func _on_button_1_pressed() -> void:
 	await animation_player.animation_finished
 	Global.game_controller.change_gui_scene("res://scenes/levels/lab.tscn")
 
-func _on_button_2_pressed() -> void:
+func on_button_2_pressed() -> void:
 	ui_state = state.options
 	hide_and_show("menu", "options")
 
-func _on_button_3_pressed() -> void:
+func on_button_3_pressed() -> void:
 	get_tree().quit()

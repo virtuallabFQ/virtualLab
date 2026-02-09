@@ -77,7 +77,7 @@ offset_left = -40.0
 offset_bottom = 40.0
 grow_horizontal = 0
 
-[node name="show_label" type="Label" parent="GUI" unique_id=499988838]
+[node name="ShowLabel" type="Label" parent="GUI" unique_id=499988838]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = -2.125
@@ -89,7 +89,7 @@ script = ExtResource("1_rsbtw")
 
 [node name="3D" type="Node3D" parent="." unique_id=2051668746]
 
-[node name="player_controller" parent="." unique_id=65100141 instance=ExtResource("1_bj4kn")]
+[node name="PlayerController" parent="." unique_id=65100141 instance=ExtResource("1_bj4kn")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -9.413095, -0.03160256, -5.000931)
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="." unique_id=178127234]

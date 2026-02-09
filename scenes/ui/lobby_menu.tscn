@@ -203,7 +203,7 @@ offset_bottom = 0.2699585
 theme = ExtResource("1_1g8jr")
 theme_override_styles/panel = ExtResource("3_4hixx")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu" unique_id=98296064]
+[node name="MainMenuContainer" type="VBoxContainer" parent="MainMenu" unique_id=98296064]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.15
@@ -216,40 +216,40 @@ offset_right = 0.14398193
 offset_bottom = 0.1340332
 theme = ExtResource("1_1g8jr")
 
-[node name="Label" type="Label" parent="MainMenu/VBoxContainer" unique_id=315898016]
+[node name="GameTitle" type="Label" parent="MainMenu/MainMenuContainer" unique_id=315898016]
 layout_mode = 2
 theme = ExtResource("1_1g8jr")
 theme_override_fonts/font = ExtResource("2_m1kxf")
 text = "LABORATÓRIO VIRTUAL"
 horizontal_alignment = 1
 
-[node name="Button1" type="Button" parent="MainMenu/VBoxContainer" unique_id=650207581]
+[node name="StartButton" type="Button" parent="MainMenu/MainMenuContainer" unique_id=650207581]
 layout_mode = 2
 theme = ExtResource("1_1g8jr")
 text = "Entrar"
 alignment = 0
 
-[node name="AnimationComponent" type="Node" parent="MainMenu/VBoxContainer/Button1" unique_id=1278043957]
+[node name="AnimationComponent" type="Node" parent="MainMenu/MainMenuContainer/StartButton" unique_id=1278043957]
 script = ExtResource("3_x2yvf")
 hover_transition = 10
 hover_easing = 2
 
-[node name="Button2" type="Button" parent="MainMenu/VBoxContainer" unique_id=805038100]
+[node name="OptionsButton" type="Button" parent="MainMenu/MainMenuContainer" unique_id=805038100]
 layout_mode = 2
 text = "Opções"
 alignment = 0
 
-[node name="AnimationComponent" type="Node" parent="MainMenu/VBoxContainer/Button2" unique_id=1225580010]
+[node name="AnimationComponent" type="Node" parent="MainMenu/MainMenuContainer/OptionsButton" unique_id=1225580010]
 script = ExtResource("3_x2yvf")
 hover_transition = 10
 hover_easing = 2
 
-[node name="Button3" type="Button" parent="MainMenu/VBoxContainer" unique_id=1424777115]
+[node name="ExitButton" type="Button" parent="MainMenu/MainMenuContainer" unique_id=1424777115]
 layout_mode = 2
 text = "Sair"
 alignment = 0
 
-[node name="AnimationComponent" type="Node" parent="MainMenu/VBoxContainer/Button3" unique_id=991382945]
+[node name="AnimationComponent" type="Node" parent="MainMenu/MainMenuContainer/ExitButton" unique_id=991382945]
 script = ExtResource("3_x2yvf")
 hover_transition = 10
 hover_easing = 2
@@ -262,6 +262,6 @@ layout_mode = 1
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1168421522]
 libraries/ = SubResource("AnimationLibrary_q85j6")
 
-[connection signal="pressed" from="MainMenu/VBoxContainer/Button1" to="." method="_on_button_1_pressed"]
-[connection signal="pressed" from="MainMenu/VBoxContainer/Button2" to="." method="_on_button_2_pressed"]
-[connection signal="pressed" from="MainMenu/VBoxContainer/Button3" to="." method="_on_button_3_pressed"]
+[connection signal="pressed" from="MainMenu/MainMenuContainer/StartButton" to="." method="on_button_1_pressed"]
+[connection signal="pressed" from="MainMenu/MainMenuContainer/OptionsButton" to="." method="on_button_2_pressed"]
+[connection signal="pressed" from="MainMenu/MainMenuContainer/ExitButton" to="." method="on_button_3_pressed"]

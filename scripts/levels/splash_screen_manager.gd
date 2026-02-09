@@ -1,4 +1,5 @@
 class_name SplashScreenManager extends Control
+
 @export var load_scene : PackedScene
 @export var in_time : float = 0.5
 @export var fade_in_time : float = 1.5

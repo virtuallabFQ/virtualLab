@@ -6,8 +6,10 @@
 [ext_resource type="Script" uid="uid://doeqtepplpmxu" path="res://scripts/ui/scaling_button.gd" id="6_hnyu6"]
 [ext_resource type="StyleBox" uid="uid://b088b6n2srg0i" path="res://assets/ui/themes/sliders/sliders_style_box_flat.tres" id="6_jw3yj"]
 [ext_resource type="Script" uid="uid://c0hs8u8r6yowc" path="res://scripts/ui/window_button.gd" id="7_hnyu6"]
+[ext_resource type="Script" uid="uid://75wfxc3nchai" path="res://scripts/ui/scaling_mode_button.gd" id="8_k7o1e"]
 [ext_resource type="Script" uid="uid://dsrxkvx6342gw" path="res://scripts/ui/aa_button.gd" id="8_wcgb5"]
 [ext_resource type="Script" uid="uid://qgslrn3l43t8" path="res://scripts/ui/resolution_button.gd" id="8_xaxon"]
+[ext_resource type="Script" uid="uid://34bjintevgow" path="res://scripts/ui/fsr_options_button.gd" id="9_lx7g7"]
 [ext_resource type="Script" uid="uid://dpl5hcry3t2qc" path="res://scripts/ui/shadows_button.gd" id="9_wcgb5"]
 [ext_resource type="Script" uid="uid://wa6adi2gnfhm" path="res://scripts/ui/limit_button.gd" id="10_ptuu3"]
 [ext_resource type="Script" uid="uid://nchvljxq3oj" path="res://scripts/ui/ao_button.gd" id="10_wywa5"]
@@ -23,7 +25,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="graphics_title" type="Label" parent="." unique_id=1015348828]
+[node name="GraphicsTitle" type="Label" parent="." unique_id=1015348828]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.381
@@ -39,7 +41,7 @@ theme_override_fonts/font = ExtResource("3_276bf")
 text = "Configurações Gráficas"
 horizontal_alignment = 1
 
-[node name="graphics_container" type="VBoxContainer" parent="." unique_id=1659223989]
+[node name="GraphicsMenuContainer" type="VBoxContainer" parent="." unique_id=1659223989]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.25300002
@@ -52,91 +54,91 @@ offset_bottom = -57.76001
 grow_horizontal = 2
 theme = ExtResource("1_2tic6")
 
-[node name="window_mode" type="Button" parent="graphics_container" unique_id=154610140]
+[node name="WindowMode" type="Button" parent="GraphicsMenuContainer" unique_id=154610140]
 layout_mode = 2
 mouse_filter = 2
 theme_override_styles/normal = ExtResource("3_jw3yj")
 text = "Modo de exibição"
 alignment = 2
 
-[node name="resolution" type="Button" parent="graphics_container" unique_id=992557746]
+[node name="Resolution" type="Button" parent="GraphicsMenuContainer" unique_id=992557746]
 layout_mode = 2
 mouse_filter = 2
 theme_override_styles/normal = ExtResource("3_jw3yj")
 text = " Resolução do ecrã"
 alignment = 2
 
-[node name="render_scaling" type="Button" parent="graphics_container" unique_id=723368726]
+[node name="RenderScaling" type="Button" parent="GraphicsMenuContainer" unique_id=723368726]
 layout_mode = 2
 mouse_filter = 2
 theme_override_styles/normal = ExtResource("3_jw3yj")
 text = "Qualidade de renderização"
 alignment = 2
 
-[node name="scaling_mode" type="Button" parent="graphics_container" unique_id=132345641]
+[node name="ScalingMode" type="Button" parent="GraphicsMenuContainer" unique_id=132345641]
 layout_mode = 2
 mouse_filter = 2
 theme_override_styles/normal = ExtResource("3_jw3yj")
 text = "Modo de renderização"
 alignment = 2
 
-[node name="fsr_options" type="Button" parent="graphics_container" unique_id=600460815]
+[node name="FSROptions" type="Button" parent="GraphicsMenuContainer" unique_id=600460815]
 layout_mode = 2
 mouse_filter = 2
 theme_override_styles/normal = ExtResource("3_jw3yj")
 text = "AMD FSR 2"
 alignment = 2
 
-[node name="anti_aliasing" type="Button" parent="graphics_container" unique_id=406021389]
+[node name="AntiAliasing" type="Button" parent="GraphicsMenuContainer" unique_id=406021389]
 layout_mode = 2
 mouse_filter = 2
 theme_override_styles/normal = ExtResource("3_jw3yj")
 text = "Anti-serrilhado (MSAA)"
 alignment = 2
 
-[node name="dynamic_shadows" type="Button" parent="graphics_container" unique_id=959656044]
+[node name="DynamicShadows" type="Button" parent="GraphicsMenuContainer" unique_id=959656044]
 layout_mode = 2
 mouse_filter = 2
 theme_override_styles/normal = ExtResource("3_jw3yj")
 text = "Sombras dinâmicas"
 alignment = 2
 
-[node name="ambient_occlusion" type="Button" parent="graphics_container" unique_id=432840974]
+[node name="AmbientOcclusion" type="Button" parent="GraphicsMenuContainer" unique_id=432840974]
 layout_mode = 2
 mouse_filter = 2
 theme_override_styles/normal = ExtResource("3_jw3yj")
 text = "Oclusão de Ambiente"
 alignment = 2
 
-[node name="reflections" type="Button" parent="graphics_container" unique_id=1062609360]
+[node name="Reflections" type="Button" parent="GraphicsMenuContainer" unique_id=1062609360]
 layout_mode = 2
 mouse_filter = 2
 theme_override_styles/normal = ExtResource("3_jw3yj")
 text = "Reflexões"
 alignment = 2
 
-[node name="vsync" type="Button" parent="graphics_container" unique_id=1296762002]
+[node name="VSync" type="Button" parent="GraphicsMenuContainer" unique_id=1296762002]
 layout_mode = 2
 mouse_filter = 2
 theme_override_styles/normal = ExtResource("3_jw3yj")
 text = "V-Sync"
 alignment = 2
 
-[node name="fps_limit" type="Button" parent="graphics_container" unique_id=845595054]
+[node name="FPSLimit" type="Button" parent="GraphicsMenuContainer" unique_id=845595054]
 layout_mode = 2
 mouse_filter = 2
 theme_override_styles/normal = ExtResource("3_jw3yj")
 text = "Limite de FPS"
 alignment = 2
 
-[node name="show_fps" type="Button" parent="graphics_container" unique_id=1670216591]
+[node name="ShowFPS" type="Button" parent="GraphicsMenuContainer" unique_id=1670216591]
 layout_mode = 2
 mouse_filter = 2
 theme_override_styles/normal = ExtResource("3_jw3yj")
 text = "Mostrar FPS"
 alignment = 2
 
-[node name="graphics_buttons" type="VBoxContainer" parent="." unique_id=1608639548]
+[node name="GraphicsButtonsContainer" type="VBoxContainer" parent="." unique_id=1608639548]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -149,26 +151,28 @@ offset_bottom = -361.23804
 grow_horizontal = 2
 theme = ExtResource("1_2tic6")
 
-[node name="window_button" type="OptionButton" parent="graphics_buttons" unique_id=1948598222 node_paths=PackedStringArray("resolution_button")]
+[node name="WindowModeButton" type="OptionButton" parent="GraphicsButtonsContainer" unique_id=1948598222 node_paths=PackedStringArray("resolution_button", "scaling_button")]
 layout_mode = 2
 theme = ExtResource("1_2tic6")
 script = ExtResource("7_hnyu6")
-resolution_button = NodePath("../resolution_button")
+resolution_button = NodePath("../ResolutionButton")
+scaling_button = NodePath("../ScalingButton")
 
-[node name="resolution_button" type="OptionButton" parent="graphics_buttons" unique_id=2133059647 node_paths=PackedStringArray("window_button")]
+[node name="ResolutionButton" type="OptionButton" parent="GraphicsButtonsContainer" unique_id=2133059647 node_paths=PackedStringArray("window_mode_button", "scaling_button")]
 layout_mode = 2
 theme = ExtResource("1_2tic6")
 script = ExtResource("8_xaxon")
-window_button = NodePath("../window_button")
+window_mode_button = NodePath("../WindowModeButton")
+scaling_button = NodePath("../ScalingButton")
 
-[node name="scaling_button" type="Button" parent="graphics_buttons" unique_id=1889137872]
+[node name="ScalingButton" type="Button" parent="GraphicsButtonsContainer" unique_id=1889137872]
 layout_mode = 2
 theme_override_styles/normal = ExtResource("3_jw3yj")
 text = " "
 alignment = 0
 script = ExtResource("6_hnyu6")
 
-[node name="slider" type="HSlider" parent="graphics_buttons/scaling_button" unique_id=1779926961]
+[node name="Slider" type="HSlider" parent="GraphicsButtonsContainer/ScalingButton" unique_id=1779926961]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -184,7 +188,7 @@ step = 5.0
 value = 100.0
 ticks_on_borders = true
 
-[node name="label" type="Label" parent="graphics_buttons/scaling_button" unique_id=482987051]
+[node name="Label" type="Label" parent="GraphicsButtonsContainer/ScalingButton" unique_id=482987051]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 1.0250001
@@ -197,64 +201,53 @@ offset_right = 0.07495117
 offset_bottom = 0.013008118
 theme_override_font_sizes/font_size = 20
 
-[node name="scaling_mode_button" type="OptionButton" parent="graphics_buttons" unique_id=2089794266]
+[node name="ScalingModeButton" type="OptionButton" parent="GraphicsButtonsContainer" unique_id=2089794266 node_paths=PackedStringArray("scaling_button", "fsr_options_button", "aa_button")]
 layout_mode = 2
 theme = ExtResource("1_2tic6")
-selected = 0
-item_count = 2
-popup/item_0/text = "Nativo"
-popup/item_0/id = 0
-popup/item_1/text = "AMD FSR 2"
-popup/item_1/id = 1
+script = ExtResource("8_k7o1e")
+scaling_button = NodePath("../ScalingButton")
+fsr_options_button = NodePath("../FSROptionsButton")
+aa_button = NodePath("../AAButton")
 
-[node name="fsr_options_button" type="OptionButton" parent="graphics_buttons" unique_id=2051872223]
+[node name="FSROptionsButton" type="OptionButton" parent="GraphicsButtonsContainer" unique_id=2051872223 node_paths=PackedStringArray("scaling_button")]
 layout_mode = 2
 theme = ExtResource("1_2tic6")
-selected = 1
-item_count = 4
-popup/item_0/text = "Performance"
-popup/item_0/id = 0
-popup/item_1/text = "Equilibrado"
-popup/item_1/id = 1
-popup/item_2/text = "Qualidade"
-popup/item_2/id = 2
-popup/item_3/text = "Alta Qualidade"
-popup/item_3/id = 3
+script = ExtResource("9_lx7g7")
+scaling_button = NodePath("../ScalingButton")
 
-[node name="aa_button" type="OptionButton" parent="graphics_buttons" unique_id=2003074318]
+[node name="AAButton" type="OptionButton" parent="GraphicsButtonsContainer" unique_id=2003074318]
 layout_mode = 2
 theme = ExtResource("1_2tic6")
 script = ExtResource("8_wcgb5")
 
-[node name="shadows_button" type="OptionButton" parent="graphics_buttons" unique_id=1545417083]
+[node name="ShadowsButton" type="OptionButton" parent="GraphicsButtonsContainer" unique_id=1545417083]
 layout_mode = 2
 theme = ExtResource("1_2tic6")
 script = ExtResource("9_wcgb5")
 
-[node name="ao_button" type="OptionButton" parent="graphics_buttons" unique_id=1131185321]
+[node name="AOButton" type="OptionButton" parent="GraphicsButtonsContainer" unique_id=1131185321]
 layout_mode = 2
 theme = ExtResource("1_2tic6")
 script = ExtResource("10_wywa5")
 
-[node name="reflections_button" type="OptionButton" parent="graphics_buttons" unique_id=1192974014]
+[node name="ReflectionsButton" type="OptionButton" parent="GraphicsButtonsContainer" unique_id=1192974014]
 layout_mode = 2
 theme = ExtResource("1_2tic6")
 script = ExtResource("11_flxvo")
 
-[node name="vsync_button" type="Button" parent="graphics_buttons" unique_id=2007282713]
+[node name="VSyncButton" type="Button" parent="GraphicsButtonsContainer" unique_id=2007282713]
 layout_mode = 2
-text = " "
 alignment = 0
 script = ExtResource("12_hbob0")
 
-[node name="limit_button" type="Button" parent="graphics_buttons" unique_id=1008158298]
+[node name="LimitButton" type="Button" parent="GraphicsButtonsContainer" unique_id=1008158298]
 layout_mode = 2
 theme_override_styles/normal = ExtResource("3_jw3yj")
 text = " "
 alignment = 0
 script = ExtResource("10_ptuu3")
 
-[node name="slider" type="HSlider" parent="graphics_buttons/limit_button" unique_id=110525051]
+[node name="Slider" type="HSlider" parent="GraphicsButtonsContainer/LimitButton" unique_id=110525051]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -270,7 +263,7 @@ step = 5.0
 value = 60.0
 ticks_on_borders = true
 
-[node name="label" type="Label" parent="graphics_buttons/limit_button" unique_id=1530324747]
+[node name="Label" type="Label" parent="GraphicsButtonsContainer/LimitButton" unique_id=1530324747]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 1.0250001
@@ -283,11 +276,7 @@ offset_right = 0.07495117
 offset_bottom = 0.013008118
 theme_override_font_sizes/font_size = 20
 
-[node name="show_button" type="Button" parent="graphics_buttons" unique_id=174282648]
+[node name="ShowButton" type="Button" parent="GraphicsButtonsContainer" unique_id=174282648]
 layout_mode = 2
 alignment = 0
 script = ExtResource("11_mw1m7")
-
-[connection signal="value_changed" from="graphics_buttons/scaling_button/slider" to="graphics_buttons/scaling_button" method="_on_slider_value_changed"]
-[connection signal="item_selected" from="graphics_buttons/scaling_mode_button" to="graphics_buttons/scaling_button" method="_on_scaling_mode_button_item_selected"]
-[connection signal="item_selected" from="graphics_buttons/fsr_options_button" to="graphics_buttons/scaling_button" method="_on_fsr_options_button_item_selected"]

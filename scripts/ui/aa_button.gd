@@ -3,7 +3,7 @@ class_name AAButton extends OptionButton
 func _ready():
 	add_aa_items()
 	check_current_aa()
-	item_selected.connect(_on_aa_selected)
+	item_selected.connect(on_aa_selected)
 
 func add_aa_items() -> void:
 	add_item("Desativado")
@@ -23,7 +23,7 @@ func check_current_aa() -> void:
 		Viewport.MSAA_8X:
 			selected = 3
 
-func _on_aa_selected(index: int) -> void:
+func on_aa_selected(index: int) -> void:
 	match index:
 		0:
 			get_viewport().msaa_3d = Viewport.MSAA_DISABLED

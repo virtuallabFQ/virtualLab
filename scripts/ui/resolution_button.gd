@@ -1,7 +1,7 @@
 class_name ResolutionButton extends OptionButton
 
-@export var window_button : WindowButton
-@onready var scaling_button = get_node("../scaling_button")
+@export var window_mode_button : WindowModeButton
+@export var scaling_button : ScalingButton
 
 var resolutions : Dictionary = {
 	"1024x576" : Vector2i(1024, 576),
@@ -20,7 +20,7 @@ func _ready():
 	item_selected.connect(on_resolution_selected)
 	get_window().set_size(screen_size)
 	get_window().move_to_center()
-	window_button.update_resolution(screen_size)
+	window_mode_button.update_resolution(screen_size)
 	
 func add_resolutions_items():
 	clear()
@@ -33,5 +33,5 @@ func add_resolutions_items():
 func on_resolution_selected(index: int) -> void:
 	var ID = get_item_text(index)
 	get_window().set_size(resolutions[ID])
-	scaling_button.reset_scaling_to_max()
+	scaling_button.reset_scaling_to_default()
 	get_window().move_to_center()

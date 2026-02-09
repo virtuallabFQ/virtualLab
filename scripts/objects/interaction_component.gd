@@ -10,13 +10,11 @@ signal player_interacted(object)
 var parent
 var highlight_material = preload("res://assets/materials/interactable_highlight.tres")
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	parent = get_parent()
 	connect_parent()
 	set_default_mesh()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	pass
 

@@ -2,9 +2,9 @@ class_name VSyncButton extends Button
 
 func _ready():
 	update_state()
-	pressed.connect(_on_pressed)
+	pressed.connect(on_pressed)
 
-func _on_pressed() -> void:
+func on_pressed() -> void:
 	var current_mode = DisplayServer.window_get_vsync_mode()
 	if current_mode == DisplayServer.VSYNC_DISABLED:
 		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_MAILBOX)

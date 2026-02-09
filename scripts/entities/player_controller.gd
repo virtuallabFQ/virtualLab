@@ -1,27 +1,19 @@
 class_name PlayerController extends CharacterBody3D
 
-@onready var collider: CollisionShape3D = $CollisionShape3D
 @onready var rotation_anchor: Node3D = $RotationAnchor
 @onready var camera_controller_anchor: Node3D = %CameraControllerAnchor
 @onready var camera: Camera3D = %Camera3D
-@onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var collider: CollisionShape3D = $CollisionShape3D
 @onready var crouch_shapecast: ShapeCast3D = %ShapeCast3D
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
+@export_group("Camera")
 @export var mouse_sensitivity : float = 0.003
 @export var tilt_lower_limit := deg_to_rad(-90.0)
 @export var tilt_upper_limit := deg_to_rad(90.0)
 @export var interact_distance : float = 2
 
-@export_group("Input Actions")
-@export var input_left : String = "ui_left"
-@export var input_right : String = "ui_right"
-@export var input_forward : String = "ui_up"
-@export var input_back : String = "ui_down"
-@export var input_jump : String = "ui_accept"
-@export var input_sprint : String = "sprint"
-@export var input_crouch : String = "crouch"
-@export var input_freefly : String = "freefly"
-
+@export_group("Movement Settings")
 @export var speed_default : float = 7.0
 @export var speed_sprint : float = 10.0
 @export var speed_crouch : float = 4.0
@@ -30,6 +22,16 @@ class_name PlayerController extends CharacterBody3D
 @export var jump_velocity : float = 4.0
 @export var freefly_speed : float = 25.0
 @export var toggle_crouch : bool = true
+
+@export_group("Movement Input")
+@export var input_left : String = "ui_left"
+@export var input_right : String = "ui_right"
+@export var input_forward : String = "ui_up"
+@export var input_back : String = "ui_down"
+@export var input_jump : String = "ui_accept"
+@export var input_sprint : String = "sprint"
+@export var input_crouch : String = "crouch"
+@export var input_freefly : String = "freefly"
 
 var speed : float
 var crouching : bool = false
@@ -40,6 +42,13 @@ var mouse_rotation : Vector3
 var interact_cast_result
 
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
+
+func _ready():
+	Global.player = self
+
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	speed = speed_default ##
+	crouch_shapecast.add_exception($".")
 
 func _unhandled_input(event: InputEvent) -> void:
 	mouse_input = event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED
@@ -60,21 +69,12 @@ func _update_camera(_delta):
 
 	rotation_input = 0.0
 	tilt_input = 0.0
-	
-func _ready():
-	Global.player = self
-
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	speed = speed_default ##
-
-	crouch_shapecast.add_exception($".")
 
 func update_gravity(delta) -> void:
 	velocity.y -= gravity * delta
 
 func update_input(speed: float, acceleration: float, deceleration: float) -> void:
 	var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
-
 	var direction = (rotation_anchor.global_basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 
 	if direction:
