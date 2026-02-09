@@ -36,7 +36,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("MainMenu:visible")
+tracks/2/path = NodePath("Panel:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -48,7 +48,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("MainMenu:modulate")
+tracks/3/path = NodePath("Panel:modulate")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -64,7 +64,7 @@ length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MainMenu:visible")
+tracks/0/path = NodePath("Panel:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -76,7 +76,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("MainMenu:modulate")
+tracks/1/path = NodePath("Panel:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -120,7 +120,7 @@ length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MainMenu:modulate")
+tracks/0/path = NodePath("Panel:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -132,7 +132,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("MainMenu:visible")
+tracks/1/path = NodePath("Panel:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -187,11 +187,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_btxxm")
-menu = NodePath("MainMenu")
+menu = NodePath("Panel")
 options = NodePath("OptionsMenu")
 animation_player = NodePath("AnimationPlayer")
 
-[node name="MainMenu" type="Panel" parent="." unique_id=381263929]
+[node name="Panel" type="Panel" parent="." unique_id=381263929]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.56700003
@@ -203,7 +203,7 @@ offset_bottom = 0.2699585
 theme = ExtResource("1_1g8jr")
 theme_override_styles/panel = ExtResource("3_4hixx")
 
-[node name="MainMenuContainer" type="VBoxContainer" parent="MainMenu" unique_id=98296064]
+[node name="MainMenu" type="VBoxContainer" parent="Panel" unique_id=98296064]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.15
@@ -216,40 +216,40 @@ offset_right = 0.14398193
 offset_bottom = 0.1340332
 theme = ExtResource("1_1g8jr")
 
-[node name="GameTitle" type="Label" parent="MainMenu/MainMenuContainer" unique_id=315898016]
+[node name="GameTitle" type="Label" parent="Panel/MainMenu" unique_id=315898016]
 layout_mode = 2
 theme = ExtResource("1_1g8jr")
 theme_override_fonts/font = ExtResource("2_m1kxf")
 text = "LABORATÓRIO VIRTUAL"
 horizontal_alignment = 1
 
-[node name="StartButton" type="Button" parent="MainMenu/MainMenuContainer" unique_id=650207581]
+[node name="StartButton" type="Button" parent="Panel/MainMenu" unique_id=650207581]
 layout_mode = 2
 theme = ExtResource("1_1g8jr")
 text = "Entrar"
 alignment = 0
 
-[node name="AnimationComponent" type="Node" parent="MainMenu/MainMenuContainer/StartButton" unique_id=1278043957]
+[node name="AnimationComponent" type="Node" parent="Panel/MainMenu/StartButton" unique_id=1278043957]
 script = ExtResource("3_x2yvf")
 hover_transition = 10
 hover_easing = 2
 
-[node name="OptionsButton" type="Button" parent="MainMenu/MainMenuContainer" unique_id=805038100]
+[node name="OptionsButton" type="Button" parent="Panel/MainMenu" unique_id=805038100]
 layout_mode = 2
 text = "Opções"
 alignment = 0
 
-[node name="AnimationComponent" type="Node" parent="MainMenu/MainMenuContainer/OptionsButton" unique_id=1225580010]
+[node name="AnimationComponent" type="Node" parent="Panel/MainMenu/OptionsButton" unique_id=1225580010]
 script = ExtResource("3_x2yvf")
 hover_transition = 10
 hover_easing = 2
 
-[node name="ExitButton" type="Button" parent="MainMenu/MainMenuContainer" unique_id=1424777115]
+[node name="ExitButton" type="Button" parent="Panel/MainMenu" unique_id=1424777115]
 layout_mode = 2
 text = "Sair"
 alignment = 0
 
-[node name="AnimationComponent" type="Node" parent="MainMenu/MainMenuContainer/ExitButton" unique_id=991382945]
+[node name="AnimationComponent" type="Node" parent="Panel/MainMenu/ExitButton" unique_id=991382945]
 script = ExtResource("3_x2yvf")
 hover_transition = 10
 hover_easing = 2
@@ -262,6 +262,6 @@ layout_mode = 1
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1168421522]
 libraries/ = SubResource("AnimationLibrary_q85j6")
 
-[connection signal="pressed" from="MainMenu/MainMenuContainer/StartButton" to="." method="on_button_1_pressed"]
-[connection signal="pressed" from="MainMenu/MainMenuContainer/OptionsButton" to="." method="on_button_2_pressed"]
-[connection signal="pressed" from="MainMenu/MainMenuContainer/ExitButton" to="." method="on_button_3_pressed"]
+[connection signal="pressed" from="Panel/MainMenu/StartButton" to="." method="on_start_button_pressed"]
+[connection signal="pressed" from="Panel/MainMenu/OptionsButton" to="." method="on_options_button_pressed"]
+[connection signal="pressed" from="Panel/MainMenu/ExitButton" to="." method="on_exit_button_pressed"]

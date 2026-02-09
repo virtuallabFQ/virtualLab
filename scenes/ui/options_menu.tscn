@@ -1,16 +1,193 @@
 [gd_scene format=3 uid="uid://dmkdd5agrf8b4"]
 
+[ext_resource type="Script" uid="uid://b1ugln1rdgw7k" path="res://scripts/ui/options_menu.gd" id="1_c4822"]
 [ext_resource type="Theme" uid="uid://cpa6dswqf8gcv" path="res://assets/ui/themes/theme.tres" id="1_wj2x4"]
 [ext_resource type="StyleBox" uid="uid://bn4ch6u0l0knm" path="res://assets/ui/themes/options_menu/om_style_box_flat.tres" id="2_imaij"]
 [ext_resource type="PackedScene" uid="uid://vd128e4ky8io" path="res://scenes/ui/graphics_menu.tscn" id="3_imaij"]
 
-[node name="OptionsMenu" type="Control" unique_id=1820454181]
+[sub_resource type="Animation" id="Animation_c4822"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GraphicsMenu:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GraphicsMenu:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Panel/OptionsMenu:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Panel/OptionsMenu:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_0ejsc"]
+resource_name = "hide_graphics"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GraphicsMenu:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GraphicsMenu:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_ovlcw"]
+resource_name = "hide_options"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel/OptionsMenu:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Panel/OptionsMenu:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_snsgv"]
+resource_name = "show_graphics"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GraphicsMenu:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GraphicsMenu:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
+}
+
+[sub_resource type="Animation" id="Animation_hb1yv"]
+resource_name = "show_options"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel/OptionsMenu:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Panel/OptionsMenu:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ovlcw"]
+_data = {
+&"RESET": SubResource("Animation_c4822"),
+&"hide_graphics": SubResource("Animation_0ejsc"),
+&"hide_options": SubResource("Animation_ovlcw"),
+&"show_graphics": SubResource("Animation_snsgv"),
+&"show_options": SubResource("Animation_hb1yv")
+}
+
+[node name="OptionsMenu" type="Control" unique_id=1820454181 node_paths=PackedStringArray("buttons", "graphics_menu", "animation_player")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_c4822")
+buttons = NodePath("Panel/OptionsMenu")
+graphics_menu = NodePath("GraphicsMenu")
+animation_player = NodePath("AnimationPlayer")
 
 [node name="Panel" type="Panel" parent="." unique_id=1175095806]
 layout_mode = 1
@@ -26,8 +203,7 @@ offset_bottom = -0.4800415
 theme = ExtResource("1_wj2x4")
 theme_override_styles/panel = ExtResource("2_imaij")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel" unique_id=632555786]
-visible = false
+[node name="OptionsMenu" type="VBoxContainer" parent="Panel" unique_id=632555786]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.048
@@ -40,21 +216,30 @@ offset_right = -0.6799927
 offset_bottom = -0.2400055
 theme = ExtResource("1_wj2x4")
 
-[node name="Button1" type="Button" parent="Panel/VBoxContainer" unique_id=1523015473]
+[node name="CameraControlsButton" type="Button" parent="Panel/OptionsMenu" unique_id=1523015473]
 layout_mode = 2
 theme = ExtResource("1_wj2x4")
 text = "Câmaras e Controlos"
 alignment = 0
 
-[node name="Button2" type="Button" parent="Panel/VBoxContainer" unique_id=1923056743]
+[node name="GraphicButton" type="Button" parent="Panel/OptionsMenu" unique_id=1923056743]
 layout_mode = 2
 text = "Configurações Gráficas"
 alignment = 0
 
-[node name="Button3" type="Button" parent="Panel/VBoxContainer" unique_id=1736610389]
+[node name="AudioButton" type="Button" parent="Panel/OptionsMenu" unique_id=1736610389]
 layout_mode = 2
 text = "Áudio"
 alignment = 0
 
-[node name="CameraControlsMenu" parent="." unique_id=1836589356 instance=ExtResource("3_imaij")]
+[node name="GraphicsMenu" parent="." unique_id=1836589356 instance=ExtResource("3_imaij")]
+visible = false
+modulate = Color(1, 1, 1, 0)
 layout_mode = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=139864095]
+libraries/ = SubResource("AnimationLibrary_ovlcw")
+
+[connection signal="pressed" from="Panel/OptionsMenu/CameraControlsButton" to="." method="on_camera_controls_button_pressed"]
+[connection signal="pressed" from="Panel/OptionsMenu/GraphicButton" to="." method="on_graphic_button_pressed"]
+[connection signal="pressed" from="Panel/OptionsMenu/AudioButton" to="." method="on_audio_button_pressed"]
