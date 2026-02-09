@@ -3,8 +3,10 @@
 [ext_resource type="Theme" uid="uid://cpa6dswqf8gcv" path="res://assets/ui/themes/theme.tres" id="1_h205j"]
 [ext_resource type="FontFile" uid="uid://p38vpi7tgrq2" path="res://assets/ui/themes/static/Orbitron-Bold.ttf" id="2_3cywb"]
 [ext_resource type="StyleBox" uid="uid://y1mp8cwq48aj" path="res://assets/ui/themes/graphics_menu/gm_style_box_flat.tres" id="3_p7dxe"]
-[ext_resource type="Script" uid="uid://doeqtepplpmxu" path="res://scripts/ui/scaling_button.gd" id="4_c6vkd"]
+[ext_resource type="Script" uid="uid://xybmhvfe8xuy" path="res://scripts/ui/master_button.gd" id="4_p7dxe"]
 [ext_resource type="StyleBox" uid="uid://b088b6n2srg0i" path="res://assets/ui/themes/sliders/sliders_style_box_flat.tres" id="5_maarx"]
+[ext_resource type="Script" uid="uid://h35k6llv3shd" path="res://scripts/ui/music_button.gd" id="6_c6vkd"]
+[ext_resource type="Script" uid="uid://fdw4tw8fxqmy" path="res://scripts/ui/sfx_button.gd" id="7_maarx"]
 
 [node name="AudioMenu" type="Control" unique_id=949462729]
 layout_mode = 3
@@ -43,21 +45,21 @@ offset_bottom = -0.042053223
 grow_horizontal = 2
 theme = ExtResource("1_h205j")
 
-[node name="WindowMode" type="Button" parent="AudioMenuContainer" unique_id=496418631]
+[node name="MasterVolume" type="Button" parent="AudioMenuContainer" unique_id=496418631]
 layout_mode = 2
 mouse_filter = 2
 theme_override_styles/normal = ExtResource("3_p7dxe")
 text = "Volume geral"
 alignment = 2
 
-[node name="Resolution" type="Button" parent="AudioMenuContainer" unique_id=339331354]
+[node name="MusicVolume" type="Button" parent="AudioMenuContainer" unique_id=339331354]
 layout_mode = 2
 mouse_filter = 2
 theme_override_styles/normal = ExtResource("3_p7dxe")
 text = "Volume da música"
 alignment = 2
 
-[node name="RenderScaling" type="Button" parent="AudioMenuContainer" unique_id=1801424803]
+[node name="SFXVolume" type="Button" parent="AudioMenuContainer" unique_id=1801424803]
 layout_mode = 2
 mouse_filter = 2
 theme_override_styles/normal = ExtResource("3_p7dxe")
@@ -77,14 +79,14 @@ offset_bottom = -0.042053223
 grow_horizontal = 2
 theme = ExtResource("1_h205j")
 
-[node name="ScalingButton" type="Button" parent="AudioButtonsContainer" unique_id=2125272594]
+[node name="MasterButton" type="Button" parent="AudioButtonsContainer" unique_id=2125272594]
 layout_mode = 2
 theme_override_styles/normal = ExtResource("3_p7dxe")
 text = " "
 alignment = 0
-script = ExtResource("4_c6vkd")
+script = ExtResource("4_p7dxe")
 
-[node name="Slider" type="HSlider" parent="AudioButtonsContainer/ScalingButton" unique_id=1218872039]
+[node name="Slider" type="HSlider" parent="AudioButtonsContainer/MasterButton" unique_id=1218872039]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -94,13 +96,11 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_h205j")
 theme_override_styles/slider = ExtResource("5_maarx")
-min_value = 50.0
-max_value = 200.0
-step = 5.0
-value = 100.0
+min_value = -45.0
+max_value = 0.0
 ticks_on_borders = true
 
-[node name="Label" type="Label" parent="AudioButtonsContainer/ScalingButton" unique_id=2005878411]
+[node name="Label" type="Label" parent="AudioButtonsContainer/MasterButton" unique_id=2005878411]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 1.0250001
@@ -113,14 +113,14 @@ offset_right = 0.07495117
 offset_bottom = 0.013008118
 theme_override_font_sizes/font_size = 20
 
-[node name="ScalingButton2" type="Button" parent="AudioButtonsContainer" unique_id=1474885823]
+[node name="MusicButton" type="Button" parent="AudioButtonsContainer" unique_id=1474885823]
 layout_mode = 2
 theme_override_styles/normal = ExtResource("3_p7dxe")
 text = " "
 alignment = 0
-script = ExtResource("4_c6vkd")
+script = ExtResource("6_c6vkd")
 
-[node name="Slider" type="HSlider" parent="AudioButtonsContainer/ScalingButton2" unique_id=716397787]
+[node name="Slider" type="HSlider" parent="AudioButtonsContainer/MusicButton" unique_id=716397787]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -130,13 +130,11 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_h205j")
 theme_override_styles/slider = ExtResource("5_maarx")
-min_value = 50.0
-max_value = 200.0
-step = 5.0
-value = 100.0
+min_value = -45.0
+max_value = 0.0
 ticks_on_borders = true
 
-[node name="Label" type="Label" parent="AudioButtonsContainer/ScalingButton2" unique_id=959599306]
+[node name="Label" type="Label" parent="AudioButtonsContainer/MusicButton" unique_id=959599306]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 1.0250001
@@ -149,14 +147,14 @@ offset_right = 0.07495117
 offset_bottom = 0.013008118
 theme_override_font_sizes/font_size = 20
 
-[node name="ScalingButton3" type="Button" parent="AudioButtonsContainer" unique_id=1641503350]
+[node name="SFXButton" type="Button" parent="AudioButtonsContainer" unique_id=1641503350]
 layout_mode = 2
 theme_override_styles/normal = ExtResource("3_p7dxe")
 text = " "
 alignment = 0
-script = ExtResource("4_c6vkd")
+script = ExtResource("7_maarx")
 
-[node name="Slider" type="HSlider" parent="AudioButtonsContainer/ScalingButton3" unique_id=482495660]
+[node name="Slider" type="HSlider" parent="AudioButtonsContainer/SFXButton" unique_id=482495660]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -166,13 +164,11 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_h205j")
 theme_override_styles/slider = ExtResource("5_maarx")
-min_value = 50.0
-max_value = 200.0
-step = 5.0
-value = 100.0
+min_value = -45.0
+max_value = 0.0
 ticks_on_borders = true
 
-[node name="Label" type="Label" parent="AudioButtonsContainer/ScalingButton3" unique_id=1964166576]
+[node name="Label" type="Label" parent="AudioButtonsContainer/SFXButton" unique_id=1964166576]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 1.0250001
