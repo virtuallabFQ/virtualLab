@@ -4,6 +4,7 @@
 [ext_resource type="Theme" uid="uid://cpa6dswqf8gcv" path="res://assets/ui/themes/theme.tres" id="1_wj2x4"]
 [ext_resource type="StyleBox" uid="uid://bn4ch6u0l0knm" path="res://assets/ui/themes/options_menu/om_style_box_flat.tres" id="2_imaij"]
 [ext_resource type="PackedScene" uid="uid://vd128e4ky8io" path="res://scenes/ui/graphics_menu.tscn" id="3_imaij"]
+[ext_resource type="PackedScene" uid="uid://du2qxopany7xr" path="res://scenes/ui/camera_controls_menu.tscn" id="4_snsgv"]
 [ext_resource type="PackedScene" uid="uid://dkxw5wsi7h3rr" path="res://scenes/ui/audio_menu.tscn" id="5_0ejsc"]
 
 [sub_resource type="Animation" id="Animation_c4822"]
@@ -80,6 +81,30 @@ tracks/5/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("CameraControlsMenu:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("CameraControlsMenu:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_gff41"]
 resource_name = "hide_audio"
@@ -100,6 +125,34 @@ tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/path = NodePath("AudioMenu:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_2046m"]
+resource_name = "hide_cameracontrols"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CameraControlsMenu:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CameraControlsMenu:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -193,6 +246,34 @@ tracks/1/keys = {
 "values": [true, true]
 }
 
+[sub_resource type="Animation" id="Animation_7sqx0"]
+resource_name = "show_cameracontrols"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CameraControlsMenu:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CameraControlsMenu:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
+}
+
 [sub_resource type="Animation" id="Animation_snsgv"]
 resource_name = "show_graphics"
 length = 0.5
@@ -253,9 +334,11 @@ tracks/1/keys = {
 _data = {
 &"RESET": SubResource("Animation_c4822"),
 &"hide_audio": SubResource("Animation_gff41"),
+&"hide_camera": SubResource("Animation_2046m"),
 &"hide_graphics": SubResource("Animation_0ejsc"),
 &"hide_options": SubResource("Animation_ovlcw"),
 &"show_audio": SubResource("Animation_dqh3v"),
+&"show_camera": SubResource("Animation_7sqx0"),
 &"show_graphics": SubResource("Animation_snsgv"),
 &"show_options": SubResource("Animation_hb1yv")
 }
@@ -303,7 +386,7 @@ theme = ExtResource("1_wj2x4")
 [node name="CameraControlsButton" type="Button" parent="Panel/OptionsMenu" unique_id=1523015473]
 layout_mode = 2
 theme = ExtResource("1_wj2x4")
-text = "Câmaras e Controlos"
+text = "Câmara e Controlos"
 alignment = 0
 
 [node name="GraphicButton" type="Button" parent="Panel/OptionsMenu" unique_id=1923056743]
@@ -315,6 +398,11 @@ alignment = 0
 layout_mode = 2
 text = "Áudio"
 alignment = 0
+
+[node name="CameraControlsMenu" parent="." unique_id=597259662 instance=ExtResource("4_snsgv")]
+visible = false
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
 
 [node name="GraphicsMenu" parent="." unique_id=1836589356 instance=ExtResource("3_imaij")]
 visible = false

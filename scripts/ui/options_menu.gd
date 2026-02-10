@@ -13,6 +13,7 @@ var ui_state = substate.options
 
 func _ready() -> void:
 	if buttons: buttons.visible = true
+	if camera_menu: camera_menu.visible = false
 	if graphics_menu: graphics_menu.visible = false
 	if audio_menu: audio_menu.visible = false
 
@@ -22,6 +23,8 @@ func _input(event):
 		match ui_state:
 			substate.options:
 				emit_signal("back_to_main_menu")
+			substate.camera:
+				change_sub_menu(substate.options, "camera", "options")
 			substate.graphics:
 				change_sub_menu(substate.options, "graphics", "options")
 			substate.audio:
@@ -36,7 +39,7 @@ func change_sub_menu(new_state: substate, hide_name: String, show_name: String):
 
 func on_camera_controls_button_pressed() -> void:
 	if animation_player.is_playing(): return
-	pass
+	change_sub_menu(substate.camera, "options", "camera")
 
 func on_graphic_button_pressed() -> void:
 	if animation_player.is_playing(): return

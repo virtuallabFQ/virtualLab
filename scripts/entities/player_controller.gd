@@ -8,7 +8,6 @@ class_name PlayerController extends CharacterBody3D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 @export_group("Camera")
-@export var mouse_sensitivity : float = 0.003
 @export var tilt_lower_limit := deg_to_rad(-90.0)
 @export var tilt_upper_limit := deg_to_rad(90.0)
 @export var interact_distance : float = 2
@@ -45,7 +44,8 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func _ready():
 	Global.player = self
-
+	camera.fov = Global.player_fov
+	
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	speed = speed_default ##
 	crouch_shapecast.add_exception($".")
@@ -53,8 +53,8 @@ func _ready():
 func _unhandled_input(event: InputEvent) -> void:
 	mouse_input = event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED
 	if mouse_input:
-		rotation_input = -event.relative.x * mouse_sensitivity
-		tilt_input = -event.relative.y * mouse_sensitivity
+		rotation_input = -event.relative.x * Global.mouse_sensitivity
+		tilt_input = -event.relative.y * Global.mouse_sensitivity
 		
 func _process(delta):
 	_update_camera(delta)
@@ -69,6 +69,10 @@ func _update_camera(_delta):
 
 	rotation_input = 0.0
 	tilt_input = 0.0
+
+func update_camera_settings():
+	if Camera3D:
+		Camera3D.fov = Global.player_fov
 
 func update_gravity(delta) -> void:
 	velocity.y -= gravity * delta
