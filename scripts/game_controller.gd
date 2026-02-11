@@ -8,11 +8,15 @@ class_name GameController extends Node
 var current_3d_scene
 var current_2d_scene
 var current_gui_scene
+var is_transitioning: bool = false
 
 func _ready() -> void:
 	Global.game_controller = self
 	current_gui_scene = $GUI/SplashScreenManager
+	is_transitioning = true 
 	transition_controller.transition("fade_in", 0.1)
+	await transition_controller.animation_player.animation_finished
+	is_transitioning = false
 
 func change_3d_scene(
 		new_scene: String,
@@ -23,6 +27,7 @@ func change_3d_scene(
 		transition_out: String = "fade_out",
 		seconds: float = 1.0
 	) -> void:
+	is_transitioning = true
 	if transition:
 		transition_controller.transition(transition_out, seconds)
 		await transition_controller.animation_player.animation_finished
@@ -37,6 +42,10 @@ func change_3d_scene(
 	world_3d.add_child(new)
 	current_3d_scene = new
 	transition_controller.transition(transition_in, seconds)
+	
+	if transition:
+		await transition_controller.animation_player.animation_finished
+	is_transitioning = false
 
 func change_2d_scene(
 		new_scene: String,
@@ -47,6 +56,7 @@ func change_2d_scene(
 		transition_out: String = "fade_out",
 		seconds: float = 1.0
 	) -> void:
+	is_transitioning = true
 	if transition:
 		transition_controller.transition(transition_out, seconds)
 		await transition_controller.animation_player.animation_finished
@@ -60,6 +70,10 @@ func change_2d_scene(
 	world_2d.add_child(new)
 	current_2d_scene = new
 	transition_controller.transition(transition_in, seconds)
+	
+	if transition:
+		await transition_controller.animation_player.animation_finished
+	is_transitioning = false
 
 func change_gui_scene(
 		new_scene: String,
@@ -70,6 +84,7 @@ func change_gui_scene(
 		transition_out: String = "fade_out",
 		seconds: float = 1.0
 	) -> void:
+	is_transitioning = true
 	if transition:
 		transition_controller.transition(transition_out, seconds)
 		await transition_controller.animation_player.animation_finished
@@ -84,3 +99,7 @@ func change_gui_scene(
 	gui.add_child(new)
 	current_gui_scene = new
 	transition_controller.transition(transition_in, seconds)
+	
+	if transition:
+		await transition_controller.animation_player.animation_finished
+	is_transitioning = false

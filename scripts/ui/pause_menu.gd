@@ -13,8 +13,13 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("ui_cancel"):
 		if animation_player.is_playing():
 			return
+		if Global.game_controller.is_transitioning:
+			return
+			
 		if get_tree().paused:
 			if options_menu.visible:
+				if options_menu.has_method("on_exit_submenu") and options_menu.on_exit_submenu():
+					return 
 				close_options()
 			else:
 				resume()
@@ -24,7 +29,6 @@ func _process(_delta: float) -> void:
 func pause() -> void:
 	get_tree().paused = true
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-	
 	primary_menu.visible = true
 	options_menu.visible = false
 	visible = true
@@ -32,7 +36,6 @@ func pause() -> void:
 
 func resume() -> void:
 	animation_player.play("hide_pause")
-	
 	await animation_player.animation_finished
 	visible = false
 	get_tree().paused = false
@@ -41,10 +44,8 @@ func resume() -> void:
 func open_options() -> void:
 	animation_player.play("hide_pause")
 	await animation_player.animation_finished
-	
 	primary_menu.visible = false
 	options_menu.visible = true
-	
 	animation_player.play("show_options")
 
 func close_options() -> void:
@@ -52,7 +53,6 @@ func close_options() -> void:
 	await animation_player.animation_finished
 	options_menu.visible = false
 	primary_menu.visible = true
-	
 	animation_player.play("show_pause")
 
 func on_resume_pressed() -> void:

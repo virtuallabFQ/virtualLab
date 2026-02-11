@@ -14,11 +14,14 @@ func _ready() -> void:
 
 func _input(event):
 	if event.is_action_pressed("ui_cancel") and not animation_player.is_playing():
+		get_viewport().set_input_as_handled()
+		
 		match ui_state:
 			state.menu:
 				pass
 			state.options:
-				pass
+				if options.has_method("on_exit_submenu"):
+					options.on_exit_submenu()
 
 func on_options_back():
 	ui_state = state.menu

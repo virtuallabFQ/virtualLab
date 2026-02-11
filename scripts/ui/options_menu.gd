@@ -17,18 +17,32 @@ func _ready() -> void:
 	if graphics_menu: graphics_menu.visible = false
 	if audio_menu: audio_menu.visible = false
 
+	if get_tree().current_scene != self:
+		set_process_input(false)
+
 func _input(event):
-	if event.is_action_pressed("ui_cancel") and not animation_player.is_playing():
+	if event.is_action_pressed("ui_cancel"):
 		get_viewport().set_input_as_handled()
-		match ui_state:
-			substate.options:
-				emit_signal("back_to_main_menu")
-			substate.camera:
-				change_sub_menu(substate.options, "camera", "options")
-			substate.graphics:
-				change_sub_menu(substate.options, "graphics", "options")
-			substate.audio:
-				change_sub_menu(substate.options, "audio", "options")
+		on_exit_submenu()
+
+func on_exit_submenu() -> bool:
+	if animation_player.is_playing():
+		return true
+
+	match ui_state:
+		substate.options:
+			emit_signal("back_to_main_menu")
+			return false
+		substate.camera:
+			change_sub_menu(substate.options, "camera", "options")
+			return true
+		substate.graphics:
+			change_sub_menu(substate.options, "graphics", "options")
+			return true
+		substate.audio:
+			change_sub_menu(substate.options, "audio", "options")
+			return true
+	return false
 
 func change_sub_menu(new_state: substate, hide_name: String, show_name: String):
 	ui_state = new_state
