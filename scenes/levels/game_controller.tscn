@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://d1oiwwccnuxma" path="res://scripts/game_controller.gd" id="1_cghu2"]
 [ext_resource type="PackedScene" uid="uid://dxak58crtk3wj" path="res://scenes/levels/splash_screen_manager.tscn" id="2_cghu2"]
 [ext_resource type="PackedScene" uid="uid://cps70qt6vm5ve" path="res://scenes/levels/transition_controller.tscn" id="3_mgh76"]
-[ext_resource type="AudioStream" uid="uid://bvkdw1v8ccrvl" path="res://brr.mp3" id="4_mgh76"]
+[ext_resource type="AudioStream" uid="uid://ksd5i4x8d6y8" path="res://Cheo Gallego - El Anciano y El Niño (Official Video).mp3" id="4_mgh76"]
 
 [node name="GameController" type="Node" unique_id=906069955]
 script = ExtResource("1_cghu2")
@@ -27,7 +27,6 @@ layout_mode = 1
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=424791462]
 stream = ExtResource("4_mgh76")
-pitch_scale = 1.5
 autoplay = true
 bus = &"Music"
 parameters/looping = true

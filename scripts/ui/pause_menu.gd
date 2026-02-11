@@ -27,6 +27,7 @@ func _process(_delta: float) -> void:
 			pause()
 
 func pause() -> void:
+	MessageBus.toggle_game_paused.emit(true)
 	get_tree().paused = true
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	primary_menu.visible = true
@@ -35,6 +36,7 @@ func pause() -> void:
 	animation_player.play("show_pause")
 
 func resume() -> void:
+	MessageBus.toggle_game_paused.emit(false)
 	animation_player.play("hide_pause")
 	await animation_player.animation_finished
 	visible = false

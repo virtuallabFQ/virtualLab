@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c56kfw0l4qyjn" path="res://scripts/entities/player_controller.gd" id="1_d4y06"]
 [ext_resource type="Script" uid="uid://b7iay0d27eq7l" path="res://scripts/objects/interaction_raycast.gd" id="2_fsd73"]
+[ext_resource type="Script" uid="uid://v8ydk2kd7hqp" path="res://scripts/ui/interface.gd" id="3_2rug8"]
 [ext_resource type="Script" uid="uid://boike7k3j5b6s" path="res://scripts/ui/reticle.gd" id="3_7rbyl"]
 [ext_resource type="Script" uid="uid://dxvrj0ju1i0hj" path="res://scripts/ui/context_component.gd" id="3_gy805"]
 [ext_resource type="Script" uid="uid://bsataqgexir6b" path="res://scripts/animations/crouching_state.gd" id="3_hwjx1"]
@@ -361,6 +362,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
+script = ExtResource("3_2rug8")
 
 [node name="Reticle" type="CenterContainer" parent="Interface" unique_id=1871768846]
 layout_mode = 1
