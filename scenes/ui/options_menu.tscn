@@ -343,7 +343,7 @@ _data = {
 &"show_options": SubResource("Animation_hb1yv")
 }
 
-[node name="OptionsMenu" type="Control" unique_id=1820454181 node_paths=PackedStringArray("buttons", "graphics_menu", "audio_menu", "animation_player")]
+[node name="OptionsMenu" type="Control" unique_id=1820454181 node_paths=PackedStringArray("buttons", "graphics_menu", "audio_menu", "camera_menu", "animation_player")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -354,6 +354,7 @@ script = ExtResource("1_c4822")
 buttons = NodePath("Panel/OptionsMenu")
 graphics_menu = NodePath("GraphicsMenu")
 audio_menu = NodePath("AudioMenu")
+camera_menu = NodePath("CameraControlsMenu")
 animation_player = NodePath("AnimationPlayer")
 
 [node name="Panel" type="Panel" parent="." unique_id=1175095806]

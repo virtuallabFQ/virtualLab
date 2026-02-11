@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://ko87te0o10ve" path="res://scenes/objects/s_chair.tscn" id="1_2yitm"]
 [ext_resource type="PackedScene" uid="uid://yrv80x2vkau4" path="res://scenes/entities/player_controller.tscn" id="1_bj4kn"]
 [ext_resource type="Script" uid="uid://02s36yo66g2g" path="res://scripts/ui/show_label.gd" id="1_rsbtw"]
+[ext_resource type="PackedScene" uid="uid://2743hri2tski" path="res://scenes/ui/pause_menu.tscn" id="1_uy2bq"]
 [ext_resource type="PackedScene" uid="uid://hp3liy7jxlwn" path="res://scenes/objects/s_periodic_table.tscn" id="3_vuu1o"]
 [ext_resource type="PackedScene" uid="uid://dumhaqs3p53lh" path="res://scenes/objects/s_table.tscn" id="4_w4gd0"]
 [ext_resource type="PackedScene" uid="uid://dnkg01s24uf44" path="res://scenes/objects/s_door.tscn" id="6_bj4kn"]
@@ -67,6 +68,8 @@ _surfaces = [{
 albedo_color = Color(0.33660764, 0.3366076, 0.3366076, 0)
 
 [node name="Lab" type="Node3D" unique_id=2011976822]
+
+[node name="PauseMenu" parent="." unique_id=1365290178 instance=ExtResource("1_uy2bq")]
 
 [node name="GUI" type="Control" parent="." unique_id=2090792884]
 layout_mode = 3
