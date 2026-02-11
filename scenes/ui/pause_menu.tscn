@@ -31,12 +31,12 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [false]
+"values": [true]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("ColorRect/Panel:position")
+tracks/2/path = NodePath("Panel:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -48,7 +48,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("ColorRect/PauseMenu:position")
+tracks/3/path = NodePath("PauseMenu:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -56,6 +56,106 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(760, -325)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("OptionsMenu:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("OptionsMenu:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Panel:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("PauseMenu:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Panel:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("PauseMenu:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_8fwbo"]
+resource_name = "hide_options"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("OptionsMenu:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("OptionsMenu:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_4inpj"]
@@ -88,7 +188,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("ColorRect/Panel:position")
+tracks/2/path = NodePath("Panel:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -100,7 +200,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("ColorRect/PauseMenu:position")
+tracks/3/path = NodePath("PauseMenu:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -108,6 +208,82 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(760, 418.5), Vector2(760, -325)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Panel:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("PauseMenu:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Panel:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("PauseMenu:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_2rlsb"]
+resource_name = "show_options"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("OptionsMenu:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("OptionsMenu:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
 }
 
 [sub_resource type="Animation" id="Animation_0bnpd"]
@@ -140,7 +316,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("ColorRect/Panel:position")
+tracks/2/path = NodePath("Panel:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -152,7 +328,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("ColorRect/PauseMenu:position")
+tracks/3/path = NodePath("PauseMenu:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -161,15 +337,65 @@ tracks/3/keys = {
 "update": 0,
 "values": [Vector2(760, -325), Vector2(760, 418.5)]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Panel:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Panel:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("PauseMenu:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("PauseMenu:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4inpj"]
 _data = {
 &"RESET": SubResource("Animation_8uki6"),
+&"hide_options": SubResource("Animation_8fwbo"),
 &"hide_pause": SubResource("Animation_4inpj"),
+&"show_options": SubResource("Animation_2rlsb"),
 &"show_pause": SubResource("Animation_0bnpd")
 }
 
-[node name="PauseMenu" type="Control" unique_id=1365290178 node_paths=PackedStringArray("pause_menu", "options_menu", "animation_player")]
+[node name="PauseMenu" type="Control" unique_id=1365290178 node_paths=PackedStringArray("primary_menu", "options_menu", "animation_player")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -178,12 +404,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_4inpj")
-pause_menu = NodePath("ColorRect")
+primary_menu = NodePath("PauseMenu")
 options_menu = NodePath("OptionsMenu")
 animation_player = NodePath("AnimationPlayer")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1587632413]
-visible = false
 modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 15
@@ -193,7 +418,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.09803922)
 
-[node name="Panel" type="Panel" parent="ColorRect" unique_id=895022053]
+[node name="Panel" type="Panel" parent="." unique_id=895022053]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.36200002
@@ -203,15 +428,15 @@ anchor_bottom = 0.669
 offset_left = -0.040039063
 offset_top = -742.546
 offset_right = 0.11987305
-offset_bottom = -743.22095
+offset_bottom = -743.221
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_8uki6")
 theme_override_styles/panel = ExtResource("2_0bnpd")
 
-[node name="PauseMenu" type="VBoxContainer" parent="ColorRect" unique_id=1509810926]
+[node name="PauseMenu" type="VBoxContainer" parent="." unique_id=1509810926]
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = -1
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -219,43 +444,44 @@ anchor_bottom = 0.5
 offset_left = -200.0
 offset_top = -864.5
 offset_right = 199.0
-offset_bottom = -622.49805
+offset_bottom = -622.4981
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_8uki6")
 
-[node name="PauseTitle" type="Label" parent="ColorRect/PauseMenu" unique_id=2078399884]
+[node name="PauseTitle" type="Label" parent="PauseMenu" unique_id=2078399884]
 layout_mode = 2
 theme = ExtResource("1_8uki6")
 theme_override_fonts/font = ExtResource("3_4inpj")
 text = "MENU DE PAUSA"
 horizontal_alignment = 1
 
-[node name="ResumeButton" type="Button" parent="ColorRect/PauseMenu" unique_id=1017626871]
+[node name="ResumeButton" type="Button" parent="PauseMenu" unique_id=1017626871]
 layout_mode = 2
 theme = ExtResource("1_8uki6")
 theme_override_styles/normal = ExtResource("4_8uki6")
 theme_override_styles/pressed = ExtResource("4_8uki6")
 text = "Retomar"
 
-[node name="OptionsButton" type="Button" parent="ColorRect/PauseMenu" unique_id=1004389609]
+[node name="OptionsButton" type="Button" parent="PauseMenu" unique_id=1004389609]
 layout_mode = 2
 theme_override_styles/normal = ExtResource("4_8uki6")
 theme_override_styles/pressed = ExtResource("4_8uki6")
 text = "Opções"
 
-[node name="QuitButton" type="Button" parent="ColorRect/PauseMenu" unique_id=1368756138]
+[node name="QuitButton" type="Button" parent="PauseMenu" unique_id=1368756138]
 layout_mode = 2
 theme_override_styles/normal = ExtResource("4_8uki6")
 theme_override_styles/pressed = ExtResource("4_8uki6")
 text = "Sair"
 
 [node name="OptionsMenu" parent="." unique_id=1820454181 instance=ExtResource("6_8fwbo")]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=871935275]
 libraries/ = SubResource("AnimationLibrary_4inpj")
 
-[connection signal="pressed" from="ColorRect/PauseMenu/ResumeButton" to="." method="on_resume_pressed"]
-[connection signal="pressed" from="ColorRect/PauseMenu/OptionsButton" to="." method="on_options_pressed"]
-[connection signal="pressed" from="ColorRect/PauseMenu/QuitButton" to="." method="on_quit_pressed"]
+[connection signal="pressed" from="PauseMenu/ResumeButton" to="." method="on_resume_pressed"]
+[connection signal="pressed" from="PauseMenu/OptionsButton" to="." method="on_options_pressed"]
+[connection signal="pressed" from="PauseMenu/QuitButton" to="." method="on_quit_pressed"]

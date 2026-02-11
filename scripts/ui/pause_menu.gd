@@ -1,73 +1,68 @@
 class_name PauseMenu extends Control
 
-@export var pause_menu : Control
+@export var primary_menu : Control
 @export var options_menu : Control
 @export var animation_player : AnimationPlayer
-@onready var options_anim_player = $OptionsMenu/AnimationPlayer 
 
-var is_closing = false
-
-func _ready():
+func _ready() -> void:
 	visible = false
-	process_mode = Node.PROCESS_MODE_ALWAYS
+	options_menu.visible = false
+	primary_menu.visible = true
 
-	if options_menu.has_signal("exit_options_menu"):
-		options_menu.exit_options_menu.connect(close_options)
+func _process(_delta: float) -> void:
+	if Input.is_action_just_pressed("ui_cancel"):
+		if animation_player.is_playing():
+			return
+		if get_tree().paused:
+			if options_menu.visible:
+				close_options()
+			else:
+				resume()
+		else:
+			pause()
 
-func _unhandled_input(event):
-	if event.is_action_pressed("ui_cancel"):
-		if visible:
-			handle_esc_input()
-		elif not get_tree().paused:
-			pause_game()
-		get_viewport().set_input_as_handled()
-
-func pause_game():
+func pause() -> void:
 	get_tree().paused = true
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-
-	visible = true
-	pause_menu.visible = true
+	
+	primary_menu.visible = true
 	options_menu.visible = false
-	is_closing = false
+	visible = true
+	animation_player.play("show_pause")
+
+func resume() -> void:
+	animation_player.play("hide_pause")
 	
-	if animation_player.has_animation("show_pause"):
-		animation_player.play("show_pause")
-
-func handle_esc_input():
-	if is_closing: return
-	
-	if options_menu.visible:
-		close_options()
-	else:
-		resume_game()
-
-func on_resume_pressed():
-	resume_game()
-
-func resume_game():
-	is_closing = true
-	
-	if animation_player.has_animation("hide_pause"):
-		animation_player.play("hide_pause")
-		await animation_player.animation_finished
-
+	await animation_player.animation_finished
 	visible = false
 	get_tree().paused = false
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
-func on_options_pressed():
-	pause_menu.visible = false
+func open_options() -> void:
+	animation_player.play("hide_pause")
+	await animation_player.animation_finished
+	
+	primary_menu.visible = false
 	options_menu.visible = true
-	if options_anim_player and options_anim_player.has_animation("show_options"):
-		options_anim_player.play("show_options")
+	
+	animation_player.play("show_options")
 
-func close_options():
+func close_options() -> void:
+	animation_player.play("hide_options")
+	await animation_player.animation_finished
 	options_menu.visible = false
-	pause_menu.visible = true
-	if options_anim_player and options_anim_player.has_animation("hide_options"):
-		options_anim_player.play("hide_options")
+	primary_menu.visible = true
+	
+	animation_player.play("show_pause")
 
-func on_quit_pressed():
+func on_resume_pressed() -> void:
+	if !animation_player.is_playing():
+		resume()
+
+func on_options_pressed() -> void:
+	if !animation_player.is_playing():
+		open_options()
+
+func on_quit_pressed() -> void:
 	get_tree().paused = false
-	Global.game_controller.change_3d_scene("res://virtualLab/scenes/levels/lobby.tscn")
+	Global.game_controller.change_gui_scene("res://scenes/levels/lobby.tscn")
