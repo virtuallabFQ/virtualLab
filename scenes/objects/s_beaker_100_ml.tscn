@@ -53,8 +53,9 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_otmu3")
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_otmu3"]
-points = PackedVector3Array(-0.0010701604, -0.03984762, 0.025356214, 0.0015177801, -0.03984762, 0.025356214, -0.0035269102, 0.02902108, -0.049646877, 0.03519524, 0.0041816006, 0.03184762, 0.023660176, -0.015823498, -0.047840893, -0.029495638, -0.0059652114, -0.04551354, -0.034747623, 0.0067772754, 0.03184762, 0.024989314, 0.020027386, -0.045515686, -0.00970072, -0.025833433, -0.04806687, 0.019647058, 0.03138008, 0.03184762, -0.028264076, -0.019119626, 0.03184762, -0.024378767, 0.021121232, -0.042812906, 0.032600455, -0.011347564, 0.03184762, -0.021794224, 0.03008598, 0.03184762, 0.00022380978, 0.032679338, -0.045793593, 0.030080067, 0.0014730877, -0.046910327, 0.017519671, -0.023254413, -0.045434184, -0.01819085, -0.023119457, -0.0439796, 0.014471176, -0.03077398, 0.03184762, -0.028405152, 0.008937076, -0.04818623, 0.032600455, 0.015843434, 0.03184762, -0.00972316, 0.03131783, -0.044421572, -0.0049520712, 0.03657143, 0.03184762, 0.010119405, 0.031147614, -0.044241723, 0.003921154, -0.028156135, -0.04537504, 0.005399691, 0.03657143, 0.03184762, -0.010134799, -0.03466375, 0.030541223, 0.026489796, 0.008982774, -0.049633313, -0.017229766, -0.01971393, -0.04950281, -0.033446804, 0.01324776, 0.03184762, -0.034747623, -0.002281404, 0.03184762, 0.030006899, 0.008905404, -0.043102447)
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_bdm3o"]
+height = 0.0815817
+radius = 0.034080066
 
 [node name="s_beaker_100ml" type="RigidBody3D" unique_id=613809570]
 
@@ -62,15 +63,14 @@ points = PackedVector3Array(-0.0010701604, -0.03984762, 0.025356214, 0.001517780
 transform = Transform3D(2.08, 0, 0, 0, -9.0919684e-08, 2.08, 0, -2.08, -9.0919684e-08, 0, 0.08134972, 0.19178264)
 mesh = SubResource("ArrayMesh_j30xw")
 
-[node name="c_beaker_100ml" type="CollisionShape3D" parent="." unique_id=888675678]
-transform = Transform3D(2.08, 0, 0, 0, -9.0919684e-08, 2.08, 0, -2.08, -9.0919684e-08, 0, 0.08134972, 0.19178264)
-shape = SubResource("ConvexPolygonShape3D_otmu3")
+[node name="c_beaker_100ml" type="CollisionShape3D" parent="." unique_id=1235574645]
+transform = Transform3D(2.08, 0, 0, 0, -2.08, -1.8183937e-07, 0, 1.8183937e-07, -2.08, 0, 0.06145853, 0.19497761)
+shape = SubResource("CylinderShape3D_bdm3o")
 
 [node name="InteractionComponent" type="Node" parent="." unique_id=845906834 node_paths=PackedStringArray("mesh")]
 script = ExtResource("2_pdrdr")
 mesh = NodePath("../beaker_100ml")
 context = "Gobelé"
-metadata/_custom_type_script = "uid://dricxewmuu5su"
 
 [node name="PickUpComponent" type="Node" parent="InteractionComponent" unique_id=560273488]
 script = ExtResource("5_bdm3o")
