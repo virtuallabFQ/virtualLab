@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://cyhbkusinldqa"]
 
+[ext_resource type="Script" uid="uid://3s8kiblxuqbn" path="res://scripts/objects/marker_component.gd" id="3_6l0ri"]
 [ext_resource type="Script" uid="uid://cld64tanfoemk" path="res://scripts/objects/interaction_component.gd" id="4_6l0ri"]
 [ext_resource type="Script" uid="uid://dgjrei33rjh21" path="res://scripts/objects/pick_up_component.gd" id="5_2b612"]
 [ext_resource type="PackedScene" uid="uid://h1c7hsaq5fk2" path="res://assets/models/objects/marker.glb" id="5_p5v7q"]
@@ -35,6 +36,9 @@ script = ExtResource("4_6l0ri")
 mesh = NodePath("../marker/marker")
 context = "Marcador"
 metadata/_custom_type_script = "uid://cld64tanfoemk"
+
+[node name="MarkerComponent" type="Node" parent="InteractionComponent" unique_id=686935178]
+script = ExtResource("3_6l0ri")
 
 [node name="PickUpComponent" type="Node" parent="InteractionComponent" unique_id=83671716 node_paths=PackedStringArray("nodes_to_hide_when_picked")]
 script = ExtResource("5_2b612")

@@ -22,8 +22,9 @@ resource_local_to_scene = true
 material = SubResource("StandardMaterial3D_n80dq")
 size = Vector2(2.86, 1.64)
 
-[node name="s_tv" type="StaticBody3D" unique_id=2146555040]
+[node name="s_tv" type="StaticBody3D" unique_id=2146555040 node_paths=PackedStringArray("viewport")]
 script = ExtResource("1_m02g2")
+viewport = NodePath("SubViewport")
 
 [node name="tv" parent="." unique_id=516866463 instance=ExtResource("1_6vhty")]
 transform = Transform3D(2.6, 0, 0, 0, 2.6, 0, 0, 0, 2.6, 0, 0, 0)
