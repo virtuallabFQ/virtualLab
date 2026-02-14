@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://cu7hx13gfndjm"]
+
+[ext_resource type="Theme" uid="uid://cpa6dswqf8gcv" path="res://assets/ui/themes/theme.tres" id="1_858cb"]
+[ext_resource type="StyleBox" uid="uid://c5dj8qy5fpje7" path="res://assets/ui/themes/selector_menu/sm_style_box_flat.tres" id="2_cgv80"]
+[ext_resource type="StyleBox" uid="uid://co7ry73d3sjje" path="res://assets/ui/themes/pause_menu/pm_buttons_style_box_flat.tres" id="2_m77t0"]
+
+[node name="SelectorMenu" type="Control" unique_id=1707083553]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=465061161]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.25882354, 0.34117648, 0.43529412, 0.92156863)
+
+[node name="Panel" type="Panel" parent="ColorRect" unique_id=1430025871]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.36100003
+anchor_top = 0.083000004
+anchor_right = 0.95500004
+anchor_bottom = 0.735
+offset_left = 0.87994385
+offset_top = 0.44299316
+offset_right = 0.39990234
+offset_bottom = -0.06500244
+grow_horizontal = 0
+grow_vertical = 2
+theme = ExtResource("1_858cb")
+theme_override_styles/panel = ExtResource("2_cgv80")
+
+[node name="SelectorMenu" type="VBoxContainer" parent="." unique_id=2079606181]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.048
+anchor_top = 0.085
+anchor_right = 0.319
+anchor_bottom = 0.245
+offset_left = 0.4399948
+offset_top = -1.215004
+offset_right = -0.6800537
+offset_bottom = 0.14498901
+theme = ExtResource("1_858cb")
+
+[node name="CameraControlsButton" type="Button" parent="SelectorMenu" unique_id=13099564]
+layout_mode = 2
+theme = ExtResource("1_858cb")
+theme_override_styles/normal = ExtResource("2_m77t0")
+text = "Atividades Laboratoriais"
+
+[node name="GraphicButton" type="Button" parent="SelectorMenu" unique_id=814423008]
+layout_mode = 2
+text = "Laboratório 10º Ano"
+alignment = 0
+
+[node name="AudioButton" type="Button" parent="SelectorMenu" unique_id=417097320]
+layout_mode = 2
+text = "Laboratório 11º Ano"
+alignment = 0

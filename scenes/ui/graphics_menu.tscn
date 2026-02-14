@@ -2,7 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://cpa6dswqf8gcv" path="res://assets/ui/themes/theme.tres" id="1_2tic6"]
 [ext_resource type="FontFile" uid="uid://p38vpi7tgrq2" path="res://assets/ui/themes/static/Orbitron-Bold.ttf" id="3_276bf"]
-[ext_resource type="StyleBox" uid="uid://y1mp8cwq48aj" path="res://assets/ui/themes/graphics_menu/gm_style_box_flat.tres" id="3_jw3yj"]
+[ext_resource type="StyleBox" path="res://assets/ui/themes/graphics_menu/gm_buttons_style_box_flat.tres" id="3_lx7g7"]
 [ext_resource type="Script" uid="uid://doeqtepplpmxu" path="res://scripts/ui/scaling_button.gd" id="6_hnyu6"]
 [ext_resource type="StyleBox" uid="uid://b088b6n2srg0i" path="res://assets/ui/themes/sliders/sliders_style_box_flat.tres" id="6_jw3yj"]
 [ext_resource type="Script" uid="uid://c0hs8u8r6yowc" path="res://scripts/ui/window_button.gd" id="7_hnyu6"]
@@ -57,84 +57,84 @@ theme = ExtResource("1_2tic6")
 [node name="WindowMode" type="Button" parent="GraphicsMenuContainer" unique_id=154610140]
 layout_mode = 2
 mouse_filter = 2
-theme_override_styles/normal = ExtResource("3_jw3yj")
+theme_override_styles/normal = ExtResource("3_lx7g7")
 text = "Modo de exibição"
 alignment = 2
 
 [node name="Resolution" type="Button" parent="GraphicsMenuContainer" unique_id=992557746]
 layout_mode = 2
 mouse_filter = 2
-theme_override_styles/normal = ExtResource("3_jw3yj")
+theme_override_styles/normal = ExtResource("3_lx7g7")
 text = " Resolução do ecrã"
 alignment = 2
 
 [node name="RenderScaling" type="Button" parent="GraphicsMenuContainer" unique_id=723368726]
 layout_mode = 2
 mouse_filter = 2
-theme_override_styles/normal = ExtResource("3_jw3yj")
+theme_override_styles/normal = ExtResource("3_lx7g7")
 text = "Qualidade de renderização"
 alignment = 2
 
 [node name="ScalingMode" type="Button" parent="GraphicsMenuContainer" unique_id=132345641]
 layout_mode = 2
 mouse_filter = 2
-theme_override_styles/normal = ExtResource("3_jw3yj")
+theme_override_styles/normal = ExtResource("3_lx7g7")
 text = "Modo de renderização"
 alignment = 2
 
 [node name="FSROptions" type="Button" parent="GraphicsMenuContainer" unique_id=600460815]
 layout_mode = 2
 mouse_filter = 2
-theme_override_styles/normal = ExtResource("3_jw3yj")
+theme_override_styles/normal = ExtResource("3_lx7g7")
 text = "AMD FSR 2"
 alignment = 2
 
 [node name="AntiAliasing" type="Button" parent="GraphicsMenuContainer" unique_id=406021389]
 layout_mode = 2
 mouse_filter = 2
-theme_override_styles/normal = ExtResource("3_jw3yj")
+theme_override_styles/normal = ExtResource("3_lx7g7")
 text = "Anti-serrilhado (MSAA)"
 alignment = 2
 
 [node name="DynamicShadows" type="Button" parent="GraphicsMenuContainer" unique_id=959656044]
 layout_mode = 2
 mouse_filter = 2
-theme_override_styles/normal = ExtResource("3_jw3yj")
+theme_override_styles/normal = ExtResource("3_lx7g7")
 text = "Sombras dinâmicas"
 alignment = 2
 
 [node name="AmbientOcclusion" type="Button" parent="GraphicsMenuContainer" unique_id=432840974]
 layout_mode = 2
 mouse_filter = 2
-theme_override_styles/normal = ExtResource("3_jw3yj")
+theme_override_styles/normal = ExtResource("3_lx7g7")
 text = "Oclusão de Ambiente"
 alignment = 2
 
 [node name="Reflections" type="Button" parent="GraphicsMenuContainer" unique_id=1062609360]
 layout_mode = 2
 mouse_filter = 2
-theme_override_styles/normal = ExtResource("3_jw3yj")
+theme_override_styles/normal = ExtResource("3_lx7g7")
 text = "Reflexões"
 alignment = 2
 
 [node name="VSync" type="Button" parent="GraphicsMenuContainer" unique_id=1296762002]
 layout_mode = 2
 mouse_filter = 2
-theme_override_styles/normal = ExtResource("3_jw3yj")
+theme_override_styles/normal = ExtResource("3_lx7g7")
 text = "V-Sync"
 alignment = 2
 
 [node name="FPSLimit" type="Button" parent="GraphicsMenuContainer" unique_id=845595054]
 layout_mode = 2
 mouse_filter = 2
-theme_override_styles/normal = ExtResource("3_jw3yj")
+theme_override_styles/normal = ExtResource("3_lx7g7")
 text = "Limite de FPS"
 alignment = 2
 
 [node name="ShowFPS" type="Button" parent="GraphicsMenuContainer" unique_id=1670216591]
 layout_mode = 2
 mouse_filter = 2
-theme_override_styles/normal = ExtResource("3_jw3yj")
+theme_override_styles/normal = ExtResource("3_lx7g7")
 text = "Mostrar FPS"
 alignment = 2
 
@@ -167,7 +167,7 @@ scaling_button = NodePath("../ScalingButton")
 
 [node name="ScalingButton" type="Button" parent="GraphicsButtonsContainer" unique_id=1889137872]
 layout_mode = 2
-theme_override_styles/normal = ExtResource("3_jw3yj")
+theme_override_styles/normal = ExtResource("3_lx7g7")
 text = " "
 alignment = 0
 script = ExtResource("6_hnyu6")
@@ -242,7 +242,7 @@ script = ExtResource("12_hbob0")
 
 [node name="LimitButton" type="Button" parent="GraphicsButtonsContainer" unique_id=1008158298]
 layout_mode = 2
-theme_override_styles/normal = ExtResource("3_jw3yj")
+theme_override_styles/normal = ExtResource("3_lx7g7")
 text = " "
 alignment = 0
 script = ExtResource("10_ptuu3")

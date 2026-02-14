@@ -2,7 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://cpa6dswqf8gcv" path="res://assets/ui/themes/theme.tres" id="1_h205j"]
 [ext_resource type="FontFile" uid="uid://p38vpi7tgrq2" path="res://assets/ui/themes/static/Orbitron-Bold.ttf" id="2_3cywb"]
-[ext_resource type="StyleBox" uid="uid://y1mp8cwq48aj" path="res://assets/ui/themes/graphics_menu/gm_style_box_flat.tres" id="3_p7dxe"]
+[ext_resource type="StyleBox" path="res://assets/ui/themes/graphics_menu/gm_buttons_style_box_flat.tres" id="4_c6vkd"]
 [ext_resource type="Script" uid="uid://xybmhvfe8xuy" path="res://scripts/ui/master_button.gd" id="4_p7dxe"]
 [ext_resource type="StyleBox" uid="uid://b088b6n2srg0i" path="res://assets/ui/themes/sliders/sliders_style_box_flat.tres" id="5_maarx"]
 [ext_resource type="Script" uid="uid://h35k6llv3shd" path="res://scripts/ui/music_button.gd" id="6_c6vkd"]
@@ -48,21 +48,21 @@ theme = ExtResource("1_h205j")
 [node name="MasterVolume" type="Button" parent="AudioMenuContainer" unique_id=496418631]
 layout_mode = 2
 mouse_filter = 2
-theme_override_styles/normal = ExtResource("3_p7dxe")
+theme_override_styles/normal = ExtResource("4_c6vkd")
 text = "Volume geral"
 alignment = 2
 
 [node name="MusicVolume" type="Button" parent="AudioMenuContainer" unique_id=339331354]
 layout_mode = 2
 mouse_filter = 2
-theme_override_styles/normal = ExtResource("3_p7dxe")
+theme_override_styles/normal = ExtResource("4_c6vkd")
 text = "Volume da música"
 alignment = 2
 
 [node name="SFXVolume" type="Button" parent="AudioMenuContainer" unique_id=1801424803]
 layout_mode = 2
 mouse_filter = 2
-theme_override_styles/normal = ExtResource("3_p7dxe")
+theme_override_styles/normal = ExtResource("4_c6vkd")
 text = "Volume dos efeitos sonoros"
 alignment = 2
 
@@ -81,7 +81,7 @@ theme = ExtResource("1_h205j")
 
 [node name="MasterButton" type="Button" parent="AudioButtonsContainer" unique_id=2125272594]
 layout_mode = 2
-theme_override_styles/normal = ExtResource("3_p7dxe")
+theme_override_styles/normal = ExtResource("4_c6vkd")
 text = " "
 alignment = 0
 script = ExtResource("4_p7dxe")
@@ -117,7 +117,7 @@ theme_override_font_sizes/font_size = 20
 
 [node name="MusicButton" type="Button" parent="AudioButtonsContainer" unique_id=1474885823]
 layout_mode = 2
-theme_override_styles/normal = ExtResource("3_p7dxe")
+theme_override_styles/normal = ExtResource("4_c6vkd")
 text = " "
 alignment = 0
 script = ExtResource("6_c6vkd")
@@ -153,7 +153,7 @@ theme_override_font_sizes/font_size = 20
 
 [node name="SFXButton" type="Button" parent="AudioButtonsContainer" unique_id=1641503350]
 layout_mode = 2
-theme_override_styles/normal = ExtResource("3_p7dxe")
+theme_override_styles/normal = ExtResource("4_c6vkd")
 text = " "
 alignment = 0
 script = ExtResource("7_maarx")

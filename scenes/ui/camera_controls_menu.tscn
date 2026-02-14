@@ -2,9 +2,9 @@
 
 [ext_resource type="Theme" uid="uid://cpa6dswqf8gcv" path="res://assets/ui/themes/theme.tres" id="1_jfc1e"]
 [ext_resource type="FontFile" uid="uid://p38vpi7tgrq2" path="res://assets/ui/themes/static/Orbitron-Bold.ttf" id="2_1nrw7"]
-[ext_resource type="StyleBox" uid="uid://y1mp8cwq48aj" path="res://assets/ui/themes/graphics_menu/gm_style_box_flat.tres" id="3_s0ivt"]
 [ext_resource type="Script" uid="uid://b4j808cykyjnf" path="res://scripts/ui/fov_button.gd" id="4_1nrw7"]
 [ext_resource type="StyleBox" uid="uid://b088b6n2srg0i" path="res://assets/ui/themes/sliders/sliders_style_box_flat.tres" id="4_8j4ye"]
+[ext_resource type="StyleBox" path="res://assets/ui/themes/graphics_menu/gm_buttons_style_box_flat.tres" id="6_8j4ye"]
 [ext_resource type="Script" uid="uid://dhv6irtwt1oxi" path="res://scripts/ui/sensitivity_button.gd" id="6_s0ivt"]
 
 [node name="CameraControlsMenu" type="Control" unique_id=597259662]
@@ -47,14 +47,14 @@ theme = ExtResource("1_jfc1e")
 [node name="FOV" type="Button" parent="CameraControlsMenuContainer" unique_id=947732901]
 layout_mode = 2
 mouse_filter = 2
-theme_override_styles/normal = ExtResource("3_s0ivt")
+theme_override_styles/normal = ExtResource("6_8j4ye")
 text = "Campo de visão"
 alignment = 2
 
 [node name="Sensitivity" type="Button" parent="CameraControlsMenuContainer" unique_id=1852507390]
 layout_mode = 2
 mouse_filter = 2
-theme_override_styles/normal = ExtResource("3_s0ivt")
+theme_override_styles/normal = ExtResource("6_8j4ye")
 text = "Sensibilidade da câmara"
 alignment = 2
 
@@ -73,7 +73,7 @@ theme = ExtResource("1_jfc1e")
 
 [node name="FOVButton" type="Button" parent="CameraControlsButtonsContainer" unique_id=1548769136]
 layout_mode = 2
-theme_override_styles/normal = ExtResource("3_s0ivt")
+theme_override_styles/normal = ExtResource("6_8j4ye")
 text = " "
 alignment = 0
 script = ExtResource("4_1nrw7")
@@ -108,7 +108,7 @@ theme_override_font_sizes/font_size = 20
 
 [node name="SensitivityButton" type="Button" parent="CameraControlsButtonsContainer" unique_id=33742812]
 layout_mode = 2
-theme_override_styles/normal = ExtResource("3_s0ivt")
+theme_override_styles/normal = ExtResource("6_8j4ye")
 text = " "
 alignment = 0
 script = ExtResource("6_s0ivt")

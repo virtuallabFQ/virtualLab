@@ -4,7 +4,7 @@
 [ext_resource type="Theme" uid="uid://cpa6dswqf8gcv" path="res://assets/ui/themes/theme.tres" id="1_8uki6"]
 [ext_resource type="StyleBox" uid="uid://bn4ch6u0l0knm" path="res://assets/ui/themes/options_menu/om_style_box_flat.tres" id="2_0bnpd"]
 [ext_resource type="FontFile" uid="uid://p38vpi7tgrq2" path="res://assets/ui/themes/static/Orbitron-Bold.ttf" id="3_4inpj"]
-[ext_resource type="StyleBox" uid="uid://co7ry73d3sjje" path="res://assets/ui/themes/pause_menu/pm_style_box_flat.tres" id="4_8uki6"]
+[ext_resource type="StyleBox" uid="uid://co7ry73d3sjje" path="res://assets/ui/themes/pause_menu/pm_buttons_style_box_flat.tres" id="5_2rlsb"]
 [ext_resource type="StyleBox" uid="uid://barmgdt4qf17i" path="res://assets/ui/themes/pause_menu/pm_hover_style_box_flat.tres" id="6_2rlsb"]
 [ext_resource type="PackedScene" uid="uid://dmkdd5agrf8b4" path="res://scenes/ui/options_menu.tscn" id="6_8fwbo"]
 
@@ -460,22 +460,22 @@ horizontal_alignment = 1
 [node name="ResumeButton" type="Button" parent="PauseMenu" unique_id=1017626871]
 layout_mode = 2
 theme = ExtResource("1_8uki6")
-theme_override_styles/normal = ExtResource("4_8uki6")
-theme_override_styles/pressed = ExtResource("4_8uki6")
+theme_override_styles/normal = ExtResource("5_2rlsb")
+theme_override_styles/pressed = ExtResource("5_2rlsb")
 theme_override_styles/hover = ExtResource("6_2rlsb")
 text = "Retomar"
 
 [node name="OptionsButton" type="Button" parent="PauseMenu" unique_id=1004389609]
 layout_mode = 2
-theme_override_styles/normal = ExtResource("4_8uki6")
-theme_override_styles/pressed = ExtResource("4_8uki6")
+theme_override_styles/normal = ExtResource("5_2rlsb")
+theme_override_styles/pressed = ExtResource("5_2rlsb")
 theme_override_styles/hover = ExtResource("6_2rlsb")
 text = "Opções"
 
 [node name="QuitButton" type="Button" parent="PauseMenu" unique_id=1368756138]
 layout_mode = 2
-theme_override_styles/normal = ExtResource("4_8uki6")
-theme_override_styles/pressed = ExtResource("4_8uki6")
+theme_override_styles/normal = ExtResource("5_2rlsb")
+theme_override_styles/pressed = ExtResource("5_2rlsb")
 theme_override_styles/hover = ExtResource("6_2rlsb")
 text = "Sair"
 

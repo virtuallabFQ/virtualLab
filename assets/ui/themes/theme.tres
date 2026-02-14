@@ -4,7 +4,7 @@
 [ext_resource type="StyleBox" uid="uid://cnvdkv8knofnr" path="res://assets/ui/themes/main_menu/mm_disabled_style_box_flat.tres" id="1_pjqor"]
 [ext_resource type="StyleBox" uid="uid://dtlar1eoaq402" path="res://assets/ui/themes/main_menu/mm_buttons_style_box_flat.tres" id="2_pjqor"]
 [ext_resource type="FontFile" uid="uid://c0no1sl740s7j" path="res://assets/ui/themes/static/Orbitron-SemiBold.ttf" id="4_jdu6d"]
-[ext_resource type="StyleBox" uid="uid://bn4ch6u0l0knm" path="res://assets/ui/themes/options_menu/om_style_box_flat.tres" id="4_pjqor"]
+[ext_resource type="StyleBox" uid="uid://c5dj8qy5fpje7" path="res://assets/ui/themes/selector_menu/sm_style_box_flat.tres" id="4_pjqor"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mx04g"]
 content_margin_top = 5.0

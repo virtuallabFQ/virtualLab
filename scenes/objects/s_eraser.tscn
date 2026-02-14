@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://do5mn3e3nv6t8"]
+
+[ext_resource type="PackedScene" uid="uid://c33mba2kv2i4v" path="res://assets/models/objects/eraser.glb" id="1_qosai"]
+[ext_resource type="Script" uid="uid://cld64tanfoemk" path="res://scripts/objects/interaction_component.gd" id="2_rae7b"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qosai"]
+size = Vector3(8.05729, 1.8077259, 3.1466818)
+
+[node name="s_eraser" type="StaticBody3D" unique_id=694063535]
+
+[node name="eraser" parent="." unique_id=190342613 instance=ExtResource("1_qosai")]
+transform = Transform3D(0.05, 0, 0, 0, -2.1855695e-09, 0.05, 0, -0.05, -2.1855695e-09, 0, 0, 0)
+
+[node name="c_eraser" type="CollisionShape3D" parent="." unique_id=64229011]
+transform = Transform3D(0.05, 0, 0, 0, -2.1855695e-09, 0.05, 0, -0.05, -2.1855695e-09, 0.14635645, -0.022956565, -0.048694823)
+shape = SubResource("BoxShape3D_qosai")
+
+[node name="InteractionComponent" type="Node" parent="." unique_id=836217583 node_paths=PackedStringArray("mesh")]
+script = ExtResource("2_rae7b")
+mesh = NodePath("../eraser/eraser")
+context = "Apagar"
+metadata/_custom_type_script = "uid://cld64tanfoemk"
+
+[editable path="eraser"]

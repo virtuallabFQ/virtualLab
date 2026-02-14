@@ -1,11 +1,29 @@
 [gd_scene format=3 uid="uid://bcxkmmjec22rv"]
 
 [ext_resource type="PackedScene" uid="uid://t0xpoujs4v0a" path="res://assets/models/objects/tv.glb" id="1_6vhty"]
+[ext_resource type="Script" uid="uid://cr5rmwlwdsyn4" path="res://scripts/objects/s_tv.gd" id="1_m02g2"]
+[ext_resource type="PackedScene" uid="uid://cu7hx13gfndjm" path="res://scenes/ui/selector_menu.tscn" id="2_n80dq"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_6vhty"]
 size = Vector3(1.12, 0.6611718, 0.06342701)
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_n80dq"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n80dq"]
+resource_local_to_scene = true
+transparency = 1
+shading_mode = 0
+albedo_texture = SubResource("ViewportTexture_n80dq")
+proximity_fade_distance = 27.2
+
+[sub_resource type="QuadMesh" id="QuadMesh_m02g2"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_n80dq")
+size = Vector2(2.86, 1.64)
+
 [node name="s_tv" type="StaticBody3D" unique_id=2146555040]
+script = ExtResource("1_m02g2")
 
 [node name="tv" parent="." unique_id=516866463 instance=ExtResource("1_6vhty")]
 transform = Transform3D(2.6, 0, 0, 0, 2.6, 0, 0, 0, 2.6, 0, 0, 0)
@@ -13,3 +31,18 @@ transform = Transform3D(2.6, 0, 0, 0, 2.6, 0, 0, 0, 2.6, 0, 0, 0)
 [node name="c_tv" type="CollisionShape3D" parent="." unique_id=474664542]
 transform = Transform3D(2.6, 0, 0, 0, 2.6, 0, 0, 0, 2.6, -0.0001958847, 0.014278972, -0.023445696)
 shape = SubResource("BoxShape3D_6vhty")
+
+[node name="UILayer" type="MeshInstance3D" parent="." unique_id=1992025607]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02783966, 0.057006836)
+mesh = SubResource("QuadMesh_m02g2")
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=1623892934]
+process_mode = 3
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(1920, 1080)
+render_target_update_mode = 4
+
+[node name="SelectorMenu" parent="SubViewport" unique_id=1707083553 instance=ExtResource("2_n80dq")]
+
+[editable path="tv"]
