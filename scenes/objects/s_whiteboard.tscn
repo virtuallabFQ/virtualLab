@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://c6qrgou1up25p"]
 
 [ext_resource type="PackedScene" uid="uid://c5s3rlb4urkjm" path="res://assets/models/objects/whiteboard.glb" id="1_4y1ow"]
+[ext_resource type="Script" uid="uid://dbtfmwmrrwymk" path="res://scripts/objects/s_whiteboard.gd" id="1_st222"]
+[ext_resource type="Script" uid="uid://8lsi2rpnn1mu" path="res://scripts/objects/canvas_draw.gd" id="3_ippui"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4y1ow"]
 size = Vector3(2.9962106, 0.04575877, 1.7606922)
@@ -8,10 +10,28 @@ size = Vector3(2.9962106, 0.04575877, 1.7606922)
 [sub_resource type="BoxShape3D" id="BoxShape3D_blnyi"]
 size = Vector3(1.4341576, 0.071689054, 0.011259425)
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_blnyi"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_blnyi"]
+resource_local_to_scene = true
+transparency = 1
+shading_mode = 0
+albedo_texture = SubResource("ViewportTexture_blnyi")
+
+[sub_resource type="QuadMesh" id="QuadMesh_blnyi"]
+material = SubResource("StandardMaterial3D_blnyi")
+flip_faces = true
+size = Vector2(2.86, 1.635)
+center_offset = Vector3(0, 0, -0.02)
+
 [node name="s_whiteboard" type="StaticBody3D" unique_id=1364619320]
+script = ExtResource("1_st222")
 
 [node name="whiteboard" parent="." unique_id=675780137 instance=ExtResource("1_4y1ow")]
-transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 0, 0, 0)
+
+[node name="whiteboard" parent="whiteboard" index="0" unique_id=1291627984]
+transform = Transform3D(1, 0, 0, 0, -1.0490733e-09, 0.879, 0, -0.024, -3.842231e-08, 0, 0, 0)
 
 [node name="c1_whiteboard" type="CollisionShape3D" parent="." unique_id=1367163535]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, -0.00036342055, 0.0013172701)
@@ -20,3 +40,18 @@ shape = SubResource("BoxShape3D_4y1ow")
 [node name="c2_whiteboard" type="CollisionShape3D" parent="." unique_id=2060613652]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0.025672555, -0.8501485, -0.057769693)
 shape = SubResource("BoxShape3D_blnyi")
+
+[node name="DrawLayer" type="MeshInstance3D" parent="." unique_id=532469528]
+mesh = SubResource("QuadMesh_blnyi")
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=2127309380]
+process_mode = 3
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(1920, 1080)
+render_target_update_mode = 4
+
+[node name="CanvasDraw" type="Node2D" parent="SubViewport" unique_id=797347354]
+script = ExtResource("3_ippui")
+
+[editable path="whiteboard"]

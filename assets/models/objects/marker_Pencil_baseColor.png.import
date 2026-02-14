@@ -2,7 +2,7 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c66lp3xnw3xe7"
+uid="uid://c68dpx8vphc45"
 path.s3tc="res://.godot/imported/marker_Pencil_baseColor.png-0355267b66ee45579ff9dd8b6fec47f4.s3tc.ctex"
 path.etc2="res://.godot/imported/marker_Pencil_baseColor.png-0355267b66ee45579ff9dd8b6fec47f4.etc2.ctex"
 metadata={
@@ -10,7 +10,7 @@ metadata={
 "vram_texture": true
 }
 generator_parameters={
-"md5": "b5238f4bc625b71dc421c5fa6e500f91"
+"md5": "aecc451ca6f65deddbc7eae44762a76a"
 }
 
 [deps]

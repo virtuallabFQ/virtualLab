@@ -39,6 +39,7 @@ var rotation_input : float
 var tilt_input : float
 var mouse_rotation : Vector3
 var interact_cast_result
+var held_object : Node3D = null
 
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
