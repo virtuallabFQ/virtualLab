@@ -1,7 +1,7 @@
 extends Node2D
 
-var lines = []
-var current_line = []
+var lines: Array[PackedVector2Array] = []
+var current_line: PackedVector2Array = PackedVector2Array()
 var current_eraser_line : Line2D
 
 var is_drawing = false

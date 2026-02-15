@@ -14,4 +14,4 @@ func update(delta: float) -> void:
 		
 	if player.is_on_floor():
 		animation.play("jump_end")
-		transition.emit("IdleState")
+		transition.emit(&"IdleState")

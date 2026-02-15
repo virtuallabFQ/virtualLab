@@ -12,7 +12,4 @@ func on_pressed() -> void:
 	get_tree().call_group("FPS_DISPLAY_GROUP", "update_visibility", show_fps_enabled)
 
 func update_button_text() -> void:
-	if show_fps_enabled:
-		text = "Ligado"
-	else:
-		text = "Desligado"
+	text = "Ligado" if show_fps_enabled else "Desligado"

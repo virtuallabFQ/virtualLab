@@ -5,7 +5,7 @@ func _ready():
 	update_visibility(ShowButton.show_fps_enabled)
 
 func _process(_delta):
-	text = str(int(Engine.get_frames_per_second())) + " FPS"
+	text = "%d FPS" % Engine.get_frames_per_second()
 
 func update_visibility(state: bool) -> void:
 	visible = state

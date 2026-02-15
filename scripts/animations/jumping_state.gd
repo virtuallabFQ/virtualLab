@@ -17,7 +17,7 @@ func update(delta):
 			
 	if player.is_on_floor():
 		if Input.is_action_pressed("crouch"):
-			transition.emit("CrouchingState")
+			transition.emit(&"CrouchingState")
 		else:
 			animation.play("jump_end")
-			transition.emit("IdleState")
+			transition.emit(&"IdleState")

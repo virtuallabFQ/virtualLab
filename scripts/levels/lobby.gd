@@ -1,4 +1,4 @@
-extends Node3D
+class_name Lobby extends Node3D
 
-func _ready():
+func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE

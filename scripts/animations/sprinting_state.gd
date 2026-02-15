@@ -20,13 +20,13 @@ func update(delta):
 	set_animation_speed(player.velocity.length())
 	
 	if Input.is_action_just_released("sprint"):
-		transition.emit("WalkingState")
+		transition.emit(&"WalkingState")
 		
 	if Input.is_action_just_pressed("jump") and player.is_on_floor():
-		transition.emit("JumpingState")
+		transition.emit(&"JumpingState")
 		
 	if player.velocity.y > -3.0 and !player.is_on_floor():
-		transition.emit("FallingState")
+		transition.emit(&"FallingState")
 
 func set_animation_speed(spd) -> void:
 	var alpha = remap(spd, 0.0, speed, 0.0, 1.0)

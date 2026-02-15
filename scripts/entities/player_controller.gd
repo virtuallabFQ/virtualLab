@@ -23,36 +23,36 @@ class_name PlayerController extends CharacterBody3D
 @export var toggle_crouch : bool = true
 
 @export_group("Movement Input")
-@export var input_left : String = "ui_left"
-@export var input_right : String = "ui_right"
-@export var input_forward : String = "ui_up"
-@export var input_back : String = "ui_down"
-@export var input_jump : String = "ui_accept"
-@export var input_sprint : String = "sprint"
-@export var input_crouch : String = "crouch"
-@export var input_freefly : String = "freefly"
+@export var input_left: StringName = &"ui_left"
+@export var input_right: StringName = &"ui_right"
+@export var input_forward: StringName = &"ui_up"
+@export var input_back: StringName = &"ui_down"
+@export var input_jump: StringName = &"ui_accept"
+@export var input_sprint: StringName = &"sprint"
+@export var input_crouch: StringName = &"crouch"
+@export var input_freefly: StringName = &"freefly"
+
+@onready var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity") as float
 
 var speed : float
 var crouching : bool = false
 var mouse_input : bool = false
-var rotation_input : float
-var tilt_input : float
-var mouse_rotation : Vector3
-var interact_cast_result
+var rotation_input: float = 0.0
+var tilt_input: float = 0.0
+var mouse_rotation: Vector3 = Vector3.ZERO
+var interact_cast_result: Node3D = null
 var held_object : Node3D = null
-
-var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func _ready():
 	Global.player = self
-	camera.fov = Global.player_fov
+	if camera: camera.fov = Global.player_fov
 	
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	speed = speed_default ##
-	crouch_shapecast.add_exception($".")
+	crouch_shapecast.add_exception(self)
 
 func _unhandled_input(event: InputEvent) -> void:
-	mouse_input = event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED
+	mouse_input = event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED
 	if mouse_input:
 		rotation_input = -event.relative.x * Global.mouse_sensitivity
 		tilt_input = -event.relative.y * Global.mouse_sensitivity
@@ -72,8 +72,8 @@ func _update_camera(_delta):
 	tilt_input = 0.0
 
 func update_camera_settings():
-	if Camera3D:
-		Camera3D.fov = Global.player_fov
+	if camera:
+		camera.fov = Global.player_fov
 
 func update_gravity(delta) -> void:
 	velocity.y -= gravity * delta

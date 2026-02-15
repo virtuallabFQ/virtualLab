@@ -23,7 +23,7 @@ func uncrouch():
 		animation.play("crouch", -1.0 ,-crouch_speed * 1.5, true)
 		if animation.is_playing():
 			await animation.animation_finished
-		transition.emit("IdleState")
+		transition.emit(&"IdleState")
 	elif crouch_shapecast.is_colliding() == true:
 		await get_tree().create_timer(0.1).timeout
 		uncrouch()

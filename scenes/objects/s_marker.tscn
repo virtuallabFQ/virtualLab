@@ -40,12 +40,12 @@ metadata/_custom_type_script = "uid://cld64tanfoemk"
 [node name="MarkerComponent" type="Node" parent="InteractionComponent" unique_id=686935178]
 script = ExtResource("3_6l0ri")
 
-[node name="PickUpComponent" type="Node" parent="InteractionComponent" unique_id=83671716 node_paths=PackedStringArray("nodes_to_hide_when_picked")]
+[node name="PickUpComponent" type="Node" parent="InteractionComponent" unique_id=83671716 node_paths=PackedStringArray("hide_nodes")]
 script = ExtResource("5_2b612")
 pickup_distance = Vector3(0.3, -0.1, -0.35)
-pickup_rotation_degrees = Vector3(5, 5, 0)
+pickup_rotation = null
 collision_margin = 0.35
-nodes_to_hide_when_picked = [NodePath("../../marker/cap"), NodePath("../../c_cap")]
+hide_nodes = [NodePath("../../marker/cap"), NodePath("../../c_cap")]
 metadata/_custom_type_script = "uid://dgjrei33rjh21"
 
 [editable path="marker"]
