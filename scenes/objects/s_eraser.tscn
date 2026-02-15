@@ -9,21 +9,20 @@ size = Vector3(5.14534, 1.0947905, 1.9529335)
 
 [node name="s_eraser" type="AnimatableBody3D" unique_id=1958677432]
 
-[node name="eraser" parent="." unique_id=1935398423 instance=ExtResource("1_qosai")]
+[node name="eraser" parent="." unique_id=1270835633 instance=ExtResource("1_qosai")]
 transform = Transform3D(0.05, 0, 0, 0, -2.1855695e-09, 0.05, 0, -0.05, -2.1855695e-09, 0, 0, 0)
 
-[node name="c_eraser" type="CollisionShape3D" parent="." unique_id=1614975391]
-transform = Transform3D(0.05, 0, 0, 0, -2.1855695e-09, 0.05, 0, -0.05, -2.1855695e-09, 0.15847433, -0.03413655, -0.028907742)
+[node name="c_eraser" type="CollisionShape3D" parent="." unique_id=1951407042]
+transform = Transform3D(0.05, 0, 0, 0, -2.1855695e-09, 0.05, 0, -0.05, -2.1855695e-09, -0.006984699, -0.00088776747, -0.02250663)
 shape = SubResource("BoxShape3D_go4dp")
 
 [node name="InteractionComponent" type="Node" parent="." unique_id=836217583 node_paths=PackedStringArray("mesh")]
 script = ExtResource("2_rae7b")
 mesh = NodePath("../eraser/eraser")
-context = "Apagar"
+context = "Apagador"
 metadata/_custom_type_script = "uid://cld64tanfoemk"
 
 [node name="EraseComponent" type="Node" parent="InteractionComponent" unique_id=1883350796]
 script = ExtResource("3_go4dp")
-eraser_facing = 1
 
 [editable path="eraser"]
