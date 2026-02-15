@@ -1,60 +1,35 @@
 class_name DoorComponent extends Node
 
-enum DoorType {sliding, rotating}
-enum DoorStatus {open, closed}
+enum DoorType {SLIDING, ROTATING}
 
-@export var door_type : DoorType
-@export var door_size : Vector3
-@export var movement_direction : Vector3
-@export var rotation : Vector3 = Vector3(0,1,0)
-@export var rotation_amount : float = 90.0
-@export var close_automatically : bool = false
-@export var close_time : float = 2.0
-@export var speed : float = 0.5
-@export var transition : Tween.TransitionType
-@export var easing : Tween.EaseType
+@export var door_type: DoorType
+@export var door_size: Vector3
+@export var movement_direction: Vector3
+@export var rotation := Vector3(0, 1, 0)
+@export var rotation_amount := 90.0
+@export var close_automatically := false
+@export var close_time := 2.0
+@export var speed := 0.5
+@export var transition: Tween.TransitionType
+@export var easing: Tween.EaseType
 
-var parent : Node3D
-var orig_pos : Vector3
-var orig_rot : Vector3
-var door_status : DoorStatus = DoorStatus.closed
+var parent: Node3D 
+var is_open := false 
+var property: StringName
+var closed_value: Vector3 
+var open_value: Vector3
+var current_tween: Tween
 
 func _ready() -> void:
-	parent = get_parent()
-	orig_pos = parent.position
-	orig_rot = parent.rotation
-	parent.ready.connect(connect_parent)
+	parent = get_parent() as Node3D; if not parent: return
+	property = &"position" if door_type == DoorType.SLIDING else &"rotation"
+	closed_value = parent.get(property)
+	open_value = closed_value + (movement_direction * door_size if door_type == DoorType.SLIDING else rotation * deg_to_rad(rotation_amount))
+	await parent.ready; parent.connect(&"interacted", _toggle)
 
-func connect_parent() -> void:
-	parent.connect("interacted", Callable(self, "check_door"))
-
-func open_door() -> void:
-	door_status = DoorStatus.open
-	var tween = get_tree().create_tween()
-	match door_type:
-		DoorType.sliding:
-			tween.tween_property(parent, "position", orig_pos + (movement_direction * door_size), speed).set_trans(transition).set_ease(easing)
-	match door_type:
-		DoorType.rotating:
-			tween.tween_property(parent, "rotation", orig_rot + (rotation * deg_to_rad(rotation_amount)), speed).set_trans(transition).set_ease(easing)
-	
-	if close_automatically:
-		tween.tween_interval(close_time)
-		tween.tween_callback(close_door)
-
-func close_door() -> void:
-	door_status = DoorStatus.closed
-	var tween = get_tree().create_tween()
-	match door_type:
-		DoorType.sliding:
-			tween.tween_property(parent, "position", orig_pos, speed).set_trans(transition).set_ease(easing)
-	match door_type:
-		DoorType.rotating:
-			tween.tween_property(parent, "rotation", orig_rot, speed).set_trans(transition).set_ease(easing)
-			
-func check_door() -> void:
-	match door_status:
-		DoorStatus.closed:
-			open_door()
-		DoorStatus.open:
-			close_door()
+func _toggle() -> void:
+	is_open = not is_open
+	if current_tween: current_tween.kill()
+	current_tween = create_tween().set_trans(transition).set_ease(easing)
+	current_tween.tween_property(parent, NodePath(property), open_value if is_open else closed_value, speed)
+	if is_open and close_automatically: current_tween.tween_interval(close_time); current_tween.tween_callback(_toggle)

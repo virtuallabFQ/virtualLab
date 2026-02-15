@@ -7,6 +7,8 @@ extends StaticBody3D
 @export var board_width: float = 2.86
 @export var board_height: float = 1.635
 
+var last_erase_frame: int = -100
+
 func _ready():
 	viewport.transparent_bg = true
 	var paint_material = StandardMaterial3D.new()
@@ -20,6 +22,17 @@ func _get_2d_pos(hit_position_global: Vector3) -> Vector2:
 	var mapped_x = ((local_hit.x / board_width) + 0.5) * viewport.size.x
 	var mapped_y = (0.5 - (local_hit.y / board_height)) * viewport.size.y
 	return Vector2(mapped_x, mapped_y)
+	
+func erase(hit_pos: Vector3):
+	var pos_2d = _get_2d_pos(hit_pos)
+	var current_frame = Engine.get_physics_frames()
+	
+	if current_frame - last_erase_frame < 10:
+		canvas_draw.add_point(pos_2d)
+	else:
+		canvas_draw.stop_drawing()
+		canvas_draw.start_erasing(pos_2d)
+	last_erase_frame = current_frame
 
 func interact_draw(hit_pos: Vector3, pressed: bool, released: bool):
 	if released: return canvas_draw.stop_drawing()

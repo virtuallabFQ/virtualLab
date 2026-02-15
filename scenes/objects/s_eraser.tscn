@@ -4,17 +4,17 @@
 [ext_resource type="Script" uid="uid://cld64tanfoemk" path="res://scripts/objects/interaction_component.gd" id="2_rae7b"]
 [ext_resource type="Script" uid="uid://1xp0s2ih1o2u" path="res://scripts/objects/erase_component.gd" id="3_go4dp"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_qosai"]
-size = Vector3(8.05729, 1.8077259, 3.1466818)
+[sub_resource type="BoxShape3D" id="BoxShape3D_go4dp"]
+size = Vector3(5.14534, 1.0947905, 1.9529335)
 
 [node name="s_eraser" type="AnimatableBody3D" unique_id=1958677432]
 
-[node name="eraser" parent="." unique_id=66146604 instance=ExtResource("1_qosai")]
+[node name="eraser" parent="." unique_id=1935398423 instance=ExtResource("1_qosai")]
 transform = Transform3D(0.05, 0, 0, 0, -2.1855695e-09, 0.05, 0, -0.05, -2.1855695e-09, 0, 0, 0)
 
-[node name="c_eraser" type="CollisionShape3D" parent="." unique_id=64229011]
-transform = Transform3D(0.05, 0, 0, 0, -2.1855695e-09, 0.05, 0, -0.05, -2.1855695e-09, 0.14635645, -0.022956565, -0.048694823)
-shape = SubResource("BoxShape3D_qosai")
+[node name="c_eraser" type="CollisionShape3D" parent="." unique_id=1614975391]
+transform = Transform3D(0.05, 0, 0, 0, -2.1855695e-09, 0.05, 0, -0.05, -2.1855695e-09, 0.15847433, -0.03413655, -0.028907742)
+shape = SubResource("BoxShape3D_go4dp")
 
 [node name="InteractionComponent" type="Node" parent="." unique_id=836217583 node_paths=PackedStringArray("mesh")]
 script = ExtResource("2_rae7b")
@@ -24,5 +24,6 @@ metadata/_custom_type_script = "uid://cld64tanfoemk"
 
 [node name="EraseComponent" type="Node" parent="InteractionComponent" unique_id=1883350796]
 script = ExtResource("3_go4dp")
+eraser_facing = 1
 
 [editable path="eraser"]

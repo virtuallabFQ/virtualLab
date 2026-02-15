@@ -1,8 +1,6 @@
 extends Node2D
 
-var lines: Array[PackedVector2Array] = []
-var current_line: PackedVector2Array = PackedVector2Array()
-var current_eraser_line : Line2D
+var current_line_node: Line2D # Variável única para a linha atual (seja caneta ou borracha)
 
 var is_drawing = false
 var is_erasing = false
@@ -10,53 +8,61 @@ var is_erasing = false
 var brush_color = Color.BLACK
 var brush_size = 6.0
 
+# Removemos a função _draw() antiga porque causava o problema de camadas
 func _draw():
-	for line in lines:
-		if line.size() > 1:
-			draw_polyline(line, brush_color, brush_size, true)
-	
-	if current_line.size() > 1:
-		draw_polyline(current_line, brush_color, brush_size, true)
+	pass
 
 func start_drawing(pos: Vector2):
+	stop_drawing() # Fecha qualquer linha anterior
+	
 	is_drawing = true
 	is_erasing = false
-	current_line = PackedVector2Array([pos])
-	queue_redraw()
+	
+	# AGORA A CANETA CRIA UM NÓ REAL, tal como o apagador
+	current_line_node = Line2D.new()
+	current_line_node.width = brush_size
+	current_line_node.default_color = brush_color
+	
+	# Deixar as pontas redondinhas para ficar bonito
+	current_line_node.begin_cap_mode = Line2D.LINE_CAP_ROUND
+	current_line_node.end_cap_mode = Line2D.LINE_CAP_ROUND
+	current_line_node.joint_mode = Line2D.LINE_JOINT_ROUND
+	current_line_node.antialiased = true
+	
+	add_child(current_line_node)
+	current_line_node.add_point(pos)
 
 func start_erasing(pos: Vector2):
+	stop_drawing()
+	
 	is_erasing = true
 	is_drawing = false
 	
-	current_eraser_line = Line2D.new()
-	current_eraser_line.width = brush_size * 8.0 
-	current_eraser_line.begin_cap_mode = Line2D.LINE_CAP_ROUND
-	current_eraser_line.end_cap_mode = Line2D.LINE_CAP_ROUND
-	current_eraser_line.joint_mode = Line2D.LINE_JOINT_ROUND
-	current_eraser_line.antialiased = true
+	current_line_node = Line2D.new()
+	current_line_node.width = brush_size * 12.0 # Borracha maior que a caneta
 	
+	current_line_node.begin_cap_mode = Line2D.LINE_CAP_ROUND
+	current_line_node.end_cap_mode = Line2D.LINE_CAP_ROUND
+	current_line_node.joint_mode = Line2D.LINE_JOINT_ROUND
+	current_line_node.antialiased = true
+	
+	# Material de "Subtração" para apagar
 	var eraser_mat = CanvasItemMaterial.new()
 	eraser_mat.blend_mode = CanvasItemMaterial.BLEND_MODE_SUB
-	current_eraser_line.material = eraser_mat
-	current_eraser_line.default_color = Color.WHITE 
+	current_line_node.material = eraser_mat
 	
-	add_child(current_eraser_line)
-	current_eraser_line.add_point(pos)
+	# Nota: No modo SUB, a cor branca significa "apagar 100%"
+	current_line_node.default_color = Color(1, 1, 1, 1) 
+	
+	add_child(current_line_node)
+	current_line_node.add_point(pos)
 
 func add_point(pos: Vector2):
-	if is_drawing:
-		current_line.append(pos)
-		queue_redraw()
-	elif is_erasing and current_eraser_line:
-		current_eraser_line.add_point(pos)
+	# Agora usamos a mesma lógica para ambos
+	if (is_drawing or is_erasing) and is_instance_valid(current_line_node):
+		current_line_node.add_point(pos)
 
 func stop_drawing():
-	if is_drawing:
-		if current_line.size() > 1:
-			lines.append(current_line)
-		current_line = []
-		
 	is_drawing = false
 	is_erasing = false
-	current_eraser_line = null
-	queue_redraw()
+	current_line_node = null
