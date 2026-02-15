@@ -104,7 +104,7 @@ mesh = NodePath("../handle")
 context = "Voltar"
 metadata/_custom_type_script = "uid://cld64tanfoemk"
 
-[node name="SceneChangeComponent" type="Node" parent="InteractionComponent" unique_id=842394761 node_paths=PackedStringArray("interaction_component")]
+[node name="SceneChangeComponent" type="Node" parent="InteractionComponent" unique_id=842394761 node_paths=PackedStringArray("interact_component")]
 script = ExtResource("2_jpjn4")
-interaction_component = NodePath("..")
-target_scene_path = "uid://dejy6xmx0jom4"
+interact_component = NodePath("..")
+scene_path = "uid://dejy6xmx0jom4"
