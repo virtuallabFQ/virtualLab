@@ -14,7 +14,7 @@ enum DoorStatus {open, closed}
 @export var transition : Tween.TransitionType
 @export var easing : Tween.EaseType
 
-var parent
+var parent : Node3D
 var orig_pos : Vector3
 var orig_rot : Vector3
 var door_status : DoorStatus = DoorStatus.closed

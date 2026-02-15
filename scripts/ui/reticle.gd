@@ -1,3 +1,4 @@
+@tool
 extends CenterContainer
 
 @export var DOT_RADIUS : float = 3.0 

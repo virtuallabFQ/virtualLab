@@ -1,9 +1,7 @@
-extends StaticBody3D
+extends MeshInstance3D
 
-@onready var canvas_draw = $SubViewport/CanvasDraw
-@onready var viewport = $SubViewport
-@onready var draw_layer = $DrawLayer
-
+@export var viewport : SubViewport
+@export var canvas_draw : Node2D
 @export var board_width: float = 2.86
 @export var board_height: float = 1.635
 
@@ -13,7 +11,7 @@ func _ready():
 	paint_material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
 	paint_material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
 	paint_material.albedo_texture = viewport.get_texture()
-	draw_layer.material_override = paint_material
+	self.material_override = paint_material
 
 func _get_2d_pos(hit_position_global: Vector3) -> Vector2:
 	var local_hit = to_local(hit_position_global)

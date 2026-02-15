@@ -18,88 +18,36 @@ func _ready() -> void:
 	await transition_controller.animation_player.animation_finished
 	is_transitioning = false
 
-func change_3d_scene(
-		new_scene: String,
-		delete: bool = true,
-		keep_running: bool = false,
-		transition: bool = true,
-		transition_in: String = "fade_in",
-		transition_out: String = "fade_out",
-		seconds: float = 1.0
-	) -> void:
-	is_transitioning = true
-	if transition:
-		transition_controller.transition(transition_out, seconds)
-		await transition_controller.animation_player.animation_finished
-	if current_3d_scene != null:
-		if delete:
-			current_3d_scene.queue_free()
-		elif keep_running:
-			current_3d_scene.visible = false
-		else:
-			gui.remove_child(current_3d_scene)
-	var new = load(new_scene).instantiate()
-	world_3d.add_child(new)
-	current_3d_scene = new
-	transition_controller.transition(transition_in, seconds)
-	
-	if transition:
-		await transition_controller.animation_player.animation_finished
-	is_transitioning = false
+func change_3d_scene(new_scene: String, delete:= true, keep_running:= false, transition:= true, t_in:= "fade_in", t_out:= "fade_out", secs:= 1.0) -> void:
+	current_3d_scene = await perform_scene_change(world_3d, current_3d_scene, new_scene, delete, keep_running, transition, t_in, t_out, secs)
 
-func change_2d_scene(
-		new_scene: String,
-		delete: bool = true,
-		keep_running: bool = false,
-		transition: bool = true,
-		transition_in: String = "fade_in",
-		transition_out: String = "fade_out",
-		seconds: float = 1.0
-	) -> void:
-	is_transitioning = true
-	if transition:
-		transition_controller.transition(transition_out, seconds)
-		await transition_controller.animation_player.animation_finished
-	if delete:
-		current_2d_scene.queue_free()
-	elif keep_running:
-		current_2d_scene.visible = false
-	else:
-		gui.remove_child(current_2d_scene)
-	var new = load(new_scene).instantiate()
-	world_2d.add_child(new)
-	current_2d_scene = new
-	transition_controller.transition(transition_in, seconds)
-	
-	if transition:
-		await transition_controller.animation_player.animation_finished
-	is_transitioning = false
+func change_2d_scene(new_scene: String, delete:= true, keep_running:= false, transition:= true, t_in:= "fade_in", t_out:= "fade_out", secs:= 1.0) -> void:
+	current_2d_scene = await perform_scene_change(world_2d, current_2d_scene, new_scene, delete, keep_running, transition, t_in, t_out, secs)
 
-func change_gui_scene(
-		new_scene: String,
-		delete: bool = true,
-		keep_running: bool = false,
-		transition: bool = true,
-		transition_in: String = "fade_in",
-		transition_out: String = "fade_out",
-		seconds: float = 1.0
-	) -> void:
+func change_gui_scene(new_scene: String, delete:= true, keep_running:= false, transition:= true, t_in:= "fade_in", t_out:= "fade_out", secs:= 1.0) -> void:
+	current_gui_scene = await perform_scene_change(gui, current_gui_scene, new_scene, delete, keep_running, transition, t_in, t_out, secs)
+
+func perform_scene_change(target_node: Node, current_scene: Node, new_scene: String, delete: bool, keep_running: bool, transition: bool, t_in: String, t_out: String, secs: float) -> Node:
 	is_transitioning = true
-	if transition:
-		transition_controller.transition(transition_out, seconds)
-		await transition_controller.animation_player.animation_finished
-	if current_gui_scene != null:
-		if delete:
-			current_gui_scene.queue_free()
-		elif keep_running:
-			current_gui_scene.visible = false
-		else:
-			gui.remove_child(current_gui_scene)
-	var new = load(new_scene).instantiate()
-	gui.add_child(new)
-	current_gui_scene = new
-	transition_controller.transition(transition_in, seconds)
 	
 	if transition:
+		transition_controller.transition(t_out, secs)
 		await transition_controller.animation_player.animation_finished
+		
+	if current_scene != null:
+		if delete:
+			current_scene.queue_free()
+		elif keep_running:
+			current_scene.visible = false
+		else:
+			target_node.remove_child(current_scene)
+			
+	var new_inst = load(new_scene).instantiate()
+	target_node.add_child(new_inst)
+	
+	if transition:
+		transition_controller.transition(t_in, secs)
+		await transition_controller.animation_player.animation_finished
+		
 	is_transitioning = false
+	return new_inst

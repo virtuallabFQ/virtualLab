@@ -8,9 +8,7 @@ enum state {menu, options}
 var ui_state = state.menu
 
 func _ready() -> void:
-	if options.has_signal("back_to_main_menu"):
-		if not options.back_to_main_menu.is_connected(on_options_back):
-			options.back_to_main_menu.connect(on_options_back)
+	options.back_to_main_menu.connect(on_options_back)
 
 func _input(event):
 	if event.is_action_pressed("ui_cancel") and not animation_player.is_playing():

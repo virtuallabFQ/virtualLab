@@ -11,54 +11,49 @@ signal back_to_main_menu
 enum substate {options, camera, graphics, audio}
 var ui_state = substate.options
 
+@onready var menu_map = {
+	substate.options: {"node": buttons, "anim": "options"},
+	substate.camera: {"node": camera_menu, "anim": "camera"},
+	substate.graphics: {"node": graphics_menu, "anim": "graphics"},
+	substate.audio: {"node": audio_menu, "anim": "audio"}
+}
+
 func _ready() -> void:
-	if buttons: buttons.visible = true
-	if camera_menu: camera_menu.visible = false
-	if graphics_menu: graphics_menu.visible = false
-	if audio_menu: audio_menu.visible = false
+	for state_key in menu_map:
+		var menu_node = menu_map[state_key]["node"]
+		if menu_node: menu_node.visible = (state_key == substate.options)
 
-	if get_tree().current_scene != self:
-		set_process_input(false)
-
-func _input(event):
+func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
 		get_viewport().set_input_as_handled()
 		on_exit_submenu()
 
 func on_exit_submenu() -> bool:
-	if animation_player.is_playing():
-		return true
+	if animation_player.is_playing(): return true
+	if ui_state == substate.options:
+		back_to_main_menu.emit()
+		return false
+	change_sub_menu(substate.options)
+	return true
 
-	match ui_state:
-		substate.options:
-			emit_signal("back_to_main_menu")
-			return false
-		substate.camera:
-			change_sub_menu(substate.options, "camera", "options")
-			return true
-		substate.graphics:
-			change_sub_menu(substate.options, "graphics", "options")
-			return true
-		substate.audio:
-			change_sub_menu(substate.options, "audio", "options")
-			return true
-	return false
-
-func change_sub_menu(new_state: substate, hide_name: String, show_name: String):
+func change_sub_menu(new_state: substate) -> void:
+	if animation_player.is_playing() or ui_state == new_state: return
+	var old_anim = menu_map[ui_state]["anim"]
+	var new_anim = menu_map[new_state]["anim"]
 	ui_state = new_state
-	
-	animation_player.play("hide_" + hide_name)
+	animation_player.play("hide_" + old_anim)
 	await animation_player.animation_finished
-	animation_player.play("show_" + show_name)
+	
+	for state_key in menu_map:
+		if menu_map[state_key]["node"]:
+			menu_map[state_key]["node"].visible = (state_key == new_state)
+	animation_player.play("show_" + new_anim)
 
 func on_camera_controls_button_pressed() -> void:
-	if animation_player.is_playing(): return
-	change_sub_menu(substate.camera, "options", "camera")
+	change_sub_menu(substate.camera)
 
 func on_graphic_button_pressed() -> void:
-	if animation_player.is_playing(): return
-	change_sub_menu(substate.graphics, "options", "graphics")
+	change_sub_menu(substate.graphics)
 
 func on_audio_button_pressed() -> void:
-	if animation_player.is_playing(): return
-	change_sub_menu(substate.audio, "options", "audio")
+	change_sub_menu(substate.audio)

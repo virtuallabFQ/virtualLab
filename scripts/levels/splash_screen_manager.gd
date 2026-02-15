@@ -9,6 +9,7 @@ class_name SplashScreenManager extends Control
 @export var splash_screen_container : Node
 
 var splash_screens : Array
+var skipped : bool = false
 
 func get_screens() -> void:
 	splash_screens = splash_screen_container.get_children()
@@ -17,14 +18,16 @@ func get_screens() -> void:
 
 func fade() -> void:
 	for screen in splash_screens:
-		var tween = self.create_tween()
+		var tween = create_tween() 
 		tween.tween_interval(in_time)
 		tween.tween_property(screen, "modulate:a", 1.0, fade_in_time)
 		tween.tween_interval(pause_time)
 		tween.tween_property(screen, "modulate:a", 0.0, fade_out_time)
 		tween.tween_interval(out_time)
 		await tween.finished
-	Global.game_controller.change_gui_scene("res://scenes/levels/lobby.tscn")
+	if not skipped:
+		skipped = true
+		Global.game_controller.change_gui_scene("res://scenes/levels/lobby.tscn")
 	
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -32,8 +35,11 @@ func _ready() -> void:
 	fade()
 	
 func _input(event: InputEvent) -> void:
+	if skipped: return
 	if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
 		if event is InputEventMouseButton and event.pressed:
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+			
 	if event.is_action_pressed("ui_skip") or (event is InputEventMouseButton and event.pressed):
+		skipped = true
 		Global.game_controller.change_gui_scene("res://scenes/levels/lobby.tscn")

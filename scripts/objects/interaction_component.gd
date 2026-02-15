@@ -7,7 +7,7 @@ signal player_interacted(object)
 @export var override_icon : bool
 @export var new_icon : Texture2D
 
-var parent
+var parent: Node
 var highlight_material = preload("res://assets/materials/interactable_highlight.tres")
 
 func _ready() -> void:
@@ -15,15 +15,12 @@ func _ready() -> void:
 	connect_parent()
 	set_default_mesh()
 
-func _process(_delta: float) -> void:
-	pass
-
 func in_range() -> void:
-	mesh.material_overlay = highlight_material
+	if mesh: mesh.material_overlay = highlight_material
 	MessageBus.interaction_focused.emit(context, new_icon, override_icon)
 
 func not_in_range() -> void:
-	mesh.material_overlay = null
+	if mesh: mesh.material_overlay = null
 	MessageBus.interaction_unfocused.emit()
 
 func on_interact() -> void:
@@ -33,14 +30,14 @@ func connect_parent() -> void:
 	parent.add_user_signal("focused")
 	parent.add_user_signal("unfocused")
 	parent.add_user_signal("interacted")
-	parent.connect("focused", Callable(self, "in_range"))
-	parent.connect("unfocused", Callable(self, "not_in_range"))
-	parent.connect("interacted", Callable(self, "on_interact"))
+	
+	parent.connect("focused", in_range)
+	parent.connect("unfocused", not_in_range)
+	parent.connect("interacted", on_interact)
 
 func set_default_mesh() -> void:
-	if mesh:
-		pass
-	else:
-		for i in parent.get_children():
-			if i is MeshInstance3D:
-				mesh = i
+	if not mesh:
+		for child in parent.get_children():
+			if child is MeshInstance3D:
+				mesh = child
+				break

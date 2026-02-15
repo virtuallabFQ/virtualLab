@@ -2,13 +2,7 @@ class_name AnimationComponent extends Node
 
 @export var from_center : bool = true
 @export var parallel_animations : bool = true
-@export var properties : Array = [
-	"scale",
-	"position",
-	"rotation",
-	"size",
-	"self_modulate",
-]
+@export var properties : Array[String] = ["scale", "position", "rotation", "size", "self_modulate"]
 @export var hover_time : float = 0.1
 @export var hover_transition : Tween.TransitionType
 @export var hover_easing : Tween.EaseType
@@ -71,4 +65,3 @@ func add_tween(values: Dictionary, parallel: bool, seconds: float, transition: T
 	tween.set_parallel(parallel)
 	for property in properties:
 		tween.tween_property(target, str(property), values[property], seconds).set_trans(transition).set_ease(easing)
-	

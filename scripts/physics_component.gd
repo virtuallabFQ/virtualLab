@@ -5,10 +5,13 @@ class_name PhysicsComponent extends Node
 @export var enabled : bool = false
 
 func _physics_process(_delta: float) -> void:
-	if enabled and controller.get_slide_collision_count() > 0:
-		var collision = controller.get_last_slide_collision()
-		if collision.get_collider() is RigidBody3D:
+	if not enabled or controller.get_slide_collision_count() == 0:
+		return
+	for i in controller.get_slide_collision_count():
+		var collision = controller.get_slide_collision(i)
+		var collider = collision.get_collider()
+		if collider is RigidBody3D:
 			var direction = -collision.get_normal()
 			var speed = clamp(controller.velocity.length(), 1.0, 10.0)
-			var impulse_position = collision.get_position() - collision.get_collider().global_position
-			collision.get_collider().apply_impulse(direction * speed * force, impulse_position)
+			var impulse_pos = collision.get_position() - collider.global_position
+			collider.apply_impulse(direction * speed * force, impulse_pos)
