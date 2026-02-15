@@ -1,55 +1,51 @@
 class_name PickUpComponent extends Node
 
-@export var pickup_distance: Vector3 = Vector3(0, 0, -1.0)
-@export var pickup_rotation: Vector3 = Vector3.ZERO
-@export var collision_margin: float = 0.2 
+@export var distance: Vector3 = Vector3(0, 0, -1.0)
+@export var rotation: Vector3 = Vector3.ZERO
+@export var margin: float = 0.2
 @export var hide_nodes: Array[Node] = []
 
-var _obj: Node3D = null
-var _rids: Array[RID] = []
-var _basis: Basis
+var held_obj: Node3D
+var base_rot: Basis
+var ray_query := PhysicsRayQueryParameters3D.new()
+var cached_cam: Camera3D
 
 func _ready() -> void:
-	_basis = Basis.from_euler(pickup_rotation * (PI / 180.0))
-	var p: Node = get_parent()
-	if p.has_signal(&"player_interacted"): p.connect(&"player_interacted", _pickup)
+	set_physics_process(false) 
+	set_process_input(false)
+	base_rot = Basis.from_euler(rotation * (PI / 180.0))
+	var parent_node := get_parent()
+	if parent_node.has_signal(&"player_interacted"):
+		parent_node.connect(&"player_interacted", func(target): if not held_obj and Global.player: _toggle(target, true))
 
-func _pickup(target: Node3D) -> void:
-	if not is_instance_valid(_obj) and is_instance_valid(Global.player): _toggle(target, true)
-
-func _input(e: InputEvent) -> void:
-	if is_instance_valid(_obj) and e is InputEventMouseButton and e.button_index == 2 and e.pressed: 
-		_toggle(_obj, false)
+func _input(event: InputEvent) -> void: 
+	if event is InputEventMouseButton and event.button_index == 2 and event.pressed: _toggle(held_obj, false)
 
 func _toggle(target: Node3D, state: bool) -> void:
-	_obj = target if state else null
-	var p: CharacterBody3D = Global.player
-	p.held_object = _obj
-	if state: p.add_collision_exception_with(target)
-	else: p.remove_collision_exception_with(target)
+	held_obj = target if state else null
+	Global.player.held_object = held_obj
+	set_physics_process(state); set_process_input(state)
 	
-	var rb: RigidBody3D = target as RigidBody3D
-	if is_instance_valid(rb): rb.freeze = state
-	_rids.clear()
-	if state and target is CollisionObject3D:
-		_rids.append(p.get_rid())
-		_rids.append(target.get_rid())
+	if state:
+		cached_cam = Global.player.camera as Camera3D
+		Global.player.add_collision_exception_with(target)
+	else:
+		cached_cam = null
+		Global.player.remove_collision_exception_with(target)
+	
+	if target is RigidBody3D: target.freeze = state
+	ray_query.exclude = [Global.player.get_rid(), target.get_rid()] if state and target is CollisionObject3D else []
 	
 	for n in hide_nodes:
-		if is_instance_valid(n):
-			n.set(&"visible", not state)
-			if n.get(&"disabled") != null: n.set_deferred(&"disabled", state)
+		if is_instance_valid(n): n.set(&"visible", not state); if "disabled" in n: n.set_deferred(&"disabled", state)
 
-func _physics_process(_d: float) -> void:
-	if not is_instance_valid(_obj) or not is_instance_valid(Global.player): return
-	var cam: Camera3D = Global.player.camera
-	var orig: Vector3 = cam.global_position
-	var t_pos: Vector3 = cam.global_transform.translated_local(pickup_distance).origin
-	var dir: Vector3 = orig.direction_to(t_pos)
+func _physics_process(_delta: float) -> void:
+	var orig: Vector3 = cached_cam.global_position
+	var offset: Vector3 = cached_cam.global_basis * distance 
+	var t_pos: Vector3 = orig + offset
+	var dir: Vector3 = offset.normalized()
 	
-	var q: PhysicsRayQueryParameters3D = PhysicsRayQueryParameters3D.create(orig, t_pos + (dir * collision_margin))
-	q.exclude = _rids
-	var res: Dictionary = _obj.get_world_3d().direct_space_state.intersect_ray(q)
-	
-	var safe_pos: Vector3 = orig + dir * max(orig.distance_to(res.position) - collision_margin, 0.15) if res else t_pos
-	_obj.global_transform = _obj.global_transform.interpolate_with(Transform3D(cam.global_basis * _basis, safe_pos), 0.3)
+	ray_query.from = orig; ray_query.to = t_pos + (dir * margin)
+	var hit: Dictionary = held_obj.get_world_3d().direct_space_state.intersect_ray(ray_query)
+	var safe_pos: Vector3 = orig + dir * max(orig.distance_to(hit.position) - margin, 0.15) if hit else t_pos
+	held_obj.global_transform = held_obj.global_transform.interpolate_with(Transform3D(cached_cam.global_basis * base_rot, safe_pos), 0.3)

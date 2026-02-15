@@ -21,7 +21,8 @@ func _draw():
 func start_drawing(pos: Vector2):
 	is_drawing = true
 	is_erasing = false
-	current_line = [pos]
+	current_line = PackedVector2Array([pos])
+	queue_redraw()
 
 func start_erasing(pos: Vector2):
 	is_erasing = true

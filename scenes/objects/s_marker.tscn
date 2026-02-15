@@ -42,9 +42,8 @@ script = ExtResource("3_6l0ri")
 
 [node name="PickUpComponent" type="Node" parent="InteractionComponent" unique_id=83671716 node_paths=PackedStringArray("hide_nodes")]
 script = ExtResource("5_2b612")
-pickup_distance = Vector3(0.3, -0.1, -0.35)
-pickup_rotation = null
-collision_margin = 0.35
+distance = Vector3(0.3, -0.1, -0.35)
+margin = 0.35
 hide_nodes = [NodePath("../../marker/cap"), NodePath("../../c_cap")]
 metadata/_custom_type_script = "uid://dgjrei33rjh21"
 

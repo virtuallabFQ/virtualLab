@@ -9,22 +9,21 @@ func _ready() -> void:
 	options_menu.visible = false
 	primary_menu.visible = true
 
-func _unhandled_input(event: InputEvent) -> void:
-	if not event.is_action_pressed("ui_cancel"): return
-	
-	if animation_player.is_playing() or Global.game_controller.is_transitioning:
-		return
-	get_viewport().set_input_as_handled() 
-	
-	if get_tree().paused:
-		if options_menu.visible:
-			if options_menu.has_method("on_exit_submenu") and options_menu.on_exit_submenu():
-				return 
-			close_options()
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_cancel"):
+		var is_loading = Global.game_controller.is_transitioning if Global.game_controller else false
+		if animation_player.is_playing() or is_loading:
+			return
+		
+		get_viewport().set_input_as_handled() 
+		
+		if get_tree().paused:
+			if options_menu.visible:
+				close_options()
+			else:
+				resume()
 		else:
-			resume()
-	else:
-		pause()
+			pause()
 
 func pause() -> void:
 	MessageBus.toggle_game_paused.emit(true)

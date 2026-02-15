@@ -179,7 +179,7 @@ _data = {
 &"show_options": SubResource("Animation_7suek")
 }
 
-[node name="LobbyMenu" type="Control" unique_id=1796675924 node_paths=PackedStringArray("menu", "options", "animation_player")]
+[node name="MainMenu" type="Control" unique_id=1796675924 node_paths=PackedStringArray("menu", "options", "animation_player")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -187,7 +187,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_btxxm")
-menu = NodePath("Panel")
+menu = NodePath("Panel/MainMenu")
 options = NodePath("OptionsMenu")
 animation_player = NodePath("AnimationPlayer")
 
