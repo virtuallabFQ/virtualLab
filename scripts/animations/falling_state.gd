@@ -1,17 +1,17 @@
 class_name FallingState extends MovementState
 
-@export var speed : float = 5.0
-@export var acceleration : float = 0.1
-@export var deceleration : float = 0.25
+@export var speed := 5.0
+@export var acceleration := 0.1
+@export var deceleration := 0.25
 
-func enter(_previous_state = null) -> void:
+func enter(_prev: State = null) -> void:
+	player.move_speed = speed
+	player.move_accel = acceleration
+	player.move_decel = deceleration
 	animation.pause()
 
 func update(delta: float) -> void:
-	player.update_gravity(delta)
-	player.update_input(speed, acceleration, deceleration)
-	player.update_velocity()
-		
+	player.perform_movement(delta)
 	if player.is_on_floor():
-		animation.play("jump_end")
+		animation.play(&"jump_end")
 		transition.emit(&"IdleState")

@@ -1,29 +1,34 @@
 class_name IdleState extends MovementState
 
-@export var speed : float = 5.0
-@export var acceleration : float = 0.1
-@export var deceleration : float = 0.25
+@export var speed := 5.0
+@export var acceleration := 0.1
+@export var deceleration := 0.25
 
-func enter(_previous_state = null) -> void:
-	if animation.is_playing() and animation.current_animation == "jump_end":
-		await animation.animation_finished
-		animation.pause()
-	else:
-		animation.pause()
+var is_active := false
 
-func update(delta):
-	player.update_gravity(delta)
-	player.update_input(speed, acceleration, deceleration)
-	player.update_velocity()
+func enter(_prev: State = null) -> void:
+	is_active = true
+	player.move_speed = speed
+	player.move_accel = acceleration
+	player.move_decel = deceleration
 	
-	if Input.is_action_just_pressed("crouch") and player.is_on_floor():
-		transition.emit(&"CrouchingState")
+	if animation.current_animation == &"jump_end" and animation.is_playing(): 
+		await animation.animation_finished
+	if is_active: animation.pause()
+
+func exit() -> void:
+	is_active = false
+
+func update(delta: float) -> void:
+	player.perform_movement(delta)
+	
+	if not player.is_on_floor():
+		if player.velocity.y > -3.0: transition.emit(&"FallingState")
+		return
 		
-	if player.velocity.length() > 0.0 and player.is_on_floor():
-		transition.emit(&"WalkingState")
-		
-	if Input.is_action_just_pressed("jump") and player.is_on_floor():
+	if Input.is_action_just_pressed(&"jump"):
 		transition.emit(&"JumpingState")
-		
-	if player.velocity.y > -3.0 and !player.is_on_floor():
-		transition.emit(&"FallingState")
+	elif Input.is_action_just_pressed(&"crouch"):
+		transition.emit(&"CrouchingState")
+	elif player.velocity.length_squared() > 0.001:
+		transition.emit(&"WalkingState")

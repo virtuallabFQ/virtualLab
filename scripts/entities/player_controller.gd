@@ -1,26 +1,20 @@
 class_name PlayerController extends CharacterBody3D
 
+const TILT_MIN := -1.5708
+const TILT_MAX := 1.5708
+
 @onready var rotation_anchor: Node3D = $RotationAnchor
 @onready var camera_controller_anchor: Node3D = %CameraControllerAnchor
 @onready var camera: Camera3D = %Camera3D
 @onready var collider: CollisionShape3D = $CollisionShape3D
-@onready var crouch_shapecast: ShapeCast3D = %ShapeCast3D
+@onready var crouch_cast: ShapeCast3D = %ShapeCast3D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 @export_group("Camera")
-@export var tilt_lower_limit := deg_to_rad(-90.0)
-@export var tilt_upper_limit := deg_to_rad(90.0)
-@export var interact_distance : float = 2
+@export var interact_distance: float = 2.0
 
 @export_group("Movement Settings")
-@export var speed_default : float = 7.0
-@export var speed_sprint : float = 10.0
-@export var speed_crouch : float = 4.0
-@export var acceleration : float = 0.1
-@export var deceleration : float = 0.25
-@export var jump_velocity : float = 4.0
-@export var freefly_speed : float = 25.0
-@export var toggle_crouch : bool = true
+@export var toggle_crouch: bool = false
 
 @export_group("Movement Input")
 @export var input_left: StringName = &"ui_left"
@@ -30,64 +24,56 @@ class_name PlayerController extends CharacterBody3D
 @export var input_jump: StringName = &"ui_accept"
 @export var input_sprint: StringName = &"sprint"
 @export var input_crouch: StringName = &"crouch"
-@export var input_freefly: StringName = &"freefly"
 
-@onready var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity") as float
+var move_speed: float = 0.0
+var move_accel: float = 0.0
+var move_decel: float = 0.0
+var crouching: bool = false
 
-var speed : float
-var crouching : bool = false
-var mouse_input : bool = false
+var mouse_input: bool = false
 var rotation_input: float = 0.0
 var tilt_input: float = 0.0
 var mouse_rotation: Vector3 = Vector3.ZERO
-var interact_cast_result: Node3D = null
-var held_object : Node3D = null
 
-func _ready():
+var interact_cast_result: Node3D = null
+var held_object: Node3D = null
+
+@onready var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
+	
+func _ready() -> void:
 	Global.player = self
 	if camera: camera.fov = Global.player_fov
-	
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	speed = speed_default ##
-	crouch_shapecast.add_exception(self)
+	crouch_cast.add_exception(self)
 
 func _unhandled_input(event: InputEvent) -> void:
-	mouse_input = event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED
-	if mouse_input:
-		rotation_input = -event.relative.x * Global.mouse_sensitivity
-		tilt_input = -event.relative.y * Global.mouse_sensitivity
+	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
+		mouse_input = true
+		rotation_input -= event.relative.x * Global.mouse_sensitivity
+		tilt_input -= event.relative.y * Global.mouse_sensitivity
 		
-func _process(delta):
-	_update_camera(delta)
-
-func _update_camera(_delta):
-	mouse_rotation.x += tilt_input
-	mouse_rotation.x = clamp(mouse_rotation.x, tilt_lower_limit, tilt_upper_limit)
+func _process(_delta: float) -> void:
+	if not mouse_input: return 
+	
+	mouse_rotation.x = clamp(mouse_rotation.x + tilt_input, TILT_MIN, TILT_MAX)
 	mouse_rotation.y += rotation_input
-
+	
 	camera_controller_anchor.rotation.x = mouse_rotation.x
 	rotation_anchor.rotation.y = mouse_rotation.y
-
+	
 	rotation_input = 0.0
 	tilt_input = 0.0
+	mouse_input = false
 
-func update_camera_settings():
-	if camera:
-		camera.fov = Global.player_fov
-
-func update_gravity(delta) -> void:
+func perform_movement(delta: float) -> void:
 	velocity.y -= gravity * delta
-
-func update_input(speed: float, acceleration: float, deceleration: float) -> void:
-	var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
-	var direction = (rotation_anchor.global_basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-
-	if direction:
-		velocity.x = lerp(velocity.x,direction.x * speed, acceleration)
-		velocity.z = lerp(velocity.z,direction.z * speed, acceleration)
+	var input := Input.get_vector(input_left, input_right, input_forward, input_back)
+	
+	if input == Vector2.ZERO:
+		velocity.x = move_toward(velocity.x, 0.0, move_decel)
+		velocity.z = move_toward(velocity.z, 0.0, move_decel)
 	else:
-		velocity.x = move_toward(velocity.x, 0, deceleration)
-		velocity.z = move_toward(velocity.z, 0, deceleration)
-
-func update_velocity() -> void:
+		var dir := (rotation_anchor.global_basis * Vector3(input.x, 0.0, input.y)).normalized()
+		velocity.x = lerp(velocity.x, dir.x * move_speed, move_accel)
+		velocity.z = lerp(velocity.z, dir.z * move_speed, move_accel)
 	move_and_slide()

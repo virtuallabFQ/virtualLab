@@ -1,32 +1,26 @@
 class_name StateMachine extends Node
 
-@export var current_state : State
+@export var current_state: State
 
 var states: Dictionary = {}
 
-func _ready():
+func _ready() -> void:
 	for child in get_children():
-		if child is State:
-			states[child.name] = child
-			child.transition.connect(on_child_transition)
-		else:
-			push_warning("State machine contains incompatible child node")
+		states[StringName(child.name)] = child
+		child.transition.connect(on_child_transition)
+	await owner.ready; current_state.enter(null)
 
-	await owner.ready
-	current_state.enter()
-
-func _process(delta):
+func _process(delta: float) -> void:
 	current_state.update(delta)
 
-func _physics_process(delta):
+func _physics_process(delta: float) -> void:
 	current_state.physics_update(delta)
 
 func on_child_transition(new_state_name: StringName) -> void:
-	var new_state = states.get(new_state_name)
-	if new_state != null:
-		if new_state != current_state:
-			current_state.exit()
-			new_state.enter()
-			current_state = new_state
-	else:
-		push_warning("State does not exist")
+	var new_state: State = states.get(new_state_name)
+	if new_state == current_state: return
+	
+	current_state.exit()
+	var previous_state := current_state
+	current_state = new_state
+	current_state.enter(previous_state)
