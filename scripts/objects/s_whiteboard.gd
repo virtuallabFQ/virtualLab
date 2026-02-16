@@ -1,7 +1,10 @@
 class_name Whiteboard extends StaticBody3D
 
-signal focused 
-signal unfocused 
+@warning_ignore("unused_signal")
+signal focused
+@warning_ignore("unused_signal")
+signal unfocused
+@warning_ignore("unused_signal")
 signal interacted
 
 @export var draw_layer: MeshInstance3D 
@@ -10,25 +13,28 @@ signal interacted
 @export var board_width := 2.86 
 @export var board_height := 1.635
 
-var vp_size: Vector2
+var ratio_x := 0.0 
+var ratio_y := 0.0 
+var center_x := 0.0 
+var center_y := 0.0
 
 func _ready() -> void:
-	vp_size = Vector2(viewport.size); viewport.transparent_bg = true
+	viewport.transparent_bg = true; connect(&"unfocused", canvas_draw.stop_drawing)
 	var mat := StandardMaterial3D.new(); mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
 	mat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED; mat.albedo_texture = viewport.get_texture()
-	draw_layer.material_override = mat; connect(&"unfocused", canvas_draw.stop_drawing)
+	draw_layer.material_override = mat 
+	var viewport_size := Vector2(viewport.size)
+	ratio_x = viewport_size.x / board_width; ratio_y = viewport_size.y / board_height; center_x = viewport_size.x * 0.5; center_y = viewport_size.y * 0.5
 
-func _get_2d(pos: Vector3) -> Vector2:
-	var l := to_local(pos); return Vector2((l.x / board_width + 0.5) * vp_size.x, (0.5 - l.y / board_height) * vp_size.y)
+func _get_2d(hit_pos: Vector3) -> Vector2:
+	var local_pos := to_local(hit_pos); return Vector2(local_pos.x * ratio_x + center_x, center_y - local_pos.y * ratio_y)
 
-func interact_draw(pos: Vector3, pressed: bool, released: bool) -> void: 
-	_act(pos, pressed, released, false)
+func interact_draw(hit_pos: Vector3, pressed: bool, released: bool) -> void:
+	if released: canvas_draw.stop_drawing()
+	elif pressed: canvas_draw.start_stroke(_get_2d(hit_pos), false)
+	else: canvas_draw.add_point(_get_2d(hit_pos))
 
-func interact_erase(pos: Vector3, pressed: bool, released: bool) -> void: 
-	_act(pos, pressed, released, true)
-
-func _act(pos: Vector3, pressed: bool, released: bool, is_erase: bool) -> void:
-	if released: canvas_draw.stop_drawing(); return
-	var pos_2d := _get_2d(pos)
-	if pressed: canvas_draw.start_stroke(pos_2d, is_erase)
-	else: canvas_draw.add_point(pos_2d)
+func interact_erase(hit_pos: Vector3, pressed: bool, released: bool) -> void:
+	if released: canvas_draw.stop_drawing()
+	elif pressed: canvas_draw.start_stroke(_get_2d(hit_pos), true)
+	else: canvas_draw.add_point(_get_2d(hit_pos))
