@@ -348,6 +348,22 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.003, 1, 7.986721)
 [node name="s_whiteboard_2" parent="whiteboards" unique_id=528423925 instance=ExtResource("6_n3ogy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.009, 1, 7.987)
 
+[node name="markers" type="Node3D" parent="." unique_id=1210345626]
+
+[node name="s_marker_1" parent="markers" unique_id=859582267 instance=ExtResource("9_4wtwa")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -1.6, 0.279, 7.92)
+
+[node name="s_marker_2" parent="markers" unique_id=284465126 instance=ExtResource("9_4wtwa")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 6.425, 0.279, 7.92)
+
+[node name="erasers" type="Node3D" parent="." unique_id=1207280354]
+
+[node name="s_eraser_1" parent="erasers" unique_id=1958677432 instance=ExtResource("10_gijfe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.85, 1.737, 7.962)
+
+[node name="s_eraser_2" parent="erasers" unique_id=1407719042 instance=ExtResource("10_gijfe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.15, 1.737, 7.962)
+
 [node name="s_door" parent="." unique_id=45182123 instance=ExtResource("6_bj4kn")]
 transform = Transform3D(-4.3711385e-08, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, -4.3711385e-08, -11.468, -0.738, -4.178)
 
@@ -361,18 +377,6 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -11.
 
 [node name="s_periodic_table" parent="." unique_id=495366280 instance=ExtResource("3_vuu1o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 1.458, 7.803)
-
-[node name="s_marker_1" parent="." unique_id=859582267 instance=ExtResource("9_4wtwa")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -1.6, 0.279, 7.92)
-
-[node name="s_marker_2" parent="." unique_id=284465126 instance=ExtResource("9_4wtwa")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 6.425, 0.279, 7.92)
-
-[node name="s_eraser_1" parent="." unique_id=1958677432 instance=ExtResource("10_gijfe")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.85, 1.737, 7.962)
-
-[node name="s_eraser_2" parent="." unique_id=1407719042 instance=ExtResource("10_gijfe")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.15, 1.737, 7.962)
 
 [node name="s_beaker_100ml" parent="." unique_id=613809570 instance=ExtResource("9_rsbtw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.961012, 0.36810303, -8.368225)
