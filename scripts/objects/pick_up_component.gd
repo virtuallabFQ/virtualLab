@@ -5,21 +5,39 @@ class_name PickUpComponent extends Node
 @export var margin: float = 0.2
 @export var hide_nodes: Array[Node] = []
 
+@export_group("Scroll Settings")
+@export var allow_scroll := true
+@export var scroll_step := 0.2
+@export var min_scroll_z := -0.5
+@export var max_scroll_z := -2.0
+
 var held_obj: Node3D
 var base_rot: Basis
 var ray_query := PhysicsRayQueryParameters3D.new()
 var cached_cam: Camera3D
 
+@onready var default_z := distance.z
+
 func _ready() -> void:
-	set_physics_process(false) 
-	set_process_input(false)
+	set_physics_process(false); set_process_input(false)
 	base_rot = Basis.from_euler(rotation * (PI / 180.0))
 	var parent_node := get_parent()
 	if parent_node.has_signal(&"player_interacted"):
-		parent_node.connect(&"player_interacted", func(target): if not held_obj and Global.player: _toggle(target, true))
+		parent_node.connect(&"player_interacted", func(target): 
+			if Global.player and not Global.player.held_object: 
+				_toggle(target, true)
+		)
 
 func _input(event: InputEvent) -> void: 
-	if event is InputEventMouseButton and event.button_index == 2 and event.pressed: _toggle(held_obj, false)
+	if not event is InputEventMouseButton or not event.pressed: return
+	
+	if event.button_index == MOUSE_BUTTON_RIGHT: 
+		_toggle(held_obj, false)
+	elif allow_scroll and held_obj:
+		if event.button_index == MOUSE_BUTTON_WHEEL_UP:
+			distance.z = clamp(distance.z - scroll_step, max_scroll_z, min_scroll_z)
+		elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
+			distance.z = clamp(distance.z + scroll_step, max_scroll_z, min_scroll_z)
 
 func _toggle(target: Node3D, state: bool) -> void:
 	held_obj = target if state else null
@@ -27,6 +45,7 @@ func _toggle(target: Node3D, state: bool) -> void:
 	set_physics_process(state); set_process_input(state)
 	
 	if state:
+		distance.z = default_z
 		cached_cam = Global.player.camera as Camera3D
 		Global.player.add_collision_exception_with(target)
 	else:

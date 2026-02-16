@@ -13,9 +13,6 @@ const TILT_MAX := 1.5708
 @export_group("Camera")
 @export var interact_distance: float = 2.0
 
-@export_group("Movement Settings")
-@export var toggle_crouch: bool = false
-
 @export_group("Movement Input")
 @export var input_left: StringName = &"ui_left"
 @export var input_right: StringName = &"ui_right"
@@ -29,6 +26,7 @@ var move_speed: float = 0.0
 var move_accel: float = 0.0
 var move_decel: float = 0.0
 var crouching: bool = false
+var toggle_crouch: bool = false
 
 var mouse_input: bool = false
 var rotation_input: float = 0.0
@@ -42,6 +40,7 @@ var held_object: Node3D = null
 	
 func _ready() -> void:
 	Global.player = self
+	toggle_crouch = Global.toggle_crouch
 	if camera: camera.fov = Global.player_fov
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	crouch_cast.add_exception(self)

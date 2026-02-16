@@ -38,3 +38,12 @@ func interact_erase(hit_pos: Vector3, pressed: bool, released: bool) -> void:
 	if released: canvas_draw.stop_drawing()
 	elif pressed: canvas_draw.start_stroke(_get_2d(hit_pos), true)
 	else: canvas_draw.add_point(_get_2d(hit_pos))
+
+func clamp_position(global_pos: Vector3, extents: Vector2) -> Vector3:
+	var local_pos := to_local(global_pos)
+	var limit_x := (board_width * 0.5) - extents.x
+	var limit_y := (board_height * 0.5) - extents.y
+	
+	local_pos.x = clampf(local_pos.x, -limit_x, limit_x)
+	local_pos.y = clampf(local_pos.y, -limit_y, limit_y)
+	return to_global(local_pos)

@@ -45,6 +45,7 @@ script = ExtResource("5_2b612")
 distance = Vector3(0.3, -0.1, -0.35)
 margin = 0.35
 hide_nodes = [NodePath("../../marker/cap"), NodePath("../../c_cap")]
+allow_scroll = false
 metadata/_custom_type_script = "uid://dgjrei33rjh21"
 
 [editable path="marker"]

@@ -4,8 +4,9 @@
 [ext_resource type="FontFile" uid="uid://p38vpi7tgrq2" path="res://assets/ui/themes/static/Orbitron-Bold.ttf" id="2_1nrw7"]
 [ext_resource type="Script" uid="uid://b4j808cykyjnf" path="res://scripts/ui/fov_button.gd" id="4_1nrw7"]
 [ext_resource type="StyleBox" uid="uid://b088b6n2srg0i" path="res://assets/ui/themes/sliders/sliders_style_box_flat.tres" id="4_8j4ye"]
-[ext_resource type="StyleBox" path="res://assets/ui/themes/graphics_menu/gm_buttons_style_box_flat.tres" id="6_8j4ye"]
+[ext_resource type="StyleBox" uid="uid://y1mp8cwq48aj" path="res://assets/ui/themes/graphics_menu/gm_buttons_style_box_flat.tres" id="6_8j4ye"]
 [ext_resource type="Script" uid="uid://dhv6irtwt1oxi" path="res://scripts/ui/sensitivity_button.gd" id="6_s0ivt"]
+[ext_resource type="Script" uid="uid://cbw4sssp1gcfo" path="res://scripts/ui/crouching_button.gd" id="7_8j4ye"]
 
 [node name="CameraControlsMenu" type="Control" unique_id=597259662]
 layout_mode = 3
@@ -58,15 +59,22 @@ theme_override_styles/normal = ExtResource("6_8j4ye")
 text = "Sensibilidade da câmara"
 alignment = 2
 
+[node name="CrouchingMode" type="Button" parent="CameraControlsMenuContainer" unique_id=1625168218]
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/normal = ExtResource("6_8j4ye")
+text = "Modo de agachar"
+alignment = 2
+
 [node name="CameraControlsButtonsContainer" type="VBoxContainer" parent="." unique_id=306010137]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
 anchor_top = 0.157
-anchor_right = 0.67700005
+anchor_right = 0.703
 anchor_bottom = 0.31500003
 offset_top = 0.43998718
-offset_right = -0.8400879
+offset_right = 0.23999023
 offset_bottom = -0.042053223
 grow_horizontal = 2
 theme = ExtResource("1_jfc1e")
@@ -141,3 +149,8 @@ offset_top = -0.018987656
 offset_right = 0.07495117
 offset_bottom = 0.013008118
 theme_override_font_sizes/font_size = 20
+
+[node name="CrouchingButton" type="Button" parent="CameraControlsButtonsContainer" unique_id=1001765182]
+layout_mode = 2
+alignment = 0
+script = ExtResource("7_8j4ye")

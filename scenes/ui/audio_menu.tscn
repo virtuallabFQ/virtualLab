@@ -2,7 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://cpa6dswqf8gcv" path="res://assets/ui/themes/theme.tres" id="1_h205j"]
 [ext_resource type="FontFile" uid="uid://p38vpi7tgrq2" path="res://assets/ui/themes/static/Orbitron-Bold.ttf" id="2_3cywb"]
-[ext_resource type="StyleBox" path="res://assets/ui/themes/graphics_menu/gm_buttons_style_box_flat.tres" id="4_c6vkd"]
+[ext_resource type="StyleBox" uid="uid://y1mp8cwq48aj" path="res://assets/ui/themes/graphics_menu/gm_buttons_style_box_flat.tres" id="4_c6vkd"]
 [ext_resource type="Script" uid="uid://xybmhvfe8xuy" path="res://scripts/ui/master_button.gd" id="4_p7dxe"]
 [ext_resource type="StyleBox" uid="uid://b088b6n2srg0i" path="res://assets/ui/themes/sliders/sliders_style_box_flat.tres" id="5_maarx"]
 [ext_resource type="Script" uid="uid://h35k6llv3shd" path="res://scripts/ui/music_button.gd" id="6_c6vkd"]

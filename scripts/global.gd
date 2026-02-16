@@ -6,3 +6,4 @@ var ui_context: ContextComponent = null
 
 var player_fov: float = 75.0
 var mouse_sensitivity: float = 0.003
+var toggle_crouch: bool = false
