@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://ko87te0o10ve" path="res://scenes/objects/s_chair.tscn" id="1_2yitm"]
 [ext_resource type="PackedScene" uid="uid://yrv80x2vkau4" path="res://scenes/entities/player_controller.tscn" id="1_bj4kn"]
-[ext_resource type="LightmapGIData" uid="uid://bstlg27ns3xrk" path="res://assets/bake/lab.lmbake" id="1_e21fs"]
+[ext_resource type="LightmapGIData" uid="uid://7hm6p6yrd5sg" path="res://assets/bake/lab.lmbake" id="1_e21fs"]
 [ext_resource type="Script" uid="uid://02s36yo66g2g" path="res://scripts/ui/show_label.gd" id="1_rsbtw"]
 [ext_resource type="PackedScene" uid="uid://2743hri2tski" path="res://scenes/ui/pause_menu.tscn" id="1_uy2bq"]
 [ext_resource type="PackedScene" uid="uid://hp3liy7jxlwn" path="res://scenes/objects/s_periodic_table.tscn" id="3_vuu1o"]
@@ -105,14 +105,14 @@ albedo_color = Color(0.33660764, 0.3366076, 0.3366076, 0)
 
 [node name="LightmapGI" type="LightmapGI" parent="." unique_id=1974806237]
 denoiser_strength = 0.2
-texel_scale = 2.0
+texel_scale = 3.0
 light_data = ExtResource("1_e21fs")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=299602841]
 environment = SubResource("Environment_b874d")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1112485393]
-transform = Transform3D(-4.371139e-08, -0.1391731, 0.99026805, 0, 0.99026805, 0.1391731, -1, 6.0834497e-09, -4.328599e-08, 15, 3.6897397, 0)
+transform = Transform3D(-4.3664862e-08, -0.09334377, 0.99563396, 2.0164095e-09, 0.99563396, 0.09334377, -1, 6.083449e-09, -4.3285993e-08, 15, 3.6897397, 0)
 light_bake_mode = 1
 shadow_enabled = true
 
@@ -121,42 +121,36 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -9.4
 
 [node name="light_1" type="OmniLight3D" parent="." unique_id=863950772]
 transform = Transform3D(1, -6.115832e-23, -3.821371e-15, 3.4426549e-15, -0.43403646, 0.90089536, -1.6586143e-15, -0.90089536, -0.43403646, 6.844, 4.681316, 3.9561763)
-light_energy = 0.5
 light_bake_mode = 1
 shadow_enabled = true
 omni_range = 10.0
 
 [node name="light_2" type="OmniLight3D" parent="." unique_id=1342773565]
 transform = Transform3D(1, -6.1158316e-23, -3.821371e-15, 3.417492e-15, 0.44744697, 0.8943105, 1.7098607e-15, -0.8943105, 0.44744697, -0.8399153, 4.5082064, -1.8187568)
-light_energy = 0.5
 light_bake_mode = 1
 shadow_enabled = true
 omni_range = 10.0
 
 [node name="light_3" type="OmniLight3D" parent="." unique_id=1743515663]
 transform = Transform3D(1, -1.6703743e-22, -3.821371e-15, 3.1127019e-15, -0.5800918, 0.8145511, -2.216746e-15, -0.8145511, -0.5800918, -0.84, 4.508, 2.59557)
-light_energy = 0.5
 light_bake_mode = 1
 shadow_enabled = true
 omni_range = 10.0
 
 [node name="light_4" type="OmniLight3D" parent="." unique_id=976223256]
 transform = Transform3D(1, -1.6703743e-22, -3.8213714e-15, 2.8866491e-15, 0.65526843, 0.7553962, 2.5040236e-15, -0.7553962, 0.65526843, 6.8435755, 4.5082064, -1.8312018)
-light_energy = 0.5
 light_bake_mode = 1
 shadow_enabled = true
 omni_range = 10.0
 
 [node name="light_5" type="OmniLight3D" parent="." unique_id=1349152842]
 transform = Transform3D(1, -1.6703743e-22, -3.8213714e-15, 3.016407e-15, 0.6139409, 0.78935206, 2.3460958e-15, -0.78935206, 0.6139409, -8.155, 4.508, -2.0076134)
-light_energy = 0.5
 light_bake_mode = 1
 shadow_enabled = true
 omni_range = 10.0
 
 [node name="light_6" type="OmniLight3D" parent="." unique_id=781350984]
 transform = Transform3D(1, -1.6703745e-22, -3.821371e-15, 2.9299105e-15, -0.64198506, 0.7667172, -2.453263e-15, -0.7667172, -0.64198506, -8.154604, 4.508, 1.8945274)
-light_energy = 0.5
 light_bake_mode = 1
 shadow_enabled = true
 omni_range = 10.0

@@ -375,7 +375,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4103875, 0, 0.024)
 
 [node name="door_1" type="MeshInstance3D" parent="an_door_1" unique_id=1197762899]
 transform = Transform3D(0.978754, 0, 0, 0, 0.948754, 0, 0, 0, 0.978754, 0.48876917, 0, 0.00024287775)
-gi_mode = 2
 mesh = SubResource("ArrayMesh_fvyfd")
 
 [node name="c_door_1" type="CollisionShape3D" parent="an_door_1" unique_id=113812791]
@@ -397,7 +396,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.418, 0, 0.024)
 
 [node name="door_2" type="MeshInstance3D" parent="an_door_2" unique_id=1572268061]
 transform = Transform3D(0.998754, 0, 0, 0, 0.948754, 0, 0, 0, 0.978754, 4.5210123e-05, 0, 0.00024287775)
-gi_mode = 2
 mesh = SubResource("ArrayMesh_8e08r")
 
 [node name="c_door_2" type="CollisionShape3D" parent="an_door_2" unique_id=1371385174]
@@ -418,7 +416,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.39534038, 0, 0.024)
 
 [node name="door_3" type="MeshInstance3D" parent="an_door_3" unique_id=1018377399]
 transform = Transform3D(0.978754, 0, 0, 0, 0.948754, 0, 0, 0, 0.978754, 0.48817176, 0, 0.00024263933)
-gi_mode = 2
 mesh = SubResource("ArrayMesh_1sgyk")
 
 [node name="c_door_3" type="CollisionShape3D" parent="an_door_3" unique_id=763664548]
@@ -440,7 +437,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.387, 0, 0.024)
 
 [node name="door_4" type="MeshInstance3D" parent="an_door_4" unique_id=1897838347]
 transform = Transform3D(0.998754, 0, 0, 0, 0.948754, 0, 0, 0, 0.978754, 0.00017619133, 0, 0.00024263933)
-gi_mode = 2
 mesh = SubResource("ArrayMesh_721wr")
 
 [node name="c_door_4" type="CollisionShape3D" parent="an_door_4" unique_id=830994033]
