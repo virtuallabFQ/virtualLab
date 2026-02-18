@@ -12,6 +12,9 @@ const TILT_MAX := 1.5708
 
 @export_group("Camera")
 @export var interact_distance: float = 2.0
+@export var zoom_key: Key = KEY_Z
+@export var zoom_fov: float = 30.0
+@export var zoom_speed: float = 12.0
 
 @export_group("Movement Input")
 @export var input_left: StringName = &"ui_left"
@@ -51,10 +54,14 @@ func _unhandled_input(event: InputEvent) -> void:
 		rotation_input -= event.relative.x * Global.mouse_sensitivity
 		tilt_input -= event.relative.y * Global.mouse_sensitivity
 		
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
+	if camera:
+		var target_fov = zoom_fov if Input.is_physical_key_pressed(zoom_key) else Global.player_fov
+		camera.fov = lerpf(camera.fov, float(target_fov), zoom_speed * delta)
+	
 	if not mouse_input: return 
 	
-	mouse_rotation.x = clamp(mouse_rotation.x + tilt_input, TILT_MIN, TILT_MAX)
+	mouse_rotation.x = clampf(mouse_rotation.x + tilt_input, TILT_MIN, TILT_MAX)
 	mouse_rotation.y += rotation_input
 	
 	camera_controller_anchor.rotation.x = mouse_rotation.x
