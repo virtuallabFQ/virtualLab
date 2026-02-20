@@ -1,7 +1,9 @@
 [gd_scene format=3 uid="uid://c1nrtimole2jx"]
 
+[ext_resource type="Script" uid="uid://bbplnahiywis6" path="res://scripts/objects/s_wash_bottle.gd" id="1_aa25a"]
 [ext_resource type="PackedScene" uid="uid://dn713edphqydv" path="res://assets/models/objects/wash_bottle.glb" id="1_jlm26"]
 [ext_resource type="Script" uid="uid://cld64tanfoemk" path="res://scripts/objects/interaction_component.gd" id="2_3aqab"]
+[ext_resource type="Material" uid="uid://bt64lrilhx0df" path="res://assets/materials/water_recipient.tres" id="2_s0sfm"]
 [ext_resource type="Script" uid="uid://dgjrei33rjh21" path="res://scripts/objects/pick_up_component.gd" id="3_4coyb"]
 [ext_resource type="Shader" uid="uid://dnocp532ptnhv" path="res://assets/shaders/water.gdshader" id="4_4coyb"]
 [ext_resource type="Shader" uid="uid://dmpgduruo7y16" path="res://assets/shaders/water_recipient.gdshader" id="5_x673q"]
@@ -61,6 +63,9 @@ points = PackedVector3Array(-3.1019752, 11.054701, -0.104674675, -5.476179, 7.45
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_4cxd1"]
 points = PackedVector3Array(1.8225957, 13.460496, 0.48115036, -1.2856809, 18.630596, -0.6702332, 0.86817527, 0.16462994, -2.209907, 1.1756883, 0.16462994, 2.0994925, -0.97816795, 18.630596, 1.1756883, 1.1756883, 18.630596, -0.97816795, 2.0994925, 0.16462994, -1.2856809, -1.2856809, 0.16462994, 2.0994925, -0.83048654, 12.548908, -1.8651371, -1.9015505, 0.16462994, -1.5936157, 0.86817527, 18.630596, 1.1756883, -1.9345298, 12.927005, 0.4815844, 2.0994925, 0.16462994, 1.1756883, 0.9935967, 12.58977, 1.7807387, 0.735716, 12.604946, -1.9008152, -0.85316825, 12.898828, 1.8076742, -0.97816795, 0.16462994, -2.209907, -1.8651319, 12.5489, -0.8304843, -2.209907, 0.16462994, 0.86817527, -0.6702332, 18.630596, -1.2856809, 1.7419367, 12.271488, -1.0814933, -1.616219, 12.567419, 1.2458142, -0.97816795, -0.14390755, 2.0994925, -2.209907, 0.16462994, -0.97816795, 2.0994925, -0.14390755, -0.97816795, -1.9015505, -0.14390755, -1.2856809, 1.7807331, 12.589762, 0.9935935, 0.4811502, 13.460495, 1.8225952, 1.2458204, 12.567432, -1.6162266, 1.1756883, 18.630596, 0.86817527, -1.3200086, 11.981197, -1.5731771, 0.48158842, 12.92703, -1.9345438)
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_fm7qo"]
+radius = 0.05
+
 [sub_resource type="Curve" id="Curve_3aqab"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.99999, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 3
@@ -115,6 +120,8 @@ radial_segments = 32
 rings = 16
 
 [node name="s_wash_bottle" type="RigidBody3D" unique_id=1175166802]
+script = ExtResource("1_aa25a")
+liquid_material = ExtResource("2_s0sfm")
 
 [node name="wash_bottle" parent="." unique_id=2070532806 instance=ExtResource("1_jlm26")]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
@@ -156,6 +163,13 @@ shape = SubResource("ConvexPolygonShape3D_s0sfm")
 [node name="CollisionShape3D8" type="CollisionShape3D" parent="." unique_id=1415159195]
 transform = Transform3D(0.021450613, 0, 0, 0, 0.01194227, 0, 0, 0, 0.021450616, 0, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_4cxd1")
+
+[node name="ShapeCast3D" type="ShapeCast3D" parent="." unique_id=850645457]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15836239, 0.04397583, 0)
+shape = SubResource("SphereShape3D_fm7qo")
+target_position = Vector3(0, -0.5, 0)
+collision_mask = 128
+collide_with_areas = true
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=354095054]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15711975, 0.0236969, 6.866455e-05)

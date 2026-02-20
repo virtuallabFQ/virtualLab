@@ -2,7 +2,7 @@ class_name PickUpComponent extends Node
 
 signal toggled(is_held: bool)
 
-@export var distance := Vector3(0, 0, -1.0)
+@export var distance := Vector3(0.2, -0.1, -1.0)
 @export var rotation := Vector3.ZERO
 @export var margin := 0.2
 @export var hide_nodes: Array[Node] = []
@@ -19,13 +19,17 @@ signal toggled(is_held: bool)
 @export var spin_axis := Vector3.UP
 @export var keep_upright := true
 
+@export_group("Inspect Settings")
+@export var inspect_position := Vector3(0.0, -0.065, -1.0) 
+
 var held_obj: Node3D
 var base_rot: Basis
 var current_local_rot: Basis
 var ray_query := PhysicsRayQueryParameters3D.new()
 var cached_cam: Camera3D
 
-@onready var default_z := distance.z
+@onready var current_scroll_z := distance.z 
+@onready var base_offset := Vector2(distance.x, distance.y)
 
 func _ready() -> void:
 	set_physics_process(false); set_process_input(false)
@@ -38,13 +42,15 @@ func _on_interact(target: Node3D) -> void:
 	if player and not player.held_object: _toggle(target, true)
 
 func _input(event: InputEvent) -> void: 
-	var mb := event as InputEventMouseButton # Casting único = Mais rápido
+	var mb := event as InputEventMouseButton 
 	if not mb or not mb.pressed: return
 	
 	if mb.button_index == MOUSE_BUTTON_RIGHT: _toggle(held_obj, false)
 	elif allow_scroll and held_obj:
-		if mb.button_index == MOUSE_BUTTON_WHEEL_UP: distance.z = clampf(distance.z - scroll_step, max_scroll_z, min_scroll_z)
-		elif mb.button_index == MOUSE_BUTTON_WHEEL_DOWN: distance.z = clampf(distance.z + scroll_step, max_scroll_z, min_scroll_z)
+		if mb.button_index == MOUSE_BUTTON_WHEEL_UP: 
+			current_scroll_z = clampf(current_scroll_z - scroll_step, max_scroll_z, min_scroll_z)
+		elif mb.button_index == MOUSE_BUTTON_WHEEL_DOWN: 
+			current_scroll_z = clampf(current_scroll_z + scroll_step, max_scroll_z, min_scroll_z)
 
 func _toggle(target: Node3D, state: bool) -> void:
 	var player := Global.player
@@ -55,7 +61,7 @@ func _toggle(target: Node3D, state: bool) -> void:
 	ray_query.exclude = [player.get_rid(), target.get_rid()] if state and target is CollisionObject3D else []
 	
 	if state:
-		current_local_rot = base_rot; distance.z = default_z; cached_cam = player.camera as Camera3D
+		current_local_rot = base_rot; current_scroll_z = distance.z; cached_cam = player.camera as Camera3D
 		player.add_collision_exception_with(target)
 	else:
 		player.remove_collision_exception_with(target); cached_cam = null
@@ -67,8 +73,27 @@ func _toggle(target: Node3D, state: bool) -> void:
 	toggled.emit(state)
 
 func _physics_process(delta: float) -> void:
+	
+	var player = Global.player
+	var speed = 12.0
+	var is_inspecting = false
+	
+	if player and "is_zooming" in player:
+		speed = player.zoom_speed 
+		is_inspecting = player.is_zooming
+	
 	if Input.is_physical_key_pressed(rotate_key):
+		is_inspecting = true
 		current_local_rot = current_local_rot.rotated((current_local_rot * spin_axis).normalized(), rotate_speed * delta)
+		
+	if is_inspecting:
+		distance.x = lerpf(distance.x, inspect_position.x, speed * delta)
+		distance.y = lerpf(distance.y, inspect_position.y, speed * delta)
+		distance.z = lerpf(distance.z, inspect_position.z, speed * delta)
+	else:
+		distance.x = lerpf(distance.x, base_offset.x, speed * delta)
+		distance.y = lerpf(distance.y, base_offset.y, speed * delta)
+		distance.z = lerpf(distance.z, current_scroll_z, speed * delta)
 
 	var cam_basis := cached_cam.global_basis
 	var orig := cached_cam.global_position

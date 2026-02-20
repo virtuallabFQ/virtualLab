@@ -30,6 +30,7 @@ var move_accel: float = 0.0
 var move_decel: float = 0.0
 var crouching: bool = false
 var toggle_crouch: bool = false
+var is_zooming: bool = false 
 
 var mouse_input: bool = false
 var rotation_input: float = 0.0
@@ -56,7 +57,9 @@ func _unhandled_input(event: InputEvent) -> void:
 		
 func _process(delta: float) -> void:
 	if camera:
-		var target_fov = zoom_fov if Input.is_physical_key_pressed(zoom_key) else Global.player_fov
+		is_zooming = Input.is_physical_key_pressed(zoom_key) 
+		
+		var target_fov = zoom_fov if is_zooming else Global.player_fov
 		camera.fov = lerpf(camera.fov, float(target_fov), zoom_speed * delta)
 	
 	if not mouse_input: return 

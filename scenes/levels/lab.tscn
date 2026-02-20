@@ -45,7 +45,7 @@ fog_enabled = true
 fog_light_color = Color(0.4883982, 0.5624059, 0.61168826, 1)
 fog_density = 0.002
 adjustment_enabled = true
-adjustment_brightness = 0.85
+adjustment_brightness = 0.8
 adjustment_contrast = 1.15
 adjustment_saturation = 1.2
 
@@ -77,9 +77,9 @@ add_uv2 = true
 size = Vector3(26, 0.01, 10)
 
 [sub_resource type="BoxMesh" id="BoxMesh_euf42"]
-lightmap_size_hint = Vector2i(164, 156)
+lightmap_size_hint = Vector2i(162, 156)
 add_uv2 = true
-size = Vector3(30, 0.01, 2.055)
+size = Vector3(30, 0.01, 1.71)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2yitm"]
 size = Vector3(26, 0.01, 18)
@@ -217,7 +217,7 @@ transform = Transform3D(-4.371139e-08, 1, 4.371139e-08, 0, -4.371139e-08, 1, 1, 
 mesh = SubResource("BoxMesh_silbn")
 
 [node name="wall_4" type="MeshInstance3D" parent="room" unique_id=1173467626]
-transform = Transform3D(-4.371139e-08, 1, 4.371139e-08, 0, -4.371139e-08, 1, 1, 4.371139e-08, 1.9106855e-15, 13, -0.099095106, 0)
+transform = Transform3D(-4.371139e-08, 1, 4.371139e-08, 0, -4.371139e-08, 1, 1, 4.371139e-08, 1.9106855e-15, 13, -0.2617724, 0)
 mesh = SubResource("BoxMesh_euf42")
 
 [node name="c_floor" type="CollisionShape3D" parent="room" unique_id=1992652959]
@@ -281,13 +281,13 @@ transform = Transform3D(1.14, 0, 0, 0, 1.14, 0, 0, 0, 1.14, 0.36488962, 0.003540
 [node name="s_sink_table_1" parent="sink_tables" unique_id=1278165140 instance=ExtResource("9_6uvyo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.513, -0.639, -8.257)
 
-[node name="s_sink_table_2" parent="sink_tables" unique_id=936569506 instance=ExtResource("9_6uvyo")]
+[node name="s_sink_table_2" parent="sink_tables" unique_id=1565441929 instance=ExtResource("9_6uvyo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.639, -8.257)
 
-[node name="s_sink_table_3" parent="sink_tables" unique_id=1385913728 instance=ExtResource("9_6uvyo")]
+[node name="s_sink_table_3" parent="sink_tables" unique_id=723385269 instance=ExtResource("9_6uvyo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.513, -0.639, -8.257)
 
-[node name="s_sink_table_4" parent="sink_tables" unique_id=228200674 instance=ExtResource("9_6uvyo")]
+[node name="s_sink_table_4" parent="sink_tables" unique_id=1862606732 instance=ExtResource("9_6uvyo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.026, -0.639, -8.257)
 
 [node name="chairs" type="Node3D" parent="." unique_id=1731454957]
@@ -427,7 +427,6 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -11.
 
 [node name="s_periodic_table" parent="." unique_id=1566976545 instance=ExtResource("3_vuu1o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 1.458, 7.803)
-visible = false
 
 [node name="s_beaker_100ml" parent="." unique_id=613809570 instance=ExtResource("9_rsbtw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.961012, 0.36810303, -8.368225)
