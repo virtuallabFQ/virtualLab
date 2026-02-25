@@ -16,6 +16,9 @@
 [ext_resource type="PackedScene" uid="uid://do5mn3e3nv6t8" path="res://scenes/objects/s_eraser.tscn" id="10_gijfe"]
 [ext_resource type="PackedScene" uid="uid://c1nrtimole2jx" path="res://scenes/objects/s_wash_bottle.tscn" id="12_ky6vu"]
 [ext_resource type="PackedScene" uid="uid://b3gq852dimqqd" path="res://scenes/objects/s_weightscale.tscn" id="14_b874d"]
+[ext_resource type="PackedScene" uid="uid://c3sbcl0jbjsc1" path="res://scenes/objects/s_medikit.tscn" id="14_kdlxb"]
+[ext_resource type="PackedScene" uid="uid://bb750jjtc87w0" path="res://scenes/objects/s_trash_basket.tscn" id="14_silbn"]
+[ext_resource type="PackedScene" uid="uid://vp4q1nql665x" path="res://scenes/objects/s_reagents_cabinet.tscn" id="17_v77j0"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ky6vu"]
 sky_top_color = Color(0.6090921, 0.59287846, 0.6341862, 1)
@@ -29,7 +32,7 @@ background_mode = 2
 sky = SubResource("Sky_e21fs")
 ambient_light_color = Color(0.5058824, 0.5019608, 0.49019608, 1)
 ambient_light_sky_contribution = 0.35
-ambient_light_energy = 4.9
+ambient_light_energy = 3.5
 tonemap_mode = 2
 tonemap_exposure = 0.85
 tonemap_agx_contrast = 1.41
@@ -100,7 +103,7 @@ _surfaces = [{
 }]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rsbtw"]
-albedo_color = Color(0.33660764, 0.3366076, 0.3366076, 0)
+albedo_color = Color(0.3372549, 0.3372549, 0.3372549, 1)
 
 [node name="Lab" type="Node3D" unique_id=2011976822]
 
@@ -121,6 +124,7 @@ shadow_enabled = true
 
 [node name="PlayerController" parent="." unique_id=65100141 instance=ExtResource("1_bj4kn")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -9.413095, -0.03160256, -5.000931)
+visible = false
 
 [node name="olight_1" type="OmniLight3D" parent="." unique_id=863950772]
 transform = Transform3D(1, -6.115832e-23, -3.821371e-15, 3.4426549e-15, -0.43403646, 0.90089536, -1.6586143e-15, -0.90089536, -0.43403646, 6.844, 4.681, 3.5)
@@ -186,12 +190,13 @@ shadow_enabled = true
 omni_range = 10.0
 
 [node name="slight_1" type="SpotLight3D" parent="." unique_id=46997024]
-transform = Transform3D(-2.9369755e-08, 0.7227983, -0.6910591, 3.237442e-08, 0.6910591, 0.7227983, 1, -1.1442296e-09, -4.369641e-08, -12.354827, 2.6359031, 3.4243147)
+transform = Transform3D(1, 0, 0, 0, 0.56496704, 0.82511353, 0, -0.82511353, 0.56496704, -7.9744515, 1.7261999, 8.052778)
 visible = false
-light_color = Color(0.22710192, 0.7659436, 0.9999997, 1)
-light_energy = 15.0
+light_color = Color(0.43397975, 0.7364878, 0.9921749, 1)
+light_energy = 12.5
 light_bake_mode = 1
-spot_range = 4.810205
+spot_range = 4.384
+spot_angle = 35.0
 
 [node name="room" type="StaticBody3D" parent="." unique_id=458236972]
 
@@ -249,33 +254,6 @@ transform = Transform3D(-4.3711385e-08, 1, 4.3711385e-08, 0, -4.371139e-08, 0.99
 visible = false
 shape = SubResource("BoxShape3D_2yitm")
 
-[node name="tables" type="Node3D" parent="." unique_id=1846473306]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.273, 0.3128125, -2.376)
-
-[node name="s_table_1" parent="tables" unique_id=1360114764 instance=ExtResource("4_w4gd0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.323, 0, -0.121)
-
-[node name="s_table_2" parent="tables" unique_id=799001546 instance=ExtResource("4_w4gd0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.323, 0, 5.81)
-
-[node name="s_table_3" parent="tables" unique_id=21123324 instance=ExtResource("4_w4gd0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.683, 0, 5.81)
-
-[node name="s_table_4" parent="tables" unique_id=1278966861 instance=ExtResource("4_w4gd0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.683, 0, -0.121)
-
-[node name="s_table_5" parent="tables" unique_id=1124957881 instance=ExtResource("4_w4gd0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.689, 0, -0.121)
-
-[node name="s_table_6" parent="tables" unique_id=757933961 instance=ExtResource("4_w4gd0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.689, 0, 5.81)
-
-[node name="s_table_7" parent="tables" unique_id=97380278 instance=ExtResource("4_w4gd0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.695, 0, 5.81)
-
-[node name="s_table_8" parent="tables" unique_id=1217687704 instance=ExtResource("4_w4gd0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.695, 0, -0.121)
-
 [node name="sink_tables" type="Node3D" parent="." unique_id=1425840393]
 transform = Transform3D(1.14, 0, 0, 0, 1.14, 0, 0, 0, 1.14, 0.36488962, 0.003540039, 1.2821541)
 
@@ -290,6 +268,33 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.513, -0.639, -8.257)
 
 [node name="s_sink_table_4" parent="sink_tables" unique_id=1030439121 instance=ExtResource("9_6uvyo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.026, -0.639, -8.257)
+
+[node name="tables" type="Node3D" parent="." unique_id=1846473306]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.273, 0.3128125, -2.376)
+
+[node name="s_table_1" parent="tables" unique_id=1360114764 instance=ExtResource("4_w4gd0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.323, 0, -0.121)
+
+[node name="s_table_2" parent="tables" unique_id=64971863 instance=ExtResource("4_w4gd0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.323, 0, 5.81)
+
+[node name="s_table_3" parent="tables" unique_id=1694481202 instance=ExtResource("4_w4gd0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.683, 0, 5.81)
+
+[node name="s_table_4" parent="tables" unique_id=1485866137 instance=ExtResource("4_w4gd0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.683, 0, -0.121)
+
+[node name="s_table_5" parent="tables" unique_id=458733704 instance=ExtResource("4_w4gd0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.689, 0, -0.121)
+
+[node name="s_table_6" parent="tables" unique_id=1901752706 instance=ExtResource("4_w4gd0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.689, 0, 5.81)
+
+[node name="s_table_7" parent="tables" unique_id=414816049 instance=ExtResource("4_w4gd0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.695, 0, 5.81)
+
+[node name="s_table_8" parent="tables" unique_id=534424798 instance=ExtResource("4_w4gd0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.695, 0, -0.121)
 
 [node name="chairs" type="Node3D" parent="." unique_id=1731454957]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.004, 0)
@@ -424,10 +429,19 @@ mesh = SubResource("ArrayMesh_6uvyo")
 surface_material_override/0 = SubResource("StandardMaterial3D_rsbtw")
 
 [node name="s_tv" parent="." unique_id=2146555040 instance=ExtResource("6_rufap")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -11.491, 0.97088623, 3.5)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -8, 1.05, 8.029)
 
 [node name="s_periodic_table" parent="." unique_id=1566976545 instance=ExtResource("3_vuu1o")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 1.458, 7.803)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.294, 1.458, 3.5)
+
+[node name="s_reagents_cabinet" parent="." unique_id=7212893 instance=ExtResource("17_v77j0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.881296, -0.72982806, -8.078117)
+
+[node name="s_medikit" parent="." unique_id=379420351 instance=ExtResource("14_kdlxb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.51496, 2.13179, -8.874177)
+
+[node name="s_trash_basket" parent="." unique_id=963932463 instance=ExtResource("14_silbn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.066, -0.732, -6.9)
 
 [node name="s_beaker_100ml" parent="." unique_id=613809570 instance=ExtResource("9_rsbtw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.961012, 0.36810303, -8.368225)

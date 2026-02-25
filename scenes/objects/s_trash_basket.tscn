@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://bb750jjtc87w0"]
+
+[ext_resource type="PackedScene" uid="uid://ckpftr6y3rr7b" path="res://assets/models/objects/trash_basket.glb" id="1_gwrwg"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_gwrwg"]
+height = 11.0185
+radius = 5.5493164
+
+[node name="s_trash_basket" type="StaticBody3D" unique_id=963932463]
+
+[node name="trash_basket" parent="." unique_id=1140446771 instance=ExtResource("1_gwrwg")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+
+[node name="c_trash_basket" type="CollisionShape3D" parent="." unique_id=42449371]
+transform = Transform3D(0.0508, 0, 0, 0, -0.0508, -2.2205384e-09, 0, 2.2205384e-09, -0.0508, 0.0036934149, 0.30266395, -0.008144476)
+shape = SubResource("CylinderShape3D_gwrwg")

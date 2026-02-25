@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://c3sbcl0jbjsc1"]
+
+[ext_resource type="PackedScene" uid="uid://sysifboqaae8" path="res://assets/models/objects/medikit.glb" id="1_02ksa"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_02ksa"]
+size = Vector3(0.64151764, 2, 2.4867654)
+
+[node name="s_medikit" type="StaticBody3D" unique_id=379420351]
+
+[node name="medikit" parent="." unique_id=1809207166 instance=ExtResource("1_02ksa")]
+transform = Transform3D(-1.0927847e-08, 0, -0.25, 0, 0.25, 0, 0.25, 0, -1.0927847e-08, 0, 0, 0)
+
+[node name="c_medikit" type="CollisionShape3D" parent="." unique_id=2129259196]
+transform = Transform3D(-1.0927847e-08, 0, -0.25, 0, 0.25, 0, 0.25, 0, -1.0927847e-08, -8.1059015e-10, 0, 0.018544141)
+shape = SubResource("BoxShape3D_02ksa")
