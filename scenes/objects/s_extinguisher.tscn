@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://cbhu7v0xkxq5m"]
+
+[ext_resource type="PackedScene" uid="uid://bvjbro2igx2rt" path="res://assets/models/objects/extinguisher.glb" id="1_vyw6v"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vyw6v"]
+size = Vector3(0.27590275, 0.8317266, 0.47223365)
+
+[node name="s_extinguisher" type="StaticBody3D" unique_id=581039971]
+
+[node name="extinguisher" parent="." unique_id=891459725 instance=ExtResource("1_vyw6v")]
+transform = Transform3D(-0.15, 0, -1.3113417e-08, 0, 0.15, 0, 1.3113417e-08, 0, -0.15, 0, 0, 0)
+
+[node name="c_extinguisher" type="CollisionShape3D" parent="." unique_id=925638390]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.004916668, 0.41539147, -0.0022337735)
+shape = SubResource("BoxShape3D_vyw6v")

@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://clumfw42plorn"]
+
+[ext_resource type="PackedScene" uid="uid://qssrbm8c6lmv" path="res://assets/models/objects/exit_sign.glb" id="1_pabi7"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pabi7"]
+size = Vector3(0.07891402, 0.40147358, 1.0010421)
+
+[node name="s_exit_sign" type="StaticBody3D" unique_id=1254456252]
+
+[node name="exit_sign" parent="." unique_id=1033549260 instance=ExtResource("1_pabi7")]
+transform = Transform3D(-0.75, 0, -6.556708e-08, 0, 0.75, 0, 6.556708e-08, 0, -0.75, 0, 0, 0)
+
+[node name="c_exit_sign" type="CollisionShape3D" parent="." unique_id=770974567]
+transform = Transform3D(-0.75, 0, -6.556708e-08, 0, 0.75, 0, 6.556708e-08, 0, -0.75, 0.0027186284, 0, -2.3767002e-10)
+shape = SubResource("BoxShape3D_pabi7")

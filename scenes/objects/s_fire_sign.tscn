@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://7ox7hs5wyb7c"]
+
+[ext_resource type="PackedScene" uid="uid://dmxgrx0xucdvp" path="res://assets/models/objects/fire_sign.glb" id="1_318cu"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_318cu"]
+size = Vector3(0.40168223, 0.40168223, 0.001)
+
+[node name="s_fire_sign" type="StaticBody3D" unique_id=585537351]
+
+[node name="fire_sign" parent="." unique_id=916906504 instance=ExtResource("1_318cu")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
+
+[node name="c_fire_sign" type="CollisionShape3D" parent="." unique_id=1222711725]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0.0021964002, 0, 9.60077e-11)
+shape = SubResource("BoxShape3D_318cu")

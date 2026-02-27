@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://dyatmpacth4fr"]
+
+[ext_resource type="PackedScene" uid="uid://gnwqc8o1v0cg" path="res://assets/models/objects/fire_alarm.glb" id="1_8t83o"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8t83o"]
+size = Vector3(2.687678, 3.7410693, 4.051094)
+
+[node name="s_fire_alarm" type="StaticBody3D" unique_id=523070664]
+
+[node name="fire_alarm" parent="." unique_id=1510512557 instance=ExtResource("1_8t83o")]
+transform = Transform3D(1.3, 0, 0, 0, 1.3, 0, 0, 0, 1.3, 0, 0, 0)
+
+[node name="c_fire_alarm" type="CollisionShape3D" parent="." unique_id=1499968077]
+transform = Transform3D(0.04706343, 0, 0, 0, 0.047063448, 0, 0, 0, 0.047063448, 0.03971396, 0.062470384, 0.06959744)
+shape = SubResource("BoxShape3D_8t83o")

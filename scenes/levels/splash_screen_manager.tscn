@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dejy6xmx0jom4" path="res://scenes/levels/lobby.tscn" id="2_uy63b"]
 [ext_resource type="Texture2D" uid="uid://b0runnou5hn27" path="res://assets/ui/logos/fcebi_logo.svg" id="4_3v6ed"]
 [ext_resource type="Texture2D" uid="uid://s5rofdojrnpt" path="res://assets/ui/logos/fab_logo.svg" id="5_uy63b"]
+[ext_resource type="Texture2D" uid="uid://dgc8r4nkikk1y" path="res://assets/ui/logos/cgtrader_logo.svg" id="6_kyd2t"]
 
 [node name="SplashScreenManager" type="Control" unique_id=1569995097 node_paths=PackedStringArray("splash_screen_container")]
 layout_mode = 3
@@ -42,6 +43,10 @@ texture = ExtResource("2_fcwca")
 layout_mode = 2
 texture = ExtResource("5_uy63b")
 
-[node name="Screen3" type="TextureRect" parent="SplashScreenContainer" unique_id=603006047]
+[node name="Screen3" type="TextureRect" parent="SplashScreenContainer" unique_id=1644059163]
+layout_mode = 2
+texture = ExtResource("6_kyd2t")
+
+[node name="Screen4" type="TextureRect" parent="SplashScreenContainer" unique_id=603006047]
 layout_mode = 2
 texture = ExtResource("4_3v6ed")

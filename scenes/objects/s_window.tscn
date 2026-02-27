@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://fmmlkpa5syu1"]
+
+[ext_resource type="PackedScene" uid="uid://cagvkrmctdufh" path="res://assets/models/objects/window.glb" id="1_vwlb4"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vwlb4"]
+size = Vector3(5.701561, 4.292328, 0.25715637)
+
+[node name="s_window" type="StaticBody3D" unique_id=43814148]
+
+[node name="window" parent="." unique_id=1854479141 instance=ExtResource("1_vwlb4")]
+transform = Transform3D(-6.709698e-08, 0, 1.4, 0, 1.4, 0, -1.535, 0, -6.119594e-08, 0, 0, 0)
+
+[node name="c_window" type="CollisionShape3D" parent="." unique_id=180565011]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.0008316031, 2.1446915, 0.0051248074)
+shape = SubResource("BoxShape3D_vwlb4")
