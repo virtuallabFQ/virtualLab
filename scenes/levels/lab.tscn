@@ -5,7 +5,7 @@
 [ext_resource type="LightmapGIData" uid="uid://7hm6p6yrd5sg" path="res://assets/bake/lab.lmbake" id="1_e21fs"]
 [ext_resource type="Script" uid="uid://02s36yo66g2g" path="res://scripts/ui/show_label.gd" id="1_rsbtw"]
 [ext_resource type="PackedScene" uid="uid://2743hri2tski" path="res://scenes/ui/pause_menu.tscn" id="1_uy2bq"]
-[ext_resource type="Texture2D" uid="uid://p7vnjybcdxqi" path="res://assets/textures/AllSkyFree_Sky_EpicBlueSunset_Equirect.png" id="2_arhgp"]
+[ext_resource type="Shader" uid="uid://b2tjhd678uvrh" path="res://shaders/sky.gdshader" id="2_p4yml"]
 [ext_resource type="PackedScene" uid="uid://o7iwtxiplt26" path="res://scenes/levels/ocean.tscn" id="3_836bf"]
 [ext_resource type="PackedScene" uid="uid://fmmlkpa5syu1" path="res://scenes/objects/s_window.tscn" id="3_euf42"]
 [ext_resource type="PackedScene" uid="uid://hp3liy7jxlwn" path="res://scenes/objects/s_periodic_table.tscn" id="3_vuu1o"]
@@ -29,16 +29,54 @@
 [ext_resource type="PackedScene" uid="uid://vp4q1nql665x" path="res://scenes/objects/s_reagents_cabinet.tscn" id="17_v77j0"]
 [ext_resource type="PackedScene" uid="uid://445ve28qxy52" path="res://scenes/objects/s_glassware_cabinet.tscn" id="18_sek4n"]
 
-[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_836bf"]
-panorama = ExtResource("2_arhgp")
+[sub_resource type="Curve" id="Curve_p4yml"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.12377851, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.72631574), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_nne36"]
+curve = SubResource("Curve_p4yml")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_3q8po"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_awhs2"]
+noise = SubResource("FastNoiseLite_3q8po")
+seamless = true
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_svtj1"]
+noise = SubResource("FastNoiseLite_3q8po")
+seamless = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nne36"]
+shader = ExtResource("2_p4yml")
+shader_parameter/cloud_shape_sampler = SubResource("NoiseTexture2D_svtj1")
+shader_parameter/cloud_noise_sampler = SubResource("NoiseTexture2D_awhs2")
+shader_parameter/cloud_curves = SubResource("CurveTexture_nne36")
+shader_parameter/clouds_samples = 32
+shader_parameter/shadow_sample = 4
+shader_parameter/clouds_density = 0.40000000596048
+shader_parameter/clouds_scale = 1.0
+shader_parameter/clouds_smoothness = 0.029999999329440002
+shader_parameter/clouds_light_color = Color(1, 1, 1, 1)
+shader_parameter/clouds_shadow_intensity = 1.0
+shader_parameter/high_clouds_density = 0.0
+shader_parameter/top_color = Color(0.83831304, 0.899889, 0.9999996, 1)
+shader_parameter/bottom_color = Color(0, 0, 0, 1)
+shader_parameter/sun_scatter = Color(0.43707156, 0.4459902, 0.4370687, 1)
+shader_parameter/astro_tint = Color(0.88816303, 0.9069106, 0.90230954, 1)
+shader_parameter/astro_scale = 10.0
+shader_parameter/astro_intensity = 1.0
+shader_parameter/stars_intensity = 0.0
+shader_parameter/shooting_stars_intensity = 0.0
+shader_parameter/shooting_star_tint = Color(0, 0, 0, 1)
 
 [sub_resource type="Sky" id="Sky_e21fs"]
-sky_material = SubResource("PanoramaSkyMaterial_836bf")
+sky_material = SubResource("ShaderMaterial_nne36")
 
 [sub_resource type="Environment" id="Environment_b874d"]
 background_mode = 2
 sky = SubResource("Sky_e21fs")
-sky_rotation = Vector3(0, 1.5707964, 0)
+sky_rotation = Vector3(0, 3.1415927, 0)
+ambient_light_source = 2
 ambient_light_color = Color(0.5058824, 0.5019608, 0.49019608, 1)
 ambient_light_sky_contribution = 0.1
 ambient_light_energy = 3.5
@@ -51,8 +89,6 @@ ssao_enabled = true
 ssao_radius = 0.35
 ssao_intensity = 0.75
 ssao_sharpness = 0.25
-fog_light_color = Color(0.6533865, 0.63048583, 0.6457435, 1)
-fog_density = 0.005
 adjustment_enabled = true
 adjustment_brightness = 0.8
 adjustment_contrast = 1.15
