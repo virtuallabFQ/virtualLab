@@ -5,11 +5,14 @@
 [ext_resource type="LightmapGIData" uid="uid://7hm6p6yrd5sg" path="res://assets/bake/lab.lmbake" id="1_e21fs"]
 [ext_resource type="Script" uid="uid://02s36yo66g2g" path="res://scripts/ui/show_label.gd" id="1_rsbtw"]
 [ext_resource type="PackedScene" uid="uid://2743hri2tski" path="res://scenes/ui/pause_menu.tscn" id="1_uy2bq"]
+[ext_resource type="Texture2D" uid="uid://p7vnjybcdxqi" path="res://assets/textures/AllSkyFree_Sky_EpicBlueSunset_Equirect.png" id="2_arhgp"]
+[ext_resource type="PackedScene" uid="uid://o7iwtxiplt26" path="res://scenes/levels/ocean.tscn" id="3_836bf"]
 [ext_resource type="PackedScene" uid="uid://fmmlkpa5syu1" path="res://scenes/objects/s_window.tscn" id="3_euf42"]
 [ext_resource type="PackedScene" uid="uid://hp3liy7jxlwn" path="res://scenes/objects/s_periodic_table.tscn" id="3_vuu1o"]
 [ext_resource type="PackedScene" uid="uid://dumhaqs3p53lh" path="res://scenes/objects/s_table.tscn" id="4_w4gd0"]
 [ext_resource type="PackedScene" uid="uid://dnkg01s24uf44" path="res://scenes/objects/s_door.tscn" id="6_bj4kn"]
 [ext_resource type="PackedScene" uid="uid://c6qrgou1up25p" path="res://scenes/objects/s_whiteboard.tscn" id="6_n3ogy"]
+[ext_resource type="PackedScene" uid="uid://b6xtel3iilsst" path="res://scenes/objects/s_window_blinds.tscn" id="6_p4yml"]
 [ext_resource type="PackedScene" uid="uid://bcxkmmjec22rv" path="res://scenes/objects/s_tv.tscn" id="6_rufap"]
 [ext_resource type="PackedScene" uid="uid://cyhbkusinldqa" path="res://scenes/objects/s_marker.tscn" id="9_4wtwa"]
 [ext_resource type="PackedScene" uid="uid://byqoedaoxljd" path="res://scenes/objects/s_sink_table.tscn" id="9_6uvyo"]
@@ -26,18 +29,18 @@
 [ext_resource type="PackedScene" uid="uid://vp4q1nql665x" path="res://scenes/objects/s_reagents_cabinet.tscn" id="17_v77j0"]
 [ext_resource type="PackedScene" uid="uid://445ve28qxy52" path="res://scenes/objects/s_glassware_cabinet.tscn" id="18_sek4n"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ky6vu"]
-sky_top_color = Color(0.6090921, 0.59287846, 0.6341862, 1)
-ground_bottom_color = Color(0.28565896, 0.26161292, 0.28526407, 1)
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_836bf"]
+panorama = ExtResource("2_arhgp")
 
 [sub_resource type="Sky" id="Sky_e21fs"]
-sky_material = SubResource("ProceduralSkyMaterial_ky6vu")
+sky_material = SubResource("PanoramaSkyMaterial_836bf")
 
 [sub_resource type="Environment" id="Environment_b874d"]
 background_mode = 2
 sky = SubResource("Sky_e21fs")
+sky_rotation = Vector3(0, 1.5707964, 0)
 ambient_light_color = Color(0.5058824, 0.5019608, 0.49019608, 1)
-ambient_light_sky_contribution = 0.35
+ambient_light_sky_contribution = 0.1
 ambient_light_energy = 3.5
 tonemap_mode = 2
 tonemap_exposure = 0.85
@@ -48,7 +51,6 @@ ssao_enabled = true
 ssao_radius = 0.35
 ssao_intensity = 0.75
 ssao_sharpness = 0.25
-fog_enabled = true
 fog_light_color = Color(0.6533865, 0.63048583, 0.6457435, 1)
 fog_density = 0.005
 adjustment_enabled = true
@@ -113,17 +115,13 @@ albedo_color = Color(0.3372549, 0.3372549, 0.3372549, 1)
 
 [node name="Lab" type="Node3D" unique_id=2011976822]
 
-[node name="PlayerController" parent="." unique_id=65100141 instance=ExtResource("1_bj4kn")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -9.413095, -0.03160256, -5.000931)
-visible = false
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=299602841]
-environment = SubResource("Environment_b874d")
-
 [node name="LightmapGI" type="LightmapGI" parent="." unique_id=1974806237]
 denoiser_strength = 0.2
 texel_scale = 2.0
 light_data = ExtResource("1_e21fs")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=299602841]
+environment = SubResource("Environment_b874d")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1112485393]
 transform = Transform3D(-4.3389093e-08, -0.25817838, 0.9660973, -5.298307e-09, 0.9660973, 0.25817838, -1, 6.0834453e-09, -4.3285997e-08, 15, 3.6897397, 0)
@@ -206,6 +204,13 @@ light_bake_mode = 1
 shadow_enabled = true
 omni_range = 10.0
 
+[node name="PlayerController" parent="." unique_id=65100141 instance=ExtResource("1_bj4kn")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -9.413095, -0.03160256, -5.000931)
+visible = false
+
+[node name="ocean" parent="." unique_id=2006345494 instance=ExtResource("3_836bf")]
+transform = Transform3D(15, 0, 0, 0, 1, 0, 0, 0, 15, 0, -7.5, 0)
+
 [node name="room" type="StaticBody3D" parent="." unique_id=458236972]
 
 [node name="floor" type="MeshInstance3D" parent="room" unique_id=1064197166]
@@ -263,6 +268,26 @@ transform = Transform3D(-4.3711385e-08, 1, 4.3711385e-08, 0, -4.371139e-08, 0.99
 visible = false
 shape = SubResource("BoxShape3D_2yitm")
 
+[node name="s_door" parent="." unique_id=45182123 instance=ExtResource("6_bj4kn")]
+transform = Transform3D(-4.3711385e-08, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, -4.3711385e-08, -11.468, -0.738, -4.178)
+
+[node name="round" type="MeshInstance3D" parent="s_door" unique_id=849881820]
+transform = Transform3D(18, 6.356027e-15, 4.2351647e-21, 5.1520376e-19, -4.3712237e-10, 6, -5.684342e-14, -0.01, -2.6226832e-07, -0.8270521, 1.5206764, 0.031999588)
+mesh = SubResource("ArrayMesh_6uvyo")
+surface_material_override/0 = SubResource("StandardMaterial3D_rsbtw")
+
+[node name="s_exit_sign" parent="." unique_id=1254456252 instance=ExtResource("11_e07mh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.488, 2.6, -5)
+
+[node name="s_extinguisher" parent="." unique_id=581039971 instance=ExtResource("11_nw5ov")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.329, -0.2, -3.5)
+
+[node name="s_fire_alarm" parent="." unique_id=523070664 instance=ExtResource("12_b8w8h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.487, 0.8, -3.56)
+
+[node name="s_fire_sign" parent="." unique_id=585537351 instance=ExtResource("12_5ecg5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.496, 1.9, -3.5)
+
 [node name="windows" type="Node" parent="." unique_id=398994519]
 
 [node name="s_window_1" parent="windows" unique_id=43814148 instance=ExtResource("3_euf42")]
@@ -273,6 +298,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.019244, 0.23460102, -0.499
 
 [node name="s_window_3" parent="windows" unique_id=865498158 instance=ExtResource("3_euf42")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.019244, 0.23460102, -6.1742744)
+
+[node name="s_window_blinds" parent="." unique_id=831504492 instance=ExtResource("6_p4yml")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.35, 1.6, -0.56)
 
 [node name="sink_tables" type="Node" parent="." unique_id=1987698385]
 
@@ -436,25 +464,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.85, 1.737, 7.962)
 [node name="s_eraser_2" parent="erasers" unique_id=2002420278 instance=ExtResource("10_gijfe")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.15, 1.737, 7.962)
 
-[node name="s_door" parent="." unique_id=45182123 instance=ExtResource("6_bj4kn")]
-transform = Transform3D(-4.3711385e-08, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, -4.3711385e-08, -11.468, -0.738, -4.178)
-
-[node name="round" type="MeshInstance3D" parent="s_door" unique_id=849881820]
-transform = Transform3D(18, 6.356027e-15, 4.2351647e-21, 5.1520376e-19, -4.3712237e-10, 6, -5.684342e-14, -0.01, -2.6226832e-07, -0.8270521, 1.5206764, 0.031999588)
-mesh = SubResource("ArrayMesh_6uvyo")
-surface_material_override/0 = SubResource("StandardMaterial3D_rsbtw")
-
-[node name="s_exit_sign" parent="." unique_id=1254456252 instance=ExtResource("11_e07mh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.488, 2.6, -5)
-
-[node name="s_extinguisher" parent="." unique_id=581039971 instance=ExtResource("11_nw5ov")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.329, -0.2, -3.5)
-
-[node name="s_fire_alarm" parent="." unique_id=523070664 instance=ExtResource("12_b8w8h")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.487, 0.8, -3.56)
-
-[node name="s_fire_sign" parent="." unique_id=585537351 instance=ExtResource("12_5ecg5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.496, 1.9, -3.5)
+[node name="s_trash_basket" parent="." unique_id=963932463 instance=ExtResource("14_silbn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.066, -0.732, -6.9)
 
 [node name="s_tv" parent="." unique_id=2146555040 instance=ExtResource("6_rufap")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -8, 1.05, 8.029)
@@ -465,14 +476,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.294, 1.458, 3.5)
 [node name="s_reagents_cabinet" parent="." unique_id=7212893 instance=ExtResource("17_v77j0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.881296, -0.72982806, -8.078117)
 
-[node name="s_glassware_cabinet" parent="." unique_id=1079947857 instance=ExtResource("18_sek4n")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.668, -0.715, -8.034)
-
 [node name="s_medikit" parent="." unique_id=379420351 instance=ExtResource("14_kdlxb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.51496, 2.13179, -8.874177)
 
-[node name="s_trash_basket" parent="." unique_id=963932463 instance=ExtResource("14_silbn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.066, -0.732, -6.9)
+[node name="s_glassware_cabinet" parent="." unique_id=1079947857 instance=ExtResource("18_sek4n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.668, -0.715, -8.034)
 
 [node name="s_beaker_100ml" parent="." unique_id=613809570 instance=ExtResource("9_rsbtw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.961012, 0.36810303, -8.368225)

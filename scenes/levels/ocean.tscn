@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://o7iwtxiplt26"]
+
+[ext_resource type="Script" uid="uid://q7qpfhj8r4ex" path="res://scripts/levels/ocean.gd" id="1_7e4bs"]
+
+[node name="ocean" type="Node3D" unique_id=2006345494]
+script = ExtResource("1_7e4bs")

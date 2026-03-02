@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://b6xtel3iilsst"]
+
+[ext_resource type="PackedScene" uid="uid://cgs3l8ul0x8po" path="res://assets/models/objects/window_blinds.glb" id="1_cilnn"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cilnn"]
+size = Vector3(17.036884, 0.17189085, 4.265142)
+
+[node name="s_window_blinds" type="StaticBody3D" unique_id=831504492]
+
+[node name="window_blinds" parent="." unique_id=1823756467 instance=ExtResource("1_cilnn")]
+transform = Transform3D(-5.6824803e-09, 0, -0.07, 0, 0.07, 0, 0.13, 0, -3.059797e-09, 0, 0, 0)
+
+[node name="c_window_blinds" type="CollisionShape3D" parent="." unique_id=911249463]
+transform = Transform3D(-4.371139e-08, 1, 4.371139e-08, 0, -4.371139e-08, 1, 1, 4.371139e-08, 1.9106855e-15, -0.08218573, 0.7446778, 0.031064987)
+shape = SubResource("BoxShape3D_cilnn")

@@ -5,8 +5,8 @@
 [ext_resource type="Script" uid="uid://cld64tanfoemk" path="res://scripts/objects/interaction_component.gd" id="2_3aqab"]
 [ext_resource type="Material" uid="uid://bt64lrilhx0df" path="res://assets/materials/water_recipient.tres" id="2_s0sfm"]
 [ext_resource type="Script" uid="uid://dgjrei33rjh21" path="res://scripts/objects/pick_up_component.gd" id="3_4coyb"]
-[ext_resource type="Shader" uid="uid://dnocp532ptnhv" path="res://assets/shaders/water.gdshader" id="4_4coyb"]
-[ext_resource type="Shader" uid="uid://dmpgduruo7y16" path="res://assets/shaders/water_recipient.gdshader" id="5_x673q"]
+[ext_resource type="Shader" uid="uid://dnocp532ptnhv" path="res://shaders/water.gdshader" id="4_4coyb"]
+[ext_resource type="Shader" uid="uid://dmpgduruo7y16" path="res://shaders/water_recipient.gdshader" id="5_x673q"]
 [ext_resource type="Script" uid="uid://cvmfahfydk6ic" path="res://scripts/objects/water_mesh.gd" id="6_fm7qo"]
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_fm7qo"]

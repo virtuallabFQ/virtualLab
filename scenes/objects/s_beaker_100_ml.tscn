@@ -27,7 +27,7 @@ radius = 0.034080066
 
 [node name="beaker_100ml" parent="." unique_id=1441826745 instance=ExtResource("1_od3ns")]
 
-[node name="beaker_100ml" parent="beaker_100ml" index="0" unique_id=942275189]
+[node name="beaker_100ml" parent="beaker_100ml" index="0" unique_id=1659040735]
 transform = Transform3D(2.08, 0, 0, 0, -9.0919684e-08, 2.08, 0, -2.08, -9.0919684e-08, 0, 0.08134972, 0.19178264)
 
 [node name="WaterMeshPivot" type="Node3D" parent="." unique_id=1550371071]
