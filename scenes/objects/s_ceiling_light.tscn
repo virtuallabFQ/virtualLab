@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://7mhwm0wdkowr"]
+
+[ext_resource type="PackedScene" uid="uid://wsypln704h1n" path="res://assets/models/objects/ceiling_light.glb" id="1_r72x4"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_r72x4"]
+size = Vector3(1.6556191, 0.08145332, 0.19893456)
+
+[node name="s_ceiling_light" type="StaticBody3D" unique_id=218974777]
+
+[node name="ceiling_light" parent="." unique_id=435957061 instance=ExtResource("1_r72x4")]
+transform = Transform3D(-6.556708e-08, 0, 1.5, 0, 1.5, 0, -1.5, 0, -6.556708e-08, 0, 0, 0)
+
+[node name="c_ceiling_light" type="CollisionShape3D" parent="." unique_id=1947411483]
+transform = Transform3D(-6.556708e-08, 0, 1.5, 0, 1.5, 0, -1.5, 0, -6.556708e-08, 0.012241423, -0.055230036, 0.0003556604)
+shape = SubResource("BoxShape3D_r72x4")

@@ -5,7 +5,6 @@
 [ext_resource type="LightmapGIData" uid="uid://7hm6p6yrd5sg" path="res://assets/bake/lab.lmbake" id="1_e21fs"]
 [ext_resource type="Script" uid="uid://02s36yo66g2g" path="res://scripts/ui/show_label.gd" id="1_rsbtw"]
 [ext_resource type="PackedScene" uid="uid://2743hri2tski" path="res://scenes/ui/pause_menu.tscn" id="1_uy2bq"]
-[ext_resource type="Shader" uid="uid://b2tjhd678uvrh" path="res://shaders/sky.gdshader" id="2_p4yml"]
 [ext_resource type="PackedScene" uid="uid://o7iwtxiplt26" path="res://scenes/levels/ocean.tscn" id="3_836bf"]
 [ext_resource type="PackedScene" uid="uid://fmmlkpa5syu1" path="res://scenes/objects/s_window.tscn" id="3_euf42"]
 [ext_resource type="PackedScene" uid="uid://hp3liy7jxlwn" path="res://scenes/objects/s_periodic_table.tscn" id="3_vuu1o"]
@@ -27,50 +26,17 @@
 [ext_resource type="PackedScene" uid="uid://c3sbcl0jbjsc1" path="res://scenes/objects/s_medikit.tscn" id="14_kdlxb"]
 [ext_resource type="PackedScene" uid="uid://bb750jjtc87w0" path="res://scenes/objects/s_trash_basket.tscn" id="14_silbn"]
 [ext_resource type="PackedScene" uid="uid://vp4q1nql665x" path="res://scenes/objects/s_reagents_cabinet.tscn" id="17_v77j0"]
+[ext_resource type="PackedScene" uid="uid://7mhwm0wdkowr" path="res://scenes/objects/s_ceiling_light.tscn" id="18_nne36"]
 [ext_resource type="PackedScene" uid="uid://445ve28qxy52" path="res://scenes/objects/s_glassware_cabinet.tscn" id="18_sek4n"]
 
-[sub_resource type="Curve" id="Curve_p4yml"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.12377851, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.72631574), 0.0, 0.0, 0, 0]
-point_count = 3
-
-[sub_resource type="CurveTexture" id="CurveTexture_nne36"]
-curve = SubResource("Curve_p4yml")
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_3q8po"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_awhs2"]
-noise = SubResource("FastNoiseLite_3q8po")
-seamless = true
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_svtj1"]
-noise = SubResource("FastNoiseLite_3q8po")
-seamless = true
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_nne36"]
-shader = ExtResource("2_p4yml")
-shader_parameter/cloud_shape_sampler = SubResource("NoiseTexture2D_svtj1")
-shader_parameter/cloud_noise_sampler = SubResource("NoiseTexture2D_awhs2")
-shader_parameter/cloud_curves = SubResource("CurveTexture_nne36")
-shader_parameter/clouds_samples = 32
-shader_parameter/shadow_sample = 4
-shader_parameter/clouds_density = 0.40000000596048
-shader_parameter/clouds_scale = 1.0
-shader_parameter/clouds_smoothness = 0.07999999821184
-shader_parameter/clouds_light_color = Color(1, 1, 1, 1)
-shader_parameter/clouds_shadow_intensity = 1.0
-shader_parameter/high_clouds_density = 0.0
-shader_parameter/top_color = Color(4.3125154e-05, 0.38406363, 0.9969738, 1)
-shader_parameter/bottom_color = Color(0.1713618, 0.39137334, 0.70169187, 1)
-shader_parameter/sun_scatter = Color(0.24991998, 0.25866368, 0.2499195, 1)
-shader_parameter/astro_tint = Color(0.88816303, 0.9069106, 0.90230954, 1)
-shader_parameter/astro_scale = 10.0
-shader_parameter/astro_intensity = 1.0
-shader_parameter/stars_intensity = 0.0
-shader_parameter/shooting_stars_intensity = 0.0
-shader_parameter/shooting_star_tint = Color(0, 0, 0, 1)
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_p4yml"]
+sky_top_color = Color(0.2473351, 0.55099005, 0.987688, 1)
+sky_horizon_color = Color(0.64515865, 0.7483446, 0.828287, 1)
+ground_bottom_color = Color(0.64705884, 0.7490196, 0.827451, 1)
+ground_horizon_color = Color(0.64705884, 0.7490196, 0.827451, 1)
 
 [sub_resource type="Sky" id="Sky_e21fs"]
-sky_material = SubResource("ShaderMaterial_nne36")
+sky_material = SubResource("ProceduralSkyMaterial_p4yml")
 
 [sub_resource type="Environment" id="Environment_b874d"]
 background_mode = 2
@@ -157,10 +123,12 @@ light_data = ExtResource("1_e21fs")
 
 [node name="ReflectionProbe" type="ReflectionProbe" parent="." unique_id=1568657294]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.24339294, -0.6690674, 0)
-intensity = 0.35
+intensity = 0.5
 size = Vector3(32.34781, 18.653076, 20)
 box_projection = true
 interior = true
+ambient_color = Color(0.7858619, 0.7877549, 0.7929259, 1)
+ambient_color_energy = 1.62
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=299602841]
 environment = SubResource("Environment_b874d")
@@ -184,63 +152,63 @@ spot_angle = 35.0
 [node name="olights" type="Node" parent="." unique_id=209746724]
 
 [node name="olight_1" type="OmniLight3D" parent="olights" unique_id=863950772]
-transform = Transform3D(1, -6.115832e-23, -3.821371e-15, 3.4426549e-15, -0.43403646, 0.90089536, -1.6586143e-15, -0.90089536, -0.43403646, 6.844, 4.35, 3.5)
+transform = Transform3D(1, -6.115832e-23, -3.821371e-15, 3.4426549e-15, -0.43403646, 0.90089536, -1.6586143e-15, -0.90089536, -0.43403646, 6.844, 3.5, 3.5)
 visible = false
 light_bake_mode = 1
 shadow_enabled = true
 omni_range = 10.0
 
 [node name="olight_2" type="OmniLight3D" parent="olights" unique_id=1342773565]
-transform = Transform3D(1, -6.1158316e-23, -3.821371e-15, 3.417492e-15, 0.44744697, 0.8943105, 1.7098607e-15, -0.8943105, 0.44744697, -0.84, 4.35, -2)
+transform = Transform3D(1, -6.1158316e-23, -3.821371e-15, 3.417492e-15, 0.44744697, 0.8943105, 1.7098607e-15, -0.8943105, 0.44744697, -0.84, 3.5, -1.25)
 visible = false
 light_bake_mode = 1
 shadow_enabled = true
 omni_range = 10.0
 
 [node name="olight_3" type="OmniLight3D" parent="olights" unique_id=1743515663]
-transform = Transform3D(1, -1.6703743e-22, -3.821371e-15, 3.1127019e-15, -0.5800918, 0.8145511, -2.216746e-15, -0.8145511, -0.5800918, -0.84, 4.35, 3.5)
+transform = Transform3D(1, -1.6703743e-22, -3.821371e-15, 3.1127019e-15, -0.5800918, 0.8145511, -2.216746e-15, -0.8145511, -0.5800918, -0.84, 3.5, 3.5)
 visible = false
 light_bake_mode = 1
 shadow_enabled = true
 omni_range = 10.0
 
 [node name="olight_4" type="OmniLight3D" parent="olights" unique_id=976223256]
-transform = Transform3D(1, -1.6703743e-22, -3.8213714e-15, 2.8866491e-15, 0.65526843, 0.7553962, 2.5040236e-15, -0.7553962, 0.65526843, 6.844, 4.35, -2)
+transform = Transform3D(1, -1.6703743e-22, -3.8213714e-15, 2.8866491e-15, 0.65526843, 0.7553962, 2.5040236e-15, -0.7553962, 0.65526843, 6.844, 3.5, -1.25)
 visible = false
 light_bake_mode = 1
 shadow_enabled = true
 omni_range = 10.0
 
 [node name="olight_5" type="OmniLight3D" parent="olights" unique_id=1349152842]
-transform = Transform3D(1, -1.6703743e-22, -3.8213714e-15, 3.016407e-15, 0.6139409, 0.78935206, 2.3460958e-15, -0.78935206, 0.6139409, -8.155, 4.35, -2)
+transform = Transform3D(1, -1.6703743e-22, -3.8213714e-15, 3.016407e-15, 0.6139409, 0.78935206, 2.3460958e-15, -0.78935206, 0.6139409, -8.155, 3.5, -1.25)
 visible = false
 light_bake_mode = 1
 shadow_enabled = true
 omni_range = 10.0
 
 [node name="olight_6" type="OmniLight3D" parent="olights" unique_id=781350984]
-transform = Transform3D(1, 4.472079e-23, -3.821371e-15, 2.9299105e-15, -0.64198506, 0.7667172, -2.453263e-15, -0.7667172, -0.64198506, -8.155, 4.35, 3.5)
+transform = Transform3D(1, 4.472079e-23, -3.821371e-15, 2.9299105e-15, -0.64198506, 0.7667172, -2.453263e-15, -0.7667172, -0.64198506, -8.155, 3.5, 3.5)
 visible = false
 light_bake_mode = 1
 shadow_enabled = true
 omni_range = 10.0
 
 [node name="olight_7" type="OmniLight3D" parent="olights" unique_id=1685480564]
-transform = Transform3D(1, 4.472079e-23, -3.821371e-15, 2.9299105e-15, -0.64198506, 0.7667172, -2.453263e-15, -0.7667172, -0.64198506, -8.155, 4.35, -6)
+transform = Transform3D(1, 4.472079e-23, -3.821371e-15, 2.9299105e-15, -0.64198506, 0.7667172, -2.453263e-15, -0.7667172, -0.64198506, -8.155, 3.5, -6)
 visible = false
 light_bake_mode = 1
 shadow_enabled = true
 omni_range = 10.0
 
 [node name="olight_8" type="OmniLight3D" parent="olights" unique_id=1206193407]
-transform = Transform3D(1, 4.472079e-23, -3.821371e-15, 2.9299105e-15, -0.64198506, 0.7667172, -2.453263e-15, -0.7667172, -0.64198506, -0.84, 4.35, -6)
+transform = Transform3D(1, 4.472079e-23, -3.821371e-15, 2.9299105e-15, -0.64198506, 0.7667172, -2.453263e-15, -0.7667172, -0.64198506, -0.84, 3.5, -6)
 visible = false
 light_bake_mode = 1
 shadow_enabled = true
 omni_range = 10.0
 
 [node name="olight_9" type="OmniLight3D" parent="olights" unique_id=1054997829]
-transform = Transform3D(1, 4.472079e-23, -3.821371e-15, 2.9299105e-15, -0.64198506, 0.7667172, -2.453263e-15, -0.7667172, -0.64198506, 6.844, 4.35, -6)
+transform = Transform3D(1, 4.472079e-23, -3.821371e-15, 2.9299105e-15, -0.64198506, 0.7667172, -2.453263e-15, -0.7667172, -0.64198506, 6.844, 3.5, -6)
 visible = false
 light_bake_mode = 1
 shadow_enabled = true
@@ -310,6 +278,35 @@ transform = Transform3D(-4.3711385e-08, 1, 4.3711385e-08, 0, -4.371139e-08, 0.99
 visible = false
 shape = SubResource("BoxShape3D_2yitm")
 
+[node name="ceiling_lights" type="Node" parent="." unique_id=183481279]
+
+[node name="s_ceiling_light_1" parent="ceiling_lights" unique_id=218974777 instance=ExtResource("18_nne36")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.844, 4.5026007, 3.5)
+
+[node name="s_ceiling_light_2" parent="ceiling_lights" unique_id=35438543 instance=ExtResource("18_nne36")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.84, 4.503, -1.25)
+
+[node name="s_ceiling_light_3" parent="ceiling_lights" unique_id=1100303437 instance=ExtResource("18_nne36")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.84, 4.503, 3.5)
+
+[node name="s_ceiling_light_4" parent="ceiling_lights" unique_id=1315018791 instance=ExtResource("18_nne36")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.844, 4.503, -1.25)
+
+[node name="s_ceiling_light_5" parent="ceiling_lights" unique_id=1784402437 instance=ExtResource("18_nne36")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.155, 4.503, -1.25)
+
+[node name="s_ceiling_light_6" parent="ceiling_lights" unique_id=957206227 instance=ExtResource("18_nne36")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.155, 4.503, 3.5)
+
+[node name="s_ceiling_light_7" parent="ceiling_lights" unique_id=1137735368 instance=ExtResource("18_nne36")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.155, 4.503, -6)
+
+[node name="s_ceiling_light_8" parent="ceiling_lights" unique_id=1403021907 instance=ExtResource("18_nne36")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.84, 4.503, -6)
+
+[node name="s_ceiling_light_9" parent="ceiling_lights" unique_id=1514993144 instance=ExtResource("18_nne36")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.844, 4.503, -6)
+
 [node name="s_door" parent="." unique_id=45182123 instance=ExtResource("6_bj4kn")]
 transform = Transform3D(-4.3711385e-08, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, -4.3711385e-08, -11.468, -0.738, -4.178)
 
@@ -330,6 +327,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.487, 0.8, -3.56)
 [node name="s_fire_sign" parent="." unique_id=585537351 instance=ExtResource("12_5ecg5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.496, 1.9, -3.5)
 
+[node name="s_window_blinds" parent="." unique_id=831504492 instance=ExtResource("6_p4yml")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.35, 1.6, -0.56)
+
 [node name="windows" type="Node" parent="." unique_id=398994519]
 
 [node name="s_window_1" parent="windows" unique_id=43814148 instance=ExtResource("3_euf42")]
@@ -340,9 +340,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.019244, 0.23460102, -0.499
 
 [node name="s_window_3" parent="windows" unique_id=865498158 instance=ExtResource("3_euf42")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.019244, 0.23460102, -6.1742744)
-
-[node name="s_window_blinds" parent="." unique_id=831504492 instance=ExtResource("6_p4yml")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.35, 1.6, -0.56)
 
 [node name="sink_tables" type="Node" parent="." unique_id=1987698385]
 

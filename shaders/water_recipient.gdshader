@@ -1,93 +1,89 @@
 shader_type spatial;
-render_mode cull_disabled, shadows_disabled, depth_draw_opaque;
+render_mode cull_disabled, shadows_disabled, blend_mix;
 
 group_uniforms PhysicsSetByScript;
-uniform vec2 coeff; // Coefficients of the linear function for the surface.
-uniform float vel; // Rate of change of the coefficients.
+uniform vec2 coeff;
+uniform float vel; 
 
 group_uniforms Visuals;
-uniform vec4 liquid_color     : source_color = vec4(0.7, 0.1, 0.6, 1.0);
-uniform vec4 foam_color       : source_color = vec4(0.9f, 0.3, 0.8, 1.0);
-uniform float foam_line       : hint_range(0.0, 1.0, 0.001) = 0.2;
-uniform float fill_amount     : hint_range(0.0, 1.0, 0.001) = 0.5;
-uniform vec2 size             = vec2(1.0, 1.0);
+uniform vec4 liquid_color : source_color = vec4(0.7, 0.1, 0.6, 1.0);
+uniform vec4 foam_color   : source_color = vec4(0.9, 0.3, 0.8, 1.0);
+uniform float foam_line   : hint_range(0.0, 1.0, 0.001) = 0.2;
+uniform float fill_amount : hint_range(0.0, 1.0, 0.001) = 0.5;
+uniform vec2 size         = vec2(1.0, 1.0);
 uniform float glass_thickness = 0.05;
-uniform float scale           = 1.0;
-uniform float wave_intensity  = 0.05f;
+uniform float scale       = 1.0;
+uniform float wave_intensity  = 0.05;
 uniform sampler2D waves_noise;
 
 group_uniforms Bubbles;
-uniform bool HasBubbles     = true;
 uniform bool AlwaysBubbles  = false;
 uniform float BubbleStrength: hint_range(0.0, 1.0, 0.001) = 0.5;
 uniform float BubbleMask    : hint_range(0.0, 1.0, 0.001) = 0.5;
 uniform vec2 BubbleSpeed    = vec2(3.0, 3.0);
 uniform sampler2D bubbles_tex;
 
-varying lowp vec3 pos;
-varying lowp float rot_scale;
-varying lowp vec3 world_vec_up_to_model;
-varying lowp vec3 weights;
+varying vec3 pos;
+varying float rot_scale;
+varying vec3 weights;
+varying vec2 uv_time;
 
 void vertex() {
-	VERTEX                -= glass_thickness * NORMAL;
-	/* Position inside container rotated to world. */
-	pos                   = mat3(MODEL_MATRIX)*VERTEX;
-	/* Lerp between height and width depending on world orientation of z axis. */
-	world_vec_up_to_model = vec3(0.0f, 1.0f, 0.0f)* mat3(MODEL_MATRIX);
-	rot_scale             = mix(size.x, size.y, abs(dot(world_vec_up_to_model, vec3(0.0f, 1.0f, 0.0f))));
-	weights               = mat3(MODEL_MATRIX)*NORMAL; weights*=weights;
+	VERTEX -= glass_thickness * NORMAL;
+	
+	mat3 model_mat = mat3(MODEL_MATRIX);
+	pos = model_mat * VERTEX;
+	
+	uv_time = (TIME * 0.5) * vec2(1.0, 1.0); 
+	
+	vec3 world_up = model_mat[1]; 
+	rot_scale = mix(size.x, size.y, abs(world_up.y));
+	
+	weights = model_mat * NORMAL;
+	weights *= weights;
 }
 
 void fragment() {
-	/* Set liquid line to fill amount, add noise waves and incline. */
-	lowp float wave_noise_1 = texture(waves_noise, (2.0 * pos.xz + 0.5 * TIME * vec2(1.0, 1.0)) * scale).r;
-	lowp float wave_noise_2 = texture(waves_noise, (2.0 * pos.xz - 0.5 * TIME * vec2(1.0, 1.0)) * scale).g;
-	lowp float wave = wave_intensity * length(coeff) * (wave_noise_1 - 0.5f + wave_noise_2 - 0.5f) + dot(pos.xz, coeff);
+	vec2 base_uv = (2.0 * pos.xz) * scale;
+	vec2 wave_tex = texture(waves_noise, base_uv + uv_time).rg;
+	
+	float wave = wave_intensity * length(coeff) * (wave_tex.r + wave_tex.g - 1.0) + dot(pos.xz, coeff);
 	wave *= smoothstep(0.05, 0.25, fill_amount);
-	lowp float liquid_line = (fill_amount * 2.0 - 1.0 + wave) * rot_scale;
-	if (pos.y > liquid_line) discard;// Discard all vertices above the liquid line. */
+	
+	float liquid_line = (fill_amount * 2.0 - 1.0 + wave) * rot_scale;
+	
+	if (pos.y > liquid_line) discard;
+	
+	float b_weight = mix(vel, BubbleStrength, float(AlwaysBubbles));
+	vec2 b_dist = wave_tex * 0.01;
+	
+	float b_x = smoothstep(BubbleMask, 1.0, texture(bubbles_tex, scale * BubbleSpeed * pos.yx + b_dist - TIME * vec2(2.0, 0.5)).r);
+	float b_y = smoothstep(BubbleMask, 1.0, texture(bubbles_tex, scale * BubbleSpeed * pos.yz + b_dist - TIME * vec2(2.0, 0.0)).r);
+	
+	float total_bubbles = (b_x + b_y) * weights.z * weights.x * b_weight;
 
-	if (HasBubbles){
-		float bubble_weight = vel;
-		if (AlwaysBubbles) {
-			bubble_weight = BubbleStrength;
-		}
-		vec2 distortion  = vec2(wave_noise_1, wave_noise_2)*0.01;
-		lowp vec2 bubbles;
-		bubbles.x        = smoothstep(BubbleMask, 1.0, texture(bubbles_tex, scale * BubbleSpeed * pos.yx + distortion - TIME * vec2(2.0, 0.5)).r);
-		bubbles.y        = smoothstep(BubbleMask, 1.0, texture(bubbles_tex, scale * BubbleSpeed * pos.yz + distortion - TIME * vec2(2.0, 0.0)).r);
-		bubbles         *= weights.zx * 1.0 * bubble_weight;
-		BACKLIGHT.z      = bubbles.x + bubbles.y;
-	}
+	float front = float(FRONT_FACING);
+	float back  = 1.0 - front;
+	
+	float foam = smoothstep(liquid_line - foam_line * scale * rot_scale, liquid_line, pos.y);
+	
+	vec3 foam_norm = vec3(coeff.x, 1.0, coeff.y);
+	
+	vec3 c_front = mix(liquid_color.rgb, mix(liquid_color.rgb, foam_color.rgb, foam), vel);
+	vec3 c_back  = mix(liquid_color.rgb, foam_color.rgb, vel);
+	
+	float a_front = mix(liquid_color.a, mix(liquid_color.a, foam_color.a, foam), vel);
+	float a_back  = mix(liquid_color.a, foam_color.a, vel);
 
-if (FRONT_FACING)
-	{
-		float foam       = smoothstep(liquid_line - foam_line * scale * rot_scale, liquid_line,pos.y);
-		vec3 normal_foam = mix(NORMAL, vec3(coeff.x, 1.0, coeff.y), foam);
-		vec3 color_foam  = mix(liquid_color.xyz, foam_color.xyz, foam);
-		ALBEDO           = mix(liquid_color.xyz, color_foam, vel);
-		NORMAL           = mix(NORMAL, normal_foam, vel);
-		
-		// NOVO: Calcula a transparência da frente (mistura o alpha da água com o da espuma)
-		float alpha_foam = mix(liquid_color.a, foam_color.a, foam);
-		ALPHA            = mix(liquid_color.a, alpha_foam, vel);
-	}
-	else
-	{
-		ALBEDO = mix(liquid_color.xyz, foam_color.xyz, vel);
-		NORMAL = vec3(coeff.x, 1.0, coeff.y);
-		
-		// NOVO: Transparência da parte de trás (o "fundo" do copo)
-		ALPHA  = mix(liquid_color.a, foam_color.a, vel);
-	}
+	ALBEDO = (c_front * front) + (c_back * back);
+	NORMAL = (mix(NORMAL, mix(NORMAL, foam_norm, foam), vel) * front) + (foam_norm * back);
+	ALPHA  = (a_front * front) + (a_back * back);
+	
+	BACKLIGHT.z = total_bubbles;
 }
 
-void light() 
-{
-	// Liquid "glow" when held against light. 
-	lowp float d  = dot(-VIEW, LIGHT);
-	lowp float dd = smoothstep(0.0, 1.0, d);
-	dd *= dd;
-	DIFFUSE_LIGHT = (dd -BACKLIGHT.z * d) * liquid_color.rgb;
+void light() {
+	float d = max(dot(-VIEW, LIGHT), 0.0);
+	float dd = d * d;
+	DIFFUSE_LIGHT = (dd - BACKLIGHT.z * d) * liquid_color.rgb;
 }
