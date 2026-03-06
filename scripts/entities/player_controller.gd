@@ -30,7 +30,8 @@ var move_accel: float = 0.0
 var move_decel: float = 0.0
 var crouching: bool = false
 var toggle_crouch: bool = false
-var is_zooming: bool = false 
+var is_seated: bool = false
+var is_zooming: bool = false
 
 var mouse_input: bool = false
 var rotation_input: float = 0.0
@@ -75,13 +76,15 @@ func _process(delta: float) -> void:
 	mouse_input = false
 
 func perform_movement(delta: float) -> void:
+	if is_seated: return
+	
 	velocity.y -= gravity * delta
 	var input := Input.get_vector(input_left, input_right, input_forward, input_back)
 	
 	if input == Vector2.ZERO:
 		velocity.x = move_toward(velocity.x, 0.0, move_decel)
 		velocity.z = move_toward(velocity.z, 0.0, move_decel)
-	else:
+	else:	
 		var dir := (rotation_anchor.global_basis * Vector3(input.x, 0.0, input.y)).normalized()
 		velocity.x = lerp(velocity.x, dir.x * move_speed, move_accel)
 		velocity.z = lerp(velocity.z, dir.z * move_speed, move_accel)

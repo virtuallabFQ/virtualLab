@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://ko87te0o10ve"]
 
 [ext_resource type="PackedScene" uid="uid://bv6bj773idw77" path="res://assets/models/objects/chair.glb" id="1_pdpq8"]
+[ext_resource type="Script" uid="uid://cld64tanfoemk" path="res://scripts/objects/interaction_component.gd" id="3_58apn"]
+[ext_resource type="Script" uid="uid://co2l1ahfgp01u" path="res://scripts/objects/sitting_component.gd" id="4_afvpl"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pdpq8"]
 radius = 9086.508
@@ -14,3 +16,17 @@ transform = Transform3D(0.018, 0, 0, 0, 0.018, 0, 0, 0, 0.018, 0, 0, 0)
 [node name="c_chair" type="CollisionShape3D" parent="." unique_id=787526063]
 transform = Transform3D(3.6e-05, 0, 0, 0, 3.6e-05, 0, 0, 0, 3.6e-05, -0.27117985, 0.35393375, 0.018954458)
 shape = SubResource("CapsuleShape3D_pdpq8")
+
+[node name="sitting_marker" type="Marker3D" parent="." unique_id=1926863144]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.281, 0.1, 0)
+
+[node name="InteractionComponent" type="Node" parent="." unique_id=333011786]
+script = ExtResource("3_58apn")
+metadata/_custom_type_script = "uid://cld64tanfoemk"
+
+[node name="SittingComponent" type="Node" parent="." unique_id=1321978329 node_paths=PackedStringArray("sit_marker", "interaction_component")]
+script = ExtResource("4_afvpl")
+sit_marker = NodePath("../sitting_marker")
+interaction_component = NodePath("../InteractionComponent")
+
+[editable path="chair"]
