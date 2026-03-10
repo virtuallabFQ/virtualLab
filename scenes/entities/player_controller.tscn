@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://cx64gi4ro8la" path="res://scripts/animations/jumping_state.gd" id="8_jthoo"]
 [ext_resource type="Script" uid="uid://dnliq6hmguil4" path="res://scripts/animations/falling_state.gd" id="9_gy805"]
 [ext_resource type="Script" uid="uid://djv1b3edc2lol" path="res://scripts/physics_component.gd" id="13_rb3iv"]
+[ext_resource type="Script" uid="uid://cg0f03g4tg7y5" path="res://scripts/animations/sitting_state.gd" id="14_5wmxy"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_d4y06"]
 
@@ -428,6 +429,9 @@ script = ExtResource("8_jthoo")
 
 [node name="FallingState" type="Node" parent="StateMachine" unique_id=1266451295]
 script = ExtResource("9_gy805")
+
+[node name="SittingState" type="Node" parent="StateMachine" unique_id=948096620]
+script = ExtResource("14_5wmxy")
 
 [node name="PhysicsComponent" type="Node" parent="." unique_id=1174253209 node_paths=PackedStringArray("controller")]
 script = ExtResource("13_rb3iv")

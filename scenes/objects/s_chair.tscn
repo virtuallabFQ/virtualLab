@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bv6bj773idw77" path="res://assets/models/objects/chair.glb" id="1_pdpq8"]
 [ext_resource type="Script" uid="uid://cld64tanfoemk" path="res://scripts/objects/interaction_component.gd" id="3_58apn"]
-[ext_resource type="Script" uid="uid://co2l1ahfgp01u" path="res://scripts/objects/sitting_component.gd" id="4_afvpl"]
+[ext_resource type="Script" uid="uid://db1tqnck87m5w" path="res://scripts/objects/chair_component.gd" id="3_afvpl"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pdpq8"]
 radius = 9086.508
@@ -20,12 +20,14 @@ shape = SubResource("CapsuleShape3D_pdpq8")
 [node name="sitting_marker" type="Marker3D" parent="." unique_id=1926863144]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.281, 0.1, 0)
 
-[node name="InteractionComponent" type="Node" parent="." unique_id=333011786]
+[node name="InteractionComponent" type="Node" parent="." unique_id=333011786 node_paths=PackedStringArray("mesh")]
 script = ExtResource("3_58apn")
+mesh = NodePath("../chair/chair")
+context = "Sentar"
 metadata/_custom_type_script = "uid://cld64tanfoemk"
 
-[node name="SittingComponent" type="Node" parent="." unique_id=1321978329 node_paths=PackedStringArray("sit_marker", "interaction_component")]
-script = ExtResource("4_afvpl")
+[node name="ChairComponent" type="Node" parent="." unique_id=1321978329 node_paths=PackedStringArray("sit_marker", "interaction_component")]
+script = ExtResource("3_afvpl")
 sit_marker = NodePath("../sitting_marker")
 interaction_component = NodePath("../InteractionComponent")
 
