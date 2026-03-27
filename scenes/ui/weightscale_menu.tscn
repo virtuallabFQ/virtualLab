@@ -83,7 +83,6 @@ vertical_alignment = 1
 
 [node name="grams" type="Label" parent="digits" unique_id=929650982]
 layout_mode = 2
-text = "g"
 label_settings = SubResource("LabelSettings_ugl2i")
 horizontal_alignment = 2
 vertical_alignment = 2

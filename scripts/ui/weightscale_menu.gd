@@ -17,6 +17,7 @@ const INVISIBLE = Color(1.0, 1.0, 1.0, 0.0)
 
 func _ready():
 	dot.text = "."
+	grams.text = "g"
 	turn_off()
 
 func set_weight(new_weight: float):

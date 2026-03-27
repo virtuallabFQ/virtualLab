@@ -27,7 +27,6 @@ func enter(_prev: State = null) -> void:
 	tween.set_parallel(true).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 	tween.tween_property(player, "global_position:x", target_pos.x, 0.4)
 	tween.tween_property(player, "global_position:z", target_pos.z, 0.4)
-	tween.tween_property(player, "mouse_rotation:y", target_rot_y, 0.4)
 	
 	tween.chain().tween_property(player, "global_position:y", target_pos.y - 0.08, 0.4).set_trans(Tween.TRANS_SINE)
 	tween.chain().tween_property(player, "global_position:y", target_pos.y, 0.2).set_trans(Tween.TRANS_QUAD)
