@@ -21,7 +21,6 @@ shader_parameter/glass_thickness = 0.11
 shader_parameter/scale = 1.0
 shader_parameter/wave_intensity = 0.05
 shader_parameter/waves_noise = SubResource("NoiseTexture2D_wlmuo")
-shader_parameter/HasBubbles = false
 shader_parameter/AlwaysBubbles = false
 shader_parameter/BubbleStrength = 0.5
 shader_parameter/BubbleMask = 0.5

@@ -180,7 +180,7 @@ draw_pass_1 = SubResource("SphereMesh_3aqab")
 [node name="InteractionComponent" type="Node" parent="." unique_id=1350915894 node_paths=PackedStringArray("mesh")]
 script = ExtResource("2_3aqab")
 mesh = NodePath("../wash_bottle/wash_bottle")
-context = "Esguicho"
+context = "Pegar"
 
 [node name="PickUpComponent" type="Node" parent="InteractionComponent" unique_id=1916396437]
 script = ExtResource("3_4coyb")

@@ -22,10 +22,10 @@ albedo_color = Color(1, 1, 1, 0.19607843)
 
 [node name="marker" parent="." unique_id=1461014391 instance=ExtResource("5_p5v7q")]
 
-[node name="marker" parent="marker" index="0" unique_id=1702081874]
+[node name="marker" parent="marker" index="0" unique_id=797071426]
 transform = Transform3D(-0.04, 0, 3.496911e-09, 0, 0.04, 0, -3.496911e-09, 0, -0.04, 0, 0, 0)
 
-[node name="cap" parent="marker" index="1" unique_id=658556681]
+[node name="cap" parent="marker" index="1" unique_id=1753411145]
 transform = Transform3D(-0.04, 0, 3.496911e-09, 0, 0.04, 0, -3.496911e-09, 0, -0.04, 0, 0, 0)
 
 [node name="c_marker" type="CollisionShape3D" parent="." unique_id=981721958]
@@ -35,6 +35,13 @@ shape = SubResource("CylinderShape3D_2b612")
 [node name="c_cap" type="CollisionShape3D" parent="." unique_id=2089327185]
 transform = Transform3D(-0.04, 3.496911e-09, 1.5285484e-16, 0, -1.7484555e-09, 0.04, 3.496911e-09, 0.04, 1.7484555e-09, -1.8079704e-07, 1.168251e-07, -0.29540324)
 shape = SubResource("CylinderShape3D_p5v7q")
+
+[node name="MarkerComponent" type="Node" parent="." unique_id=686935178]
+script = ExtResource("3_6l0ri")
+
+[node name="GhostPlacementComponent" type="Node" parent="." unique_id=43883413]
+script = ExtResource("5_biph0")
+material = SubResource("StandardMaterial3D_2b612")
 
 [node name="InteractionComponent" type="Node" parent="." unique_id=1857417066 node_paths=PackedStringArray("mesh")]
 script = ExtResource("4_6l0ri")
@@ -51,12 +58,5 @@ allow_scroll = false
 rotate_key = 0
 keep_upright = false
 metadata/_custom_type_script = "uid://dgjrei33rjh21"
-
-[node name="MarkerComponent" type="Node" parent="InteractionComponent" unique_id=686935178]
-script = ExtResource("3_6l0ri")
-
-[node name="GhostPlacementComponent" type="Node" parent="InteractionComponent" unique_id=43883413]
-script = ExtResource("5_biph0")
-material = SubResource("StandardMaterial3D_2b612")
 
 [editable path="marker"]

@@ -11,7 +11,7 @@ extends MeshInstance3D
 @onready var pos2 : Vector3 = pos1
 @onready var pos3 : Vector3 = pos2
 
-var vel    : float = 0.0
+var vel : float = 0.0
 var accell : Vector2
 var coeff : Vector2
 var coeff_old : Vector2

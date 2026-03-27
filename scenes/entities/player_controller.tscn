@@ -351,6 +351,7 @@ unique_name_in_owner = true
 [node name="InteractionRaycast" type="RayCast3D" parent="RotationAnchor/CameraControllerAnchor/Camera3D" unique_id=1201912919]
 target_position = Vector3(0, 0, -2)
 hit_back_faces = false
+collide_with_areas = true
 debug_shape_custom_color = Color(0, 1, 0, 1)
 script = ExtResource("2_fsd73")
 

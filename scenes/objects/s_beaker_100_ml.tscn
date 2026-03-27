@@ -7,6 +7,10 @@
 [ext_resource type="Material" uid="uid://bt64lrilhx0df" path="res://assets/materials/water_recipient.tres" id="5_wlmuo"]
 [ext_resource type="Script" uid="uid://cvmfahfydk6ic" path="res://scripts/objects/water_mesh.gd" id="6_wlmuo"]
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_bdm3o"]
+height = 0.0815817
+radius = 0.034080066
+
 [sub_resource type="CylinderMesh" id="CylinderMesh_bdm3o"]
 material = ExtResource("5_wlmuo")
 top_radius = 0.055
@@ -19,16 +23,16 @@ cap_bottom = false
 height = 0.022981204
 radius = 0.072265625
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_bdm3o"]
-height = 0.0815817
-radius = 0.034080066
-
 [node name="s_beaker_100ml" type="RigidBody3D" unique_id=613809570]
 
 [node name="beaker_100ml" parent="." unique_id=1441826745 instance=ExtResource("1_od3ns")]
 
 [node name="beaker_100ml" parent="beaker_100ml" index="0" unique_id=1659040735]
 transform = Transform3D(2.08, 0, 0, 0, -9.0919684e-08, 2.08, 0, -2.08, -9.0919684e-08, 0, 0.08134972, 0.19178264)
+
+[node name="c_beaker_100ml" type="CollisionShape3D" parent="." unique_id=1235574645]
+transform = Transform3D(2.08, 0, 0, 0, -2.08, -1.8183937e-07, 0, 1.8183937e-07, -2.08, 0, 0.06145853, 0.19497761)
+shape = SubResource("CylinderShape3D_bdm3o")
 
 [node name="WaterMeshPivot" type="Node3D" parent="." unique_id=1550371071]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.020499468, 0.192)
@@ -50,10 +54,6 @@ shape = SubResource("CylinderShape3D_wlmuo")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0036560073, -0.05219971, 0.18757813)
 size = Vector3(0.134021, 0.08345703, 0.12234375)
 
-[node name="c_beaker_100ml" type="CollisionShape3D" parent="." unique_id=1235574645]
-transform = Transform3D(2.08, 0, 0, 0, -2.08, -1.8183937e-07, 0, 1.8183937e-07, -2.08, 0, 0.06145853, 0.19497761)
-shape = SubResource("CylinderShape3D_bdm3o")
-
 [node name="RecipientComponent" type="Node" parent="." unique_id=1946992982 node_paths=PackedStringArray("liquid_mesh")]
 script = ExtResource("2_otmu3")
 liquid_mesh = NodePath("../WaterMeshPivot/WaterMesh")
@@ -61,7 +61,7 @@ liquid_mesh = NodePath("../WaterMeshPivot/WaterMesh")
 [node name="InteractionComponent" type="Node" parent="." unique_id=845906834 node_paths=PackedStringArray("mesh")]
 script = ExtResource("2_pdrdr")
 mesh = NodePath("../beaker_100ml/beaker_100ml")
-context = "Gobelé"
+context = "Pegar"
 
 [node name="PickUpComponent" type="Node" parent="InteractionComponent" unique_id=560273488]
 script = ExtResource("5_bdm3o")

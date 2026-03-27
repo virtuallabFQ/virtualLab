@@ -1,5 +1,17 @@
 [gd_scene format=3 uid="uid://brg50opcsvl2w"]
 
+[ext_resource type="Script" uid="uid://g6x6o0bn4iwa" path="res://scripts/ui/weightscale_menu.gd" id="1_y0imn"]
+[ext_resource type="FontFile" uid="uid://o6ejgvjn6l5o" path="res://assets/ui/fonts/technology_2/Technology-Bold.ttf" id="2_ugl2i"]
+[ext_resource type="FontFile" uid="uid://c0no1sl740s7j" path="res://assets/ui/themes/static/Orbitron-SemiBold.ttf" id="3_xefur"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_xefur"]
+font = ExtResource("2_ugl2i")
+font_size = 550
+
+[sub_resource type="LabelSettings" id="LabelSettings_ugl2i"]
+font = ExtResource("3_xefur")
+font_size = 200
+
 [node name="weightscale_menu" type="Control" unique_id=342614790]
 layout_mode = 3
 anchors_preset = 15
@@ -7,3 +19,71 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_y0imn")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=16253353]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.19076231, 0.19076234, 0.19076231, 1)
+
+[node name="digits" type="HBoxContainer" parent="." unique_id=1557923923]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.9710001
+anchor_bottom = 1.0
+offset_right = -0.32019043
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 2
+
+[node name="unit_2" type="Label" parent="digits" unique_id=1338440118]
+layout_mode = 2
+text = " "
+label_settings = SubResource("LabelSettings_xefur")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="unit_1" type="Label" parent="digits" unique_id=318623365]
+layout_mode = 2
+text = " "
+label_settings = SubResource("LabelSettings_xefur")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="unit_0" type="Label" parent="digits" unique_id=1971373582]
+layout_mode = 2
+text = " "
+label_settings = SubResource("LabelSettings_xefur")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="dot" type="Label" parent="digits" unique_id=1806088415]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_xefur")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="decimal_0" type="Label" parent="digits" unique_id=1381851019]
+layout_mode = 2
+text = " "
+label_settings = SubResource("LabelSettings_xefur")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="decimal_1" type="Label" parent="digits" unique_id=1763050412]
+layout_mode = 2
+text = " "
+label_settings = SubResource("LabelSettings_xefur")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="grams" type="Label" parent="digits" unique_id=929650982]
+layout_mode = 2
+text = "g"
+label_settings = SubResource("LabelSettings_ugl2i")
+horizontal_alignment = 2
+vertical_alignment = 2
