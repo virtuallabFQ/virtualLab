@@ -1,6 +1,5 @@
 [gd_scene format=3 uid="uid://b3gq852dimqqd"]
 
-[ext_resource type="Script" uid="uid://0hm0tce7x5wm" path="res://scripts/objects/s_weightscale.gd" id="1_5aba6"]
 [ext_resource type="PackedScene" uid="uid://cuhyo3vqurv0n" path="res://assets/models/objects/weightscale.glb" id="1_ia8ev"]
 [ext_resource type="Script" uid="uid://cld64tanfoemk" path="res://scripts/objects/interaction_component.gd" id="2_rq1kr"]
 [ext_resource type="Script" uid="uid://dgjrei33rjh21" path="res://scripts/objects/pick_up_component.gd" id="3_em2ya"]
@@ -34,7 +33,6 @@ add_uv2 = true
 size = Vector2(0.11, 0.06)
 
 [node name="s_weightscale" type="RigidBody3D" unique_id=1829140156]
-script = ExtResource("1_5aba6")
 
 [node name="weightscale" parent="." unique_id=1949070089 instance=ExtResource("1_ia8ev")]
 
@@ -78,9 +76,13 @@ shape = SubResource("BoxShape3D_em2ya")
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0.0030842125)
 mesh = SubResource("QuadMesh_em2ya")
 
-[node name="WeightscaleComponent" type="Node" parent="." unique_id=1884527301]
+[node name="WeightscaleComponent" type="Node" parent="." unique_id=1884527301 node_paths=PackedStringArray("detector", "on_button", "off_button", "menu", "viewport")]
 script = ExtResource("5_x8bd1")
-detector_path = NodePath("../mass_detector")
+detector = NodePath("../mass_detector")
+on_button = NodePath("../on_detector/InteractionComponent_1")
+off_button = NodePath("../off_detector/InteractionComponent_2")
+menu = NodePath("../SubViewport/weightscale_menu")
+viewport = NodePath("../SubViewport")
 
 [node name="InteractionComponent" type="Node" parent="." unique_id=1081762876 node_paths=PackedStringArray("mesh")]
 script = ExtResource("2_rq1kr")
@@ -96,8 +98,5 @@ metadata/_custom_type_script = "uid://dgjrei33rjh21"
 size = Vector2i(1600, 923)
 
 [node name="weightscale_menu" parent="SubViewport" unique_id=342614790 instance=ExtResource("4_em2ya")]
-
-[connection signal="player_interacted" from="on_detector/InteractionComponent_1" to="." method="_on_interaction_component_1_player_interacted"]
-[connection signal="player_interacted" from="off_detector/InteractionComponent_2" to="." method="_on_interaction_component_2_player_interacted"]
 
 [editable path="weightscale"]

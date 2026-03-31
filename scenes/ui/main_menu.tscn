@@ -4,7 +4,6 @@
 [ext_resource type="Script" uid="uid://rnvs5gdg037o" path="res://scripts/ui/main_menu.gd" id="1_btxxm"]
 [ext_resource type="FontFile" uid="uid://p38vpi7tgrq2" path="res://assets/ui/themes/static/Orbitron-Bold.ttf" id="2_m1kxf"]
 [ext_resource type="StyleBox" uid="uid://d4dfmfo71x22i" path="res://assets/ui/themes/main_menu/mm_style_box_flat.tres" id="3_4hixx"]
-[ext_resource type="Script" uid="uid://dhrb0vyc3ddbb" path="res://scripts/animations/animation_component.gd" id="3_x2yvf"]
 [ext_resource type="PackedScene" uid="uid://dmkdd5agrf8b4" path="res://scenes/ui/options_menu.tscn" id="5_x2yvf"]
 
 [sub_resource type="Animation" id="Animation_btxxm"]
@@ -229,30 +228,15 @@ theme = ExtResource("1_1g8jr")
 text = "Entrar"
 alignment = 0
 
-[node name="AnimationComponent" type="Node" parent="Panel/MainMenu/StartButton" unique_id=1278043957]
-script = ExtResource("3_x2yvf")
-hover_transition = 10
-hover_easing = 2
-
 [node name="OptionsButton" type="Button" parent="Panel/MainMenu" unique_id=805038100]
 layout_mode = 2
 text = "Opções"
 alignment = 0
 
-[node name="AnimationComponent" type="Node" parent="Panel/MainMenu/OptionsButton" unique_id=1225580010]
-script = ExtResource("3_x2yvf")
-hover_transition = 10
-hover_easing = 2
-
 [node name="ExitButton" type="Button" parent="Panel/MainMenu" unique_id=1424777115]
 layout_mode = 2
 text = "Sair"
 alignment = 0
-
-[node name="AnimationComponent" type="Node" parent="Panel/MainMenu/ExitButton" unique_id=991382945]
-script = ExtResource("3_x2yvf")
-hover_transition = 10
-hover_easing = 2
 
 [node name="OptionsMenu" parent="." unique_id=1820454181 instance=ExtResource("5_x2yvf")]
 visible = false

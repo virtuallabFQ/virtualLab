@@ -37,6 +37,6 @@ shape = SubResource("BoxShape3D_cgibv")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.12236512, 0)
 shape = SubResource("CylinderShape3D_cgibv")
 
-[node name="WasterComponent" type="Node" parent="." unique_id=197255290]
+[node name="WasterComponent" type="Node" parent="." unique_id=197255290 node_paths=PackedStringArray("detector")]
 script = ExtResource("2_cgibv")
-detector_path = NodePath("../waster_detector")
+detector = NodePath("../waster_detector")

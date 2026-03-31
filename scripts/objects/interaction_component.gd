@@ -7,10 +7,14 @@ signal player_interacted(object: Node)
 @export var override_icon: bool = false
 @export var new_icon: Texture2D
 
+var is_interacted: bool = false
+
 const highlight := preload("res://assets/materials/interactable_highlight.tres")
 
 func _ready() -> void:
-	var parent_node := get_parent(); if not parent_node: return
+	var parent_node := get_parent()
+	if not parent_node: return
+	
 	if not mesh:
 		for child_node in parent_node.get_children():
 			if child_node is MeshInstance3D: mesh = child_node; break
@@ -23,4 +27,6 @@ func _ready() -> void:
 	parent_node.connect(&"unfocused", func():
 		if mesh: mesh.material_overlay = null
 		MessageBus.interaction_unfocused.emit())
-	parent_node.connect(&"interacted", func(): player_interacted.emit(parent_node))
+	parent_node.connect(&"interacted", func():
+		is_interacted = true 
+		player_interacted.emit(parent_node))

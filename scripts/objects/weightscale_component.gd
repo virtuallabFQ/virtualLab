@@ -1,44 +1,54 @@
 class_name WeightscaleComponent extends Node
 
-signal weight_changed(grams: float)
-
-@export var detector_path: NodePath
-@onready var detector: Area3D = get_node(detector_path)
+@export var detector: Area3D
+@export var on_button: InteractionComponent
+@export var off_button: InteractionComponent
+@export var menu: Control
+@export var viewport: SubViewport
 
 var bodies_in_scale: Array[RigidBody3D] = []
-var current_total_weight: float = -1.0 
+var is_active: bool = false
+var tare_offset_grams: float = 0.0
+var raw_weight_grams: float = 0.0
+var last_sent_weight: float = -1.0
 
-func _ready():
-	detector.body_entered.connect(_on_body_entered)
-	detector.body_exited.connect(_on_body_exited)
+func _ready() -> void:
+	if viewport: viewport.render_target_update_mode = SubViewport.UPDATE_ALWAYS
+	if detector:
+		detector.body_entered.connect(func(body): 
+			if body is RigidBody3D and body != get_parent(): bodies_in_scale.append(body))
+		detector.body_exited.connect(func(body): 
+			if body is RigidBody3D: bodies_in_scale.erase(body))
+	if menu: menu.turn_off()
 
-func _process(_delta: float):
-	_calculate_and_emit()
-
-func _on_body_entered(body: Node):
-	if body is RigidBody3D and body != get_parent():
-		if not bodies_in_scale.has(body):
-			bodies_in_scale.append(body)
-
-func _on_body_exited(body: Node):
-	if body is RigidBody3D:
-		bodies_in_scale.erase(body)
-
-func _calculate_and_emit():
-	var total = 0.0
+func _physics_process(_delta: float) -> void:
+	if on_button and on_button.is_interacted:
+		on_button.is_interacted = false
+		if not is_active:
+			is_active = true
+			if menu: menu.turn_on()
+		else: tare_offset_grams = raw_weight_grams
+		last_sent_weight = -1.0
 	
-	bodies_in_scale = bodies_in_scale.filter(func(b): return is_instance_valid(b))
+	if off_button and off_button.is_interacted:
+		off_button.is_interacted = false
+		is_active = false
+		tare_offset_grams = 0.0
+		last_sent_weight = -1.0
+		if menu: menu.turn_off()
 	
-	for body in bodies_in_scale:
-		if not _is_body_held(body):
-			total += body.mass * 1000.0
+	if bodies_in_scale.is_empty() and raw_weight_grams == 0.0 and last_sent_weight == 0.0: return
 	
-	if total != current_total_weight:
-		current_total_weight = total
-		weight_changed.emit(total)
+	var mass: float = 0.0
+	var body_index: int = bodies_in_scale.size() - 1
+	while body_index >= 0:
+		var body = bodies_in_scale[body_index]
+		if not is_instance_valid(body): bodies_in_scale.remove_at(body_index)
+		elif not body.freeze: mass += body.mass
+		body_index -= 1
 
-func get_weight() -> float:
-	return current_total_weight
-
-func _is_body_held(body: RigidBody3D) -> bool:
-	return body.freeze
+	raw_weight_grams = mass * 1000.0
+	var display = raw_weight_grams - tare_offset_grams
+	if is_active and menu and not is_equal_approx(display, last_sent_weight):
+		last_sent_weight = display
+		menu.set_weight(display)
