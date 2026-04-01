@@ -19,7 +19,7 @@ shape = SubResource("BoxShape3D_go4dp")
 [node name="InteractionComponent" type="Node" parent="." unique_id=836217583 node_paths=PackedStringArray("mesh")]
 script = ExtResource("2_rae7b")
 mesh = NodePath("../eraser/eraser")
-context = "Apagador"
+context = "Apagar"
 metadata/_custom_type_script = "uid://cld64tanfoemk"
 
 [node name="EraseComponent" type="Node" parent="InteractionComponent" unique_id=1883350796]

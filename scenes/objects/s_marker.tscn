@@ -46,7 +46,7 @@ material = SubResource("StandardMaterial3D_2b612")
 [node name="InteractionComponent" type="Node" parent="." unique_id=1857417066 node_paths=PackedStringArray("mesh")]
 script = ExtResource("4_6l0ri")
 mesh = NodePath("../marker/marker")
-context = "Marcador"
+context = "Escrever"
 metadata/_custom_type_script = "uid://cld64tanfoemk"
 
 [node name="PickUpComponent" type="Node" parent="InteractionComponent" unique_id=83671716 node_paths=PackedStringArray("hide_nodes")]
