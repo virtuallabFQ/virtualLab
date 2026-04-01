@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://ccsv2ixnowfax"]
+
+[ext_resource type="PackedScene" uid="uid://c86dfqbhxm0rx" path="res://assets/models/objects/funnel.glb" id="1_dsftq"]
+[ext_resource type="Script" uid="uid://cld64tanfoemk" path="res://scripts/objects/interaction_component.gd" id="2_1m0x5"]
+[ext_resource type="Material" uid="uid://bhhub6r7ds8lx" path="res://assets/materials/glass.tres" id="2_f776h"]
+[ext_resource type="Script" uid="uid://dgjrei33rjh21" path="res://scripts/objects/pick_up_component.gd" id="3_f776h"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_1m0x5"]
+height = 1.85
+radius = 1.1713004
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_f776h"]
+height = 2.101416
+radius = 0.12646484
+
+[node name="s_funnel" type="RigidBody3D" unique_id=1656984544]
+mass = 0.005
+
+[node name="funnel" parent="." unique_id=1745320336 instance=ExtResource("1_dsftq")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
+
+[node name="funnel" parent="funnel" index="0" unique_id=373350955]
+surface_material_override/0 = ExtResource("2_f776h")
+
+[node name="c1_funnel" type="CollisionShape3D" parent="." unique_id=1894815966]
+transform = Transform3D(0.0381, 0, 0, 0, -0.03810001, -1.5291032e-08, 0, 1.5291032e-08, -0.03810001, 0, 0.040538937, -1.6269869e-08)
+shape = SubResource("CylinderShape3D_1m0x5")
+
+[node name="c2_funnel" type="CollisionShape3D" parent="." unique_id=574306889]
+transform = Transform3D(0.0381, 0, 0, 0, -0.03810001, -1.5291032e-08, 0, 1.5291032e-08, -0.03810001, 0, -0.036311828, -1.43476635e-08)
+shape = SubResource("CylinderShape3D_f776h")
+
+[node name="InteractionComponent" type="Node" parent="." unique_id=1764854814 node_paths=PackedStringArray("mesh")]
+script = ExtResource("2_1m0x5")
+mesh = NodePath("../funnel/funnel")
+context = "Pegar"
+metadata/_custom_type_script = "uid://cld64tanfoemk"
+
+[node name="PickUpComponent" type="Node" parent="InteractionComponent" unique_id=1291791795]
+script = ExtResource("3_f776h")
+metadata/_custom_type_script = "uid://dgjrei33rjh21"
+
+[editable path="funnel"]

@@ -7,8 +7,6 @@ extends RigidBody3D
 var is_pouring := true
 
 func _physics_process(delta: float) -> void:
-	# (A tua lógica do rato/teclado para saber se está a verter)
-	# is_pouring = ... 
 	
 	particles.emitting = is_pouring
 	

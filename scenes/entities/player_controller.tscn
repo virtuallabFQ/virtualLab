@@ -348,6 +348,7 @@ unique_name_in_owner = true
 
 [node name="Camera3D" type="Camera3D" parent="RotationAnchor/CameraControllerAnchor" unique_id=1596875569]
 unique_name_in_owner = true
+fov = 65.0
 
 [node name="InteractionRaycast" type="RayCast3D" parent="RotationAnchor/CameraControllerAnchor/Camera3D" unique_id=1201912919]
 target_position = Vector3(0, 0, -2)
