@@ -3,6 +3,9 @@
 [ext_resource type="Theme" uid="uid://cpa6dswqf8gcv" path="res://assets/ui/themes/theme.tres" id="1_858cb"]
 [ext_resource type="StyleBox" uid="uid://c5dj8qy5fpje7" path="res://assets/ui/themes/selector_menu/sm_style_box_flat.tres" id="2_cgv80"]
 [ext_resource type="StyleBox" uid="uid://co7ry73d3sjje" path="res://assets/ui/themes/pause_menu/pm_buttons_style_box_flat.tres" id="2_m77t0"]
+[ext_resource type="FontFile" uid="uid://c58e0tqfdkp4" path="res://assets/ui/themes/static/Orbitron-Black.ttf" id="3_cgv80"]
+[ext_resource type="FontFile" uid="uid://bl1ps7gqh20iv" path="res://assets/ui/themes/static/Orbitron-Regular.ttf" id="4_5e4ol"]
+[ext_resource type="FontFile" uid="uid://p38vpi7tgrq2" path="res://assets/ui/themes/static/Orbitron-Bold.ttf" id="4_cnt0b"]
 
 [node name="SelectorMenu" type="Control" unique_id=1707083553]
 layout_mode = 3
@@ -37,6 +40,77 @@ grow_vertical = 2
 theme = ExtResource("1_858cb")
 theme_override_styles/panel = ExtResource("2_cgv80")
 
+[node name="title" type="Label" parent="ColorRect/Panel" unique_id=638165205]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.047000002
+anchor_top = 0.064
+anchor_right = 0.95400006
+anchor_bottom = 0.933
+offset_left = 0.41999817
+offset_top = 0.00799942
+offset_right = 0.4399414
+offset_bottom = 0.10095215
+theme_override_fonts/font = ExtResource("3_cgv80")
+text = "Bem-vindo ao Laboratório Virtual!
+
+
+"
+
+[node name="description" type="Label" parent="ColorRect/Panel" unique_id=1460075874]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.047000002
+anchor_top = 0.064
+anchor_right = 0.95400006
+anchor_bottom = 0.933
+offset_left = 0.41999817
+offset_top = 0.00799942
+offset_right = 0.4399414
+offset_bottom = 0.10095215
+theme_override_fonts/font = ExtResource("4_5e4ol")
+theme_override_font_sizes/font_size = 32
+text = "
+Antes de começares a fazer experiências, presta atenção 
+aos controlos do jogo:
+
+
+
+
+
+
+
+
+
+Agora sim, boas experiências!"
+
+[node name="controls" type="Label" parent="ColorRect/Panel" unique_id=454632388]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.047000002
+anchor_top = 0.064
+anchor_right = 0.95400006
+anchor_bottom = 0.933
+offset_left = 0.41999817
+offset_top = 0.00799942
+offset_right = 0.4399414
+offset_bottom = 0.10095215
+theme_override_fonts/font = ExtResource("4_cnt0b")
+theme_override_font_sizes/font_size = 32
+text = "
+
+
+
+Andar - W (Frente), A (Esquerda), S (Trás), D (Direita)
+Correr - Shift
+Saltar - Espaço
+Agachar - Ctrl
+Focar (Zoom) - C
+Interagir com objetos - Botão esquerdo e direito do rato
+Rotacionar objetos - V
+
+"
+
 [node name="SelectorMenu" type="VBoxContainer" parent="." unique_id=2079606181]
 layout_mode = 1
 anchors_preset = -1
@@ -50,18 +124,21 @@ offset_right = -0.6800537
 offset_bottom = 0.14498901
 theme = ExtResource("1_858cb")
 
-[node name="CameraControlsButton" type="Button" parent="SelectorMenu" unique_id=13099564]
+[node name="LabButton" type="Button" parent="SelectorMenu" unique_id=13099564]
 layout_mode = 2
 theme = ExtResource("1_858cb")
+theme_override_fonts/font = ExtResource("3_cgv80")
 theme_override_styles/normal = ExtResource("2_m77t0")
+theme_override_styles/pressed = ExtResource("2_m77t0")
+theme_override_styles/hover = ExtResource("2_m77t0")
 text = "Atividades Laboratoriais"
 
-[node name="GraphicButton" type="Button" parent="SelectorMenu" unique_id=814423008]
+[node name="Year10Button" type="Button" parent="SelectorMenu" unique_id=814423008]
 layout_mode = 2
-text = "Laboratório 10º Ano"
+text = "Experiências 10º Ano"
 alignment = 0
 
-[node name="AudioButton" type="Button" parent="SelectorMenu" unique_id=417097320]
+[node name="Year11Button" type="Button" parent="SelectorMenu" unique_id=417097320]
 layout_mode = 2
-text = "Laboratório 11º Ano"
+text = "Experiências 11º Ano (...)"
 alignment = 0

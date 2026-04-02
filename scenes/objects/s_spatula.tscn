@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://r56jwb7f6l1p"]
+
+[ext_resource type="PackedScene" uid="uid://41pp30hw4tkm" path="res://assets/models/objects/spatula.glb" id="1_vqtji"]
+[ext_resource type="Script" uid="uid://cld64tanfoemk" path="res://scripts/objects/interaction_component.gd" id="2_2nak8"]
+[ext_resource type="Script" uid="uid://dgjrei33rjh21" path="res://scripts/objects/pick_up_component.gd" id="3_k4qgo"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_owobi"]
+size = Vector3(0.01884791, 0.04662195, 0.31087482)
+
+[node name="s_spatula" type="RigidBody3D" unique_id=874482037]
+
+[node name="spatula" parent="." unique_id=262879923 instance=ExtResource("1_vqtji")]
+transform = Transform3D(-1.7484555e-09, 0, 0.04, 0, 0.04, 0, -0.04, 0, -1.7484555e-09, 0, 0, 0)
+
+[node name="c_spatula" type="CollisionShape3D" parent="." unique_id=1421543788]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0.026922856, 0.0058885748, -0.013350133)
+shape = SubResource("BoxShape3D_owobi")
+
+[node name="InteractionComponent" type="Node" parent="." unique_id=1035515683 node_paths=PackedStringArray("mesh")]
+script = ExtResource("2_2nak8")
+mesh = NodePath("../spatula/handle")
+context = "Pegar"
+metadata/_custom_type_script = "uid://cld64tanfoemk"
+
+[node name="PickUpComponent" type="Node" parent="InteractionComponent" unique_id=1311040641]
+script = ExtResource("3_k4qgo")
+distance = Vector3(0.2, -0.15, -0.5)
+rotation = Vector3(-20, 10, 0)
+metadata/_custom_type_script = "uid://dgjrei33rjh21"
+
+[editable path="spatula"]

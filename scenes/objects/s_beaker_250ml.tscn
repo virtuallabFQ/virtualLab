@@ -72,6 +72,8 @@ metadata/_custom_type_script = "uid://cld64tanfoemk"
 
 [node name="PickUpComponent" type="Node" parent="InteractionComponent" unique_id=1101762704]
 script = ExtResource("3_l20c0")
+distance = Vector3(0.2, -0.3, -0.6)
+min_scroll_z = -0.6
 metadata/_custom_type_script = "uid://dgjrei33rjh21"
 
 [editable path="beaker_250ml"]

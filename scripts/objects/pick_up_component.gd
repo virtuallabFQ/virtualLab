@@ -2,7 +2,7 @@ class_name PickUpComponent extends Node
 
 signal toggled(is_held: bool)
 
-@export var distance := Vector3(0.2, -0.1, -1.0)
+@export var distance := Vector3(0.2, -0.3, -0.75)
 @export var rotation := Vector3.ZERO
 @export var margin := 0.2
 @export var hide_nodes: Array[Node] = []
@@ -10,7 +10,7 @@ signal toggled(is_held: bool)
 @export_group("Scroll Settings")
 @export var allow_scroll := true
 @export var scroll_step := 0.2
-@export var min_scroll_z := -1.0
+@export var min_scroll_z := -0.75
 @export var max_scroll_z := -2.0
 
 @export_group("Rotation Settings")

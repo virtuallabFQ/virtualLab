@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://cbpijxoj0ue0f"]
+
+[ext_resource type="PackedScene" uid="uid://db3intoejwx4i" path="res://assets/models/objects/dropper.glb" id="1_6flwg"]
+[ext_resource type="Script" uid="uid://cld64tanfoemk" path="res://scripts/objects/interaction_component.gd" id="2_wg1vq"]
+[ext_resource type="Script" uid="uid://dgjrei33rjh21" path="res://scripts/objects/pick_up_component.gd" id="3_stpra"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wg1vq"]
+size = Vector3(0.317982, 0.317982, 0.675995)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_stpra"]
+height = 0.787351
+radius = 0.091571
+
+[node name="s_dropper" type="RigidBody3D" unique_id=629561663]
+center_of_mass_mode = 1
+
+[node name="dropper" parent="." unique_id=2135884784 instance=ExtResource("1_6flwg")]
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0, 0.055119224, 0)
+
+[node name="c_stem" type="CollisionShape3D" parent="." unique_id=116891593]
+transform = Transform3D(0.15, 0, 0, 0, -5.3644182e-08, 0.14999999, 0, -0.14999999, -5.3644182e-08, 0, 0.058545146, -1.2252056e-09)
+shape = SubResource("BoxShape3D_wg1vq")
+
+[node name="c_bulb" type="CollisionShape3D" parent="." unique_id=1795790152]
+transform = Transform3D(0.15, 0, 0, 0, -0.14999999, -6.020089e-08, 0, 6.020089e-08, -0.14999999, 0, 0.0815034, -9.435716e-09)
+shape = SubResource("CylinderShape3D_stpra")
+
+[node name="InteractionComponent" type="Node" parent="." unique_id=2628081 node_paths=PackedStringArray("mesh")]
+script = ExtResource("2_wg1vq")
+mesh = NodePath("../dropper/stem")
+context = "Pegar"
+metadata/_custom_type_script = "uid://cld64tanfoemk"
+
+[node name="PickUpComponent" type="Node" parent="InteractionComponent" unique_id=650269933]
+script = ExtResource("3_stpra")
+metadata/_custom_type_script = "uid://dgjrei33rjh21"
+
+[editable path="dropper"]

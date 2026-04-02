@@ -12,7 +12,7 @@ const TILT_MAX := 1.5708
 
 @export_group("Camera")
 @export var interact_distance: float = 2.0
-@export var zoom_key: Key = KEY_Z
+@export var zoom_key: Key = KEY_C
 @export var zoom_fov: float = 30.0
 @export var zoom_speed: float = 12.0
 

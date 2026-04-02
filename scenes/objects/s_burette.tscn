@@ -128,7 +128,7 @@ shape = SubResource("CylinderShape3D_blcfl")
 
 [node name="InteractionComponent" type="Node" parent="." unique_id=2044105371 node_paths=PackedStringArray("mesh")]
 script = ExtResource("2_oywan")
-mesh = NodePath("../burette/burette")
+mesh = NodePath("../burette_glass")
 context = "Pegar"
 metadata/_custom_type_script = "uid://cld64tanfoemk"
 
