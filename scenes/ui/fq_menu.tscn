@@ -1,34 +1,235 @@
 [gd_scene format=3 uid="uid://c5206ithcy74u"]
 
+[ext_resource type="Script" uid="uid://dcnskf027nspj" path="res://scripts/ui/fq_menu.gd" id="1_nx012"]
 [ext_resource type="Theme" uid="uid://cpa6dswqf8gcv" path="res://assets/ui/themes/theme.tres" id="1_qnyd1"]
+[ext_resource type="FontFile" uid="uid://c58e0tqfdkp4" path="res://assets/ui/themes/static/Orbitron-Black.ttf" id="3_5ng7i"]
+[ext_resource type="StyleBox" uid="uid://co7ry73d3sjje" path="res://assets/ui/themes/pause_menu/pm_buttons_style_box_flat.tres" id="3_y8is4"]
+[ext_resource type="StyleBox" uid="uid://barmgdt4qf17i" path="res://assets/ui/themes/pause_menu/pm_hover_style_box_flat.tres" id="4_avm7y"]
+[ext_resource type="PackedScene" uid="uid://djhtsbyl7wx86" path="res://scenes/ui/q10_menu.tscn" id="6_nx012"]
 
-[node name="fq_menu" type="Control" unique_id=1401549533]
+[sub_resource type="Animation" id="Animation_nx012"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FQMenu:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FQMenu:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("q10_menu:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("q10_menu:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_t8xku"]
+resource_name = "hide_fq"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FQMenu:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FQMenu:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_5ng7i"]
+resource_name = "hide_q10"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("q10_menu:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("q10_menu:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_07qpx"]
+resource_name = "show_fq"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FQMenu:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FQMenu:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
+}
+
+[sub_resource type="Animation" id="Animation_c0glo"]
+resource_name = "show_q10"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("q10_menu:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("q10_menu:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_t8xku"]
+_data = {
+&"RESET": SubResource("Animation_nx012"),
+&"hide_fq": SubResource("Animation_t8xku"),
+&"hide_q10": SubResource("Animation_5ng7i"),
+&"show_fq": SubResource("Animation_07qpx"),
+&"show_q10": SubResource("Animation_c0glo")
+}
+
+[node name="fq_menu" type="Control" unique_id=1401549533 node_paths=PackedStringArray("fq_menu", "q10_menu", "animation_player")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_nx012")
+fq_menu = NodePath("FQMenu")
+q10_menu = NodePath("q10_menu")
+animation_player = NodePath("AnimationPlayer")
 
 [node name="FQMenu" type="VBoxContainer" parent="." unique_id=304285754]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.048
 anchor_top = 0.085
 anchor_right = 0.319
-anchor_bottom = 0.187
+anchor_bottom = 0.24100001
 offset_left = 0.4399948
 offset_top = -1.215004
 offset_right = -0.6800537
-offset_bottom = -0.27301025
+offset_bottom = -58.539
 theme = ExtResource("1_qnyd1")
 
-[node name="Year10Button" type="Button" parent="FQMenu" unique_id=748897532]
+[node name="BackButton" type="Button" parent="FQMenu" unique_id=1981910389]
+layout_mode = 2
+theme = ExtResource("1_qnyd1")
+theme_override_fonts/font = ExtResource("3_5ng7i")
+theme_override_styles/normal = ExtResource("3_y8is4")
+theme_override_styles/pressed = ExtResource("3_y8is4")
+theme_override_styles/hover = ExtResource("4_avm7y")
+text = "Voltar"
+
+[node name="ALChemistry" type="Button" parent="FQMenu" unique_id=748897532]
 layout_mode = 2
 text = "AL Química"
 alignment = 0
 
-[node name="Year11Button" type="Button" parent="FQMenu" unique_id=180502204]
+[node name="ALPhysics" type="Button" parent="FQMenu" unique_id=180502204]
 layout_mode = 2
 text = "AL Física (...)"
 alignment = 0
+
+[node name="q10_menu" parent="." unique_id=709294148 instance=ExtResource("6_nx012")]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=627194781]
+libraries/ = SubResource("AnimationLibrary_t8xku")
+
+[connection signal="pressed" from="FQMenu/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="FQMenu/ALChemistry" to="." method="_on_al_chemistry_pressed"]

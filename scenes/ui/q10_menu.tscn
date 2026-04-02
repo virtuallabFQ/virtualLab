@@ -1,0 +1,431 @@
+[gd_scene format=3 uid="uid://djhtsbyl7wx86"]
+
+[ext_resource type="Script" uid="uid://7u67ffnsuqbn" path="res://scripts/ui/q10_menu.gd" id="1_0vfoc"]
+[ext_resource type="Theme" uid="uid://cpa6dswqf8gcv" path="res://assets/ui/themes/theme.tres" id="1_nkxug"]
+[ext_resource type="StyleBox" uid="uid://c5dj8qy5fpje7" path="res://assets/ui/themes/selector_menu/sm_style_box_flat.tres" id="2_7xpcm"]
+[ext_resource type="FontFile" uid="uid://c58e0tqfdkp4" path="res://assets/ui/themes/static/Orbitron-Black.ttf" id="3_0vfoc"]
+[ext_resource type="FontFile" uid="uid://bl1ps7gqh20iv" path="res://assets/ui/themes/static/Orbitron-Regular.ttf" id="4_ey48s"]
+[ext_resource type="FontFile" uid="uid://p38vpi7tgrq2" path="res://assets/ui/themes/static/Orbitron-Bold.ttf" id="5_bout8"]
+[ext_resource type="StyleBox" uid="uid://co7ry73d3sjje" path="res://assets/ui/themes/pause_menu/pm_buttons_style_box_flat.tres" id="6_m1w0f"]
+[ext_resource type="StyleBox" uid="uid://barmgdt4qf17i" path="res://assets/ui/themes/pause_menu/pm_hover_style_box_flat.tres" id="7_7xpcm"]
+
+[sub_resource type="Animation" id="Animation_m1w0f"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AL1:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AL1:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AL5:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AL5:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Q10Menu:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Q10Menu:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_ey48s"]
+resource_name = "hide_al1"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AL1:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AL1:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_0vfoc"]
+resource_name = "hide_al5"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AL5:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AL5:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_bout8"]
+resource_name = "show_al1"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AL1:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AL1:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
+}
+
+[sub_resource type="Animation" id="Animation_7xpcm"]
+resource_name = "show_al5"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AL5:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AL5:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0vfoc"]
+_data = {
+&"RESET": SubResource("Animation_m1w0f"),
+&"hide_al1": SubResource("Animation_ey48s"),
+&"hide_al5": SubResource("Animation_0vfoc"),
+&"show_al1": SubResource("Animation_bout8"),
+&"show_al5": SubResource("Animation_7xpcm")
+}
+
+[node name="q10_menu" type="Control" unique_id=709294148 node_paths=PackedStringArray("q10_menu", "al1_button", "al5_button", "animation_player")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0vfoc")
+q10_menu = NodePath("Q10Menu")
+al1_button = NodePath("AL1")
+al5_button = NodePath("AL5")
+animation_player = NodePath("AnimationPlayer")
+
+[node name="AL1" type="Panel" parent="." unique_id=2119215962]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.36100003
+anchor_top = 0.083000004
+anchor_right = 0.95500004
+anchor_bottom = 0.735
+offset_left = 0.87994385
+offset_top = 0.44299316
+offset_right = 0.39990234
+offset_bottom = -0.06500244
+grow_horizontal = 0
+grow_vertical = 2
+theme = ExtResource("1_nkxug")
+theme_override_styles/panel = ExtResource("2_7xpcm")
+
+[node name="Title" type="Label" parent="AL1" unique_id=1613214264]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.047000002
+anchor_top = 0.064
+anchor_right = 0.95400006
+anchor_bottom = 0.933
+offset_left = 0.41999817
+offset_top = 0.00799942
+offset_right = 0.4399414
+offset_bottom = 0.10095215
+theme_override_fonts/font = ExtResource("3_0vfoc")
+text = "Volume e número de moléculas de uma gota de água 
+
+
+"
+
+[node name="Description" type="Label" parent="AL1" unique_id=67162345]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.047000002
+anchor_top = 0.064
+anchor_right = 0.95400006
+anchor_bottom = 0.933
+offset_left = 0.41999817
+offset_top = 0.00799942
+offset_right = 0.4399414
+offset_bottom = 0.10095215
+theme_override_fonts/font = ExtResource("4_ey48s")
+theme_override_font_sizes/font_size = 32
+text = "
+
+   Coloque um gobelé seco no prato da balança e registe a 
+massa do gobelé;
+     Encha, com o esguicho, uma bureta com água e acerte-a 
+no zero;
+    Verta água gota a gota, da bureta para o gobelé, contando 
+100 gotas;
+    Registe a medida do volume escoado, isto é, o volume das 
+100 gotas de água;
+     Coloque o gobelé com água no prato da balança e registe 
+o valor medido para a massa de 100 gotas de água."
+
+[node name="Numbers" type="Label" parent="AL1" unique_id=736451772]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.047000002
+anchor_top = 0.064
+anchor_right = 0.95400006
+anchor_bottom = 0.933
+offset_left = 0.41999817
+offset_top = 0.00799942
+offset_right = 0.4399414
+offset_bottom = 0.10095215
+theme_override_fonts/font = ExtResource("5_bout8")
+theme_override_font_sizes/font_size = 32
+text = "
+
+1.
+
+2.
+
+3.
+
+4.
+
+5."
+
+[node name="AL5" type="Panel" parent="." unique_id=759449596]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.36100003
+anchor_top = 0.083000004
+anchor_right = 0.95500004
+anchor_bottom = 0.735
+offset_left = 0.87994385
+offset_top = 0.44299316
+offset_right = 0.39990234
+offset_bottom = -0.06500244
+grow_horizontal = 0
+grow_vertical = 2
+theme = ExtResource("1_nkxug")
+theme_override_styles/panel = ExtResource("2_7xpcm")
+
+[node name="Title" type="Label" parent="AL5" unique_id=1494066746]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.047000002
+anchor_top = 0.064
+anchor_right = 0.95400006
+anchor_bottom = 0.933
+offset_left = 0.41999817
+offset_top = 0.00799942
+offset_right = 0.4399414
+offset_bottom = 0.10095215
+theme_override_fonts/font = ExtResource("3_0vfoc")
+text = "Soluções a partir de solutos sólidos
+
+
+"
+
+[node name="Description" type="Label" parent="AL5" unique_id=2014429573]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.047000002
+anchor_top = 0.064
+anchor_right = 0.98200005
+anchor_bottom = 0.933
+offset_left = 0.41999817
+offset_top = 0.00799942
+offset_right = -31.480103
+offset_bottom = 0.10095215
+theme_override_fonts/font = ExtResource("4_ey48s")
+theme_override_font_sizes/font_size = 32
+text = "
+
+    Meça a massa de soluto necessária para um gobelé com 
+auxílio de uma espátula, usando uma balança digital;
+     Dissolva todo o soluto usando água destilada e agitando 
+com uma vareta de vidro;
+     Verta a solução para o balão volumétrico com o auxílio 
+de um funil e de uma vareta de vidro, lavando os materiais 
+com solvente;
+     Adicione água destilada até à marca, primeiro com o 
+esguicho e depois com um conta-gotas;
+    Tape e homogeneíze a solução, invertendo várias vezes 
+o balão volumétrico.
+"
+
+[node name="Numbers" type="Label" parent="AL5" unique_id=1453875543]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.047000002
+anchor_top = 0.064
+anchor_right = 0.95400006
+anchor_bottom = 0.933
+offset_left = 0.41999817
+offset_top = 0.00799942
+offset_right = 0.4399414
+offset_bottom = 0.10095215
+theme_override_fonts/font = ExtResource("5_bout8")
+theme_override_font_sizes/font_size = 32
+text = "
+
+1.
+
+2.
+
+3.
+
+
+4.
+
+5."
+
+[node name="Q10Menu" type="VBoxContainer" parent="." unique_id=879314754]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.048
+anchor_top = 0.085
+anchor_right = 0.319
+anchor_bottom = 0.245
+offset_left = 0.4399948
+offset_top = -1.215004
+offset_right = -0.6800537
+offset_bottom = 0.14498901
+theme = ExtResource("1_nkxug")
+
+[node name="BackButton" type="Button" parent="Q10Menu" unique_id=1920444224]
+layout_mode = 2
+theme = ExtResource("1_nkxug")
+theme_override_fonts/font = ExtResource("3_0vfoc")
+theme_override_styles/normal = ExtResource("6_m1w0f")
+theme_override_styles/pressed = ExtResource("6_m1w0f")
+theme_override_styles/hover = ExtResource("7_7xpcm")
+text = "Voltar"
+
+[node name="AL1" type="Button" parent="Q10Menu" unique_id=203751894]
+layout_mode = 2
+text = "AL 1.1"
+alignment = 0
+
+[node name="AL5" type="Button" parent="Q10Menu" unique_id=1959343984]
+layout_mode = 2
+text = "AL 1.5"
+alignment = 0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=101851333]
+libraries/ = SubResource("AnimationLibrary_0vfoc")
+
+[connection signal="pressed" from="Q10Menu/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="Q10Menu/AL1" to="." method="_on_al_1_pressed"]
+[connection signal="pressed" from="Q10Menu/AL5" to="." method="_on_al_5_pressed"]
