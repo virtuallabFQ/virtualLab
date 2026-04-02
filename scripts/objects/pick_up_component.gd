@@ -62,6 +62,7 @@ func _toggle(target: Node3D, state: bool) -> void:
 	ray_query.exclude = [player.get_rid(), target.get_rid()] if state and target is CollisionObject3D else []
 	
 	if state:
+		current_local_rot = base_rot
 		current_scroll_z = base_z
 		cached_cam = player.camera as Camera3D
 		player.add_collision_exception_with(target)

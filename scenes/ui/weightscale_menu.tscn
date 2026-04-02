@@ -28,7 +28,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.19076231, 0.19076234, 0.19076231, 1)
+color = Color(0, 0, 0, 1)
 
 [node name="digits" type="HBoxContainer" parent="." unique_id=1557923923]
 layout_mode = 1
@@ -45,7 +45,6 @@ alignment = 2
 [node name="unit_2" type="Label" parent="digits" unique_id=1338440118]
 unique_name_in_owner = true
 layout_mode = 2
-text = " "
 label_settings = SubResource("LabelSettings_xefur")
 horizontal_alignment = 2
 vertical_alignment = 1

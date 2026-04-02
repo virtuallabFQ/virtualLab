@@ -22,8 +22,7 @@ viewport_path = NodePath("SubViewport")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fm4qh"]
 resource_local_to_scene = true
 albedo_texture = SubResource("ViewportTexture_em2ya")
-metallic = 1.0
-roughness = 0.2
+roughness = 0.0
 
 [sub_resource type="QuadMesh" id="QuadMesh_em2ya"]
 resource_local_to_scene = true
@@ -36,7 +35,7 @@ size = Vector2(0.11, 0.06)
 
 [node name="weightscale" parent="." unique_id=1949070089 instance=ExtResource("1_ia8ev")]
 
-[node name="weightscale" parent="weightscale" index="0" unique_id=163338938]
+[node name="weightscale" parent="weightscale" index="0" unique_id=138109163]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
 
 [node name="c_weightscale" type="CollisionShape3D" parent="." unique_id=1673145426]
@@ -74,6 +73,7 @@ shape = SubResource("BoxShape3D_em2ya")
 
 [node name="UILayer" type="MeshInstance3D" parent="." unique_id=1613194043]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0.0030842125)
+gi_mode = 0
 mesh = SubResource("QuadMesh_em2ya")
 
 [node name="WeightscaleComponent" type="Node" parent="." unique_id=1884527301 node_paths=PackedStringArray("detector", "on_button", "off_button", "menu", "viewport")]
@@ -92,6 +92,8 @@ metadata/_custom_type_script = "uid://cld64tanfoemk"
 
 [node name="PickUpComponent" type="Node" parent="InteractionComponent" unique_id=1819121150]
 script = ExtResource("3_em2ya")
+distance = Vector3(0.25, -0.2, -0.65)
+min_scroll_z = -0.65
 metadata/_custom_type_script = "uid://dgjrei33rjh21"
 
 [node name="SubViewport" type="SubViewport" parent="." unique_id=666685041]
