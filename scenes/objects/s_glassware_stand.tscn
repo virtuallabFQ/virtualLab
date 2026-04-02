@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://itsb1eo42hqa"]
+
+[ext_resource type="PackedScene" uid="uid://dll17x81of0mb" path="res://assets/models/objects/glassware_stand.glb" id="1_286hv"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_286hv"]
+size = Vector3(0.20043945, 0.20060219, 0.050397754)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1np33"]
+size = Vector3(0.0725708, 0.19996133, 0.54425704)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lg488"]
+size = Vector3(0.054, 0.2, 0.042)
+
+[node name="s_glassware_stand" type="StaticBody3D" unique_id=1147099331]
+
+[node name="glassware_stand" parent="." unique_id=1828764781 instance=ExtResource("1_286hv")]
+transform = Transform3D(-4.371139e-09, 0, 0.1, 0, 0.07, 0, -0.1, 0, -4.371139e-09, 0, 0, 0)
+
+[node name="c1_glassware_stand" type="CollisionShape3D" parent="." unique_id=2059916065]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.07494457, 0.0995828, 0.00012207066)
+shape = SubResource("BoxShape3D_286hv")
+
+[node name="c2_glassware_stand" type="CollisionShape3D" parent="." unique_id=1525581474]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.5191813, 0.09896551, 0.00012207066)
+shape = SubResource("BoxShape3D_286hv")
+
+[node name="c3_glassware_stand" type="CollisionShape3D" parent="." unique_id=1058159393]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.22213525, 0.09928477, 0.06311078)
+shape = SubResource("BoxShape3D_1np33")
+
+[node name="c4_glassware_stand" type="CollisionShape3D" parent="." unique_id=1127521676]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.22213525, 0.09947921, -0.06394526)
+shape = SubResource("BoxShape3D_1np33")
+
+[node name="c5_glassware_stand" type="CollisionShape3D" parent="." unique_id=189265527]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.028392449, 0.09959006, -0.00011444074)
+shape = SubResource("BoxShape3D_lg488")
+
+[node name="c6_glassware_stand" type="CollisionShape3D" parent="." unique_id=1820153172]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.12595549, 0.09959006, -0.00011444074)
+shape = SubResource("BoxShape3D_lg488")
+
+[node name="c7_glassware_stand" type="CollisionShape3D" parent="." unique_id=590699152]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.22188503, 0.09959006, -0.00011444074)
+shape = SubResource("BoxShape3D_lg488")
+
+[node name="c8_glassware_stand" type="CollisionShape3D" parent="." unique_id=316570680]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.31846428, 0.09959006, -0.00011444074)
+shape = SubResource("BoxShape3D_lg488")
+
+[node name="c9_glassware_stand" type="CollisionShape3D" parent="." unique_id=20831874]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.41519195, 0.09959006, -0.00011444074)
+shape = SubResource("BoxShape3D_lg488")
+
+[editable path="glassware_stand"]

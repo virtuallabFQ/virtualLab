@@ -19,6 +19,10 @@ func add_ao_items() -> void:
 
 func check_current_ao() -> void:
 	var env = _get_environment()
+	if not env:
+		selected = 0
+		return
+	
 	if env and not env.ssao_enabled:
 		selected = 0
 		return

@@ -23,6 +23,10 @@ func add_reflections_items() -> void:
 
 func check_current_reflections() -> void:
 	var env = _get_environment()
+	if not env:
+		selected = 0
+		return
+	
 	if env and not env.ssr_enabled:
 		selected = 0
 		return

@@ -36,6 +36,7 @@
 [ext_resource type="PackedScene" uid="uid://ccsv2ixnowfax" path="res://scenes/objects/s_funnel.tscn" id="29_awhs2"]
 [ext_resource type="PackedScene" uid="uid://cbpijxoj0ue0f" path="res://scenes/objects/s_dropper.tscn" id="32_qjmlf"]
 [ext_resource type="PackedScene" uid="uid://r56jwb7f6l1p" path="res://scenes/objects/s_spatula.tscn" id="34_3s53a"]
+[ext_resource type="PackedScene" uid="uid://itsb1eo42hqa" path="res://scenes/objects/s_glassware_stand.tscn" id="35_hk0g8"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_p4yml"]
 sky_top_color = Color(0.2473351, 0.55099005, 0.987688, 1)
@@ -56,9 +57,7 @@ ambient_light_sky_contribution = 0.1
 tonemap_mode = 2
 tonemap_exposure = 0.85
 tonemap_agx_contrast = 1.41
-ssr_enabled = true
 ssr_max_steps = 128
-ssao_enabled = true
 ssao_radius = 0.35
 ssao_intensity = 0.75
 ssao_sharpness = 0.25
@@ -134,11 +133,11 @@ light_data = ExtResource("1_e21fs")
 
 [node name="ReflectionProbe" type="ReflectionProbe" parent="." unique_id=1568657294]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.243, 0.7, 0)
-intensity = 0.5
+intensity = 0.4
 size = Vector3(32.34781, 18.653076, 20)
 interior = true
-ambient_mode = 2
-ambient_color = Color(0.888779, 0.8909365, 0.8930942, 1)
+ambient_color = Color(0.7786036, 0.77859855, 0.7859535, 1)
+ambient_color_energy = 1.2
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=299602841]
 environment = SubResource("Environment_b874d")
@@ -368,6 +367,8 @@ transform = Transform3D(1.14, 0, 0, 0, 1.14, 0, 0, 0, 1.14, 4.3697095, -0.72492,
 [node name="s_sink_table_4" parent="furniture/sink_tables" unique_id=1116689371 instance=ExtResource("9_6uvyo")]
 transform = Transform3D(1.14, 0, 0, 0, 1.14, 0, 0, 0, 1.14, 8.374529, -0.72492, -8.130826)
 
+[node name="link_tables" type="Node" parent="furniture" unique_id=300972625]
+
 [node name="tables" type="Node" parent="furniture" unique_id=69462294]
 
 [node name="s_table_1" parent="furniture/tables" unique_id=1360114764 instance=ExtResource("4_w4gd0")]
@@ -500,6 +501,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.003, 1.1026611, 7.986721)
 [node name="s_whiteboard_2" parent="furniture/whiteboards" unique_id=1366642950 instance=ExtResource("6_n3ogy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.009, 1.1026611, 7.987)
 
+[node name="s_glassware_stand" parent="furniture" unique_id=1147099331 instance=ExtResource("35_hk0g8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.24776828, 0.68945, -8.877532)
+
 [node name="s_reagents_cabinet" parent="furniture" unique_id=7212893 instance=ExtResource("17_v77j0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.881296, -0.72982806, -8.078117)
 
@@ -546,7 +550,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.09995103, 0.7652708, -8.331
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.8065133, 0.27185673, -8.245823)
 
 [node name="s_burette" parent="objects" unique_id=1461589078 instance=ExtResource("26_jkrsq")]
-transform = Transform3D(-4.3711385e-08, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, -4.3711385e-08, 0.15708804, 0.57361513, -8.345267)
+transform = Transform3D(-4.3711385e-08, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, -4.3711385e-08, 0.1672861, 0.8021882, -8.876771)
 mass = 0.01
 
 [node name="s_beaker_100ml" parent="objects" unique_id=613809570 instance=ExtResource("9_rsbtw")]

@@ -4,6 +4,8 @@
 [ext_resource type="Material" uid="uid://bhhub6r7ds8lx" path="res://assets/materials/glass.tres" id="2_5x7ni"]
 [ext_resource type="Script" uid="uid://cld64tanfoemk" path="res://scripts/objects/interaction_component.gd" id="2_oywan"]
 [ext_resource type="Script" uid="uid://dgjrei33rjh21" path="res://scripts/objects/pick_up_component.gd" id="3_5x7ni"]
+[ext_resource type="Script" uid="uid://ms7kq4n8iay7" path="res://scripts/objects/ghost_placement_component.gd" id="3_55swo"]
+[ext_resource type="Material" uid="uid://dxxcjoilfjstw" path="res://assets/materials/ghost.tres" id="4_55swo"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f3ws3"]
 resource_name = "Material.001"
@@ -126,6 +128,11 @@ surface_material_override/1 = ExtResource("2_5x7ni")
 transform = Transform3D(5.5, 0, 0, 0, -5.4999995, -2.207366e-06, 0, 2.207366e-06, -5.4999995, 4.351372e-06, 0.19224548, -0.001615135)
 shape = SubResource("CylinderShape3D_blcfl")
 
+[node name="GhostPlacementComponent" type="Node" parent="." unique_id=1479359673]
+script = ExtResource("3_55swo")
+material = ExtResource("4_55swo")
+metadata/_custom_type_script = "uid://ms7kq4n8iay7"
+
 [node name="InteractionComponent" type="Node" parent="." unique_id=2044105371 node_paths=PackedStringArray("mesh")]
 script = ExtResource("2_oywan")
 mesh = NodePath("../burette_glass")
@@ -134,6 +141,7 @@ metadata/_custom_type_script = "uid://cld64tanfoemk"
 
 [node name="PickUpComponent" type="Node" parent="InteractionComponent" unique_id=1675828510]
 script = ExtResource("3_5x7ni")
+margin = 0.0
 metadata/_custom_type_script = "uid://dgjrei33rjh21"
 
 [editable path="burette"]
