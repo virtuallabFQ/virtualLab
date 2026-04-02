@@ -6,6 +6,8 @@
 [ext_resource type="FontFile" uid="uid://c58e0tqfdkp4" path="res://assets/ui/themes/static/Orbitron-Black.ttf" id="3_cgv80"]
 [ext_resource type="FontFile" uid="uid://bl1ps7gqh20iv" path="res://assets/ui/themes/static/Orbitron-Regular.ttf" id="4_5e4ol"]
 [ext_resource type="FontFile" uid="uid://p38vpi7tgrq2" path="res://assets/ui/themes/static/Orbitron-Bold.ttf" id="4_cnt0b"]
+[ext_resource type="PackedScene" uid="uid://c5206ithcy74u" path="res://scenes/ui/fq_menu.tscn" id="7_bof4w"]
+[ext_resource type="PackedScene" uid="uid://bsrcq5qmkcuyn" path="res://scenes/ui/q_10_menu.tscn" id="8_v7hcp"]
 
 [node name="SelectorMenu" type="Control" unique_id=1707083553]
 layout_mode = 3
@@ -15,7 +17,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=465061161]
+[node name="Background" type="ColorRect" parent="." unique_id=465061161]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -24,7 +26,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.25882354, 0.34117648, 0.43529412, 0.92156863)
 
-[node name="Panel" type="Panel" parent="ColorRect" unique_id=1430025871]
+[node name="Panel" type="Panel" parent="Background" unique_id=1430025871]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.36100003
@@ -40,7 +42,7 @@ grow_vertical = 2
 theme = ExtResource("1_858cb")
 theme_override_styles/panel = ExtResource("2_cgv80")
 
-[node name="title" type="Label" parent="ColorRect/Panel" unique_id=638165205]
+[node name="title" type="Label" parent="Background/Panel" unique_id=638165205]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.047000002
@@ -57,7 +59,7 @@ text = "Bem-vindo ao Laboratório Virtual!
 
 "
 
-[node name="description" type="Label" parent="ColorRect/Panel" unique_id=1460075874]
+[node name="description" type="Label" parent="Background/Panel" unique_id=1460075874]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.047000002
@@ -84,7 +86,7 @@ aos controlos do jogo:
 
 Agora sim, boas experiências!"
 
-[node name="controls" type="Label" parent="ColorRect/Panel" unique_id=454632388]
+[node name="controls" type="Label" parent="Background/Panel" unique_id=454632388]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.047000002
@@ -142,3 +144,11 @@ alignment = 0
 layout_mode = 2
 text = "Experiências 11º Ano (...)"
 alignment = 0
+
+[node name="fq_menu" parent="." unique_id=1401549533 instance=ExtResource("7_bof4w")]
+visible = false
+layout_mode = 1
+
+[node name="q10_menu" parent="." unique_id=709294148 instance=ExtResource("8_v7hcp")]
+visible = false
+layout_mode = 1

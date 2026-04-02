@@ -33,6 +33,8 @@ metadata/_custom_type_script = "uid://cld64tanfoemk"
 
 [node name="PickUpComponent" type="Node" parent="InteractionComponent" unique_id=650269933]
 script = ExtResource("3_stpra")
+distance = Vector3(0.2, -0.175, -0.45)
+min_scroll_z = -0.45
 metadata/_custom_type_script = "uid://dgjrei33rjh21"
 
 [editable path="dropper"]

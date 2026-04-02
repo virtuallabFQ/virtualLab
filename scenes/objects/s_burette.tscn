@@ -114,13 +114,13 @@ radius = 0.0029249997
 [node name="s_burette" type="RigidBody3D" unique_id=1461589078]
 
 [node name="burette" parent="." unique_id=1385064089 instance=ExtResource("1_blcfl")]
-transform = Transform3D(5.5, 0, 0, 0, 5.5, 0, 0, 0, 5.5, 0, 0, 0)
+transform = Transform3D(-2.4041265e-07, 0, -5.5, 0, 5.5, 0, 5.5, 0, -2.4041265e-07, 0, 0, 0)
 
 [node name="burette" parent="burette" index="0" unique_id=255544467]
 visible = false
 
-[node name="burette_glass" type="MeshInstance3D" parent="." unique_id=141982050]
-transform = Transform3D(5.5, 0, 0, 0, -1.9669533e-06, 5.4999995, 0, -5.4999995, -1.9669533e-06, 0, -0.05491131, -0.026615966)
+[node name="burette_glass" type="MeshInstance3D" parent="." unique_id=472499967]
+transform = Transform3D(-2.4041265e-07, 5.4999995, 1.9669533e-06, 0, -1.9669533e-06, 5.4999995, 5.5, 2.4041262e-07, 8.597826e-14, 0.026615966, -0.05491131, 1.1634209e-09)
 mesh = SubResource("ArrayMesh_wp5yg")
 surface_material_override/1 = ExtResource("2_5x7ni")
 
@@ -135,13 +135,15 @@ metadata/_custom_type_script = "uid://ms7kq4n8iay7"
 
 [node name="InteractionComponent" type="Node" parent="." unique_id=2044105371 node_paths=PackedStringArray("mesh")]
 script = ExtResource("2_oywan")
-mesh = NodePath("../burette_glass")
+mesh = NodePath("")
 context = "Pegar"
 metadata/_custom_type_script = "uid://cld64tanfoemk"
 
 [node name="PickUpComponent" type="Node" parent="InteractionComponent" unique_id=1675828510]
 script = ExtResource("3_5x7ni")
+distance = Vector3(0.2, -0.235, -0.6)
 margin = 0.0
+min_scroll_z = -0.6
 metadata/_custom_type_script = "uid://dgjrei33rjh21"
 
 [editable path="burette"]

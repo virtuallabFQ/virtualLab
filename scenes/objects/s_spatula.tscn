@@ -25,7 +25,7 @@ metadata/_custom_type_script = "uid://cld64tanfoemk"
 [node name="PickUpComponent" type="Node" parent="InteractionComponent" unique_id=1311040641]
 script = ExtResource("3_k4qgo")
 distance = Vector3(0.2, -0.15, -0.5)
-rotation = Vector3(-20, 10, 0)
+rotation = Vector3(45, 45, 45)
 metadata/_custom_type_script = "uid://dgjrei33rjh21"
 
 [editable path="spatula"]

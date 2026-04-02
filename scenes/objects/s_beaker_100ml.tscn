@@ -110,5 +110,7 @@ context = "Pegar"
 
 [node name="PickUpComponent" type="Node" parent="InteractionComponent" unique_id=560273488]
 script = ExtResource("5_bdm3o")
+distance = Vector3(0.2, -0.175, -0.5)
+min_scroll_z = -0.5
 
 [editable path="beaker_100ml"]

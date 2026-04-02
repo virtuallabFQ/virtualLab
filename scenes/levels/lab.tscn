@@ -550,7 +550,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.09995103, 0.7652708, -8.331
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.8065133, 0.27185673, -8.245823)
 
 [node name="s_burette" parent="objects" unique_id=1461589078 instance=ExtResource("26_jkrsq")]
-transform = Transform3D(-4.3711385e-08, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, -4.3711385e-08, 0.1672861, 0.8021882, -8.876771)
+transform = Transform3D(0.9999998, 0, 0, 0, 1, 0, 0, 0, 0.9999998, 0.1672861, 0.8021882, -8.876771)
 mass = 0.01
 
 [node name="s_beaker_100ml" parent="objects" unique_id=613809570 instance=ExtResource("9_rsbtw")]

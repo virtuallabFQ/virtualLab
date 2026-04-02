@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://dgjrei33rjh21" path="res://scripts/objects/pick_up_component.gd" id="3_vhpk1"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_gouk2"]
-size = Vector3(0.1769867, 0.18122864, 0.056886673)
+size = Vector3(0.0522604, 0.18122864, 0.17569739)
 
 [node name="s_clamp" type="RigidBody3D" unique_id=266730386]
 
@@ -13,17 +13,19 @@ size = Vector3(0.1769867, 0.18122864, 0.056886673)
 transform = Transform3D(-0.04, 0, -3.496911e-09, 0, 0.04, 0, 3.496911e-09, 0, -0.04, 0, 0, 0)
 
 [node name="c_clamp" type="CollisionShape3D" parent="." unique_id=978829261]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0012938827, 0.0011062622, -0.02345385)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.019393697, 0.0011062622, -0.0017057545)
 shape = SubResource("BoxShape3D_gouk2")
 
 [node name="InteractionComponent" type="Node" parent="." unique_id=610021996 node_paths=PackedStringArray("mesh")]
 script = ExtResource("2_k5ret")
-mesh = NodePath("../clamp/Cube")
+mesh = NodePath("../clamp/clamp_1")
 context = "Pegar"
 metadata/_custom_type_script = "uid://cld64tanfoemk"
 
 [node name="PickUpComponent" type="Node" parent="InteractionComponent" unique_id=906630824]
 script = ExtResource("3_vhpk1")
+distance = Vector3(0.2, -0.1, -0.4)
+min_scroll_z = -0.4
 metadata/_custom_type_script = "uid://dgjrei33rjh21"
 
 [editable path="clamp"]
