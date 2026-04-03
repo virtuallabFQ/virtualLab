@@ -28,14 +28,11 @@ func _process(_delta: float) -> void:
 		if is_instance_valid(snapped_obj) and player.held_object == snapped_obj:
 			var parent_body := snapped_obj.get_parent() as CollisionObject3D
 			
-			# --- CORREÇÃO DE COLISÃO AQUI ---
 			var lid = snapped_obj.get_node_or_null("LidComponent")
 			if lid:
-				lid.is_closed = false # Avisa que a tampa saiu para o funil poder entrar
+				lid.is_closed = false
 			elif parent_body: 
-				# Só tira a exceção de colisão se NÃO FOR uma tampa (ex: um funil)
 				snapped_obj.remove_collision_exception_with(parent_body)
-			# --------------------------------
 			
 			if lock_parent_on_snap: _set_parent_pickup_locked(false)
 			is_snapped = false
@@ -64,16 +61,13 @@ func _process(_delta: float) -> void:
 	_set_area_enabled(can_snap)
 
 func _on_snap(_node: Node) -> void:
-	if requires_open_lid and lid_component and lid_component.is_closed:
-		return
-		
-	var held := Global.player.held_object as RigidBody3D
+	var held = Global.player.held_object
 	if not held or not ghost_mesh or not held.is_in_group(target_group): return
 	
-	var pickups := held.find_children("*", "PickUpComponent")
+	var pickups := held.find_children("*", "PickUpComponent", true, false)
 	if not pickups.is_empty(): 
 		var pickup_node: Node = pickups[0]
-		pickup_node.call(&"_toggle", held, false)
+		pickup_node.call("_toggle", held, false)
 	
 	var parent_body := ghost_mesh.get_parent() as CollisionObject3D
 	held.reparent(parent_body)
@@ -88,11 +82,9 @@ func _on_snap(_node: Node) -> void:
 	is_snapped = true
 	snapped_obj = held
 	
-	# --- AVISA QUE A TAMPA FECHOU ---
 	var lid = held.get_node_or_null("LidComponent")
 	if lid:
 		lid.is_closed = true
-	# --------------------------------
 	
 	if lock_parent_on_snap: _set_parent_pickup_locked(true)
 	if ghost_mesh: ghost_mesh.visible = false

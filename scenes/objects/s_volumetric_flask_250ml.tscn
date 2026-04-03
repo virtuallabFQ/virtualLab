@@ -306,13 +306,14 @@ mesh = NodePath("../../ghost_lid")
 context = "Colocar"
 metadata/_custom_type_script = "uid://cld64tanfoemk"
 
-[node name="SnapComponent_1" type="Node" parent="volumetric_flask" unique_id=151128249 node_paths=PackedStringArray("ghost_mesh", "interaction_area", "interaction_comp")]
+[node name="SnapComponent_1" type="Node" parent="volumetric_flask" unique_id=151128249 node_paths=PackedStringArray("ghost_mesh", "interaction_area", "interaction_comp", "lid_component")]
 script = ExtResource("8_rvnjk")
 target_group = &"volumetric_flask_lid"
 visual_node_name = "lid"
 ghost_mesh = NodePath("../ghost_lid")
 interaction_area = NodePath("../snap_area_1")
 interaction_comp = NodePath("../snap_area_1/InteractionComponent")
+lid_component = NodePath("../../volumetric_flask_lid/LidComponent")
 metadata/_custom_type_script = "uid://defqc4mn4kjbx"
 
 [node name="ghost_funnel" parent="volumetric_flask" unique_id=1745320336 instance=ExtResource("5_ptaar")]
@@ -412,7 +413,7 @@ metadata/_custom_type_script = "uid://cld64tanfoemk"
 
 [node name="PickUpComponent" type="Node" parent="volumetric_flask_lid/InteractionComponent" unique_id=760223783]
 script = ExtResource("3_pnj7g")
-distance = Vector3(0, -0.3, -0.85)
+distance = Vector3(0, -0.45, -0.85)
 min_scroll_z = -0.85
 inspect_position = Vector3(0, -0.15, -1)
 metadata/_custom_type_script = "uid://dgjrei33rjh21"

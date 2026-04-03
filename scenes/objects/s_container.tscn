@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://bv8tgjp56hudf" path="res://scripts/objects/container_component.gd" id="3_f5hba"]
 [ext_resource type="Material" uid="uid://dxxcjoilfjstw" path="res://assets/materials/ghost.tres" id="4_fnab2"]
 [ext_resource type="Script" uid="uid://dgjrei33rjh21" path="res://scripts/objects/pick_up_component.gd" id="4_kppi4"]
+[ext_resource type="Script" uid="uid://defqc4mn4kjbx" path="res://scripts/objects/snap_component.gd" id="5_bxptj"]
 [ext_resource type="Script" uid="uid://cwi3u01n03275" path="res://scripts/objects/lid_component.gd" id="5_kppi4"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h3qjj"]
@@ -65,9 +66,6 @@ height = 0.1
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f5hba"]
 albedo_color = Color(0.91228896, 0.9122889, 0.91228884, 1)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_fnab2"]
-size = Vector3(0.12458801, 0.27631378, 0.12336731)
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bsxll"]
 resource_name = "material"
 cull_mode = 2
@@ -107,9 +105,16 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_0rsoo")
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_3kwdy"]
-height = 27.343338
-radius = 40.349865
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_v5fy3"]
+height = 52.883385
+radius = 51.42334
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fnab2"]
+size = Vector3(0.12458801, 0.27631378, 0.12336731)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_bxptj"]
+height = 38.007
+radius = 40.0
 
 [node name="s_container_copper_sulfate" type="Node3D" unique_id=1910924988]
 
@@ -137,6 +142,32 @@ shape = SubResource("CylinderShape3D_a5rag")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13007413, 0)
 mesh = SubResource("CylinderMesh_kppi4")
 surface_material_override/0 = SubResource("StandardMaterial3D_f5hba")
+
+[node name="ghost_lid" type="MeshInstance3D" parent="container_copper_sulfate" unique_id=424617234]
+transform = Transform3D(0.0013134539, 0, 0, 0, -4.697278e-10, -0.001313454, 0, 0.001313454, -4.697278e-10, 0, 0.08872112, 0)
+mesh = SubResource("ArrayMesh_qohvx")
+surface_material_override/0 = ExtResource("4_fnab2")
+
+[node name="snap_area" type="Area3D" parent="container_copper_sulfate" unique_id=151292846]
+
+[node name="c_lid" type="CollisionShape3D" parent="container_copper_sulfate/snap_area" unique_id=873834051]
+transform = Transform3D(0.0013134539, 0, 0, 0, 0.001313454, -4.123149e-10, 0, 4.123149e-10, 0.001313454, 0, 0.2043147, 4.1216328e-08)
+shape = SubResource("CylinderShape3D_v5fy3")
+
+[node name="InteractionComponent" type="Node" parent="container_copper_sulfate/snap_area" unique_id=517870751]
+script = ExtResource("3_3kwdy")
+context = "Colocar"
+metadata/_custom_type_script = "uid://cld64tanfoemk"
+
+[node name="SnapComponent" type="Node" parent="container_copper_sulfate" unique_id=404666253 node_paths=PackedStringArray("ghost_mesh", "interaction_area", "interaction_comp", "lid_component")]
+script = ExtResource("5_bxptj")
+target_group = &"container_copper_sulfate_lid"
+visual_node_name = "lid"
+ghost_mesh = NodePath("../ghost_lid")
+interaction_area = NodePath("../snap_area")
+interaction_comp = NodePath("../snap_area/InteractionComponent")
+lid_component = NodePath("../../container_copper_sulfate_lid/LidComponent")
+metadata/_custom_type_script = "uid://defqc4mn4kjbx"
 
 [node name="ghost_spatula" parent="container_copper_sulfate" unique_id=262879923 instance=ExtResource("3_5c47f")]
 transform = Transform3D(0.0053829667, 0.039636135, 0, -0.03963614, 0.0053829663, 0, 0, 0, 0.040000003, -0.023503821, 0.227, -0.02730333)
@@ -175,15 +206,15 @@ metadata/_custom_type_script = "uid://cld64tanfoemk"
 script = ExtResource("4_kppi4")
 metadata/_custom_type_script = "uid://dgjrei33rjh21"
 
-[node name="container_copper_sulfate_lid" type="RigidBody3D" parent="." unique_id=1386899709]
+[node name="container_copper_sulfate_lid" type="RigidBody3D" parent="." unique_id=1386899709 groups=["container_copper_sulfate_lid"]]
 
 [node name="lid" type="MeshInstance3D" parent="container_copper_sulfate_lid" unique_id=1744145266]
 transform = Transform3D(0.0013134539, 0, 0, 0, -4.697278e-10, -0.001313454, 0, 0.001313454, -4.697278e-10, 0, 0.08872112, 0)
 mesh = SubResource("ArrayMesh_qohvx")
 
 [node name="c_lid" type="CollisionShape3D" parent="container_copper_sulfate_lid" unique_id=1960138065]
-transform = Transform3D(0.0013134539, 0, 0, 0, 0.001313454, -4.123149e-10, 0, 4.123149e-10, 0.001313454, 0, 0.20149711, 4.0331845e-08)
-shape = SubResource("CylinderShape3D_3kwdy")
+transform = Transform3D(0.0013134539, 0, 0, 0, 0.001313454, -4.123149e-10, 0, 4.123149e-10, 0.001313454, 0, 0.19454497, 3.814945e-08)
+shape = SubResource("CylinderShape3D_bxptj")
 
 [node name="LidComponent" type="Node" parent="container_copper_sulfate_lid" unique_id=1301036998]
 script = ExtResource("5_kppi4")

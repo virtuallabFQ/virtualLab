@@ -67,28 +67,28 @@ shader_parameter/liquid_color = Color(0, 0.4, 0.8, 0.5)
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.99999, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="CurveTexture" id="CurveTexture_4coyb"]
+[sub_resource type="CurveTexture" id="CurveTexture_tmkq6"]
 curve = SubResource("Curve_0bkq6")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7ladk"]
-scale_curve = SubResource("CurveTexture_4coyb")
+scale_curve = SubResource("CurveTexture_tmkq6")
 collision_mode = 1
 collision_friction = 0.1
 collision_bounce = 0.1
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_4coyb"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_0bkq6"]
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_v0n4b"]
-noise = SubResource("FastNoiseLite_4coyb")
+noise = SubResource("FastNoiseLite_0bkq6")
 seamless = true
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_fm7qo"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_7ladk"]
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_vrp8o"]
-noise = SubResource("FastNoiseLite_fm7qo")
+noise = SubResource("FastNoiseLite_7ladk")
 seamless = true
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_x673q"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_v0n4b"]
 render_priority = 0
 shader = ExtResource("12_tmkq6")
 shader_parameter/time_speed = 1.0
@@ -110,7 +110,7 @@ shader_parameter/color3 = Color(0.059, 0.389, 0.85, 1)
 shader_parameter/color4 = Color(0, 0.267, 1, 1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_r3nrw"]
-material = SubResource("ShaderMaterial_x673q")
+material = SubResource("ShaderMaterial_v0n4b")
 radius = 0.001
 height = 0.05
 radial_segments = 32
@@ -154,18 +154,20 @@ surface_material_override/0 = ExtResource("4_55swo")
 [node name="lid" parent="ghost_wash_bottle" index="1" unique_id=1986141583]
 surface_material_override/0 = ExtResource("4_55swo")
 
-[node name="RecipientComponent" type="Node" parent="." unique_id=474782335 node_paths=PackedStringArray("liquid_mesh")]
-script = ExtResource("6_qlkcl")
-liquid_mesh = NodePath("../liquid")
-fill_curve = ExtResource("7_5t5t0")
-metadata/_custom_type_script = "uid://b2gt5m2035sun"
-
 [node name="LiquidTargetComponent" type="Node" parent="." unique_id=216584501 node_paths=PackedStringArray("ghost_mesh")]
 script = ExtResource("3_55swo")
 required_group = &"wash_bottle"
 visual_node_name = "wash_bottle"
 ghost_mesh = NodePath("../ghost_wash_bottle")
 needs_parent_frozen = true
+
+[node name="TapComponent" type="Node" parent="." unique_id=686604562]
+
+[node name="RecipientComponent" type="Node" parent="." unique_id=474782335 node_paths=PackedStringArray("liquid_mesh")]
+script = ExtResource("6_qlkcl")
+liquid_mesh = NodePath("../liquid")
+fill_curve = ExtResource("7_5t5t0")
+metadata/_custom_type_script = "uid://b2gt5m2035sun"
 
 [node name="GhostPlacementComponent" type="Node" parent="." unique_id=641367040]
 script = ExtResource("6_xpaay")

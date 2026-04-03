@@ -1,5 +1,4 @@
-class_name LidComponent
-extends Node
+class_name LidComponent extends Node
 
 signal lid_opened
 signal lid_closed
@@ -25,7 +24,6 @@ func _ready():
 		pick_up_component.toggled.connect(_on_pickup_toggled)
 
 func interact():
-	# Agora a interação SERVE APENAS PARA ABRIR a tampa com um clique (caso não a queiras pegar)
 	if is_closed:
 		open_lid()
 
