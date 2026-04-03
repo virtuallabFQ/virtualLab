@@ -190,11 +190,12 @@ script = ExtResource("3_3kwdy")
 context = "Retirar"
 metadata/_custom_type_script = "uid://cld64tanfoemk"
 
-[node name="ContainerComponent" type="Node" parent="container_copper_sulfate" unique_id=2136978914 node_paths=PackedStringArray("ghost_mesh", "interaction_comp", "interaction_area")]
+[node name="ContainerComponent" type="Node" parent="container_copper_sulfate" unique_id=2136978914 node_paths=PackedStringArray("ghost_mesh", "interaction_comp", "interaction_area", "lid_component")]
 script = ExtResource("3_f5hba")
 ghost_mesh = NodePath("../ghost_spatula")
 interaction_comp = NodePath("../container_area/InteractionComponent")
 interaction_area = NodePath("../container_area")
+lid_component = NodePath("../../container_copper_sulfate_lid/LidComponent")
 
 [node name="InteractionComponent" type="Node" parent="container_copper_sulfate" unique_id=640901564 node_paths=PackedStringArray("mesh")]
 script = ExtResource("3_3kwdy")
@@ -216,8 +217,12 @@ mesh = SubResource("ArrayMesh_qohvx")
 transform = Transform3D(0.0013134539, 0, 0, 0, 0.001313454, -4.123149e-10, 0, 4.123149e-10, 0.001313454, 0, 0.19454497, 3.814945e-08)
 shape = SubResource("CylinderShape3D_bxptj")
 
-[node name="LidComponent" type="Node" parent="container_copper_sulfate_lid" unique_id=1301036998]
+[node name="LidComponent" type="Node" parent="container_copper_sulfate_lid" unique_id=1301036998 node_paths=PackedStringArray("lid_node", "target_body", "pick_up_component", "container_pick_up")]
 script = ExtResource("5_kppi4")
+lid_node = NodePath("..")
+target_body = NodePath("../../container_copper_sulfate")
+pick_up_component = NodePath("../InteractionComponent/PickUpComponent")
+container_pick_up = NodePath("../../container_copper_sulfate/InteractionComponent/PickUpComponent")
 
 [node name="InteractionComponent" type="Node" parent="container_copper_sulfate_lid" unique_id=139231756 node_paths=PackedStringArray("mesh")]
 script = ExtResource("3_3kwdy")

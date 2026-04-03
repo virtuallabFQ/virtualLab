@@ -59,15 +59,27 @@ func _toggle(target: Node3D, state: bool) -> void:
 	set_physics_process(state); set_process_input(state)
 	
 	if target is RigidBody3D: target.freeze = state
-	ray_query.exclude = [player.get_rid(), target.get_rid()] if state and target is CollisionObject3D else []
+	
+	var all_bodies := target.find_children("*", "CollisionObject3D", true, false)
+	if target is CollisionObject3D: 
+		all_bodies.append(target)
+	
+	var exclude_rids = [player.get_rid()]
 	
 	if state:
 		current_local_rot = base_rot
 		current_scroll_z = base_z
 		cached_cam = player.camera as Camera3D
-		player.add_collision_exception_with(target)
+		
+		for body in all_bodies:
+			player.add_collision_exception_with(body)
+			exclude_rids.append(body.get_rid())
+			
+		ray_query.exclude = exclude_rids
 	else:
-		player.remove_collision_exception_with(target); cached_cam = null
+		for body in all_bodies:
+			player.remove_collision_exception_with(body)
+		cached_cam = null
 		
 	for n in hide_nodes:
 		if is_instance_valid(n):

@@ -3,10 +3,11 @@ class_name LiquidTargetComponent extends Node
 @export var required_group: StringName = &""
 @export var visual_node_name: String = ""
 @export var ghost_mesh: Node3D
+@export var lid_component: LidComponent
 @export var action_context: String = "Encher"
 @export var needs_parent_frozen: bool = false
 @export var lock_parent_while_filling: bool = true
-
+ 
 var is_focused: bool = false
 var is_ready: bool = false
 var is_filling: bool = false
@@ -14,8 +15,8 @@ var original_context: String = ""
 var inter_comp: Node
 var snapped_bottle: RigidBody3D
 var _parent_was_frozen: bool = false
-
 var hijacked_events := {}
+
 const ACTIONS = [&"jump", &"crouch", &"sprint", &"ui_accept", &"ui_up", &"ui_down", &"ui_left", &"ui_right"]
 
 func _ready() -> void:
@@ -50,8 +51,9 @@ func _process(_delta: float) -> void:
 			is_filling = false
 			snapped_bottle = null
 		return
-
-	var can_fill: bool = is_focused and player.held_object != null and player.held_object.is_in_group(required_group) and (not needs_parent_frozen or get_parent().get(&"freeze") == true)
+ 
+	var lid_open := lid_component == null or not lid_component.is_closed
+	var can_fill: bool = is_focused and player.held_object != null and player.held_object.is_in_group(required_group) and lid_open and (not needs_parent_frozen or get_parent().get(&"freeze") == true)
 	_update_state(can_fill)
 	
 func _update_state(state: bool) -> void:

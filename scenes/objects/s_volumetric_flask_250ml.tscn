@@ -355,11 +355,12 @@ surface_material_override/0 = ExtResource("6_rvnjk")
 [node name="lid" parent="volumetric_flask/ghost_wash_bottle" index="1" unique_id=1986141583]
 surface_material_override/0 = ExtResource("6_rvnjk")
 
-[node name="LiquidTargetComponent_1" type="Node" parent="volumetric_flask" unique_id=325849628 node_paths=PackedStringArray("ghost_mesh")]
+[node name="LiquidTargetComponent_1" type="Node" parent="volumetric_flask" unique_id=325849628 node_paths=PackedStringArray("ghost_mesh", "lid_component")]
 script = ExtResource("12_ad3ap")
 required_group = &"wash_bottle"
 visual_node_name = "wash_bottle"
 ghost_mesh = NodePath("../ghost_wash_bottle")
+lid_component = NodePath("../../volumetric_flask_lid/LidComponent")
 
 [node name="bulb" type="MeshInstance3D" parent="volumetric_flask" unique_id=885778812]
 transform = Transform3D(0.15, 0, 0, 0, -5.3644182e-08, 0.14999999, 0, -0.14999999, -5.3644182e-08, 0, 0.29544756, 0)
@@ -368,11 +369,12 @@ surface_material_override/0 = ExtResource("6_rvnjk")
 surface_material_override/1 = ExtResource("6_rvnjk")
 surface_material_override/2 = ExtResource("6_rvnjk")
 
-[node name="LiquidTargetComponent_2" type="Node" parent="volumetric_flask" unique_id=949950924 node_paths=PackedStringArray("ghost_mesh")]
+[node name="LiquidTargetComponent_2" type="Node" parent="volumetric_flask" unique_id=949950924 node_paths=PackedStringArray("ghost_mesh", "lid_component")]
 script = ExtResource("12_ad3ap")
 required_group = &"dropper_bulb"
 visual_node_name = "bulb"
 ghost_mesh = NodePath("../bulb")
+lid_component = NodePath("../../volumetric_flask_lid/LidComponent")
 
 [node name="RecipientComponent" type="Node" parent="volumetric_flask" unique_id=400432534 node_paths=PackedStringArray("liquid_mesh")]
 script = ExtResource("4_458d8")
@@ -402,8 +404,12 @@ mesh = SubResource("ArrayMesh_jb5kg")
 transform = Transform3D(-5.9010374e-10, 0, -0.013500002, 0, 0.013500002, 0, 0.0135, 0, -5.9010385e-10, 0, -0.0011196379, 0)
 shape = SubResource("ConvexPolygonShape3D_ejtsj")
 
-[node name="LidComponent" type="Node" parent="volumetric_flask_lid" unique_id=1913344574]
+[node name="LidComponent" type="Node" parent="volumetric_flask_lid" unique_id=1913344574 node_paths=PackedStringArray("lid_node", "target_body", "pick_up_component", "container_pick_up")]
 script = ExtResource("11_rbfax")
+lid_node = NodePath("..")
+target_body = NodePath("../../volumetric_flask")
+pick_up_component = NodePath("../InteractionComponent/PickUpComponent")
+container_pick_up = NodePath("../../volumetric_flask/InteractionComponent/PickUpComponent")
 
 [node name="InteractionComponent" type="Node" parent="volumetric_flask_lid" unique_id=1338641476 node_paths=PackedStringArray("mesh")]
 script = ExtResource("2_q5wlk")
