@@ -3,9 +3,9 @@
 [ext_resource type="Script" uid="uid://bbplnahiywis6" path="res://scripts/objects/s_wash_bottle.gd" id="1_aa25a"]
 [ext_resource type="PackedScene" uid="uid://dn713edphqydv" path="res://assets/models/objects/wash_bottle.glb" id="1_jlm26"]
 [ext_resource type="Script" uid="uid://cld64tanfoemk" path="res://scripts/objects/interaction_component.gd" id="2_3aqab"]
-[ext_resource type="Material" uid="uid://bt64lrilhx0df" path="res://assets/materials/water_recipient.tres" id="2_s0sfm"]
 [ext_resource type="Script" uid="uid://dgjrei33rjh21" path="res://scripts/objects/pick_up_component.gd" id="3_4coyb"]
 [ext_resource type="Shader" uid="uid://dnocp532ptnhv" path="res://shaders/water.gdshader" id="4_4coyb"]
+[ext_resource type="Script" uid="uid://dg2hrp1f5m5mr" path="res://scripts/objects/jet_component.gd" id="4_5o70a"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_fm7qo"]
 height = 76.81831
@@ -23,9 +23,6 @@ points = PackedVector3Array(4.629789, 35.87034, 1.2659326, -2.0977588, 24.935932
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_aa25a"]
 points = PackedVector3Array(38.275513, 29.142294, -1.2569804, 18.092213, 36.71153, 0.42482433, 18.092213, 36.71153, -0.41546047, 5.4758377, 30.824347, 2.1074524, 5.4758377, 30.824347, -2.0985003, 35.75079, 32.506397, 2.1074524, 8.000562, 36.71153, 2.1074524, 34.070057, 33.345943, -2.0985003, 5.4758377, 35.86902, -2.0985003, 35.75079, 29.142294, 1.2659326, 41.636982, 31.66537, 0.42482433, 13.886754, 36.71153, -2.0985003, 32.3857, 34.186966, 1.2659326, 35.75079, 29.98332, -2.0985003, 35.75079, 29.98332, 2.1074524, 42.480972, 29.142294, -0.41546047, 5.4758377, 35.86902, 2.1074524, 13.886754, 36.71153, 2.1074524, 32.3857, 29.142294, -0.41546047, 41.636982, 30.824347, -1.2569804, 41.636982, 29.98332, 1.2659326, 33.226067, 34.186966, -0.41546047, 6.319828, 36.71153, -1.2569804, 30.704964, 34.186966, -2.0985003, 30.704964, 34.186966, 2.1074524, 40.796616, 31.66537, -1.2569804, 40.796616, 31.66537, 1.2659326, 17.251846, 36.71153, -1.2569804, 17.251846, 36.71153, 1.2659326, 42.480972, 29.142294, 0.42482433, 35.75079, 29.142294, -1.2569804, 42.480972, 30.824347, 0.42482433)
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_fm7qo"]
-radius = 0.05
 
 [sub_resource type="Curve" id="Curve_3aqab"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.99999, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
@@ -82,7 +79,6 @@ rings = 16
 
 [node name="s_wash_bottle" type="RigidBody3D" unique_id=1175166802 groups=["wash_bottle"]]
 script = ExtResource("1_aa25a")
-liquid_material = ExtResource("2_s0sfm")
 
 [node name="wash_bottle" parent="." unique_id=2001274317 instance=ExtResource("1_jlm26")]
 transform = Transform3D(-4.371139e-09, 0, 0.1, 0, 0.1, 0, -0.1, 0, -4.371139e-09, 0, 0, 0)
@@ -107,16 +103,17 @@ shape = SubResource("ConvexPolygonShape3D_5o70a")
 transform = Transform3D(-1.1102693e-10, 0, 0.00254, 0, 0.00254, 0, -0.00254, 0, -1.1102693e-10, 1.1720096e-09, 0.0639373, 0.026812453)
 shape = SubResource("ConvexPolygonShape3D_aa25a")
 
-[node name="ShapeCast3D" type="ShapeCast3D" parent="." unique_id=850645457]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.002081871, 0.13687134, -0.07434082)
-shape = SubResource("SphereShape3D_fm7qo")
-target_position = Vector3(0, -0.5, 0)
-collision_mask = 128
+[node name="JetComponent" type="Node3D" parent="." unique_id=1781609703]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1408844, -0.075489044)
+script = ExtResource("4_5o70a")
+
+[node name="RayCast3D" type="RayCast3D" parent="JetComponent" unique_id=127756624]
+transform = Transform3D(1, 0, 0, 0, 0.17364821, -0.98480767, 0, 0.98480767, 0.17364821, 0, 0, 0)
 collide_with_areas = true
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=354095054]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0009613037, 0.12037659, -0.074272156)
-amount = 50
+[node name="GPUParticles3D" type="GPUParticles3D" parent="JetComponent" unique_id=354095054]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0009613037, -0.020507813, 0.0012168884)
+amount = 2
 lifetime = 1.5
 process_material = SubResource("ParticleProcessMaterial_x673q")
 draw_pass_1 = SubResource("SphereMesh_3aqab")

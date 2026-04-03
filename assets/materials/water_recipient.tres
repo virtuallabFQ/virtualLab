@@ -1,27 +1,8 @@
 [gd_resource type="ShaderMaterial" format=3 uid="uid://bt64lrilhx0df"]
 
-[ext_resource type="Shader" uid="uid://dmpgduruo7y16" path="res://shaders/water_recipient.gdshader" id="1_mgdd3"]
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_bdm3o"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_wlmuo"]
-noise = SubResource("FastNoiseLite_bdm3o")
+[ext_resource type="Shader" uid="uid://dnjnsgwj6xcev" path="res://shaders/liquid_recipient.gdshader" id="1_mgdd3"]
 
 [resource]
 render_priority = 1
 shader = ExtResource("1_mgdd3")
-shader_parameter/coeff = Vector2(0, 0)
-shader_parameter/vel = 0.0
 shader_parameter/liquid_color = Color(0.30588236, 0.5137255, 0.99215686, 0.29411766)
-shader_parameter/foam_color = Color(0.30588236, 0.5137255, 0.99215686, 0.29411766)
-shader_parameter/foam_line = 0.2
-shader_parameter/fill_amount = 0.5350000254125
-shader_parameter/size = Vector2(1, 1)
-shader_parameter/glass_thickness = 0.11
-shader_parameter/scale = 1.0
-shader_parameter/wave_intensity = 0.05
-shader_parameter/waves_noise = SubResource("NoiseTexture2D_wlmuo")
-shader_parameter/AlwaysBubbles = false
-shader_parameter/BubbleStrength = 0.5
-shader_parameter/BubbleMask = 0.5
-shader_parameter/BubbleSpeed = Vector2(3, 3)

@@ -23,14 +23,15 @@ transform = Transform3D(-0.04, 0, -3.496911e-09, 0, 0.04, 0, 3.496911e-09, 0, -0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.019393697, 0.0011062622, -0.0017057545)
 shape = SubResource("BoxShape3D_gouk2")
 
-[node name="ghost_burette" parent="." unique_id=1385064089 instance=ExtResource("2_7a3jq")]
-transform = Transform3D(5.5, 0, 0, 0, 5.5, 0, 0, 0, 5.5, 0.007949986, -0.26861468, -0.08174318)
+[node name="ghost_burette" parent="." unique_id=1222530666 instance=ExtResource("2_7a3jq")]
+transform = Transform3D(5.5, 0, 0, 0, 5.5, 0, 0, 0, 5.5, 0.007949986, -0.26861468, -0.05555804)
 
-[node name="burette" parent="ghost_burette" index="0" unique_id=255544467]
-transform = Transform3D(1, 3.5527135e-15, 1.5529403e-22, 0, -4.3711385e-08, 0.99999994, 3.5527137e-15, -0.99999994, -4.3711385e-08, 0, 0, 0)
+[node name="burette_glass" parent="ghost_burette" index="0" unique_id=1263946400]
+surface_material_override/0 = ExtResource("3_kv4ag")
+
+[node name="faucet" parent="ghost_burette" index="1" unique_id=975918843]
 surface_material_override/0 = ExtResource("3_kv4ag")
 surface_material_override/1 = ExtResource("3_kv4ag")
-surface_material_override/2 = ExtResource("3_kv4ag")
 
 [node name="snap_area" type="Area3D" parent="." unique_id=1193854237]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.008, -0.025, -0.055)
@@ -39,9 +40,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.008, -0.025, -0.055)
 transform = Transform3D(5.5, 0, 0, 0, -5.4999995, -2.207366e-06, 0, 2.207366e-06, -5.4999995, 0.00036174152, 0.003411496, -0.0003315434)
 shape = SubResource("CylinderShape3D_7a3jq")
 
-[node name="InteractionComponent" type="Node" parent="snap_area" unique_id=1217437731 node_paths=PackedStringArray("mesh")]
+[node name="InteractionComponent" type="Node" parent="snap_area" unique_id=1217437731]
 script = ExtResource("2_k5ret")
-mesh = NodePath("../../ghost_burette/burette")
 context = "Encaixar"
 metadata/_custom_type_script = "uid://cld64tanfoemk"
 
