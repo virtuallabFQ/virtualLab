@@ -1,0 +1,90 @@
+class_name LidComponent
+extends Node
+
+signal lid_opened
+signal lid_closed
+
+@export var lid_node: RigidBody3D
+@export var target_body: Node3D 
+@export var pick_up_component: PickUpComponent # Agora sabe exatamente que script é
+@export var is_closed: bool = true
+
+var relative_transform: Transform3D
+var is_being_held: bool = false
+
+func _ready():
+	if lid_node and target_body:
+		relative_transform = target_body.global_transform.affine_inverse() * lid_node.global_transform
+		
+		if target_body is CollisionObject3D:
+			lid_node.add_collision_exception_with(target_body)
+		
+		if is_closed:
+			_lock_lid()
+	
+	if pick_up_component:
+		pick_up_component.toggled.connect(_on_pickup_toggled)
+
+# --- FUNÇÃO DE INTERAÇÃO ATUALIZADA ---
+func interact():
+	if is_being_held:
+		# 1. Força o jogador a largar a tampa usando a TUA função _toggle do PickUpComponent
+		if pick_up_component and pick_up_component.held_obj == lid_node:
+			pick_up_component._toggle(lid_node, false)
+			
+		# 2. Cola a tampa de volta no frasco
+		close_lid()
+	elif is_closed:
+		open_lid()
+	else:
+		close_lid()
+
+func open_lid():
+	if not lid_node or not is_closed:
+		return
+		
+	is_closed = false
+	lid_node.freeze = false
+	lid_node.sleeping = false 
+		
+	lid_opened.emit()
+	print("Tampa aberta!")
+
+func close_lid():
+	if not lid_node or is_closed or not target_body:
+		return
+		
+	is_closed = true
+	_lock_lid()
+	lid_closed.emit()
+	print("Tampa fechada!")
+
+func _lock_lid():
+	lid_node.freeze_mode = RigidBody3D.FREEZE_MODE_KINEMATIC
+	lid_node.freeze = true
+	lid_node.linear_velocity = Vector3.ZERO
+	lid_node.angular_velocity = Vector3.ZERO
+
+func _physics_process(_delta: float) -> void:
+	if is_closed and lid_node and target_body:
+		lid_node.global_transform = target_body.global_transform * relative_transform
+
+func _on_pickup_toggled(is_held: bool):
+	is_being_held = is_held
+	
+	if is_held:
+		is_closed = false
+		lid_opened.emit()
+		print("Tampa na mão!")
+	else:
+		if lid_node and not is_closed:
+			lid_node.freeze = false
+
+# --- TEXTO DINÂMICO PARA A TUA UI ---
+func get_interaction_text() -> String:
+	if is_being_held:
+		return "Colocar"
+	elif is_closed:
+		return "Abrir Tampa"
+	else:
+		return "Fechar Tampa"
