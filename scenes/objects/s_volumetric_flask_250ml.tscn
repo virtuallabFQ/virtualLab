@@ -130,7 +130,7 @@ metadata/_custom_type_script = "uid://cld64tanfoemk"
 
 [node name="PickUpComponent" type="Node" parent="InteractionComponent" unique_id=1919937959]
 script = ExtResource("3_pnj7g")
-distance = Vector3(0.2, -0.25, -0.65)
+distance = Vector3(0.2, -0.3, -0.65)
 min_scroll_z = -0.65
 inspect_position = Vector3(0, -0.15, -1)
 metadata/_custom_type_script = "uid://dgjrei33rjh21"

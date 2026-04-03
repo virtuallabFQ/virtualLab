@@ -1,8 +1,11 @@
 [gd_scene format=3 uid="uid://gkxf63myf2mw"]
 
 [ext_resource type="PackedScene" uid="uid://2tdyae7ouq8m" path="res://assets/models/objects/stand.glb" id="1_2eljw"]
+[ext_resource type="PackedScene" uid="uid://bvangql61ox2x" path="res://assets/models/objects/clamp.glb" id="2_itqm7"]
 [ext_resource type="Script" uid="uid://cld64tanfoemk" path="res://scripts/objects/interaction_component.gd" id="2_l85s4"]
+[ext_resource type="Script" uid="uid://defqc4mn4kjbx" path="res://scripts/objects/snap_component.gd" id="2_xib2w"]
 [ext_resource type="Script" uid="uid://dgjrei33rjh21" path="res://scripts/objects/pick_up_component.gd" id="3_xib2w"]
+[ext_resource type="Material" uid="uid://dxxcjoilfjstw" path="res://assets/materials/ghost.tres" id="4_1bcfc"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_l85s4"]
 size = Vector3(8.450846, 2, 12.861514)
@@ -11,18 +14,71 @@ size = Vector3(8.450846, 2, 12.861514)
 height = 29.864134
 radius = 0.3071289
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_itqm7"]
+size = Vector3(0.0522604, 0.18122864, 0.17569739)
+
 [node name="s_stand" type="RigidBody3D" unique_id=1103804912]
 
 [node name="stand" parent="." unique_id=1438138828 instance=ExtResource("1_2eljw")]
 transform = Transform3D(0.025, 0, 0, 0, 0.025, 0, 0, 0, 0.025, 0, 0, 0)
 
 [node name="c1_stand" type="CollisionShape3D" parent="." unique_id=1780903288]
-transform = Transform3D(0.02526447, 0, 0, 0, 0.02526447, 0, 0, 0, 0.02526447, 0, 0, 8.4413594e-05)
+transform = Transform3D(0.02526447, 0, 0, 0, 0.02526447, 0, 0, 0, 0.02526447, -0.007964179, 0, 8.4413594e-05)
 shape = SubResource("BoxShape3D_l85s4")
 
 [node name="c2_stand" type="CollisionShape3D" parent="." unique_id=984507456]
-transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 0.00054225384, 0.32380912, -0.00026913625)
+transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -0.0074219247, 0.32380912, 0.09381591)
 shape = SubResource("CylinderShape3D_xib2w")
+
+[node name="ghost_clamp" parent="." unique_id=1050710730 instance=ExtResource("2_itqm7")]
+transform = Transform3D(-0.04, 0, -3.496911e-09, 0, 0.04, 0, 3.496911e-09, 0, -0.04, 0.035543863, 0.47428218, 0.028085716)
+
+[node name="clamp_1" parent="ghost_clamp" index="0" unique_id=1399366514]
+surface_material_override/0 = ExtResource("4_1bcfc")
+
+[node name="clamp_4" parent="ghost_clamp" index="1" unique_id=1012462569]
+surface_material_override/0 = ExtResource("4_1bcfc")
+
+[node name="clamp_5" parent="ghost_clamp" index="2" unique_id=19890343]
+surface_material_override/0 = ExtResource("4_1bcfc")
+
+[node name="clamp_2" parent="ghost_clamp" index="3" unique_id=259763691]
+surface_material_override/0 = ExtResource("4_1bcfc")
+
+[node name="clamp_3" parent="ghost_clamp" index="4" unique_id=828698663]
+surface_material_override/0 = ExtResource("4_1bcfc")
+
+[node name="clamp_9" parent="ghost_clamp" index="5" unique_id=896672262]
+surface_material_override/0 = ExtResource("4_1bcfc")
+
+[node name="clamp_6" parent="ghost_clamp" index="6" unique_id=1558596499]
+surface_material_override/0 = ExtResource("4_1bcfc")
+
+[node name="clamp_7" parent="ghost_clamp" index="7" unique_id=1575226612]
+surface_material_override/0 = ExtResource("4_1bcfc")
+
+[node name="clamp_8" parent="ghost_clamp" index="8" unique_id=192730777]
+surface_material_override/0 = ExtResource("4_1bcfc")
+
+[node name="snap_area" type="Area3D" parent="." unique_id=2068506126]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.014035821, 0.422, 0.026)
+
+[node name="c_snap_area" type="CollisionShape3D" parent="snap_area" unique_id=1382725894]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.766966e-05, 0.05429089, -0.00013227388)
+shape = SubResource("BoxShape3D_itqm7")
+
+[node name="InteractionComponent" type="Node" parent="snap_area" unique_id=366221062]
+script = ExtResource("2_l85s4")
+context = "Encaixar"
+metadata/_custom_type_script = "uid://cld64tanfoemk"
+
+[node name="SnapComponent" type="Node" parent="." unique_id=635101018 node_paths=PackedStringArray("ghost_mesh", "interaction_area", "interaction_comp")]
+script = ExtResource("2_xib2w")
+target_group = "clamp"
+visual_node_name = "clamp"
+ghost_mesh = NodePath("../ghost_clamp")
+interaction_area = NodePath("../snap_area")
+interaction_comp = NodePath("../snap_area/InteractionComponent")
 
 [node name="InteractionComponent" type="Node" parent="." unique_id=1173530252 node_paths=PackedStringArray("mesh")]
 script = ExtResource("2_l85s4")
@@ -33,6 +89,8 @@ metadata/_custom_type_script = "uid://cld64tanfoemk"
 [node name="PickUpComponent" type="Node" parent="InteractionComponent" unique_id=1141675518]
 script = ExtResource("3_xib2w")
 distance = Vector3(0.25, -0.3, -0.75)
+inspect_position = Vector3(0, -0.5, -1)
 metadata/_custom_type_script = "uid://dgjrei33rjh21"
 
 [editable path="stand"]
+[editable path="ghost_clamp"]

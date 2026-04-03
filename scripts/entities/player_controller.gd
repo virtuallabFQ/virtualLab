@@ -25,12 +25,12 @@ const TILT_MAX := 1.5708
 @export var input_sprint: StringName = &"sprint"
 @export var input_crouch: StringName = &"crouch"
 
+var is_seated: bool = false
 var move_speed: float = 0.0
 var move_accel: float = 0.0
 var move_decel: float = 0.0
 var crouching: bool = false
 var toggle_crouch: bool = false
-var is_seated: bool = false
 var is_zooming: bool = false
 
 var mouse_input: bool = false
