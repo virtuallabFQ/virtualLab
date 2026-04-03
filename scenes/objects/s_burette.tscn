@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dn713edphqydv" path="res://assets/models/objects/wash_bottle.glb" id="3_6jne4"]
 [ext_resource type="Script" uid="uid://ch7wxdniaet7c" path="res://scripts/objects/liquid_target_component.gd" id="3_55swo"]
 [ext_resource type="Material" uid="uid://dxxcjoilfjstw" path="res://assets/materials/ghost.tres" id="4_55swo"]
+[ext_resource type="Script" uid="uid://ms7kq4n8iay7" path="res://scripts/objects/ghost_placement_component.gd" id="6_xpaay"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_blcfl"]
 height = 0.110092625
@@ -41,10 +42,16 @@ surface_material_override/0 = ExtResource("4_55swo")
 [node name="lid" parent="ghost_wash_bottle" index="1" unique_id=1986141583]
 surface_material_override/0 = ExtResource("4_55swo")
 
+[node name="GhostPlacementComponent" type="Node" parent="." unique_id=641367040]
+script = ExtResource("6_xpaay")
+material = ExtResource("4_55swo")
+metadata/_custom_type_script = "uid://ms7kq4n8iay7"
+
 [node name="LiquidTargetComponent" type="Node" parent="." unique_id=216584501 node_paths=PackedStringArray("ghost_mesh")]
 script = ExtResource("3_55swo")
-ghost_mesh = NodePath("../ghost_wash_bottle")
+required_group = &"wash_bottle"
 visual_node_name = "wash_bottle"
+ghost_mesh = NodePath("../ghost_wash_bottle")
 needs_parent_frozen = true
 
 [node name="InteractionComponent" type="Node" parent="." unique_id=2044105371 node_paths=PackedStringArray("mesh")]

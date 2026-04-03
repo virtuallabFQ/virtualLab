@@ -1,6 +1,6 @@
 class_name SnapComponent extends Node
 
-@export var target_group: String = ""
+@export var target_group: StringName = &""
 @export var visual_node_name: String = ""
 @export var ghost_mesh: Node3D
 @export var interaction_area: Area3D 

@@ -7,33 +7,54 @@ signal object_reset(body: Node3D)
 var initials := {}
 
 func _ready() -> void:
-	if detector: detector.body_entered.connect(_on_body)
-	call_deferred("_scan")
+	if detector:
+		detector.body_entered.connect(_on_body)
+	await get_tree().process_frame
+	_scan()
 
 func _scan() -> void:
-	for body in get_tree().current_scene.find_children("*", "RigidBody3D", true, false):
+	for body in get_tree().current_scene.find_children(&"*", &"RigidBody3D", true, false):
 		if not body.scene_file_path.is_empty():
-			initials[body] = [body.global_transform, load(body.scene_file_path)]
+			initials[body] = [body.global_transform, load(body.scene_file_path), body.get_parent()]
 
 func _on_body(body: Node3D) -> void:
+	if body is RigidBody3D:
+		body.sleeping = false
+		
 	if not body is RigidBody3D or not initials.has(body):
 		return
 	
-	call_deferred("_replace_object", body)
+	call_deferred(&"_replace_object", body)
 
 func _replace_object(body: Node3D) -> void:
-	if not is_instance_valid(body) or not initials.has(body): return
+	if not is_instance_valid(body) or not initials.has(body):
+		return
 	
-	for collision in body.find_children("*"):
-		if "held_obj" in collision and collision.get("held_obj") == body:
-			collision._toggle(body, false)
-			break 
-	
-	var data = initials[body]
-	var clone = data[1].instantiate()
-	body.get_parent().add_child(clone)
-	clone.global_transform = data[0]
-	
-	initials.erase(body); body.queue_free()
-	initials[clone] = data
-	object_reset.emit(clone)
+	var to_reset := [body]
+	for child in body.find_children(&"*", &"RigidBody3D", true, false):
+		if initials.has(child):
+			to_reset.append(child)
+			
+	for obj in to_reset:
+		if not is_instance_valid(obj) or not initials.has(obj):
+			continue
+			
+		for collision in obj.find_children(&"*", &"", true, false):
+			if &"held_obj" in collision and collision.get(&"held_obj") == obj:
+				collision.call(&"_toggle", obj, false)
+				break 
+		
+		var data = initials[obj]
+		var clone := (data[1] as PackedScene).instantiate() as Node3D
+		
+		var original_parent := data[2] as Node if is_instance_valid(data[2]) else get_tree().current_scene
+		original_parent.add_child(clone)
+		
+		var original_transform: Transform3D = data[0]
+		clone.global_transform = original_transform
+		
+		initials.erase(obj)
+		initials[clone] = data
+		object_reset.emit(clone)
+		
+	body.queue_free()

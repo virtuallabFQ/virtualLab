@@ -74,7 +74,7 @@ metadata/_custom_type_script = "uid://cld64tanfoemk"
 
 [node name="SnapComponent" type="Node" parent="." unique_id=635101018 node_paths=PackedStringArray("ghost_mesh", "interaction_area", "interaction_comp")]
 script = ExtResource("2_xib2w")
-target_group = "clamp"
+target_group = &"clamp"
 visual_node_name = "clamp"
 ghost_mesh = NodePath("../ghost_clamp")
 interaction_area = NodePath("../snap_area")

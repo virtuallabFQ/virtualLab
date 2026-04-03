@@ -1,6 +1,5 @@
 class_name GhostPlacementComponent extends Node
 
-@export var custom_marker: Node3D
 @export var material: Material
 @export var context := "Colocar"
 
@@ -23,7 +22,7 @@ func _on_pickup(is_held: bool) -> void:
 	if not is_held or not parent_body: return
 	
 	ghost = StaticBody3D.new()
-	ghost.global_transform = custom_marker.global_transform if custom_marker else orig_pos
+	ghost.global_transform = orig_pos
 	if parent_body is CollisionObject3D:
 		ghost.collision_layer = parent_body.collision_layer
 		ghost.collision_mask = parent_body.collision_mask
