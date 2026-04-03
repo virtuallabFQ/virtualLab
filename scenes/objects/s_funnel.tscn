@@ -13,7 +13,7 @@ radius = 1.1713004
 height = 2.101416
 radius = 0.12646484
 
-[node name="s_funnel" type="RigidBody3D" unique_id=1656984544]
+[node name="s_funnel" type="RigidBody3D" unique_id=1656984544 groups=["funnel"]]
 mass = 0.005
 
 [node name="funnel" parent="." unique_id=1745320336 instance=ExtResource("1_dsftq")]

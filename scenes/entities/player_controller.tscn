@@ -352,6 +352,7 @@ fov = 65.0
 
 [node name="InteractionRaycast" type="RayCast3D" parent="RotationAnchor/CameraControllerAnchor/Camera3D" unique_id=1201912919]
 target_position = Vector3(0, 0, -2)
+collision_mask = 3
 hit_back_faces = false
 collide_with_areas = true
 debug_shape_custom_color = Color(0, 1, 0, 1)

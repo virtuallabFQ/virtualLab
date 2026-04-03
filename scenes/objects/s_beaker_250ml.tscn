@@ -9,6 +9,9 @@
 [ext_resource type="Texture2D" uid="uid://k781ilxphh3n" path="res://assets/models/objects/beaker_Image_2.png" id="4_e4bkc"]
 [ext_resource type="Script" uid="uid://b2gt5m2035sun" path="res://scripts/objects/recipient_component.gd" id="6_5aevv"]
 [ext_resource type="Shader" uid="uid://dnjnsgwj6xcev" path="res://shaders/liquid_recipient.gdshader" id="6_e4bkc"]
+[ext_resource type="PackedScene" uid="uid://dn713edphqydv" path="res://assets/models/objects/wash_bottle.glb" id="7_ivhli"]
+[ext_resource type="Material" uid="uid://dxxcjoilfjstw" path="res://assets/materials/ghost.tres" id="8_hq40d"]
+[ext_resource type="Script" uid="uid://ch7wxdniaet7c" path="res://scripts/objects/liquid_target_component.gd" id="9_ivj4r"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wwwq1"]
 
@@ -45,12 +48,9 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_k3nu6")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l20c0"]
+render_priority = 1
 transparency = 1
 albedo_texture = ExtResource("2_l20c0")
-
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_jsbc5"]
-height = 1.9992285
-radius = 0.6979707
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1uyux"]
 resource_name = "glassflask"
@@ -104,7 +104,17 @@ render_priority = -1
 shader = ExtResource("6_e4bkc")
 shader_parameter/liquid_color = Color(0, 0.4, 0.8, 0.5)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_e4bkc"]
+size = Vector3(0.121, 0.156, 0.011324219)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_u55j8"]
+size = Vector3(0.011183593, 0.156, 0.10319629)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_y5qby"]
+size = Vector3(0.12127191, 0.0060577393, 0.10396099)
+
 [node name="s_beaker_250ml" type="RigidBody3D" unique_id=113075842]
+collision_layer = 2
 
 [node name="beaker_250ml" parent="." unique_id=1224887861 instance=ExtResource("1_l20c0")]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
@@ -117,17 +127,50 @@ transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0.0015, 0)
 mesh = SubResource("ArrayMesh_owpg1")
 surface_material_override/0 = SubResource("StandardMaterial3D_l20c0")
 
-[node name="c_beaker_250ml" type="CollisionShape3D" parent="." unique_id=1092380262]
-transform = Transform3D(0.07985082, 0, 0, 0, -0.07985085, -3.2047282e-08, 0, 3.2047282e-08, -0.07985085, -0.004674618, 0.07982005, -3.8064837e-08)
-shape = SubResource("CylinderShape3D_jsbc5")
-
 [node name="liquid" type="MeshInstance3D" parent="." unique_id=1912725983]
 transform = Transform3D(0.07, 0, 0, 0, -3.059797e-09, 0.09, 0, -0.07, -3.934025e-09, 0, 0, 0)
 instance_shader_parameters/fill_level_world = 0.130000006175
 mesh = SubResource("ArrayMesh_0qvkq")
 surface_material_override/0 = SubResource("ShaderMaterial_u55j8")
 
-[node name="PourComponent" type="Node" parent="." unique_id=257294477]
+[node name="c1_beaker_250ml" type="CollisionShape3D" parent="." unique_id=2108958254]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00034046173, 0.07964798, 0.046161953)
+shape = SubResource("BoxShape3D_e4bkc")
+
+[node name="c2_beaker_250ml" type="CollisionShape3D" parent="." unique_id=1171108271]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.08, -0.046)
+shape = SubResource("BoxShape3D_e4bkc")
+
+[node name="c3_beaker_250ml" type="CollisionShape3D" parent="." unique_id=1622840113]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0549082, 0.08, -6.396696e-05)
+shape = SubResource("BoxShape3D_u55j8")
+
+[node name="c4_beaker_250ml" type="CollisionShape3D" parent="." unique_id=1242390734]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.05529026, 0.08, -6.396696e-05)
+shape = SubResource("BoxShape3D_u55j8")
+
+[node name="c5_beaker_250ml" type="CollisionShape3D" parent="." unique_id=1652127825]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0001554396, 0.004213318, -0.00017786771)
+shape = SubResource("BoxShape3D_y5qby")
+
+[node name="PowderPourComponent" type="Node" parent="." unique_id=1282012338]
+
+[node name="LiquidPourComponent" type="Node" parent="." unique_id=257294477]
+
+[node name="ghost_wash_bottle" parent="." unique_id=2001274317 instance=ExtResource("7_ivhli")]
+transform = Transform3D(-0.06649696, -0.07468703, 8.6804155e-09, -0.07468703, 0.06649697, 1.0381499e-09, -6.5475776e-09, -5.792808e-09, -0.09999998, 0.15934691, 0.15740478, 0.00011780858)
+
+[node name="bottle" parent="ghost_wash_bottle" index="0" unique_id=2061028962]
+surface_material_override/0 = ExtResource("8_hq40d")
+
+[node name="lid" parent="ghost_wash_bottle" index="1" unique_id=1986141583]
+surface_material_override/0 = ExtResource("8_hq40d")
+
+[node name="LiquidTargetComponent" type="Node" parent="." unique_id=126698432 node_paths=PackedStringArray("ghost_mesh")]
+script = ExtResource("9_ivj4r")
+required_group = &"wash_bottle"
+visual_node_name = "wash_bottle"
+ghost_mesh = NodePath("../ghost_wash_bottle")
 
 [node name="RecipientComponent" type="Node" parent="." unique_id=274690319]
 script = ExtResource("6_5aevv")
@@ -146,3 +189,4 @@ min_scroll_z = -0.55
 metadata/_custom_type_script = "uid://dgjrei33rjh21"
 
 [editable path="beaker_250ml"]
+[editable path="ghost_wash_bottle"]

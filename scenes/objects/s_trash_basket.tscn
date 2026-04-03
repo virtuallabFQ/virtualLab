@@ -32,6 +32,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.24618083, 0.289, -0.019)
 shape = SubResource("BoxShape3D_cgibv")
 
 [node name="waster_detector" type="Area3D" parent="." unique_id=1547858301]
+collision_mask = 3
 
 [node name="c_waster_detector" type="CollisionShape3D" parent="waster_detector" unique_id=1306187633]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.12236512, 0)

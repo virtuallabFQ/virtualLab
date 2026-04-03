@@ -8,6 +8,10 @@ class_name SnapComponent extends Node
 @export var lock_parent_on_snap: bool = false
 @export var needs_parent_frozen: bool = false
 
+@export_group("Lid Settings")
+@export var requires_open_lid: bool = false
+@export var lid_component: LidComponent
+
 var is_snapped: bool = false
 var snapped_obj: RigidBody3D
 
@@ -23,7 +27,16 @@ func _process(_delta: float) -> void:
 	if is_snapped:
 		if is_instance_valid(snapped_obj) and player.held_object == snapped_obj:
 			var parent_body := snapped_obj.get_parent() as CollisionObject3D
-			if parent_body: snapped_obj.remove_collision_exception_with(parent_body)
+			
+			# --- CORREÇÃO DE COLISÃO AQUI ---
+			var lid = snapped_obj.get_node_or_null("LidComponent")
+			if lid:
+				lid.is_closed = false # Avisa que a tampa saiu para o funil poder entrar
+			elif parent_body: 
+				# Só tira a exceção de colisão se NÃO FOR uma tampa (ex: um funil)
+				snapped_obj.remove_collision_exception_with(parent_body)
+			# --------------------------------
+			
 			if lock_parent_on_snap: _set_parent_pickup_locked(false)
 			is_snapped = false
 			snapped_obj.reparent(get_tree().current_scene) 
@@ -31,17 +44,29 @@ func _process(_delta: float) -> void:
 		return
 		
 	var parent := get_parent() as RigidBody3D
+	var block_snap: bool = false
+	
 	if needs_parent_frozen and parent and not parent.freeze:
+		block_snap = true
+		
+	if requires_open_lid and lid_component and lid_component.is_closed:
+		block_snap = true
+
+	if block_snap:
 		if ghost_mesh: ghost_mesh.visible = false
 		_set_area_enabled(false)
 		return
-		
+
 	var held := player.held_object as RigidBody3D
-	var can_snap := held != null and held.is_in_group(target_group)
+	var can_snap := held and held.is_in_group(target_group)
+	
 	if ghost_mesh: ghost_mesh.visible = can_snap
 	_set_area_enabled(can_snap)
 
 func _on_snap(_node: Node) -> void:
+	if requires_open_lid and lid_component and lid_component.is_closed:
+		return
+		
 	var held := Global.player.held_object as RigidBody3D
 	if not held or not ghost_mesh or not held.is_in_group(target_group): return
 	
@@ -63,19 +88,26 @@ func _on_snap(_node: Node) -> void:
 	is_snapped = true
 	snapped_obj = held
 	
+	# --- AVISA QUE A TAMPA FECHOU ---
+	var lid = held.get_node_or_null("LidComponent")
+	if lid:
+		lid.is_closed = true
+	# --------------------------------
+	
 	if lock_parent_on_snap: _set_parent_pickup_locked(true)
 	if ghost_mesh: ghost_mesh.visible = false
 	_set_area_enabled(false)
 
 func _set_area_enabled(state: bool) -> void:
 	if not interaction_area: return
-	for i in interaction_area.get_child_count():
-		var child := interaction_area.get_child(i) as CollisionShape3D
-		if child: child.set_deferred(&"disabled", not state)
+	for i in interaction_area.get_children():
+		if i is CollisionShape3D:
+			i.set_deferred(&"disabled", not state)
 
-func _set_parent_pickup_locked(locked: bool) -> void:
-	var parent := get_parent()
+func _set_parent_pickup_locked(state: bool) -> void:
+	var parent := get_parent() as RigidBody3D
 	if not parent: return
-	for i in parent.get_child_count():
-		var child := parent.get_child(i) as CollisionShape3D
-		if child: child.set_deferred(&"disabled", locked)
+	var pickups := parent.find_children("*", "PickUpComponent")
+	if not pickups.is_empty():
+		var p = pickups[0]
+		if "disabled" in p: p.set("disabled", state)

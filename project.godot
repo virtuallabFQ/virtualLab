@@ -37,6 +37,9 @@ mouse_cursor/custom_image="uid://dg2bwg18u76tg"
 clamp=""
 burette=""
 wash_bottle=""
+funnel=""
+volumetric_flask_lid=""
+dropper_bulb=""
 
 [gui]
 

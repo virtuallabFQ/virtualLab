@@ -36,7 +36,7 @@ surface_material_override/1 = ExtResource("3_kv4ag")
 [node name="snap_area" type="Area3D" parent="." unique_id=1193854237]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.008, -0.025, -0.055)
 
-[node name="c1_snap_area" type="CollisionShape3D" parent="snap_area" unique_id=1269508743]
+[node name="c_snap_area" type="CollisionShape3D" parent="snap_area" unique_id=1269508743]
 transform = Transform3D(5.5, 0, 0, 0, -5.4999995, -2.207366e-06, 0, 2.207366e-06, -5.4999995, 0.00036174152, 0.003411496, -0.0003315434)
 shape = SubResource("CylinderShape3D_7a3jq")
 

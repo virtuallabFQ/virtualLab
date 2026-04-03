@@ -2,10 +2,33 @@
 
 [ext_resource type="PackedScene" uid="uid://41pp30hw4tkm" path="res://assets/models/objects/spatula.glb" id="1_vqtji"]
 [ext_resource type="Script" uid="uid://cld64tanfoemk" path="res://scripts/objects/interaction_component.gd" id="2_2nak8"]
+[ext_resource type="Script" uid="uid://bbll6knqjbbia" path="res://scripts/objects/spatula_component.gd" id="2_k4qgo"]
 [ext_resource type="Script" uid="uid://dgjrei33rjh21" path="res://scripts/objects/pick_up_component.gd" id="3_k4qgo"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_owobi"]
 size = Vector3(0.01884791, 0.04662195, 0.31087482)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_2nak8"]
+frequency = 1.0
+fractal_octaves = 10
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_k4qgo"]
+noise = SubResource("FastNoiseLite_2nak8")
+as_normal_map = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2nak8"]
+albedo_color = Color(0.23137255, 0.49803922, 1, 1)
+metallic = 0.42
+metallic_specular = 0.0
+normal_enabled = true
+normal_texture = SubResource("NoiseTexture2D_k4qgo")
+
+[sub_resource type="SphereMesh" id="SphereMesh_2nak8"]
+material = SubResource("StandardMaterial3D_2nak8")
+radius = 0.15
+height = 0.346
+radial_segments = 14
+rings = 5
 
 [node name="s_spatula" type="RigidBody3D" unique_id=874482037]
 
@@ -15,6 +38,10 @@ transform = Transform3D(-1.7484555e-09, 0, 0.04, 0, 0.04, 0, -0.04, 0, -1.748455
 [node name="c_spatula" type="CollisionShape3D" parent="." unique_id=1421543788]
 transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0.026922856, 0.0058885748, -0.013350133)
 shape = SubResource("BoxShape3D_owobi")
+
+[node name="SpatulaComponent" type="Node" parent="." unique_id=478824504 node_paths=PackedStringArray("powder_mesh")]
+script = ExtResource("2_k4qgo")
+powder_mesh = NodePath("../powder")
 
 [node name="InteractionComponent" type="Node" parent="." unique_id=1035515683 node_paths=PackedStringArray("mesh")]
 script = ExtResource("2_2nak8")
@@ -28,5 +55,9 @@ distance = Vector3(0.2, -0.15, -0.5)
 rotation = Vector3(-20, 20, 0)
 min_scroll_z = -0.5
 metadata/_custom_type_script = "uid://dgjrei33rjh21"
+
+[node name="powder" type="MeshInstance3D" parent="." unique_id=1332242805]
+transform = Transform3D(0.1, 0, 0, 0, 0.06, 0, 0, 0, 0.145, 0.027971882, 0.013043903, -0.13357666)
+mesh = SubResource("SphereMesh_2nak8")
 
 [editable path="spatula"]

@@ -353,15 +353,12 @@ text = "
 
     Meça a massa de soluto necessária para um gobelé com 
 auxílio de uma espátula, usando uma balança digital;
-     Dissolva todo o soluto usando água destilada e agitando 
-com uma vareta de vidro;
+     Dissolva todo o soluto usando água destilada;
      Verta a solução para o balão volumétrico com o auxílio 
-de um funil e de uma vareta de vidro, lavando os materiais 
-com solvente;
+de um funil;
      Adicione água destilada até à marca, primeiro com o 
 esguicho e depois com um conta-gotas;
-    Tape e homogeneíze a solução, invertendo várias vezes 
-o balão volumétrico.
+    Tape e homogeneíze a solução.
 "
 
 [node name="Numbers" type="Label" parent="AL5" unique_id=1453875543]
@@ -382,9 +379,7 @@ text = "
 1.
 
 2.
-
 3.
-
 
 4.
 
