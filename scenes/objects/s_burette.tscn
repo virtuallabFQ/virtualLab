@@ -183,6 +183,7 @@ metadata/_custom_type_script = "uid://cld64tanfoemk"
 script = ExtResource("3_5x7ni")
 distance = Vector3(0.2, -0.235, -0.6)
 min_scroll_z = -0.6
+show_depth_ray = false
 metadata/_custom_type_script = "uid://dgjrei33rjh21"
 
 [editable path="burette"]

@@ -347,7 +347,7 @@ lid_component = NodePath("../../volumetric_flask_lid/LidComponent")
 metadata/_custom_type_script = "uid://defqc4mn4kjbx"
 
 [node name="ghost_wash_bottle" parent="volumetric_flask" unique_id=2001274317 instance=ExtResource("11_yqd65")]
-transform = Transform3D(-0.07489556, -0.066262, 8.742276e-09, -0.066262, 0.07489557, 0, -6.547578e-09, -5.7928085e-09, -0.09999999, 0.15196168, 0.3108243, 0.00011780858)
+transform = Transform3D(-0.07489556, -0.066262, 8.742276e-09, -0.066262, 0.07489557, 0, -6.547578e-09, -5.7928085e-09, -0.09999999, 0.15196168, 0.251596, 0.00011780858)
 
 [node name="bottle" parent="volumetric_flask/ghost_wash_bottle" index="0" unique_id=2061028962]
 surface_material_override/0 = ExtResource("6_rvnjk")
@@ -422,6 +422,7 @@ script = ExtResource("3_pnj7g")
 distance = Vector3(0, -0.45, -0.85)
 min_scroll_z = -0.85
 inspect_position = Vector3(0, -0.15, -1)
+show_depth_ray = false
 metadata/_custom_type_script = "uid://dgjrei33rjh21"
 
 [editable path="volumetric_flask/volumetric_flask_250ml"]

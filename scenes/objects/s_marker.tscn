@@ -54,6 +54,7 @@ hide_nodes = [NodePath("../../marker/cap"), NodePath("../../c_cap")]
 allow_scroll = false
 rotate_key = 0
 keep_upright = false
+show_depth_ray = false
 metadata/_custom_type_script = "uid://dgjrei33rjh21"
 
 [editable path="marker"]

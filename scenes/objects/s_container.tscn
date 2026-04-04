@@ -235,6 +235,7 @@ script = ExtResource("4_kppi4")
 distance = Vector3(0, -0.3, -0.85)
 min_scroll_z = -0.85
 inspect_position = Vector3(0, -0.15, -1)
+show_depth_ray = false
 metadata/_custom_type_script = "uid://dgjrei33rjh21"
 
 [editable path="container_copper_sulfate/container_copper_sulfate"]

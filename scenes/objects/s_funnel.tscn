@@ -40,6 +40,7 @@ metadata/_custom_type_script = "uid://cld64tanfoemk"
 script = ExtResource("3_f776h")
 distance = Vector3(0.2, -0.15, -0.5)
 min_scroll_z = -0.5
+show_depth_ray = false
 metadata/_custom_type_script = "uid://dgjrei33rjh21"
 
 [editable path="funnel"]

@@ -54,6 +54,7 @@ script = ExtResource("3_k4qgo")
 distance = Vector3(0.2, -0.15, -0.5)
 rotation = Vector3(-20, 20, 0)
 min_scroll_z = -0.5
+show_depth_ray = false
 metadata/_custom_type_script = "uid://dgjrei33rjh21"
 
 [node name="powder" type="MeshInstance3D" parent="." unique_id=1332242805]
