@@ -26,12 +26,15 @@ shape = SubResource("BoxShape3D_gouk2")
 [node name="ghost_burette" parent="." unique_id=1222530666 instance=ExtResource("2_7a3jq")]
 transform = Transform3D(5.5, 0, 0, 0, 5.5, 0, 0, 0, 5.5, 0.007949986, -0.26861468, -0.05555804)
 
-[node name="burette_glass" parent="ghost_burette" index="0" unique_id=1263946400]
+[node name="burette_glass" parent="ghost_burette" index="0" unique_id=174770863]
 surface_material_override/0 = ExtResource("3_kv4ag")
 
-[node name="faucet" parent="ghost_burette" index="1" unique_id=975918843]
+[node name="faucet" parent="ghost_burette" index="1" unique_id=1820441639]
 surface_material_override/0 = ExtResource("3_kv4ag")
 surface_material_override/1 = ExtResource("3_kv4ag")
+
+[node name="burette_scale" parent="ghost_burette" index="2" unique_id=2104567312]
+surface_material_override/0 = ExtResource("3_kv4ag")
 
 [node name="snap_area" type="Area3D" parent="." unique_id=1193854237]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.008, -0.025, -0.055)

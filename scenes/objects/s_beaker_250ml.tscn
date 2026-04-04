@@ -10,8 +10,10 @@
 [ext_resource type="Script" uid="uid://b2gt5m2035sun" path="res://scripts/objects/recipient_component.gd" id="6_5aevv"]
 [ext_resource type="Shader" uid="uid://dnjnsgwj6xcev" path="res://shaders/liquid_recipient.gdshader" id="6_e4bkc"]
 [ext_resource type="PackedScene" uid="uid://dn713edphqydv" path="res://assets/models/objects/wash_bottle.glb" id="7_ivhli"]
+[ext_resource type="PackedScene" uid="uid://41pp30hw4tkm" path="res://assets/models/objects/spatula.glb" id="7_ivj4r"]
 [ext_resource type="Material" uid="uid://dxxcjoilfjstw" path="res://assets/materials/ghost.tres" id="8_hq40d"]
 [ext_resource type="Script" uid="uid://ch7wxdniaet7c" path="res://scripts/objects/liquid_target_component.gd" id="9_ivj4r"]
+[ext_resource type="Script" uid="uid://c82yl3qudefc4" path="res://scripts/objects/powder_pour_component.gd" id="10_2ivr0"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wwwq1"]
 
@@ -113,6 +115,31 @@ size = Vector3(0.011183593, 0.156, 0.10319629)
 [sub_resource type="BoxShape3D" id="BoxShape3D_y5qby"]
 size = Vector3(0.12127191, 0.0060577393, 0.10396099)
 
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_2nak8"]
+frequency = 1.0
+fractal_octaves = 10
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_62wax"]
+noise = SubResource("FastNoiseLite_2nak8")
+as_normal_map = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2nak8"]
+albedo_color = Color(0.23137255, 0.49803922, 1, 1)
+metallic = 0.42
+metallic_specular = 0.0
+normal_enabled = true
+normal_texture = SubResource("NoiseTexture2D_62wax")
+
+[sub_resource type="SphereMesh" id="SphereMesh_raylg"]
+material = SubResource("StandardMaterial3D_2nak8")
+radius = 0.15
+height = 0.346
+radial_segments = 14
+rings = 5
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mrwkq"]
+size = Vector3(0.12458801, 0.27631378, 0.12336731)
+
 [node name="s_beaker_250ml" type="RigidBody3D" unique_id=113075842]
 collision_layer = 2
 
@@ -129,6 +156,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_l20c0")
 
 [node name="liquid" type="MeshInstance3D" parent="." unique_id=1912725983]
 transform = Transform3D(0.07, 0, 0, 0, -3.059797e-09, 0.09, 0, -0.07, -3.934025e-09, 0, 0, 0)
+visible = false
 instance_shader_parameters/fill_level_world = 0.130000006175
 mesh = SubResource("ArrayMesh_0qvkq")
 surface_material_override/0 = SubResource("ShaderMaterial_u55j8")
@@ -153,7 +181,41 @@ shape = SubResource("BoxShape3D_u55j8")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0001554396, 0.004213318, -0.00017786771)
 shape = SubResource("BoxShape3D_y5qby")
 
-[node name="PowderPourComponent" type="Node" parent="." unique_id=1282012338]
+[node name="ghost_spatula" parent="." unique_id=262879923 instance=ExtResource("7_ivj4r")]
+transform = Transform3D(0.0053829667, 0.039636135, 0, -0.03963614, 0.0053829663, 0, 0, 0, 0.040000003, -0.033558138, 0.20086625, -0.02730333)
+
+[node name="spoon" parent="ghost_spatula" index="0" unique_id=1948039512]
+surface_material_override/0 = ExtResource("8_hq40d")
+
+[node name="handle" parent="ghost_spatula" index="1" unique_id=2106771853]
+surface_material_override/0 = ExtResource("8_hq40d")
+
+[node name="powder_pivot" type="Node3D" parent="." unique_id=668690232]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0054926015, 0)
+
+[node name="powder" type="MeshInstance3D" parent="powder_pivot" unique_id=93810517]
+transform = Transform3D(0.098, 0, 0, 0, 0.024, 0, 0, 0, 0.081, 0, 0, 0)
+mesh = SubResource("SphereMesh_raylg")
+
+[node name="powder_area" type="Area3D" parent="." unique_id=851938262]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.010054316, 0.24386626, 0)
+
+[node name="c_powder_area" type="CollisionShape3D" parent="powder_area" unique_id=1746007192]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0038375854, -0.014965057, -0.0012130737)
+shape = SubResource("BoxShape3D_mrwkq")
+
+[node name="InteractionComponent" type="Node" parent="powder_area" unique_id=2053176626]
+script = ExtResource("2_2i55u")
+context = "Despejar"
+metadata/_custom_type_script = "uid://cld64tanfoemk"
+
+[node name="PowderPourComponent" type="Node" parent="." unique_id=1398718175 node_paths=PackedStringArray("target_rigidbody", "ghost_mesh", "interaction_comp", "interaction_area", "powder_visual_pivot")]
+script = ExtResource("10_2ivr0")
+target_rigidbody = NodePath("..")
+ghost_mesh = NodePath("../ghost_spatula")
+interaction_comp = NodePath("../powder_area/InteractionComponent")
+interaction_area = NodePath("../powder_area")
+powder_visual_pivot = NodePath("../powder_pivot")
 
 [node name="LiquidPourComponent" type="Node" parent="." unique_id=257294477]
 
@@ -189,4 +251,5 @@ min_scroll_z = -0.55
 metadata/_custom_type_script = "uid://dgjrei33rjh21"
 
 [editable path="beaker_250ml"]
+[editable path="ghost_spatula"]
 [editable path="ghost_wash_bottle"]

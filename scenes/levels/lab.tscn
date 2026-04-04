@@ -555,11 +555,11 @@ transform = Transform3D(0.9999998, 0, 0, 0, 1, 0, 0, 0, 0.9999998, 0.16929662, 0
 mass = 0.01
 
 [node name="s_beaker_100ml" parent="objects" unique_id=613809570 instance=ExtResource("9_rsbtw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.1971378, 0.2603135, -8.266945)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17052016, 0.3568899, -8.311062)
 mass = 0.048
 
 [node name="s_beaker_250ml" parent="objects" unique_id=113075842 instance=ExtResource("27_3q8po")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15901436, 0.3051753, -8.342272)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.3956413, 0.3051753, -8.342272)
 mass = 0.103
 
 [node name="s_volumetric_flask_100ml" parent="objects" unique_id=1259097668 instance=ExtResource("28_svtj1")]

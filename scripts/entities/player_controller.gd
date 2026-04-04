@@ -1,21 +1,22 @@
 class_name PlayerController extends CharacterBody3D
-
+ 
 const TILT_MIN := -1.5708
 const TILT_MAX := 1.5708
-
+ 
 @onready var rotation_anchor: Node3D = $RotationAnchor
 @onready var camera_controller_anchor: Node3D = %CameraControllerAnchor
 @onready var camera: Camera3D = %Camera3D
 @onready var collider: CollisionShape3D = $CollisionShape3D
 @onready var crouch_cast: ShapeCast3D = %ShapeCast3D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
-
+ 
 @export_group("Camera")
 @export var interact_distance: float = 2.0
 @export var zoom_key: Key = KEY_C
 @export var zoom_fov: float = 30.0
 @export var zoom_speed: float = 12.0
-
+@export var zoom_scroll_step: float = 5.0
+ 
 @export_group("Movement Input")
 @export var input_left: StringName = &"ui_left"
 @export var input_right: StringName = &"ui_right"
@@ -24,7 +25,7 @@ const TILT_MAX := 1.5708
 @export var input_jump: StringName = &"ui_accept"
 @export var input_sprint: StringName = &"sprint"
 @export var input_crouch: StringName = &"crouch"
-
+ 
 var is_seated: bool = false
 var move_speed: float = 0.0
 var move_accel: float = 0.0
@@ -32,35 +33,49 @@ var move_decel: float = 0.0
 var crouching: bool = false
 var toggle_crouch: bool = false
 var is_zooming: bool = false
-
+ 
 var mouse_input: bool = false
 var rotation_input: float = 0.0
 var tilt_input: float = 0.0
 var mouse_rotation: Vector3 = Vector3.ZERO
-
+ 
 var interact_cast_result: Node3D = null
 var held_object: Node3D = null
-
+ 
+var _current_zoom_fov: float = 30.0
+ 
 @onready var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 	
 func _ready() -> void:
 	Global.player = self
 	toggle_crouch = Global.toggle_crouch
 	if camera: camera.fov = Global.player_fov
+	_current_zoom_fov = zoom_fov
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	crouch_cast.add_exception(self)
-
+ 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		mouse_input = true
 		rotation_input -= event.relative.x * Global.mouse_sensitivity
 		tilt_input -= event.relative.y * Global.mouse_sensitivity
+ 
+	if is_zooming and not held_object:
+		var mb := event as InputEventMouseButton
+		if mb and mb.pressed:
+			if mb.button_index == MOUSE_BUTTON_WHEEL_UP:
+				_current_zoom_fov = clampf(_current_zoom_fov - zoom_scroll_step, 5.0, Global.player_fov)
+			elif mb.button_index == MOUSE_BUTTON_WHEEL_DOWN:
+				_current_zoom_fov = clampf(_current_zoom_fov + zoom_scroll_step, 5.0, Global.player_fov)
 		
 func _process(delta: float) -> void:
 	if camera:
-		is_zooming = Input.is_physical_key_pressed(zoom_key) 
-		
-		var target_fov = zoom_fov if is_zooming else Global.player_fov
+		is_zooming = Input.is_physical_key_pressed(zoom_key)
+ 
+		if not is_zooming:
+			_current_zoom_fov = zoom_fov
+ 
+		var target_fov = _current_zoom_fov if is_zooming else Global.player_fov
 		camera.fov = lerpf(camera.fov, float(target_fov), zoom_speed * delta)
 	
 	if not mouse_input: return 
@@ -74,7 +89,7 @@ func _process(delta: float) -> void:
 	rotation_input = 0.0
 	tilt_input = 0.0
 	mouse_input = false
-
+ 
 func perform_movement(delta: float) -> void:
 	if is_seated: return
 	

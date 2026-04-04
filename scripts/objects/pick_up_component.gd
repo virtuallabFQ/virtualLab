@@ -27,8 +27,7 @@ signal toggled(is_held: bool)
 @export var depth_ray_color: Color = Color(1.0, 1.0, 1.0, 0.157)
 @export var depth_ray_thickness: float = 0.004
 @export var depth_ray_max: float = 20.0
- 
-var _held_scale: Vector3
+
 var held_obj: Node3D
 var base_rot: Basis
 var current_local_rot: Basis
