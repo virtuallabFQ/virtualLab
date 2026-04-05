@@ -548,41 +548,33 @@ transform = Transform3D(-4.3711385e-08, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, 
 
 [node name="s_clamp" parent="objects" unique_id=266730386 instance=ExtResource("25_d8hsm")]
 transform = Transform3D(1.9106855e-15, 4.371139e-08, -1, 1, -4.371139e-08, 0, -4.371139e-08, -1, -4.371139e-08, 0.70613307, 0.31206048, -8.331287)
-mass = 0.18
 
 [node name="s_weightscale" parent="objects" unique_id=1829140156 instance=ExtResource("14_b874d")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.8065133, 0.27185673, -8.245823)
-mass = 0.35
 
 [node name="s_burette" parent="objects" unique_id=1461589078 instance=ExtResource("26_jkrsq")]
 transform = Transform3D(-4.3711374e-08, 0, -0.9999997, 0, 1, 0, 0.9999997, 0, -4.3711374e-08, 0.16929662, 0.8051141, -8.875486)
-mass = 0.1
 
 [node name="s_beaker_100ml" parent="objects" unique_id=613809570 instance=ExtResource("9_rsbtw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17052016, 0.3568899, -8.311062)
-mass = 0.048
 
 [node name="s_beaker_250ml" parent="objects" unique_id=113075842 instance=ExtResource("27_3q8po")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.3956413, 0.3051753, -8.342272)
-mass = 0.103
 
 [node name="s_volumetric_flask_250ml" parent="objects" unique_id=1259097668 instance=ExtResource("28_svtj1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9856293, 0.24161744, -8.224449)
 
 [node name="s_wash_bottle" parent="objects" unique_id=1175166802 instance=ExtResource("12_ky6vu")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -2.7831545, 0.39976773, -8.363413)
-mass = 0.45
 
 [node name="s_funnel" parent="objects" unique_id=1656984544 instance=ExtResource("29_awhs2")]
 transform = Transform3D(0.3913737, -0.9202318, 0, 0.9202318, 0.3913737, 0, 0, 0, 1, -2.4561684, 0.305, -8.314644)
-mass = 0.03
 
 [node name="s_dropper" parent="objects" unique_id=2084891252 instance=ExtResource("32_qjmlf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6170192, 0.23094127, -8.371143)
 
 [node name="s_spatula" parent="objects" unique_id=874482037 instance=ExtResource("34_3s53a")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.394085, 0.25127944, -8.244694)
-mass = 0.02
 
 [node name="s_container" parent="objects" unique_id=639071478 instance=ExtResource("36_rwjr5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9595397, 0.25007743, -8.521325)
