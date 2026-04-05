@@ -1,6 +1,7 @@
 class_name SpatulaComponent extends Node
 
 @export var powder_mesh: MeshInstance3D
+
 var is_full: bool = false
 
 func _ready() -> void:

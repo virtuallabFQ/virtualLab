@@ -6,7 +6,6 @@ class_name WeightscaleComponent extends Node
 @export var menu: Control
 @export var viewport: SubViewport
 
-var bodies_in_scale: Array[RigidBody3D] = []
 var is_active: bool = false
 var tare_offset_grams: float = 0.0
 var raw_weight_grams: float = 0.0
@@ -14,11 +13,6 @@ var last_sent_weight: float = -1.0
 
 func _ready() -> void:
 	if viewport: viewport.render_target_update_mode = SubViewport.UPDATE_ALWAYS
-	if detector:
-		detector.body_entered.connect(func(body): 
-			if body is RigidBody3D and body != get_parent(): bodies_in_scale.append(body))
-		detector.body_exited.connect(func(body): 
-			if body is RigidBody3D: bodies_in_scale.erase(body))
 	if menu: menu.turn_off()
 
 func _physics_process(_delta: float) -> void:
@@ -29,7 +23,7 @@ func _physics_process(_delta: float) -> void:
 			if menu: menu.turn_on()
 		else: tare_offset_grams = raw_weight_grams
 		last_sent_weight = -1.0
-	
+
 	if off_button and off_button.is_interacted:
 		off_button.is_interacted = false
 		is_active = false
@@ -37,18 +31,35 @@ func _physics_process(_delta: float) -> void:
 		last_sent_weight = -1.0
 		if menu: menu.turn_off()
 	
-	if bodies_in_scale.is_empty() and raw_weight_grams == 0.0 and last_sent_weight == 0.0: return
-	
 	var mass: float = 0.0
-	var body_index: int = bodies_in_scale.size() - 1
-	while body_index >= 0:
-		var body = bodies_in_scale[body_index]
-		if not is_instance_valid(body): bodies_in_scale.remove_at(body_index)
-		elif not body.freeze: mass += body.mass
-		body_index -= 1
-
+	var counted_ids: Dictionary = {}
+	
+	if detector:
+		for body in detector.get_overlapping_bodies():
+			if body is RigidBody3D and body != get_parent():
+				
+				if body.linear_velocity.length() < 1.0 and not body.freeze:
+					var id: int = body.get_instance_id()
+					if not counted_ids.has(id):
+						counted_ids[id] = true
+						mass += body.mass
+				
+				var lid_comp := body.find_child("LidComponent", true, false) as LidComponent
+				
+				if not lid_comp and body.get_parent():
+					var temp_lid = body.get_parent().find_child("LidComponent", true, false) as LidComponent
+					if temp_lid and (temp_lid.target_body == body or temp_lid.target_body == body.get_parent()):
+						lid_comp = temp_lid
+				
+				if lid_comp and lid_comp.is_closed and lid_comp.lid_node:
+					var lid_id: int = lid_comp.lid_node.get_instance_id()
+					if not counted_ids.has(lid_id):
+						counted_ids[lid_id] = true
+						mass += lid_comp.lid_node.mass
+	
 	raw_weight_grams = mass * 1000.0
 	var display = raw_weight_grams - tare_offset_grams
+	
 	if is_active and menu and not is_equal_approx(display, last_sent_weight):
 		last_sent_weight = display
 		menu.set_weight(display)

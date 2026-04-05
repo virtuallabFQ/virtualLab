@@ -104,7 +104,6 @@ func _process(delta: float) -> void:
 				MessageBus.interaction_focused.emit(context_open, interaction.get(&"new_icon"), interaction.get(&"override_icon"))
 		return
 	
-	# contador de gotas
 	_time_since_last_drop += delta
 	if _time_since_last_drop >= drop_interval:
 		_time_since_last_drop -= drop_interval

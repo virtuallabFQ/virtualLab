@@ -14,7 +14,7 @@ height = 0.041535154
 radius = 0.029785156
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_em2ya"]
-size = Vector3(0.2891159, 0.005395935, 0.29140472)
+size = Vector3(0.2891159, 0.029084802, 0.29140472)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_em2ya"]
 viewport_path = NodePath("SubViewport")
@@ -71,6 +71,7 @@ collision_layer = 2
 collision_mask = 3
 
 [node name="c_mass_detector" type="CollisionShape3D" parent="mass_detector" unique_id=811017038]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.011844467, 0)
 shape = SubResource("BoxShape3D_em2ya")
 
 [node name="UILayer" type="MeshInstance3D" parent="." unique_id=1613194043]
@@ -86,9 +87,9 @@ off_button = NodePath("../off_detector/InteractionComponent_2")
 menu = NodePath("../SubViewport/weightscale_menu")
 viewport = NodePath("../SubViewport")
 
-[node name="InteractionComponent" type="Node" parent="." unique_id=1081762876 node_paths=PackedStringArray("mesh")]
+[node name="InteractionComponent" type="Node" parent="." unique_id=1081762876 node_paths=PackedStringArray("body")]
 script = ExtResource("2_rq1kr")
-mesh = NodePath("../weightscale/weightscale")
+body = NodePath("../weightscale")
 context = "Pegar"
 metadata/_custom_type_script = "uid://cld64tanfoemk"
 

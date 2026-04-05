@@ -202,9 +202,9 @@ powder_pivot = NodePath("../powder_pivot")
 powder_color = Color(0.23137255, 0.49803922, 1, 1)
 metadata/_custom_type_script = "uid://b2gt5m2035sun"
 
-[node name="InteractionComponent" type="Node" parent="." unique_id=2137101504 node_paths=PackedStringArray("mesh")]
+[node name="InteractionComponent" type="Node" parent="." unique_id=2137101504 node_paths=PackedStringArray("body")]
 script = ExtResource("2_2i55u")
-mesh = NodePath("../beaker_250ml/beaker")
+body = NodePath("../beaker_250ml")
 context = "Pegar"
 metadata/_custom_type_script = "uid://cld64tanfoemk"
 

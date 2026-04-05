@@ -199,9 +199,9 @@ interaction_comp = NodePath("../container_area/InteractionComponent")
 interaction_area = NodePath("../container_area")
 lid_component = NodePath("../../container_copper_sulfate_lid/LidComponent")
 
-[node name="InteractionComponent" type="Node" parent="container_copper_sulfate" unique_id=640901564 node_paths=PackedStringArray("mesh")]
+[node name="InteractionComponent" type="Node" parent="container_copper_sulfate" unique_id=640901564 node_paths=PackedStringArray("body")]
 script = ExtResource("3_3kwdy")
-mesh = NodePath("../container_copper_sulfate/bottle")
+body = NodePath("../container_copper_sulfate")
 context = "Pegar"
 metadata/_custom_type_script = "uid://cld64tanfoemk"
 
@@ -227,9 +227,9 @@ target_body = NodePath("../../container_copper_sulfate")
 pick_up_component = NodePath("../InteractionComponent/PickUpComponent")
 container_pick_up = NodePath("../../container_copper_sulfate/InteractionComponent/PickUpComponent")
 
-[node name="InteractionComponent" type="Node" parent="container_copper_sulfate_lid" unique_id=139231756 node_paths=PackedStringArray("mesh")]
+[node name="InteractionComponent" type="Node" parent="container_copper_sulfate_lid" unique_id=139231756 node_paths=PackedStringArray("body")]
 script = ExtResource("3_3kwdy")
-mesh = NodePath("../lid")
+body = NodePath("../lid")
 context = "Pegar"
 metadata/_custom_type_script = "uid://cld64tanfoemk"
 

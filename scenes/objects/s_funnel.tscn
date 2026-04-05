@@ -30,9 +30,9 @@ shape = SubResource("CylinderShape3D_1m0x5")
 transform = Transform3D(0.0381, 0, 0, 0, -0.03810001, -1.5291032e-08, 0, 1.5291032e-08, -0.03810001, 0, -0.036311828, -1.43476635e-08)
 shape = SubResource("CylinderShape3D_f776h")
 
-[node name="InteractionComponent" type="Node" parent="." unique_id=1764854814 node_paths=PackedStringArray("mesh")]
+[node name="InteractionComponent" type="Node" parent="." unique_id=1764854814 node_paths=PackedStringArray("body")]
 script = ExtResource("2_1m0x5")
-mesh = NodePath("../funnel/funnel")
+body = NodePath("../funnel")
 context = "Pegar"
 metadata/_custom_type_script = "uid://cld64tanfoemk"
 

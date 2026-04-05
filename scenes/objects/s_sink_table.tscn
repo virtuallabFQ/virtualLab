@@ -431,9 +431,9 @@ script = ExtResource("2_fvyfd")
 door_type = 1
 rotation_amount = -90.0
 
-[node name="InteractionComponent_1" type="Node" parent="an_door_1" unique_id=1634257910 node_paths=PackedStringArray("mesh")]
+[node name="InteractionComponent_1" type="Node" parent="an_door_1" unique_id=1634257910 node_paths=PackedStringArray("body")]
 script = ExtResource("2_x13th")
-mesh = NodePath("../../sink_table/door_1")
+body = NodePath("../door_1")
 context = "Abrir"
 
 [node name="an_door_2" type="AnimatableBody3D" parent="." unique_id=366602753]
@@ -452,9 +452,9 @@ shape = SubResource("BoxShape3D_vnfd5")
 script = ExtResource("2_fvyfd")
 door_type = 1
 
-[node name="InteractionComponent_2" type="Node" parent="an_door_2" unique_id=1141309920 node_paths=PackedStringArray("mesh")]
+[node name="InteractionComponent_2" type="Node" parent="an_door_2" unique_id=1141309920 node_paths=PackedStringArray("body")]
 script = ExtResource("2_x13th")
-mesh = NodePath("../door_2")
+body = NodePath("../door_2")
 context = "Abrir"
 
 [node name="an_door_3" type="AnimatableBody3D" parent="." unique_id=362208146]
@@ -474,9 +474,9 @@ script = ExtResource("2_fvyfd")
 door_type = 1
 rotation_amount = -90.0
 
-[node name="InteractionComponent_3" type="Node" parent="an_door_3" unique_id=500968117 node_paths=PackedStringArray("mesh")]
+[node name="InteractionComponent_3" type="Node" parent="an_door_3" unique_id=500968117 node_paths=PackedStringArray("body")]
 script = ExtResource("2_x13th")
-mesh = NodePath("../door_3")
+body = NodePath("../door_3")
 context = "Abrir"
 
 [node name="an_door_4" type="AnimatableBody3D" parent="." unique_id=1356577590]
@@ -495,9 +495,9 @@ shape = SubResource("BoxShape3D_vnfd5")
 script = ExtResource("2_fvyfd")
 door_type = 1
 
-[node name="InteractionComponent_4" type="Node" parent="an_door_4" unique_id=1872265990 node_paths=PackedStringArray("mesh")]
+[node name="InteractionComponent_4" type="Node" parent="an_door_4" unique_id=1872265990 node_paths=PackedStringArray("body")]
 script = ExtResource("2_x13th")
-mesh = NodePath("../door_4")
+body = NodePath("../door_4")
 context = "Abrir"
 
 [node name="an_tap" type="AnimatableBody3D" parent="." unique_id=238842699]

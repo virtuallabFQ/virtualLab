@@ -86,12 +86,12 @@ rings = 5
 [sub_resource type="BoxShape3D" id="BoxShape3D_ei5cs"]
 size = Vector3(0.12458801, 0.27631378, 0.12336731)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ivhli"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_eehc6"]
 render_priority = -1
 shader = ExtResource("5_rqtv0")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_eehc6"]
-material = SubResource("ShaderMaterial_ivhli")
+material = SubResource("ShaderMaterial_eehc6")
 top_radius = 0.03
 bottom_radius = 0.03
 height = 0.09
@@ -198,9 +198,9 @@ max_y_world = 0.045
 powder_pivot = NodePath("../powder_pivot")
 powder_color = Color(0.23137255, 0.49803922, 1, 1)
 
-[node name="InteractionComponent" type="Node" parent="." unique_id=845906834 node_paths=PackedStringArray("mesh")]
+[node name="InteractionComponent" type="Node" parent="." unique_id=845906834 node_paths=PackedStringArray("body")]
 script = ExtResource("2_pdrdr")
-mesh = NodePath("../beaker_100ml/beaker")
+body = NodePath("../beaker_100ml")
 context = "Pegar"
 
 [node name="PickUpComponent" type="Node" parent="InteractionComponent" unique_id=560273488]

@@ -4,6 +4,7 @@ class_name ContainerComponent extends Node
 @export var interaction_comp: InteractionComponent
 @export var interaction_area: Area3D
 @export var lid_component: LidComponent
+@export var scoop_mass_kg: float = 0.0005 
  
 func _ready() -> void:
 	if ghost_mesh: ghost_mesh.visible = false
@@ -35,6 +36,10 @@ func _on_scoop(_node: Node) -> void:
 		var lid_is_open = not lid_component or not lid_component.is_closed
 		if spatula_comp and not spatula_comp.is_full and lid_is_open:
 			spatula_comp.fill()
+			
+			var rb := get_parent() as RigidBody3D
+			if rb:
+				rb.mass = max(rb.mass - scoop_mass_kg, 0.010)
  
 func _set_area_enabled(state: bool) -> void:
 	if not interaction_area: return

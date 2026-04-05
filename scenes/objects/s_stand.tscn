@@ -80,9 +80,9 @@ ghost_mesh = NodePath("../ghost_clamp")
 interaction_area = NodePath("../snap_area")
 interaction_comp = NodePath("../snap_area/InteractionComponent")
 
-[node name="InteractionComponent" type="Node" parent="." unique_id=1173530252 node_paths=PackedStringArray("mesh")]
+[node name="InteractionComponent" type="Node" parent="." unique_id=1173530252 node_paths=PackedStringArray("body")]
 script = ExtResource("2_l85s4")
-mesh = NodePath("../stand/stand")
+body = NodePath("../stand")
 context = "Pegar"
 metadata/_custom_type_script = "uid://cld64tanfoemk"
 

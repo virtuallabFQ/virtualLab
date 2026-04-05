@@ -44,9 +44,9 @@ shape = SubResource("BoxShape3D_owobi")
 script = ExtResource("2_k4qgo")
 powder_mesh = NodePath("../powder")
 
-[node name="InteractionComponent" type="Node" parent="." unique_id=1035515683 node_paths=PackedStringArray("mesh")]
+[node name="InteractionComponent" type="Node" parent="." unique_id=1035515683 node_paths=PackedStringArray("body")]
 script = ExtResource("2_2nak8")
-mesh = NodePath("../spatula/handle")
+body = NodePath("../spatula")
 context = "Pegar"
 metadata/_custom_type_script = "uid://cld64tanfoemk"
 

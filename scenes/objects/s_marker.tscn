@@ -40,9 +40,9 @@ script = ExtResource("3_6l0ri")
 script = ExtResource("5_biph0")
 material = ExtResource("4_p5v7q")
 
-[node name="InteractionComponent" type="Node" parent="." unique_id=1857417066 node_paths=PackedStringArray("mesh")]
+[node name="InteractionComponent" type="Node" parent="." unique_id=1857417066 node_paths=PackedStringArray("body")]
 script = ExtResource("4_6l0ri")
-mesh = NodePath("../marker/marker")
+body = NodePath("../marker")
 context = "Escrever"
 metadata/_custom_type_script = "uid://cld64tanfoemk"
 

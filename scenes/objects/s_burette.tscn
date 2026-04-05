@@ -95,7 +95,6 @@ shadow_mesh = SubResource("ArrayMesh_sbcrt")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7ladk"]
 render_priority = -1
 shader = ExtResource("3_oep0f")
-shader_parameter/liquid_color = Color(0.78, 0.874, 1, 0.392)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_55swo"]
 size = Vector3(0.041, 0.081, 0.058)
@@ -122,7 +121,6 @@ collision_bounce = 0.2
 render_priority = 0
 shader = ExtResource("12_tmkq6")
 shader_parameter/drop_color = Color(0.78039217, 0.8745098, 1, 0.39215687)
-shader_parameter/refraction_strength = 0.10000000149012
 shader_parameter/fresnel_power = 8.0
 
 [sub_resource type="SphereMesh" id="SphereMesh_vrp8o"]
@@ -183,6 +181,8 @@ liquid_mesh = NodePath("../liquid")
 fill_curve = ExtResource("7_5t5t0")
 capacity_ml = 25.0
 max_y_world = 0.08030000000000004
+powder_color = null
+dissolve_speed = null
 metadata/_custom_type_script = "uid://b2gt5m2035sun"
 
 [node name="tap_area" type="Area3D" parent="." unique_id=1355453551]
@@ -192,9 +192,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05513853, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00038116053, 0.00092586875, -0.0016837716)
 shape = SubResource("BoxShape3D_55swo")
 
-[node name="InteractionComponent" type="Node" parent="tap_area" unique_id=31465306 node_paths=PackedStringArray("mesh")]
+[node name="InteractionComponent" type="Node" parent="tap_area" unique_id=31465306]
 script = ExtResource("2_oywan")
-mesh = NodePath("../../burette/faucet")
 metadata/_custom_type_script = "uid://cld64tanfoemk"
 
 [node name="tap_marker" type="Marker3D" parent="." unique_id=176014099]
@@ -222,9 +221,9 @@ script = ExtResource("6_xpaay")
 material = ExtResource("4_55swo")
 metadata/_custom_type_script = "uid://ms7kq4n8iay7"
 
-[node name="InteractionComponent" type="Node" parent="." unique_id=2044105371 node_paths=PackedStringArray("mesh")]
+[node name="InteractionComponent" type="Node" parent="." unique_id=2044105371 node_paths=PackedStringArray("body")]
 script = ExtResource("2_oywan")
-mesh = NodePath("../burette/burette_glass")
+body = NodePath("../burette")
 context = "Pegar"
 metadata/_custom_type_script = "uid://cld64tanfoemk"
 

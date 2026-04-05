@@ -243,9 +243,9 @@ door_type = 1
 rotation_amount = -90.0
 metadata/_custom_type_script = "uid://5kgtpnn2lylw"
 
-[node name="InteractionComponent_1" type="Node" parent="an_door_1" unique_id=1178065094 node_paths=PackedStringArray("mesh")]
+[node name="InteractionComponent_1" type="Node" parent="an_door_1" unique_id=1178065094 node_paths=PackedStringArray("body")]
 script = ExtResource("3_5swu1")
-mesh = NodePath("../door_1")
+body = NodePath("../door_1")
 context = "Abrir"
 metadata/_custom_type_script = "uid://cld64tanfoemk"
 
@@ -270,9 +270,9 @@ script = ExtResource("2_kyegh")
 door_type = 1
 metadata/_custom_type_script = "uid://5kgtpnn2lylw"
 
-[node name="InteractionComponent_2" type="Node" parent="an_door_2" unique_id=433623332 node_paths=PackedStringArray("mesh")]
+[node name="InteractionComponent_2" type="Node" parent="an_door_2" unique_id=433623332 node_paths=PackedStringArray("body")]
 script = ExtResource("3_5swu1")
-mesh = NodePath("../door_2")
+body = NodePath("../door_2")
 context = "Abrir"
 metadata/_custom_type_script = "uid://cld64tanfoemk"
 

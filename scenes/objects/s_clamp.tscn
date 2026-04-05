@@ -60,9 +60,9 @@ lock_parent_on_snap = true
 needs_parent_frozen = true
 metadata/_custom_type_script = "uid://defqc4mn4kjbx"
 
-[node name="InteractionComponent" type="Node" parent="." unique_id=610021996 node_paths=PackedStringArray("mesh")]
+[node name="InteractionComponent" type="Node" parent="." unique_id=610021996 node_paths=PackedStringArray("body")]
 script = ExtResource("2_k5ret")
-mesh = NodePath("../clamp/clamp_1")
+body = NodePath("../clamp")
 context = "Pegar"
 metadata/_custom_type_script = "uid://cld64tanfoemk"
 

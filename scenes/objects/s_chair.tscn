@@ -25,9 +25,9 @@ script = ExtResource("3_afvpl")
 sit_marker = NodePath("../sitting_marker")
 interaction_component = NodePath("../InteractionComponent")
 
-[node name="InteractionComponent" type="Node" parent="." unique_id=333011786 node_paths=PackedStringArray("mesh")]
+[node name="InteractionComponent" type="Node" parent="." unique_id=333011786 node_paths=PackedStringArray("body")]
 script = ExtResource("3_58apn")
-mesh = NodePath("../chair/chair")
+body = NodePath("../chair")
 context = "Sentar"
 metadata/_custom_type_script = "uid://cld64tanfoemk"
 

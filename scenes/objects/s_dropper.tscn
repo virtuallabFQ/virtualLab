@@ -267,9 +267,32 @@ shadow_mesh = SubResource("ArrayMesh_iahtu")
 height = 0.05669413
 radius = 0.023925781
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_30hdb"]
-render_priority = -2
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ivhli"]
+render_priority = 0
 shader = ExtResource("6_8mnis")
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_30hdb"]
+material = SubResource("ShaderMaterial_ivhli")
+top_radius = 0.027
+bottom_radius = 0.027
+height = 0.09
+rings = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3earp"]
+render_priority = 1
+transparency = 4
+albedo_color = Color(1, 1, 1, 0.39607844)
+metallic = 0.79
+roughness = 0.3
+normal_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_30hdb"]
+render_priority = 1
+transparency = 4
+albedo_color = Color(1, 1, 1, 0.39607844)
+metallic = 0.79
+roughness = 0.3
+normal_enabled = true
 
 [sub_resource type="Curve" id="Curve_30hdb"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.99999, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
@@ -293,7 +316,6 @@ collision_bounce = 0.2
 render_priority = 0
 shader = ExtResource("5_khynq")
 shader_parameter/drop_color = Color(0.78039217, 0.8745098, 1, 0.39215687)
-shader_parameter/refraction_strength = 0.10000000149012
 shader_parameter/fresnel_power = 8.0
 
 [sub_resource type="SphereMesh" id="SphereMesh_h1u8r"]
@@ -308,27 +330,27 @@ rings = 16
 [node name="dropper" type="RigidBody3D" parent="." unique_id=994267723]
 mass = 0.006
 
-[node name="dropper" parent="dropper" unique_id=950717494 instance=ExtResource("1_6flwg")]
+[node name="dropper" parent="dropper" unique_id=321854318 instance=ExtResource("1_6flwg")]
 
-[node name="dropper_3" parent="dropper/dropper" index="0" unique_id=1673356706]
+[node name="dropper_3" parent="dropper/dropper" index="0" unique_id=118239474]
 visible = false
 
-[node name="dropper_4" parent="dropper/dropper" index="1" unique_id=646986112]
+[node name="dropper_4" parent="dropper/dropper" index="1" unique_id=1662985891]
 visible = false
 
-[node name="dropper_1" parent="dropper/dropper" index="2" unique_id=2041411451]
+[node name="dropper_1" parent="dropper/dropper" index="2" unique_id=2067131357]
 visible = false
 
-[node name="dropper_5" parent="dropper/dropper" index="3" unique_id=1334188581]
+[node name="dropper_5" parent="dropper/dropper" index="3" unique_id=1554470741]
 visible = false
 
-[node name="dropper_6" parent="dropper/dropper" index="4" unique_id=655600307]
+[node name="dropper_6" parent="dropper/dropper" index="4" unique_id=546970522]
 surface_material_override/0 = ExtResource("2_mlcvu")
 
-[node name="dropper_2" parent="dropper/dropper" index="7" unique_id=1735400093]
+[node name="dropper_2" parent="dropper/dropper" index="7" unique_id=1944644381]
 visible = false
 
-[node name="dropper_8" parent="dropper/dropper" index="8" unique_id=1103993577]
+[node name="dropper_8" parent="dropper/dropper" index="8" unique_id=113719678]
 visible = false
 
 [node name="dropper_10" type="MeshInstance3D" parent="dropper/dropper" unique_id=1964385445]
@@ -394,9 +416,9 @@ interaction_comp = NodePath("../snap_area/InteractionComponent")
 lid_component = NodePath("../../dropper_bulb/LidComponent")
 metadata/_custom_type_script = "uid://defqc4mn4kjbx"
 
-[node name="InteractionComponent" type="Node" parent="dropper" unique_id=2628081 node_paths=PackedStringArray("mesh")]
+[node name="InteractionComponent" type="Node" parent="dropper" unique_id=2628081 node_paths=PackedStringArray("body")]
 script = ExtResource("2_wg1vq")
-mesh = NodePath("../dropper/dropper_6")
+body = NodePath("../dropper")
 context = "Pegar"
 metadata/_custom_type_script = "uid://cld64tanfoemk"
 
@@ -406,11 +428,12 @@ distance = Vector3(0.2, -0.175, -0.45)
 min_scroll_z = -0.45
 metadata/_custom_type_script = "uid://dgjrei33rjh21"
 
-[node name="liquid" type="MeshInstance3D" parent="dropper" unique_id=1187117841]
-transform = Transform3D(0.825, 0, 0, 0, 1, 0, 0, 0, 0.825, 0.0016308075, 0.03284988, 0.00011415899)
-instance_shader_parameters/fill_percentage = 0.52400002489
-mesh = SubResource("ArrayMesh_x5f58")
-surface_material_override/0 = SubResource("ShaderMaterial_30hdb")
+[node name="liquid" type="MeshInstance3D" parent="dropper" unique_id=556988151]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.002, 0.052, 0)
+instance_shader_parameters/fill_percentage = 0.3410000161975
+instance_shader_parameters/max_y_local = 0.045
+instance_shader_parameters/min_y_local = -0.045
+mesh = SubResource("CylinderMesh_30hdb")
 
 [node name="dropper_bulb" type="RigidBody3D" parent="." unique_id=1815018171 groups=["dropper_bulb"]]
 mass = 0.002
@@ -424,7 +447,7 @@ mesh = SubResource("ArrayMesh_a2stm")
 [node name="dropper_2" type="MeshInstance3D" parent="dropper_bulb/bulb" unique_id=1773315572]
 transform = Transform3D(0.1571585, 0, 0, 0, 0.1571585, 0, 0, 0, 0.1571585, 0.0016308075, 0.0179506, 0.00011415899)
 mesh = SubResource("ArrayMesh_20gir")
-surface_material_override/0 = ExtResource("2_mlcvu")
+surface_material_override/0 = SubResource("StandardMaterial3D_3earp")
 
 [node name="dropper_3" type="MeshInstance3D" parent="dropper_bulb/bulb" unique_id=1805994272]
 transform = Transform3D(0.3840861, 0, 0, 0, 0.24850568, 0, 0, 0, 0.3840861, 0.0016308075, 0.11639289, 0.000114148555)
@@ -441,7 +464,7 @@ mesh = SubResource("ArrayMesh_2c2gi")
 [node name="dropper_8" type="MeshInstance3D" parent="dropper_bulb/bulb" unique_id=1400340203]
 transform = Transform3D(0.09815533, 0, 0, 0, 0.09815533, 0, 0, 0, 0.09815533, 0.0016308075, 0.015045894, 0.00011415899)
 mesh = SubResource("ArrayMesh_v8adw")
-surface_material_override/0 = ExtResource("2_mlcvu")
+surface_material_override/0 = SubResource("StandardMaterial3D_30hdb")
 
 [node name="c_bulb" type="CollisionShape3D" parent="dropper_bulb" unique_id=607687429]
 transform = Transform3D(0.87545604, 0, 0, 0, 1, 0, 0, 0, 0.87545604, 0.0016308075, 0.1265685, 0.00011415899)
@@ -467,8 +490,9 @@ pick_up_component = NodePath("../InteractionComponent/PickUpComponent")
 container_pick_up = NodePath("../../dropper/InteractionComponent/PickUpComponent")
 metadata/_custom_type_script = "uid://cwi3u01n03275"
 
-[node name="InteractionComponent" type="Node" parent="dropper_bulb" unique_id=474295962]
+[node name="InteractionComponent" type="Node" parent="dropper_bulb" unique_id=474295962 node_paths=PackedStringArray("body")]
 script = ExtResource("2_wg1vq")
+body = NodePath("../bulb")
 context = "Pegar"
 metadata/_custom_type_script = "uid://cld64tanfoemk"
 
