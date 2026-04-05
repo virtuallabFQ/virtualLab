@@ -120,6 +120,7 @@ radius = 40.0
 [node name="s_container_copper_sulfate" type="Node3D" unique_id=1910924988]
 
 [node name="container_copper_sulfate" type="RigidBody3D" parent="." unique_id=1279449349]
+mass = 0.55
 
 [node name="container_copper_sulfate" parent="container_copper_sulfate" unique_id=1559377105 instance=ExtResource("1_3d3on")]
 transform = Transform3D(0.03, 0, 0, 0, 0.03, 0, 0, 0, 0.03, 0, 0, 0)
@@ -209,6 +210,7 @@ script = ExtResource("4_kppi4")
 metadata/_custom_type_script = "uid://dgjrei33rjh21"
 
 [node name="container_copper_sulfate_lid" type="RigidBody3D" parent="." unique_id=1386899709 groups=["container_copper_sulfate_lid"]]
+mass = 0.02
 
 [node name="lid" type="MeshInstance3D" parent="container_copper_sulfate_lid" unique_id=1744145266]
 transform = Transform3D(0.0013134539, 0, 0, 0, -4.697278e-10, -0.001313454, 0, 0.001313454, -4.697278e-10, 0, 0.08872112, 0)

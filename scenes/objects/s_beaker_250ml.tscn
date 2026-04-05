@@ -98,7 +98,7 @@ bottom_radius = 0.045
 height = 0.125
 rings = 0
 
-[node name="s_beaker_250ml" type="RigidBody3D" unique_id=113075842 groups=["tap_receiver"]]
+[node name="s_beaker_250ml" type="RigidBody3D" unique_id=113075842]
 collision_layer = 2
 
 [node name="beaker_250ml" parent="." unique_id=1224887861 instance=ExtResource("1_l20c0")]

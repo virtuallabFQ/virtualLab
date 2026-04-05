@@ -370,6 +370,7 @@ points = PackedVector3Array(2.0647411, 26.04112, -0.00040602684, 2.0647411, 25.7
 [node name="s_volumetric_flask_250ml" type="Node3D" unique_id=497939629]
 
 [node name="volumetric_flask" type="RigidBody3D" parent="." unique_id=1529154124]
+mass = 0.1
 
 [node name="volumetric_flask_250ml" parent="volumetric_flask" unique_id=1066760506 instance=ExtResource("1_pnj7g")]
 transform = Transform3D(-5.9010375e-08, 0, -1.35, 0, 1.35, 0, 1.35, 0, -5.9010375e-08, 0, 0, 0)
@@ -539,6 +540,7 @@ inspect_position = Vector3(0, -0.15, -1)
 metadata/_custom_type_script = "uid://dgjrei33rjh21"
 
 [node name="volumetric_flask_lid" type="RigidBody3D" parent="." unique_id=1914907418 groups=["volumetric_flask_lid"]]
+mass = 0.025
 
 [node name="lid" type="MeshInstance3D" parent="volumetric_flask_lid" unique_id=8811253]
 transform = Transform3D(-5.9010374e-10, 0, -0.013500002, 0, 0.013500002, 0, 0.0135, 0, -5.9010385e-10, 0, -0.0011196379, 0)

@@ -217,25 +217,25 @@ script = ExtResource("2_oywan")
 mesh = NodePath("../../burette/faucet")
 metadata/_custom_type_script = "uid://cld64tanfoemk"
 
-[node name="TapComponent" type="Node" parent="." unique_id=686604562 node_paths=PackedStringArray("source_recipient", "interaction", "drop_particles", "tap_exit")]
-script = ExtResource("11_7ladk")
-source_recipient = NodePath("../RecipientComponent")
-interaction = NodePath("../tap_area/InteractionComponent")
-drop_particles = NodePath("GPUParticles3D")
-tap_exit = NodePath("tap_marker")
-max_receive_distance = 10.0
-context_open = "Abrir"
-context_close = "Fechar"
-
-[node name="tap_marker" type="Marker3D" parent="TapComponent" unique_id=176014099]
+[node name="tap_marker" type="Marker3D" parent="." unique_id=176014099]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.10660345, 0)
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="TapComponent" unique_id=1422251127]
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=1422251127]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0009613037, -0.10887753, 0.0012168884)
 amount = 2
 lifetime = 1.5
 process_material = SubResource("ParticleProcessMaterial_7ladk")
 draw_pass_1 = SubResource("SphereMesh_r3nrw")
+
+[node name="TapComponent" type="Node" parent="." unique_id=686604562 node_paths=PackedStringArray("source_recipient", "interaction", "drop_particles", "tap_exit")]
+script = ExtResource("11_7ladk")
+source_recipient = NodePath("../RecipientComponent")
+interaction = NodePath("../tap_area/InteractionComponent")
+drop_particles = NodePath("../GPUParticles3D")
+tap_exit = NodePath("../tap_marker")
+max_receive_distance = 10.0
+context_open = "Abrir"
+context_close = "Fechar"
 
 [node name="GhostPlacementComponent" type="Node" parent="." unique_id=641367040]
 script = ExtResource("6_xpaay")

@@ -41,7 +41,6 @@ funnel=""
 volumetric_flask_lid=""
 dropper_bulb=""
 container_copper_sulfate_lid=""
-tap_receiver=""
 
 [gui]
 

@@ -5,7 +5,7 @@ class_name TapComponent extends Node
 @export var drop_particles: GPUParticles3D
 @export var tap_exit: Node3D
 @export var flow_speed: float = 0.05
-@export var max_receive_distance: float = 0.2
+@export var max_receive_distance: float = 0.5 
 @export var context_open: String = "Abrir torneira"
 @export var context_close: String = "Fechar torneira"
  
@@ -25,52 +25,81 @@ func _on_tap_interacted(_node: Node) -> void:
 	if interaction:
 		var ctx := context_close if is_open else context_open
 		interaction.set(&"context", ctx)
-		MessageBus.interaction_focused.emit(ctx, interaction.get(&"new_icon"), interaction.get(&"override_icon"))
+		if MessageBus:
+			MessageBus.interaction_focused.emit(ctx, interaction.get(&"new_icon"), interaction.get(&"override_icon"))
  
 func _get_target_recipient() -> RecipientComponent:
 	if not tap_exit:
 		return null
  
-	var exit_pos: Vector3 = tap_exit.global_position
-	var best: Node = null
-	var best_dist: float = INF
- 
-	for node in get_tree().get_nodes_in_group("tap_receiver"):
-		if not node is Node3D: continue
-		var dist: float = exit_pos.distance_to((node as Node3D).global_position)
-		if dist < best_dist and dist < max_receive_distance:
-			best_dist = dist
-			best = node
- 
-	if not best:
+	var space_state := tap_exit.get_world_3d().direct_space_state
+	var start_pos := tap_exit.global_position
+	var end_pos := start_pos + (Vector3.DOWN * max_receive_distance)
+	
+	var query := PhysicsRayQueryParameters3D.create(start_pos, end_pos)
+	query.collide_with_areas = true 
+	query.collide_with_bodies = true
+	query.collision_mask = 0xFFFFFFFF
+	
+	var parent_body := _get_parent_body(self)
+	if parent_body:
+		query.exclude = [parent_body.get_rid()]
+	
+	var result := space_state.intersect_ray(query)
+	
+	if not result or not result.collider:
 		return null
- 
-	var r := best.get_node_or_null("RecipientComponent") as RecipientComponent
-	if r: return r
-	for child in best.get_children():
-		r = child.get_node_or_null("RecipientComponent") as RecipientComponent
-		if r: return r
+	
+	var hit_node: Node = result.collider
+	
+	if hit_node.name == "room" or hit_node.name == "Lab":
+		return null
+	
+	var current_search = hit_node
+	for i in range(3):
+		if not current_search: break
+		
+		var recipients := current_search.find_children("*", "RecipientComponent", true, false)
+		for r in recipients:
+			if r is RecipientComponent and r != source_recipient:
+				return r
+		
+		if current_search.has_node("RecipientComponent"):
+			var r := current_search.get_node("RecipientComponent")
+			if r is RecipientComponent and r != source_recipient:
+				return r
+				
+		current_search = current_search.get_parent()
+		
 	return null
  
+func _get_parent_body(node: Node) -> CollisionObject3D:
+	var current := node.get_parent()
+	while current:
+		if current is CollisionObject3D:
+			return current as CollisionObject3D
+		current = current.get_parent()
+	return null
+
 func _process(delta: float) -> void:
-	if not is_open:
+	if not is_open or not is_instance_valid(source_recipient): 
 		return
-	if not is_instance_valid(source_recipient):
-		return
+		
 	if source_recipient.test_fill_volume <= 0.0:
 		is_open = false
-		if drop_particles:
+		if drop_particles: 
 			drop_particles.emitting = false
 		if interaction:
-			var ctx := context_open
-			interaction.set(&"context", ctx)
-			MessageBus.interaction_focused.emit(ctx, interaction.get(&"new_icon"), interaction.get(&"override_icon"))
+			interaction.set(&"context", context_open)
+			if MessageBus:
+				MessageBus.interaction_focused.emit(context_open, interaction.get(&"new_icon"), interaction.get(&"override_icon"))
 		return
- 
+	
 	var target := _get_target_recipient()
 	var amount := flow_speed * delta
-	# converte % do source em ml e depois em % do target
 	var ml := amount * source_recipient.capacity_ml
+	
 	source_recipient.add_liquid(-amount)
+	
 	if target:
 		target.add_liquid(ml / target.capacity_ml)
