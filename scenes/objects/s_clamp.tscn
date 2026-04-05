@@ -44,8 +44,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.008, -0.025, -0.055)
 transform = Transform3D(5.5, 0, 0, 0, -5.4999995, -2.207366e-06, 0, 2.207366e-06, -5.4999995, 0.00036174152, 0.003411496, -0.0003315434)
 shape = SubResource("CylinderShape3D_7a3jq")
 
-[node name="InteractionComponent" type="Node" parent="snap_area" unique_id=1217437731]
+[node name="InteractionComponent" type="Node" parent="snap_area" unique_id=1217437731 node_paths=PackedStringArray("body")]
 script = ExtResource("2_k5ret")
+body = NodePath("../../ghost_burette")
 context = "Encaixar"
 metadata/_custom_type_script = "uid://cld64tanfoemk"
 

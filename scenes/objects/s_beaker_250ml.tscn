@@ -97,7 +97,7 @@ bottom_radius = 0.045
 height = 0.125
 rings = 0
 
-[node name="s_beaker_250ml" type="RigidBody3D" unique_id=113075842]
+[node name="s_beaker_250ml" type="RigidBody3D" unique_id=113075842 groups=["beaker_250ml"]]
 collision_layer = 2
 mass = 0.103
 
@@ -155,8 +155,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.010054316, 0.24386626, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0038375854, -0.014965057, -0.0012130737)
 shape = SubResource("BoxShape3D_mrwkq")
 
-[node name="InteractionComponent" type="Node" parent="powder_area" unique_id=2053176626]
+[node name="InteractionComponent" type="Node" parent="powder_area" unique_id=2053176626 node_paths=PackedStringArray("body")]
 script = ExtResource("2_2i55u")
+body = NodePath("../../ghost_spatula")
 context = "Despejar"
 metadata/_custom_type_script = "uid://cld64tanfoemk"
 
@@ -167,8 +168,6 @@ ghost_mesh = NodePath("../ghost_spatula")
 interaction_comp = NodePath("../powder_area/InteractionComponent")
 interaction_area = NodePath("../powder_area")
 powder_visual_pivot = NodePath("../powder_pivot")
-
-[node name="LiquidPourComponent" type="Node" parent="." unique_id=257294477]
 
 [node name="ghost_wash_bottle" parent="." unique_id=2001274317 instance=ExtResource("7_ivhli")]
 transform = Transform3D(-0.06649696, -0.07468703, 8.6804155e-09, -0.07468703, 0.06649697, 1.0381499e-09, -6.5475776e-09, -5.792808e-09, -0.09999998, 0.15934691, 0.15740478, 0.00011780858)

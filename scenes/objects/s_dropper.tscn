@@ -401,8 +401,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.094312035, 0)
 transform = Transform3D(0.87545604, 0, 0, 0, 1, 0, 0, 0, 0.87545604, 0.0016308075, 0.03225646, 0.00011415899)
 shape = SubResource("CylinderShape3D_3earp")
 
-[node name="InteractionComponent" type="Node" parent="dropper/snap_area" unique_id=271986923]
+[node name="InteractionComponent" type="Node" parent="dropper/snap_area" unique_id=271986923 node_paths=PackedStringArray("body")]
 script = ExtResource("2_wg1vq")
+body = NodePath("../../ghost_bulb")
 context = "Colocar"
 metadata/_custom_type_script = "uid://cld64tanfoemk"
 

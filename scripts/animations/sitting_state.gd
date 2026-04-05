@@ -4,7 +4,6 @@ var target_pos: Vector3
 var target_rot_y: float
 var pre_sit_position: Vector3
 var stand_up_callback: Callable 
-
 var is_animating := false
 var player: PlayerController
 
@@ -27,6 +26,7 @@ func enter(_prev: State = null) -> void:
 	tween.set_parallel(true).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 	tween.tween_property(player, "global_position:x", target_pos.x, 0.4)
 	tween.tween_property(player, "global_position:z", target_pos.z, 0.4)
+	tween.tween_property(player.get_node("RotationAnchor"), "position:y", 1.55, 0.4)
 	
 	tween.chain().tween_property(player, "global_position:y", target_pos.y - 0.08, 0.4).set_trans(Tween.TRANS_SINE)
 	tween.chain().tween_property(player, "global_position:y", target_pos.y, 0.2).set_trans(Tween.TRANS_QUAD)
@@ -51,6 +51,7 @@ func stand_up() -> void:
 	var tween = create_tween()
 	
 	tween.tween_property(player, "global_position:y", pre_sit_position.y, 0.4).set_trans(Tween.TRANS_SINE)
+	tween.parallel().tween_property(player.get_node("RotationAnchor"), "position:y", 1.7, 0.4)
 	tween.chain().tween_property(player, "global_position:x", pre_sit_position.x, 0.4)
 	tween.parallel().tween_property(player, "global_position:z", pre_sit_position.z, 0.4)
 	

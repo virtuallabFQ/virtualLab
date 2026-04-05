@@ -1,6 +1,7 @@
 class_name EraseComponent extends Node
 
 const DIRS: Array[Vector3] = [Vector3.FORWARD, Vector3.BACK, Vector3.DOWN, Vector3.UP, Vector3.LEFT, Vector3.RIGHT]
+
 @export var distance := Vector3(0, 0, -1.0)
 @export var margin := 0.2
 @export var erase_range := 0.8

@@ -67,8 +67,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.014035821, 0.422, 0.026)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.766966e-05, 0.05429089, -0.00013227388)
 shape = SubResource("BoxShape3D_itqm7")
 
-[node name="InteractionComponent" type="Node" parent="snap_area" unique_id=366221062]
+[node name="InteractionComponent" type="Node" parent="snap_area" unique_id=366221062 node_paths=PackedStringArray("body")]
 script = ExtResource("2_l85s4")
+body = NodePath("../../ghost_clamp")
 context = "Encaixar"
 metadata/_custom_type_script = "uid://cld64tanfoemk"
 

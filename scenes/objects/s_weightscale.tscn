@@ -49,8 +49,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.088, 0, 0)
 [node name="c_on_detector" type="CollisionShape3D" parent="on_detector" unique_id=542305531]
 shape = SubResource("CylinderShape3D_5aba6")
 
-[node name="InteractionComponent_1" type="Node" parent="on_detector" unique_id=2080197843]
+[node name="InteractionComponent_1" type="Node" parent="on_detector" unique_id=2080197843 node_paths=PackedStringArray("body")]
 script = ExtResource("2_rq1kr")
+body = NodePath("..")
 context = "Ligar / Tara"
 metadata/_custom_type_script = "uid://cld64tanfoemk"
 
@@ -60,8 +61,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.088, 0, 0)
 [node name="c_off_detector" type="CollisionShape3D" parent="off_detector" unique_id=396294490]
 shape = SubResource("CylinderShape3D_5aba6")
 
-[node name="InteractionComponent_2" type="Node" parent="off_detector" unique_id=99817624]
+[node name="InteractionComponent_2" type="Node" parent="off_detector" unique_id=99817624 node_paths=PackedStringArray("body")]
 script = ExtResource("2_rq1kr")
+body = NodePath("..")
 context = "Desligar"
 metadata/_custom_type_script = "uid://cld64tanfoemk"
 

@@ -3,6 +3,13 @@ class_name InteractionRaycast extends RayCast3D
 var target: Node3D
 var is_holding := false
 
+func _resolve_target(hit: Node3D) -> Node3D:
+	if hit == null: return null
+	if hit.has_user_signal(&"focused"): return hit
+	var parent := hit.get_parent() as Node3D
+	if parent and parent.has_user_signal(&"focused"): return parent
+	return hit
+
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed(&"interact"): 
 		is_holding = true; _interact(true, false)
@@ -11,7 +18,8 @@ func _input(event: InputEvent) -> void:
 
 func _physics_process(_delta: float) -> void:
 	var held := Global.player.held_object if Global.player else null
-	var hit := get_collider() as Node3D; if hit == held: hit = null
+	var raw_hit := get_collider() as Node3D; if raw_hit == held: raw_hit = null
+	var hit := _resolve_target(raw_hit)
 	
 	if hit != target:
 		if target:
@@ -19,7 +27,7 @@ func _physics_process(_delta: float) -> void:
 			if target.has_user_signal(&"unfocused"): target.emit_signal(&"unfocused")
 			MessageBus.interaction_unfocused.emit()
 		target = hit; if target and target.has_user_signal(&"focused"): target.emit_signal(&"focused")
-
+ 
 	var hit_pt := get_collision_point() if target else Vector3.ZERO
 	if is_holding: _interact_process(held, hit_pt)
 	elif target and target.has_method(&"interact_ui"): target.interact_ui(hit_pt, false, false)

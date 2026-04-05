@@ -23,23 +23,21 @@ points = PackedVector3Array(4.629789, 35.87034, 1.2659326, -2.0977588, 24.935932
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_aa25a"]
 points = PackedVector3Array(38.275513, 29.142294, -1.2569804, 18.092213, 36.71153, 0.42482433, 18.092213, 36.71153, -0.41546047, 5.4758377, 30.824347, 2.1074524, 5.4758377, 30.824347, -2.0985003, 35.75079, 32.506397, 2.1074524, 8.000562, 36.71153, 2.1074524, 34.070057, 33.345943, -2.0985003, 5.4758377, 35.86902, -2.0985003, 35.75079, 29.142294, 1.2659326, 41.636982, 31.66537, 0.42482433, 13.886754, 36.71153, -2.0985003, 32.3857, 34.186966, 1.2659326, 35.75079, 29.98332, -2.0985003, 35.75079, 29.98332, 2.1074524, 42.480972, 29.142294, -0.41546047, 5.4758377, 35.86902, 2.1074524, 13.886754, 36.71153, 2.1074524, 32.3857, 29.142294, -0.41546047, 41.636982, 30.824347, -1.2569804, 41.636982, 29.98332, 1.2659326, 33.226067, 34.186966, -0.41546047, 6.319828, 36.71153, -1.2569804, 30.704964, 34.186966, -2.0985003, 30.704964, 34.186966, 2.1074524, 40.796616, 31.66537, -1.2569804, 40.796616, 31.66537, 1.2659326, 17.251846, 36.71153, -1.2569804, 17.251846, 36.71153, 1.2659326, 42.480972, 29.142294, 0.42482433, 35.75079, 29.142294, -1.2569804, 42.480972, 30.824347, 0.42482433)
 
-[sub_resource type="Curve" id="Curve_3aqab"]
+[sub_resource type="Curve" id="Curve_x673q"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.99999, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="CurveTexture" id="CurveTexture_x673q"]
-curve = SubResource("Curve_3aqab")
+curve = SubResource("Curve_x673q")
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_x673q"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fm7qo"]
 direction = Vector3(0, 0, -0.5)
 spread = 0.0
 initial_velocity_min = 0.5
 initial_velocity_max = 0.79999995
 gravity = Vector3(0, -11, 0)
 scale_curve = SubResource("CurveTexture_x673q")
-collision_mode = 1
-collision_friction = 0.1
-collision_bounce = 0.2
+collision_mode = 2
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fm7qo"]
 render_priority = 0
@@ -47,7 +45,7 @@ shader = ExtResource("4_4coyb")
 shader_parameter/drop_color = Color(0.6, 0.8, 1, 0.12156863)
 shader_parameter/fresnel_power = 8.0
 
-[sub_resource type="SphereMesh" id="SphereMesh_3aqab"]
+[sub_resource type="SphereMesh" id="SphereMesh_5o70a"]
 material = SubResource("ShaderMaterial_fm7qo")
 radius = 0.002
 height = 0.004
@@ -81,15 +79,15 @@ transform = Transform3D(-1.1102693e-10, 0, 0.00254, 0, 0.00254, 0, -0.00254, 0, 
 shape = SubResource("ConvexPolygonShape3D_aa25a")
 
 [node name="JetComponent" type="Node3D" parent="." unique_id=1781609703]
-transform = Transform3D(1, 0, 0, 0, 0.9966317, 0.08200807, 0, -0.08200807, 0.9966317, 0, 0.1408844, -0.075489044)
+transform = Transform3D(1, 0, 0, 0, 0.9914449, 0.1305262, 0, -0.1305262, 0.9914449, 0, 0.14509583, -0.07728958)
 script = ExtResource("4_5o70a")
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="JetComponent" unique_id=354095054]
-transform = Transform3D(1, 0, 0, 0, 0.9999998, 0, 0, 0, 0.9999998, 0, 0, 0)
-amount = 200
-lifetime = 0.09
-process_material = SubResource("ParticleProcessMaterial_x673q")
-draw_pass_1 = SubResource("SphereMesh_3aqab")
+[node name="GPUParticles3D" type="GPUParticles3D" parent="JetComponent" unique_id=1751773502]
+transform = Transform3D(1.0000001, 0, 0, 0, 0.91201985, 0.41014597, 0, -0.41014588, 0.9120201, 0, -0.0005773306, 0.004393436)
+amount = 50
+lifetime = 0.08
+process_material = SubResource("ParticleProcessMaterial_fm7qo")
+draw_pass_1 = SubResource("SphereMesh_5o70a")
 
 [node name="InteractionComponent" type="Node" parent="." unique_id=1350915894 node_paths=PackedStringArray("body")]
 script = ExtResource("2_3aqab")
@@ -102,5 +100,9 @@ distance = Vector3(0.2, -0.2, -0.55)
 min_scroll_z = -0.55
 inspect_position = Vector3(0, -0.04, -1)
 show_depth_ray = false
+
+[node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="." unique_id=172655074]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0059509277, -0.11849213)
+size = Vector3(2, 0.32574463, 0.063186646)
 
 [editable path="wash_bottle"]

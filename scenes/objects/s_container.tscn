@@ -156,8 +156,9 @@ surface_material_override/0 = ExtResource("4_fnab2")
 transform = Transform3D(0.0013134539, 0, 0, 0, 0.001313454, -4.123149e-10, 0, 4.123149e-10, 0.001313454, 0, 0.2043147, 4.1216328e-08)
 shape = SubResource("CylinderShape3D_v5fy3")
 
-[node name="InteractionComponent" type="Node" parent="container_copper_sulfate/snap_area" unique_id=517870751]
+[node name="InteractionComponent" type="Node" parent="container_copper_sulfate/snap_area" unique_id=517870751 node_paths=PackedStringArray("body")]
 script = ExtResource("3_3kwdy")
+body = NodePath("../../ghost_lid")
 context = "Colocar"
 metadata/_custom_type_script = "uid://cld64tanfoemk"
 
@@ -187,8 +188,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.27, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0038375854, -0.014965057, -0.0012130737)
 shape = SubResource("BoxShape3D_fnab2")
 
-[node name="InteractionComponent" type="Node" parent="container_copper_sulfate/container_area" unique_id=148950874]
+[node name="InteractionComponent" type="Node" parent="container_copper_sulfate/container_area" unique_id=148950874 node_paths=PackedStringArray("body")]
 script = ExtResource("3_3kwdy")
+body = NodePath("../../ghost_spatula")
 context = "Retirar"
 metadata/_custom_type_script = "uid://cld64tanfoemk"
 

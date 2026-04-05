@@ -97,7 +97,7 @@ bottom_radius = 0.03
 height = 0.09
 rings = 0
 
-[node name="s_beaker_100ml" type="RigidBody3D" unique_id=613809570]
+[node name="s_beaker_100ml" type="RigidBody3D" unique_id=613809570 groups=["beaker_100ml"]]
 collision_layer = 2
 mass = 0.048
 
@@ -155,8 +155,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.010054316, 0.24386626, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0038375854, -0.014965057, -0.0012130737)
 shape = SubResource("BoxShape3D_ei5cs")
 
-[node name="InteractionComponent" type="Node" parent="powder_area" unique_id=651986218]
+[node name="InteractionComponent" type="Node" parent="powder_area" unique_id=651986218 node_paths=PackedStringArray("body")]
 script = ExtResource("2_pdrdr")
+body = NodePath("../../ghost_spatula")
 context = "Despejar"
 metadata/_custom_type_script = "uid://cld64tanfoemk"
 

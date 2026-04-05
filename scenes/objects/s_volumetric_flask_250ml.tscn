@@ -16,6 +16,8 @@
 [ext_resource type="Script" uid="uid://cwi3u01n03275" path="res://scripts/objects/lid_component.gd" id="11_rbfax"]
 [ext_resource type="PackedScene" uid="uid://dn713edphqydv" path="res://assets/models/objects/wash_bottle.glb" id="11_yqd65"]
 [ext_resource type="Script" uid="uid://ch7wxdniaet7c" path="res://scripts/objects/liquid_target_component.gd" id="12_ad3ap"]
+[ext_resource type="PackedScene" uid="uid://bcun8at67nrk7" path="res://assets/models/objects/beaker.glb" id="12_yaiyk"]
+[ext_resource type="Script" uid="uid://b310cc2ry2t3c" path="res://scripts/objects/liquid_pour_component.gd" id="13_yaiyk"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_byy7k"]
 
@@ -408,8 +410,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.32366446, 0)
 transform = Transform3D(0.0381, 0, 0, 0, -0.03810001, -1.5291032e-08, 0, 1.5291032e-08, -0.03810001, 0, -0.00053212047, -9.1389705e-09)
 shape = SubResource("CylinderShape3D_fvvd6")
 
-[node name="InteractionComponent" type="Node" parent="volumetric_flask/snap_area_1" unique_id=921484934]
+[node name="InteractionComponent" type="Node" parent="volumetric_flask/snap_area_1" unique_id=921484934 node_paths=PackedStringArray("body")]
 script = ExtResource("2_q5wlk")
+body = NodePath("../../ghost_lid")
 context = "Colocar"
 metadata/_custom_type_script = "uid://cld64tanfoemk"
 
@@ -436,8 +439,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.32366446, 0)
 transform = Transform3D(0.0381, 0, 0, 0, -0.03810001, -1.5291032e-08, 0, 1.5291032e-08, -0.03810001, 0, 0.017235637, -1.6269869e-08)
 shape = SubResource("CylinderShape3D_fvvd6")
 
-[node name="InteractionComponent" type="Node" parent="volumetric_flask/snap_area_2" unique_id=1537069224]
+[node name="InteractionComponent" type="Node" parent="volumetric_flask/snap_area_2" unique_id=1537069224 node_paths=PackedStringArray("body")]
 script = ExtResource("2_q5wlk")
+body = NodePath("../../ghost_funnel")
 context = "Encaixar"
 metadata/_custom_type_script = "uid://cld64tanfoemk"
 
@@ -508,7 +512,49 @@ visual_node_name = "bulb"
 ghost_mesh = NodePath("../ghost_bulb")
 lid_component = NodePath("../../volumetric_flask_lid/LidComponent")
 
-[node name="LiquidPourComponent" type="Node" parent="volumetric_flask" unique_id=1152443328]
+[node name="ghost_beaker_100ml" parent="volumetric_flask" unique_id=1224887861 instance=ExtResource("12_yaiyk")]
+transform = Transform3D(0.38202605, -2.1665769, 0, 2.1665769, 0.38202605, 0, 0, 0, 2.2, 0.123826265, 0.40856782, 0)
+
+[node name="beaker" parent="volumetric_flask/ghost_beaker_100ml" index="0" unique_id=1374886091]
+transform = Transform3D(0.026616937, 1.3877788e-17, -9.313226e-10, 4.656613e-10, -1.1634635e-09, 0.02661695, 0, -0.026616953, -1.1634638e-09, -0.0019199401, -0.00033853203, 0)
+surface_material_override/0 = ExtResource("6_rvnjk")
+
+[node name="scale" parent="volumetric_flask/ghost_beaker_100ml" index="1" unique_id=1226790478]
+visible = false
+
+[node name="LiquidTargetComponent_3" type="Node" parent="volumetric_flask" unique_id=134588268 node_paths=PackedStringArray("ghost_mesh", "lid_component")]
+script = ExtResource("12_ad3ap")
+required_group = &"beaker_100ml"
+visual_node_name = "beaker_100ml"
+ghost_mesh = NodePath("../ghost_beaker_100ml")
+lid_component = NodePath("../../volumetric_flask_lid/LidComponent")
+
+[node name="LiquidPourComponent" type="Node" parent="volumetric_flask/LiquidTargetComponent_3" unique_id=79457813 node_paths=PackedStringArray("own_recipient", "requires_snapped")]
+script = ExtResource("13_yaiyk")
+own_recipient = NodePath("../../RecipientComponent")
+requires_snapped = NodePath("../../SnapComponent_2")
+
+[node name="ghost_beaker_250ml" parent="volumetric_flask" unique_id=1914542263 instance=ExtResource("12_yaiyk")]
+transform = Transform3D(1.0260606, -2.819078, 0, 2.819078, 1.0260606, 0, 0, 0, 3.000001, 0.17113778, 0.38763705, 0)
+
+[node name="beaker" parent="volumetric_flask/ghost_beaker_250ml" index="0" unique_id=1374886091]
+transform = Transform3D(0.026142335, 1.7895505e-09, -0.005003948, 0.0050039454, -9.349232e-09, 0.026142348, 0, -0.026616948, -9.518962e-09, 0.009324133, 0.0022311695, 0)
+surface_material_override/0 = ExtResource("6_rvnjk")
+
+[node name="scale" parent="volumetric_flask/ghost_beaker_250ml" index="1" unique_id=1226790478]
+visible = false
+
+[node name="LiquidTargetComponent_4" type="Node" parent="volumetric_flask" unique_id=50374177 node_paths=PackedStringArray("ghost_mesh", "lid_component")]
+script = ExtResource("12_ad3ap")
+required_group = &"beaker_250ml"
+visual_node_name = "beaker_250ml"
+ghost_mesh = NodePath("../ghost_beaker_250ml")
+lid_component = NodePath("../../volumetric_flask_lid/LidComponent")
+
+[node name="LiquidPourComponent" type="Node" parent="volumetric_flask/LiquidTargetComponent_4" unique_id=1152443328 node_paths=PackedStringArray("own_recipient", "requires_snapped")]
+script = ExtResource("13_yaiyk")
+own_recipient = NodePath("../../RecipientComponent")
+requires_snapped = NodePath("../../SnapComponent_2")
 
 [node name="liquid" type="MeshInstance3D" parent="volumetric_flask" unique_id=355279034]
 transform = Transform3D(-4.8082527e-10, 0, -0.011, 0, 0.014, 0, 0.011, 0, -4.8082527e-10, 0, -0.0011196379, 0)
@@ -573,3 +619,5 @@ metadata/_custom_type_script = "uid://dgjrei33rjh21"
 [editable path="volumetric_flask/volumetric_flask_250ml"]
 [editable path="volumetric_flask/ghost_funnel"]
 [editable path="volumetric_flask/ghost_wash_bottle"]
+[editable path="volumetric_flask/ghost_beaker_100ml"]
+[editable path="volumetric_flask/ghost_beaker_250ml"]
