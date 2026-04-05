@@ -4,12 +4,18 @@ class_name TapComponent extends Node
 @export var interaction: InteractionComponent
 @export var drop_particles: GPUParticles3D
 @export var tap_exit: Node3D
-@export var flow_speed: float = 0.05
-@export var max_receive_distance: float = 0.5 
+@export var receive_area: Area3D
+@export_range(0.0, 10.0, 0.0001, "or_greater") var drop_interval: float = 1.0
+@export_range(0.0, 1.0, 0.0001, "or_greater") var ml_per_drop: float = 0.05
+@export var max_receive_distance: float = 10.0
 @export var context_open: String = "Abrir torneira"
 @export var context_close: String = "Fechar torneira"
+@export_range(0.0, 5.0, 0.0001, "or_greater") var source_visual_scale: float = 1.0
+@export_range(0.0, 5.0, 0.0001, "or_greater") var target_visual_scale: float = 1.0
  
 var is_open: bool = false
+var drop_count: int = 0
+var _time_since_last_drop: float = 0.0
  
 func _ready() -> void:
 	if interaction:
@@ -20,6 +26,9 @@ func _ready() -> void:
  
 func _on_tap_interacted(_node: Node) -> void:
 	is_open = not is_open
+	if not is_open:
+		drop_count = 0
+		_time_since_last_drop = 0.0
 	if drop_particles:
 		drop_particles.emitting = is_open
 	if interaction:
@@ -80,7 +89,7 @@ func _get_parent_body(node: Node) -> CollisionObject3D:
 			return current as CollisionObject3D
 		current = current.get_parent()
 	return null
-
+ 
 func _process(delta: float) -> void:
 	if not is_open or not is_instance_valid(source_recipient): 
 		return
@@ -95,11 +104,19 @@ func _process(delta: float) -> void:
 				MessageBus.interaction_focused.emit(context_open, interaction.get(&"new_icon"), interaction.get(&"override_icon"))
 		return
 	
+	# contador de gotas
+	_time_since_last_drop += delta
+	if _time_since_last_drop >= drop_interval:
+		_time_since_last_drop -= drop_interval
+		drop_count += 1
+		print("Gotas: ", drop_count)
+ 
 	var target := _get_target_recipient()
+	var flow_speed := (ml_per_drop / drop_interval) / source_recipient.capacity_ml
 	var amount := flow_speed * delta
 	var ml := amount * source_recipient.capacity_ml
-	
-	source_recipient.add_liquid(-amount)
+ 
+	source_recipient.add_liquid(-amount * source_visual_scale)
 	
 	if target:
-		target.add_liquid(ml / target.capacity_ml)
+		target.add_liquid((ml / target.capacity_ml) * target_visual_scale)

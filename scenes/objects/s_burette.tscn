@@ -100,60 +100,40 @@ shader_parameter/liquid_color = Color(0.78, 0.874, 1, 0.392)
 [sub_resource type="BoxShape3D" id="BoxShape3D_55swo"]
 size = Vector3(0.041, 0.081, 0.058)
 
-[sub_resource type="Curve" id="Curve_0bkq6"]
+[sub_resource type="Curve" id="Curve_7ladk"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.99999, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="CurveTexture" id="CurveTexture_tmkq6"]
-curve = SubResource("Curve_0bkq6")
+[sub_resource type="CurveTexture" id="CurveTexture_7ladk"]
+curve = SubResource("Curve_7ladk")
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7ladk"]
-scale_curve = SubResource("CurveTexture_tmkq6")
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_v0n4b"]
+direction = Vector3(0, -1, 0)
+spread = 0.0
+initial_velocity_min = 0.099999994
+initial_velocity_max = 0.19999999
+gravity = Vector3(0, -11, 0)
+scale_curve = SubResource("CurveTexture_7ladk")
 collision_mode = 1
 collision_friction = 0.1
-collision_bounce = 0.1
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_0bkq6"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_v0n4b"]
-noise = SubResource("FastNoiseLite_0bkq6")
-seamless = true
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_7ladk"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_vrp8o"]
-noise = SubResource("FastNoiseLite_7ladk")
-seamless = true
+collision_bounce = 0.2
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_v0n4b"]
 render_priority = 0
 shader = ExtResource("12_tmkq6")
-shader_parameter/time_speed = 1.0
-shader_parameter/surface_speed = 1.0
-shader_parameter/spin = 0.0
-shader_parameter/brightness = 0.06
-shader_parameter/color_intensity = 0.0
-shader_parameter/horizontal_frequency = 2.0
-shader_parameter/vertical_frequency = 2.0
-shader_parameter/size = -1.75
-shader_parameter/banding_bias = 1.5
-shader_parameter/wave_texture = SubResource("NoiseTexture2D_vrp8o")
-shader_parameter/noise_texture = SubResource("NoiseTexture2D_v0n4b")
-shader_parameter/wave_height = 0.005
-shader_parameter/texture_height = 0.01
-shader_parameter/color1 = Color(0.59, 0.761, 1, 1)
-shader_parameter/color2 = Color(0.274, 0.474, 0.98, 1)
-shader_parameter/color3 = Color(0.059, 0.389, 0.85, 1)
-shader_parameter/color4 = Color(0, 0.267, 1, 1)
+shader_parameter/drop_color = Color(0.78039217, 0.8745098, 1, 0.39215687)
+shader_parameter/refraction_strength = 0.10000000149012
+shader_parameter/fresnel_power = 8.0
 
-[sub_resource type="SphereMesh" id="SphereMesh_r3nrw"]
+[sub_resource type="SphereMesh" id="SphereMesh_vrp8o"]
 material = SubResource("ShaderMaterial_v0n4b")
-radius = 0.001
-height = 0.05
+radius = 0.004
+height = 0.008
 radial_segments = 32
 rings = 16
 
 [node name="s_burette" type="RigidBody3D" unique_id=1461589078 groups=["burette"]]
+mass = 0.1
 
 [node name="burette" parent="." unique_id=398202680 instance=ExtResource("1_blcfl")]
 transform = Transform3D(5.5, 0, 0, 0, 5.5, 0, 0, 0, 5.5, 0, 0, 0)
@@ -220,22 +200,22 @@ metadata/_custom_type_script = "uid://cld64tanfoemk"
 [node name="tap_marker" type="Marker3D" parent="." unique_id=176014099]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.10660345, 0)
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=1422251127]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0009613037, -0.10887753, 0.0012168884)
-amount = 2
-lifetime = 1.5
-process_material = SubResource("ParticleProcessMaterial_7ladk")
-draw_pass_1 = SubResource("SphereMesh_r3nrw")
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=1811977635]
+transform = Transform3D(1, 0, 0, 0, 0.9999998, 0, 0, 0, 0.9999998, 0, -0.09778427, 0)
+amount = 1
+process_material = SubResource("ParticleProcessMaterial_v0n4b")
+draw_pass_1 = SubResource("SphereMesh_vrp8o")
 
-[node name="TapComponent" type="Node" parent="." unique_id=686604562 node_paths=PackedStringArray("source_recipient", "interaction", "drop_particles", "tap_exit")]
+[node name="TapComponent" type="Node" parent="." unique_id=686604562 node_paths=PackedStringArray("source_recipient", "interaction", "drop_particles", "tap_exit", "receive_area")]
 script = ExtResource("11_7ladk")
 source_recipient = NodePath("../RecipientComponent")
 interaction = NodePath("../tap_area/InteractionComponent")
 drop_particles = NodePath("../GPUParticles3D")
 tap_exit = NodePath("../tap_marker")
-max_receive_distance = 10.0
+receive_area = NodePath("../tap_area")
 context_open = "Abrir"
 context_close = "Fechar"
+source_visual_scale = 0.76
 
 [node name="GhostPlacementComponent" type="Node" parent="." unique_id=641367040]
 script = ExtResource("6_xpaay")

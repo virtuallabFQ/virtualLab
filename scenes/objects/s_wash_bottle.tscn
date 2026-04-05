@@ -27,56 +27,36 @@ points = PackedVector3Array(38.275513, 29.142294, -1.2569804, 18.092213, 36.7115
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.99999, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="CurveTexture" id="CurveTexture_fm7qo"]
+[sub_resource type="CurveTexture" id="CurveTexture_x673q"]
 curve = SubResource("Curve_3aqab")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_x673q"]
-scale_curve = SubResource("CurveTexture_fm7qo")
+direction = Vector3(0, 0, -0.5)
+spread = 0.0
+initial_velocity_min = 0.5
+initial_velocity_max = 0.79999995
+gravity = Vector3(0, -11, 0)
+scale_curve = SubResource("CurveTexture_x673q")
 collision_mode = 1
 collision_friction = 0.1
-collision_bounce = 0.1
+collision_bounce = 0.2
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_5o70a"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_x673q"]
-noise = SubResource("FastNoiseLite_5o70a")
-seamless = true
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_aa25a"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_5o70a"]
-noise = SubResource("FastNoiseLite_aa25a")
-seamless = true
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_s0sfm"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fm7qo"]
 render_priority = 0
 shader = ExtResource("4_4coyb")
-shader_parameter/time_speed = 1.0
-shader_parameter/surface_speed = 1.0
-shader_parameter/spin = 0.0
-shader_parameter/brightness = 0.06
-shader_parameter/color_intensity = 0.0
-shader_parameter/horizontal_frequency = 2.0
-shader_parameter/vertical_frequency = 2.0
-shader_parameter/size = -1.75
-shader_parameter/banding_bias = 1.5
-shader_parameter/wave_texture = SubResource("NoiseTexture2D_5o70a")
-shader_parameter/noise_texture = SubResource("NoiseTexture2D_x673q")
-shader_parameter/wave_height = 0.005
-shader_parameter/texture_height = 0.01
-shader_parameter/color1 = Color(0.59, 0.761, 1, 1)
-shader_parameter/color2 = Color(0.274, 0.474, 0.98, 1)
-shader_parameter/color3 = Color(0.059, 0.389, 0.85, 1)
-shader_parameter/color4 = Color(0, 0.267, 1, 1)
+shader_parameter/drop_color = Color(0.6, 0.8, 1, 0.12156863)
+shader_parameter/refraction_strength = 0.10000000149012
+shader_parameter/fresnel_power = 8.0
 
 [sub_resource type="SphereMesh" id="SphereMesh_3aqab"]
-material = SubResource("ShaderMaterial_s0sfm")
-radius = 0.001
-height = 0.05
+material = SubResource("ShaderMaterial_fm7qo")
+radius = 0.002
+height = 0.004
 radial_segments = 32
 rings = 16
 
 [node name="s_wash_bottle" type="RigidBody3D" unique_id=1175166802 groups=["wash_bottle"]]
+mass = 0.45
 
 [node name="wash_bottle" parent="." unique_id=2001274317 instance=ExtResource("1_jlm26")]
 transform = Transform3D(-4.371139e-09, 0, 0.1, 0, 0.1, 0, -0.1, 0, -4.371139e-09, 0, 0, 0)
@@ -102,13 +82,13 @@ transform = Transform3D(-1.1102693e-10, 0, 0.00254, 0, 0.00254, 0, -0.00254, 0, 
 shape = SubResource("ConvexPolygonShape3D_aa25a")
 
 [node name="JetComponent" type="Node3D" parent="." unique_id=1781609703]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1408844, -0.075489044)
+transform = Transform3D(1, 0, 0, 0, 0.9966317, 0.08200807, 0, -0.08200807, 0.9966317, 0, 0.1408844, -0.075489044)
 script = ExtResource("4_5o70a")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="JetComponent" unique_id=354095054]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0009613037, -0.020507813, 0.0012168884)
-amount = 2
-lifetime = 1.5
+transform = Transform3D(1, 0, 0, 0, 0.9999998, 0, 0, 0, 0.9999998, 0, 0, 0)
+amount = 200
+lifetime = 0.09
 process_material = SubResource("ParticleProcessMaterial_x673q")
 draw_pass_1 = SubResource("SphereMesh_3aqab")
 

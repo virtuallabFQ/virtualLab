@@ -276,52 +276,31 @@ shader_parameter/liquid_color = Color(0.78, 0.874, 1, 0.392)
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.99999, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="CurveTexture" id="CurveTexture_fm7qo"]
+[sub_resource type="CurveTexture" id="CurveTexture_x673q"]
 curve = SubResource("Curve_30hdb")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_mlcvu"]
-scale_curve = SubResource("CurveTexture_fm7qo")
+direction = Vector3(0, 0, -0.5)
+spread = 0.0
+initial_velocity_min = 0.5
+initial_velocity_max = 0.79999995
+gravity = Vector3(0, -11, 0)
+scale_curve = SubResource("CurveTexture_x673q")
 collision_mode = 1
 collision_friction = 0.1
-collision_bounce = 0.1
+collision_bounce = 0.2
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_5o70a"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_h1u8r"]
-noise = SubResource("FastNoiseLite_5o70a")
-seamless = true
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_aa25a"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_hh1rn"]
-noise = SubResource("FastNoiseLite_aa25a")
-seamless = true
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_s0sfm"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fm7qo"]
 render_priority = 0
 shader = ExtResource("5_khynq")
-shader_parameter/time_speed = 1.0
-shader_parameter/surface_speed = 1.0
-shader_parameter/spin = 0.0
-shader_parameter/brightness = 0.06
-shader_parameter/color_intensity = 0.0
-shader_parameter/horizontal_frequency = 2.0
-shader_parameter/vertical_frequency = 2.0
-shader_parameter/size = -1.75
-shader_parameter/banding_bias = 1.5
-shader_parameter/wave_texture = SubResource("NoiseTexture2D_hh1rn")
-shader_parameter/noise_texture = SubResource("NoiseTexture2D_h1u8r")
-shader_parameter/wave_height = 0.005
-shader_parameter/texture_height = 0.01
-shader_parameter/color1 = Color(0.59, 0.761, 1, 1)
-shader_parameter/color2 = Color(0.274, 0.474, 0.98, 1)
-shader_parameter/color3 = Color(0.059, 0.389, 0.85, 1)
-shader_parameter/color4 = Color(0, 0.267, 1, 1)
+shader_parameter/drop_color = Color(0.6, 0.8, 1, 0.12156863)
+shader_parameter/refraction_strength = 0.10000000149012
+shader_parameter/fresnel_power = 8.0
 
-[sub_resource type="SphereMesh" id="SphereMesh_iahtu"]
-material = SubResource("ShaderMaterial_s0sfm")
-radius = 0.001
-height = 0.05
+[sub_resource type="SphereMesh" id="SphereMesh_h1u8r"]
+material = SubResource("ShaderMaterial_fm7qo")
+radius = 0.002
+height = 0.004
 radial_segments = 32
 rings = 16
 
@@ -332,25 +311,25 @@ mass = 0.006
 
 [node name="dropper" parent="dropper" unique_id=950717494 instance=ExtResource("1_6flwg")]
 
-[node name="dropper_3" parent="dropper/dropper" index="0" unique_id=1759404701]
+[node name="dropper_3" parent="dropper/dropper" index="0" unique_id=1673356706]
 visible = false
 
-[node name="dropper_4" parent="dropper/dropper" index="1" unique_id=198796288]
+[node name="dropper_4" parent="dropper/dropper" index="1" unique_id=646986112]
 visible = false
 
-[node name="dropper_1" parent="dropper/dropper" index="2" unique_id=2126792313]
+[node name="dropper_1" parent="dropper/dropper" index="2" unique_id=2041411451]
 visible = false
 
-[node name="dropper_5" parent="dropper/dropper" index="3" unique_id=275999231]
+[node name="dropper_5" parent="dropper/dropper" index="3" unique_id=1334188581]
 visible = false
 
-[node name="dropper_6" parent="dropper/dropper" index="4" unique_id=578670131]
+[node name="dropper_6" parent="dropper/dropper" index="4" unique_id=655600307]
 surface_material_override/0 = ExtResource("2_mlcvu")
 
-[node name="dropper_2" parent="dropper/dropper" index="7" unique_id=1564404275]
+[node name="dropper_2" parent="dropper/dropper" index="7" unique_id=1735400093]
 visible = false
 
-[node name="dropper_8" parent="dropper/dropper" index="8" unique_id=1140823340]
+[node name="dropper_8" parent="dropper/dropper" index="8" unique_id=1103993577]
 visible = false
 
 [node name="dropper_10" type="MeshInstance3D" parent="dropper/dropper" unique_id=1964385445]
@@ -470,16 +449,17 @@ transform = Transform3D(0.87545604, 0, 0, 0, 1, 0, 0, 0, 0.87545604, 0.001630807
 shape = SubResource("CylinderShape3D_3earp")
 
 [node name="JetComponent" type="Node3D" parent="dropper_bulb" unique_id=1729499447]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1408844, -0.0012119412)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0018348694, 0.012756348, 0)
 script = ExtResource("7_3earp")
 flow_speed = 0.02
+flow_axis = Vector3(0, 1, 0)
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="dropper_bulb/JetComponent" unique_id=2061879918]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0009613037, -0.020507813, 0.0012168884)
-amount = 2
-lifetime = 1.5
+[node name="GPUParticles3D" type="GPUParticles3D" parent="dropper_bulb/JetComponent" unique_id=212926351]
+transform = Transform3D(1, 0, 0, 0, 0.9999998, 0, 0, 0, 0.9999998, 0, 0, 0)
+amount = 200
+lifetime = 0.3
 process_material = SubResource("ParticleProcessMaterial_mlcvu")
-draw_pass_1 = SubResource("SphereMesh_iahtu")
+draw_pass_1 = SubResource("SphereMesh_h1u8r")
 
 [node name="LidComponent" type="Node" parent="dropper_bulb" unique_id=387925109 node_paths=PackedStringArray("lid_node", "target_body", "pick_up_component", "container_pick_up")]
 script = ExtResource("5_eo4j3")

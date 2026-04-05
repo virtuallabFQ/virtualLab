@@ -15,6 +15,7 @@ height = 0.110092625
 radius = 0.0029249997
 
 [node name="s_clamp" type="RigidBody3D" unique_id=266730386 groups=["clamp"]]
+mass = 0.18
 
 [node name="clamp" parent="." unique_id=1050710730 instance=ExtResource("1_gouk2")]
 transform = Transform3D(-0.04, 0, -3.496911e-09, 0, 0.04, 0, 3.496911e-09, 0, -0.04, 0, 0, 0)
@@ -26,14 +27,14 @@ shape = SubResource("BoxShape3D_gouk2")
 [node name="ghost_burette" parent="." unique_id=1222530666 instance=ExtResource("2_7a3jq")]
 transform = Transform3D(5.5, 0, 0, 0, 5.5, 0, 0, 0, 5.5, 0.007949986, -0.26861468, -0.05555804)
 
-[node name="burette_glass" parent="ghost_burette" index="0" unique_id=174770863]
+[node name="burette_glass" parent="ghost_burette" index="0" unique_id=314251750]
 surface_material_override/0 = ExtResource("3_kv4ag")
 
-[node name="faucet" parent="ghost_burette" index="1" unique_id=1820441639]
+[node name="faucet" parent="ghost_burette" index="1" unique_id=548265960]
 surface_material_override/0 = ExtResource("3_kv4ag")
 surface_material_override/1 = ExtResource("3_kv4ag")
 
-[node name="burette_scale" parent="ghost_burette" index="2" unique_id=2104567312]
+[node name="burette_scale" parent="ghost_burette" index="2" unique_id=1602984793]
 surface_material_override/0 = ExtResource("3_kv4ag")
 
 [node name="snap_area" type="Area3D" parent="." unique_id=1193854237]

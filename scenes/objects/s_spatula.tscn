@@ -31,6 +31,7 @@ radial_segments = 14
 rings = 5
 
 [node name="s_spatula" type="RigidBody3D" unique_id=874482037]
+mass = 0.02
 
 [node name="spatula" parent="." unique_id=262879923 instance=ExtResource("1_vqtji")]
 transform = Transform3D(-1.7484555e-09, 0, 0.04, 0, 0.04, 0, -0.04, 0, -1.7484555e-09, 0, 0, 0)

@@ -100,6 +100,7 @@ rings = 0
 
 [node name="s_beaker_250ml" type="RigidBody3D" unique_id=113075842]
 collision_layer = 2
+mass = 0.103
 
 [node name="beaker_250ml" parent="." unique_id=1224887861 instance=ExtResource("1_l20c0")]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
@@ -198,6 +199,7 @@ liquid_mesh = NodePath("../liquid")
 fill_curve = ExtResource("14_2ivr0")
 capacity_ml = 250.0
 max_y_world = 0.065
+scale_offset = null
 metadata/_custom_type_script = "uid://b2gt5m2035sun"
 
 [node name="InteractionComponent" type="Node" parent="." unique_id=2137101504 node_paths=PackedStringArray("mesh")]
