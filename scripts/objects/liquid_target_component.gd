@@ -7,7 +7,7 @@ class_name LiquidTargetComponent extends Node
 @export var action_context: String = "Encher"
 @export var needs_parent_frozen: bool = false
 @export var lock_parent_while_filling: bool = true
- 
+
 var is_focused: bool = false
 var is_ready: bool = false
 var is_filling: bool = false
@@ -44,14 +44,16 @@ func _process(_delta: float) -> void:
 		return
 		
 	if is_filling:
-		if is_instance_valid(snapped_bottle) and player.held_object == snapped_bottle:
+		if not is_instance_valid(snapped_bottle) or player.held_object == snapped_bottle:
+			if is_instance_valid(snapped_bottle):
+				_set_jet(snapped_bottle, false, null)
 			_hijack_inputs(false)
 			if lock_parent_while_filling:
 				_set_parent_locked(false)
 			is_filling = false
 			snapped_bottle = null
 		return
- 
+
 	var lid_open := lid_component == null or not lid_component.is_closed
 	var can_fill: bool = is_focused and player.held_object != null and player.held_object.is_in_group(required_group) and lid_open and (not needs_parent_frozen or get_parent().get(&"freeze") == true)
 	_update_state(can_fill)
@@ -73,9 +75,27 @@ func _on_interact() -> void:
 		return
 		
 	snapped_bottle = player.held_object as RigidBody3D
-	var pickups := snapped_bottle.find_children("*", "PickUpComponent")
-	if pickups:
-		pickups[0].call(&"_toggle", snapped_bottle, false)
+	
+	var all_pickups = get_tree().get_nodes_in_group("pickups")
+	if all_pickups.is_empty():
+		all_pickups = _find_all_pickups(get_tree().root, [])
+
+	var found_pickup: PickUpComponent = null
+	for p in all_pickups:
+		if p is PickUpComponent and p.held_obj == snapped_bottle:
+			found_pickup = p
+			break
+			
+	if not found_pickup and player.held_object:
+		for p in all_pickups:
+			if p is PickUpComponent and p.held_obj == player.held_object:
+				found_pickup = p
+				break
+
+	if found_pickup:
+		found_pickup.call(&"_toggle", found_pickup.held_obj, false)
+	
+	player.held_object = null
 		
 	var visual := snapped_bottle.get_node_or_null(visual_node_name) as Node3D
 	snapped_bottle.global_transform = ghost_mesh.global_transform * visual.transform.affine_inverse() if visual else ghost_mesh.global_transform
@@ -83,13 +103,23 @@ func _on_interact() -> void:
 	snapped_bottle.angular_velocity = Vector3.ZERO
 	snapped_bottle.freeze = true
 	
-	player.velocity = Vector3.ZERO 
+	player.velocity = Vector3.ZERO
 	_hijack_inputs(true)
 	is_filling = true
+
+	var recipient := get_parent().get_node_or_null("RecipientComponent") as RecipientComponent
+	_set_jet(snapped_bottle, true, recipient)
 	
 	if lock_parent_while_filling:
 		_set_parent_locked(true)
 	_update_state(false)
+
+func _set_jet(bottle: RigidBody3D, active: bool, recipient: RecipientComponent) -> void:
+	if not is_instance_valid(bottle): return
+	var jet := bottle.get_node_or_null("JetComponent") as JetComponent
+	if jet:
+		jet.is_active = active
+		jet.target_recipient = recipient
 
 func _set_parent_locked(locked: bool) -> void:
 	var p := get_parent() as RigidBody3D
@@ -114,3 +144,10 @@ func _hijack_inputs(hijack: bool) -> void:
 				InputMap.action_add_event(act, ev)
 	if not hijack:
 		hijacked_events.clear()
+
+func _find_all_pickups(node: Node, result: Array) -> Array:
+	if node is PickUpComponent:
+		result.append(node)
+	for child in node.get_children():
+		_find_all_pickups(child, result)
+	return result

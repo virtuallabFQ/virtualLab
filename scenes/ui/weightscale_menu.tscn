@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://g6x6o0bn4iwa" path="res://scripts/ui/weightscale_menu.gd" id="1_y0imn"]
 [ext_resource type="FontFile" uid="uid://o6ejgvjn6l5o" path="res://assets/ui/fonts/technology_2/Technology-Bold.ttf" id="2_ugl2i"]
-[ext_resource type="FontFile" uid="uid://c0no1sl740s7j" path="res://assets/ui/themes/static/Orbitron-SemiBold.ttf" id="3_xefur"]
+[ext_resource type="FontFile" uid="uid://p38vpi7tgrq2" path="res://assets/ui/themes/static/Orbitron-Bold.ttf" id="3_xefur"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_xefur"]
 font = ExtResource("2_ugl2i")

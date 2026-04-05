@@ -1,23 +1,34 @@
 shader_type spatial;
-render_mode cull_disabled;
+render_mode cull_disabled, depth_draw_always;
 
-uniform vec4 liquid_color : source_color = vec4(0.0, 0.4, 0.8, 0.5);
-// Agora o fill_level é uma coordenada Y real no teu mundo (ex: 1.5 metros de altura)
-instance uniform float fill_level_world : hint_range(0, 15.0) = 0.0;
+uniform vec4 liquid_color : source_color = vec4(0.780, 0.874, 1.0, 0.392);
 
-varying float world_y;
+instance uniform float fill_percentage : hint_range(0.0, 1.0) = 0.5;
+instance uniform float min_y_local = -0.5;
+instance uniform float max_y_local = 0.5;
+
+varying vec3 local_pos;
+varying vec3 world_up_local;
 
 void vertex() {
-    // Calculamos a posição real do vértice no mundo
-    world_y = (MODEL_MATRIX * vec4(VERTEX, 1.0)).y;
+    local_pos = VERTEX;
+    world_up_local = normalize((inverse(MODEL_MATRIX) * vec4(0.0, 1.0, 0.0, 0.0)).xyz);
 }
 
 void fragment() {
-    // O corte é feito com base na altura do MUNDO
-    if (world_y > fill_level_world) {
-        discard;
-    }
-    
+    if (fill_percentage <= 0.001) { discard; }
+
+    float current_height = mix(min_y_local, max_y_local, fill_percentage);
+    float fragment_height = dot(local_pos, world_up_local);
+
+    if (fragment_height > current_height) { discard; }
+
     ALBEDO = liquid_color.rgb;
     ALPHA = liquid_color.a;
+    ROUGHNESS = 0.1;
+    SPECULAR = 0.5;
+
+    if (!FRONT_FACING) {
+        ALBEDO = mix(liquid_color.rgb, vec3(1.0), 0.3);
+    }
 }
