@@ -339,19 +339,19 @@ size = Vector3(0.038294934, 0.1, 0.050563045)
 
 [node name="sink_table" parent="." unique_id=1765102177 instance=ExtResource("1_aglhp")]
 
-[node name="door_4" parent="sink_table" index="0" unique_id=2022232148]
+[node name="door_4" parent="sink_table" index="0" unique_id=2056476677]
 visible = false
 
-[node name="door_3" parent="sink_table" index="2" unique_id=1129963341]
+[node name="door_3" parent="sink_table" index="2" unique_id=164747951]
 visible = false
 
-[node name="door_2" parent="sink_table" index="3" unique_id=161196840]
+[node name="door_2" parent="sink_table" index="3" unique_id=1902043090]
 visible = false
 
-[node name="door_1" parent="sink_table" index="4" unique_id=1253741321]
+[node name="door_1" parent="sink_table" index="4" unique_id=1190390814]
 visible = false
 
-[node name="sink_tap" parent="sink_table" index="6" unique_id=268718020]
+[node name="sink_tap" parent="sink_table" index="6" unique_id=1946417635]
 visible = false
 
 [node name="c1_sink_table" type="CollisionShape3D" parent="." unique_id=812388482]
@@ -509,11 +509,5 @@ mesh = SubResource("ArrayMesh_w4iwu")
 [node name="c_sink_tap" type="CollisionShape3D" parent="an_tap" unique_id=69309230]
 transform = Transform3D(-0.8, 0, 6.9938224e-08, 0, 0.8, 0, -6.9938224e-08, 0, -0.8, -0.86517143, 0.8861719, -0.3937669)
 shape = SubResource("BoxShape3D_ehd6d")
-
-[node name="InteractionComponent" type="Node" parent="an_tap" unique_id=1664537131 node_paths=PackedStringArray("mesh")]
-script = ExtResource("2_x13th")
-mesh = NodePath("../sink_tap")
-context = "Abrir torneira"
-metadata/_custom_type_script = "uid://cld64tanfoemk"
 
 [editable path="sink_table"]

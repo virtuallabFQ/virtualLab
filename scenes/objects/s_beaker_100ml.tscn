@@ -89,7 +89,6 @@ size = Vector3(0.12458801, 0.27631378, 0.12336731)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ivhli"]
 render_priority = -1
 shader = ExtResource("5_rqtv0")
-shader_parameter/liquid_color = Color(0.78, 0.874, 1, 0.392)
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_eehc6"]
 material = SubResource("ShaderMaterial_ivhli")
@@ -169,8 +168,6 @@ interaction_comp = NodePath("../powder_area/InteractionComponent")
 interaction_area = NodePath("../powder_area")
 powder_visual_pivot = NodePath("../powder_pivot")
 
-[node name="LiquidPourComponent" type="Node" parent="." unique_id=2011325684]
-
 [node name="ghost_wash_bottle" parent="." unique_id=2001274317 instance=ExtResource("7_bexuc")]
 transform = Transform3D(-0.06649696, -0.07468703, 8.6804155e-09, -0.07468703, 0.06649697, 1.0381499e-09, -6.5475776e-09, -5.792808e-09, -0.09999998, 0.15934691, 0.1357587, 0.00011780858)
 
@@ -193,12 +190,13 @@ instance_shader_parameters/max_y_local = 0.045
 instance_shader_parameters/min_y_local = -0.045
 mesh = SubResource("CylinderMesh_eehc6")
 
-[node name="RecipientComponent" type="Node" parent="." unique_id=1946992982 node_paths=PackedStringArray("liquid_mesh")]
+[node name="RecipientComponent" type="Node" parent="." unique_id=1946992982 node_paths=PackedStringArray("liquid_mesh", "powder_pivot")]
 script = ExtResource("2_otmu3")
 liquid_mesh = NodePath("../liquid")
 fill_curve = ExtResource("8_reyy3")
 max_y_world = 0.045
-scale_offset = null
+powder_pivot = NodePath("../powder_pivot")
+powder_color = Color(0.23137255, 0.49803922, 1, 1)
 
 [node name="InteractionComponent" type="Node" parent="." unique_id=845906834 node_paths=PackedStringArray("mesh")]
 script = ExtResource("2_pdrdr")

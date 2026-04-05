@@ -1,7 +1,7 @@
 shader_type spatial;
 render_mode cull_disabled, depth_draw_always;
 
-uniform vec4 liquid_color : source_color = vec4(0.780, 0.874, 1.0, 0.392);
+instance uniform vec4 liquid_color : source_color = vec4(0.780, 0.874, 1.0, 0.392);
 
 instance uniform float fill_percentage : hint_range(0.0, 1.0) = 0.5;
 instance uniform float min_y_local = -0.5;

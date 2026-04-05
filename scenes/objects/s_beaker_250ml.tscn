@@ -89,7 +89,6 @@ size = Vector3(0.12458801, 0.27631378, 0.12336731)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ivhli"]
 render_priority = -1
 shader = ExtResource("6_e4bkc")
-shader_parameter/liquid_color = Color(0.78, 0.874, 1, 0.392)
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_y5qby"]
 material = SubResource("ShaderMaterial_ivhli")
@@ -193,13 +192,14 @@ instance_shader_parameters/max_y_local = 0.065
 instance_shader_parameters/min_y_local = -0.0625
 mesh = SubResource("CylinderMesh_y5qby")
 
-[node name="RecipientComponent" type="Node" parent="." unique_id=274690319 node_paths=PackedStringArray("liquid_mesh")]
+[node name="RecipientComponent" type="Node" parent="." unique_id=274690319 node_paths=PackedStringArray("liquid_mesh", "powder_pivot")]
 script = ExtResource("6_5aevv")
 liquid_mesh = NodePath("../liquid")
 fill_curve = ExtResource("14_2ivr0")
 capacity_ml = 250.0
 max_y_world = 0.065
-scale_offset = null
+powder_pivot = NodePath("../powder_pivot")
+powder_color = Color(0.23137255, 0.49803922, 1, 1)
 metadata/_custom_type_script = "uid://b2gt5m2035sun"
 
 [node name="InteractionComponent" type="Node" parent="." unique_id=2137101504 node_paths=PackedStringArray("mesh")]
