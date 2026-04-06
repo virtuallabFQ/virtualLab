@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://dgjrei33rjh21" path="res://scripts/objects/pick_up_component.gd" id="3_stpra"]
 [ext_resource type="Script" uid="uid://defqc4mn4kjbx" path="res://scripts/objects/snap_component.gd" id="4_8mnis"]
 [ext_resource type="Script" uid="uid://cwi3u01n03275" path="res://scripts/objects/lid_component.gd" id="5_eo4j3"]
-[ext_resource type="Shader" uid="uid://dnocp532ptnhv" path="res://shaders/water.gdshader" id="5_khynq"]
+[ext_resource type="Shader" uid="uid://ducjccwrf6o2q" path="res://shaders/liquid_drop.gdshader" id="5_khynq"]
 [ext_resource type="Shader" uid="uid://dnjnsgwj6xcev" path="res://shaders/liquid_recipient.gdshader" id="6_8mnis"]
 [ext_resource type="Script" uid="uid://dg2hrp1f5m5mr" path="res://scripts/objects/jet_component.gd" id="7_3earp"]
 

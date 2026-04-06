@@ -13,7 +13,7 @@
 [ext_resource type="Script" uid="uid://ms7kq4n8iay7" path="res://scripts/objects/ghost_placement_component.gd" id="6_xpaay"]
 [ext_resource type="Curve" uid="uid://pxc6sbx2cijt" path="res://resources/recipient_curve.tres" id="7_5t5t0"]
 [ext_resource type="Script" uid="uid://dny422s0treuk" path="res://scripts/objects/tap_component.gd" id="11_7ladk"]
-[ext_resource type="Shader" uid="uid://dnocp532ptnhv" path="res://shaders/water.gdshader" id="12_tmkq6"]
+[ext_resource type="Shader" uid="uid://ducjccwrf6o2q" path="res://shaders/liquid_drop.gdshader" id="12_tmkq6"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g0paw"]
 
