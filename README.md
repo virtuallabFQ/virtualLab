@@ -8,4 +8,4 @@ Neste sentido, o projeto Laboratório Virtual surge com o objetivo de verificar 
 
 ## Licença
 
-Este projeto está licenciado sob a licença **GNU GPLv3**. Consulte o arquivo [LICENSE](LICENSE) para obter mais detalhes sobre os termos de uso, modificação e distribuição.
+Este projeto está licenciado sob a licença **MIT**. Consulte o arquivo [LICENSE](LICENSE) para obter mais detalhes sobre os termos de uso, modificação e distribuição.
