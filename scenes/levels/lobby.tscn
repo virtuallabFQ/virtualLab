@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://dejy6xmx0jom4"]
 
 [ext_resource type="Script" uid="uid://cpqcdpg445a50" path="res://scripts/levels/lobby.gd" id="1_l7pl7"]
+[ext_resource type="Script" uid="uid://ivx7m2bfysip" path="res://addons/gde_gozen/video_playback.gd" id="2_kr2ft"]
 [ext_resource type="PackedScene" uid="uid://cwa4lcrku1b36" path="res://scenes/ui/main_menu.tscn" id="3_kr2ft"]
-[ext_resource type="VideoStream" uid="uid://buxs8r412xkeg" path="res://assets/videos/lobby_loop.ogv" id="3_l7pl7"]
 
 [sub_resource type="Animation" id="Animation_yo3ta"]
 length = 0.001
@@ -96,15 +96,19 @@ libraries/ = SubResource("AnimationLibrary_h8nri")
 autoplay = &"camera"
 speed_scale = 0.3
 
-[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="." unique_id=827549801]
+[node name="VideoPlayback" type="Control" parent="." unique_id=1169284006]
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -1.0
 grow_horizontal = 2
 grow_vertical = 2
-stream = ExtResource("3_l7pl7")
-autoplay = true
-expand = true
+script = ExtResource("2_kr2ft")
+path = "res://assets/videos/lobby_loop.mp4"
+enable_audio = false
+enable_auto_play = true
 loop = true
+metadata/_custom_type_script = "uid://ivx7m2bfysip"
 
 [node name="LobbyMenu" parent="." unique_id=1796675924 instance=ExtResource("3_kr2ft")]

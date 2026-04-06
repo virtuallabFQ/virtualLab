@@ -32,6 +32,10 @@ window/stretch/mode="canvas_items"
 window/vsync/vsync_mode=3
 mouse_cursor/custom_image="uid://dg2bwg18u76tg"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/gde_gozen/plugin.cfg")
+
 [global_group]
 
 clamp=""

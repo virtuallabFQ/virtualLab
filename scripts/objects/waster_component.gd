@@ -1,9 +1,9 @@
 class_name WasterComponent extends Node
-
+ 
 signal object_reset(body: Node3D)
-
+ 
 @export var detector: Area3D
-
+ 
 var initials := {}
 
 func _ready() -> void:
@@ -12,47 +12,43 @@ func _ready() -> void:
 	await get_tree().process_frame
 	_scan()
 
+func _get_scene_root(node: Node) -> Node:
+	var current = node
+	while current and current != get_tree().current_scene:
+		var p = current.get(&"scene_file_path")
+		if p != null and typeof(p) == TYPE_STRING and not p.is_empty():
+			return current
+		current = current.get_parent()
+	return node
+
+func _register(node: Node) -> void:
+	var scene_root := _get_scene_root(node)
+	if initials.has(scene_root):
+		return
+	var root_path = scene_root.get(&"scene_file_path")
+	if root_path == null or typeof(root_path) != TYPE_STRING or root_path.is_empty():
+		return
+	var mass_dict := {}
+	if scene_root is RigidBody3D:
+		mass_dict[str(scene_root.get_path_to(scene_root))] = scene_root.mass
+	for child in scene_root.find_children(&"*", &"RigidBody3D", true, false):
+		mass_dict[str(scene_root.get_path_to(child))] = child.mass
+	initials[scene_root] = [scene_root.global_transform, load(root_path), scene_root.get_parent(), mass_dict]
+
 func _scan() -> void:
 	for body in get_tree().current_scene.find_children(&"*", &"RigidBody3D", true, false):
-		var scene_root: Node = body
-		var path = body.get(&"scene_file_path")
-		
-		if path == null or (typeof(path) == TYPE_STRING and path.is_empty()):
-			var current = body.get_parent()
-			while current and current != get_tree().current_scene:
-				var p = current.get(&"scene_file_path")
-				if p != null and typeof(p) == TYPE_STRING and not p.is_empty():
-					scene_root = current
-					break
-				current = current.get_parent()
-				
-		if not initials.has(scene_root):
-			var root_path = scene_root.get(&"scene_file_path")
-			if root_path != null and typeof(root_path) == TYPE_STRING and not root_path.is_empty():
-				
-				var mass_dict := {}
-				if scene_root is RigidBody3D:
-					mass_dict[str(scene_root.get_path_to(scene_root))] = scene_root.mass
-				for child in scene_root.find_children(&"*", &"RigidBody3D", true, false):
-					mass_dict[str(scene_root.get_path_to(child))] = child.mass
-				
-				initials[scene_root] = [scene_root.global_transform, load(root_path), scene_root.get_parent(), mass_dict]
+		_register(body)
 
 func _on_body(body: Node3D) -> void:
-	if body is RigidBody3D:
-		body.sleeping = false
-		
 	if not body is RigidBody3D:
 		return
 	
-	var target: Node = body
+	body.sleeping = false
+	_register(body)
+	
+	var target := _get_scene_root(body)
 	if not initials.has(target):
-		var current = body.get_parent()
-		while current and current != get_tree().current_scene:
-			if initials.has(current):
-				target = current
-				break
-			current = current.get_parent()
+		target = body
 	
 	if target.has_meta(&"wasting"): return
 	target.set_meta(&"wasting", true)
@@ -63,14 +59,22 @@ func _replace_object(body: Node3D) -> void:
 	if not is_instance_valid(body):
 		return
 	
-	var to_reset := [body]
+	var all_bodies := [body]
 	for child in body.find_children(&"*", &"RigidBody3D", true, false):
-		to_reset.append(child)
-			
-	for obj in to_reset:
+		all_bodies.append(child)
+	
+	for obj in all_bodies:
+		if not is_instance_valid(obj) or obj == body:
+			continue
+		var obj_root := _get_scene_root(obj)
+		if obj_root != body and initials.has(obj_root):
+			if obj_root.has_meta(&"wasting"): continue
+			obj_root.set_meta(&"wasting", true)
+			call_deferred(&"_replace_object", obj_root)
+	
+	for obj in all_bodies:
 		if not is_instance_valid(obj):
 			continue
-		
 		for pickup in obj.find_children(&"*", &"PickUpComponent", true, false):
 			if pickup.get(&"held_obj") == obj:
 				pickup.call(&"_toggle", obj, false)
@@ -92,7 +96,7 @@ func _replace_object(body: Node3D) -> void:
 		if path != null and typeof(path) == TYPE_STRING and not path.is_empty():
 			packed_scene = load(path)
 			original_parent = body.get_parent()
-			
+	
 	if packed_scene:
 		var clone := packed_scene.instantiate() as Node3D
 		original_parent.add_child(clone)
@@ -106,7 +110,7 @@ func _replace_object(body: Node3D) -> void:
 		if initials.has(body):
 			initials.erase(body)
 			initials[clone] = [original_transform, packed_scene, original_parent, mass_dict]
-			
-		object_reset.emit(clone)
 		
+		object_reset.emit(clone)
+	
 	body.queue_free()
