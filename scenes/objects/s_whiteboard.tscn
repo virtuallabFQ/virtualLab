@@ -33,7 +33,7 @@ canvas_draw = NodePath("SubViewport/CanvasDraw")
 
 [node name="whiteboard" parent="." unique_id=163924510 instance=ExtResource("1_4y1ow")]
 
-[node name="whiteboard" parent="whiteboard" index="0" unique_id=1151755028]
+[node name="whiteboard" parent="whiteboard" index="0" unique_id=1164054263]
 transform = Transform3D(1, 0, 0, 0, -1.0490733e-09, 0.879, 0, -0.024, -3.842231e-08, 0, 0, 0)
 layers = 2
 
